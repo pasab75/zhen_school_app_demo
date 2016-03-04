@@ -1,0 +1,20 @@
+CREATE DATABASE rest_school_db;
+
+CREATE TABLE questions (
+	question_id int NOT NULL,
+	question_text varchar(500) NOT NULL,
+	answer_a_text varchar(50) NOT NULL,
+	answer_b_text varchar(50) NOT NULL,
+	answer_c_text varchar(50),
+	answer_d_text varchar(50),
+	answer_e_text varchar(50),
+	answer_num int,
+	PRIMARY KEY (question_id)
+);
+
+#adding in a fake record to query
+INSERT INTO `rest_school_db`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_num`) VALUES ('1', 'What color is the sky', 'green', 'your mom', 'orange', 'red', 'blue', '5');
+
+#we're making a new user to be the python program access, this is the actual password do not let this file out
+CREATE USER 'app_user'@'localhost' IDENTIFIED BY 'derp123';
+GRANT SELECT,UPDATE ON rest_school_db . questions TO 'app_user'@'localhost';
