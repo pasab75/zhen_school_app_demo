@@ -5,7 +5,7 @@ import db_access.database_access as db_access_layer
 app = Flask(__name__)
 
 
-
+#this should probably be replaced at some point... yay
 @app.route('/')
 def index():
     return "Hello, World!"
