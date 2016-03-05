@@ -18,7 +18,6 @@ class database_access:
                     sql = "SELECT * FROM questions WHERE `question_id`="+str(question_id)
                     cursor.execute(sql)
                     request = cursor.fetchone()
-                    self.dbconnection.close()
                     return request
             except Exception as e:
                 print("Error fetching results: "+str(e))
