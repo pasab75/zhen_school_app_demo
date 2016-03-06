@@ -1,11 +1,10 @@
 from flask import Flask, jsonify
+import json
 import datetime
-import db_access.database_access as db_access_layer
+import db_access.db_question as db_access_layer
 
 app = Flask(__name__)
 
-
-#this should probably be replaced at some point... yay
 @app.route('/')
 def index():
     return "Hello, World!"
@@ -16,7 +15,7 @@ def get_question(task_id):
         dbconnect = db_access_layer.database_access()
         result = dbconnect.get_question(1)
         dbconnect.close_connection()
-        return "made a connection, getting read to check for id="+str(result)
+        return result.get_jsonified()
     except Exception as ex:
         return "you passed in "+str(task_id)+ " exception give: "+str(ex)
 
