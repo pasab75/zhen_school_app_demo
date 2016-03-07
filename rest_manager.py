@@ -19,7 +19,17 @@ def get_question(task_id):
     except Exception as ex:
         return "you passed in "+str(task_id)+ " exception give: "+str(ex)
 
+#enable CORS so that app can talk to API
+#need to research this to make sure it's safe to use like this
 
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  return response
+
+#-----------------
 
 if __name__ == '__main__':
     app.run(debug=True)
