@@ -17,4 +17,4 @@ INSERT INTO `rest_school_db`.`questions` (`question_id`, `question_text`, `answe
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'app_user'@'localhost' IDENTIFIED BY 'derp123';
-GRANT SELECT,UPDATE ON rest_school_db . questions TO 'app_user'@'localhost';
+GRANT SELECT,INSERT,DELETE,UPDATE ON rest_school_db . questions TO 'app_user'@'localhost';
