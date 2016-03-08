@@ -8,12 +8,15 @@ CREATE TABLE questions (
 	answer_c_text varchar(50),
 	answer_d_text varchar(50),
 	answer_e_text varchar(50),
-	answer_num int,
-	PRIMARY KEY (question_id)
+    answer_f_text varchar(50),
+    chapter       int,
+    subject       varchar(50),
+	answer_num    int,
+	PRIMARY KEY (question_id)questions
 );
 
 #adding in a fake record to query
-INSERT INTO `rest_school_db`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_num`) VALUES ('1', 'What color is the sky', 'green', 'your mom', 'orange', 'red', 'blue', '5');
+INSERT INTO `rest_school_db`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('1', 'How many valence electrons are in one atom of the element carbon?', 'one', 'two', 'three', 'four', 'five', 'six', '0', 'Counting Valence', '4');
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'app_user'@'localhost' IDENTIFIED BY 'derp123';

@@ -14,7 +14,7 @@ def get_question(task_id):
     try:
         result = None
         dbconnect = db_access_layer.database_access()
-        result = dbconnect.get_by_id(1)
+        result = dbconnect.get_by_id(task_id)
         dbconnect.close_connection()
         return result.get_jsonified()
     except Exception as ex:
