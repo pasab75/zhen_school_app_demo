@@ -7,9 +7,9 @@ class database_access:
     def __init__(self):
         print("connected")
         self.dbconnection = pymysql.connect(host='localhost',
-                             user='app_user',
-                             password='derp123',
-                             db='rest_school_db',
+                             user='appuser',
+                             password='carhorsebatterysuccess',
+                             db='testDB',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor,
                              autocommit=True
