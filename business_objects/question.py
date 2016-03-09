@@ -57,8 +57,7 @@ class question:
         return jsonify(question_id=self.get_question_id(),
                        question_text=self.get_question_text(),
                        answers=self.get_answers(),
-                       # answer_index = self.get_correct_answer_index()
-                       # answer validation should probably be done on the backend
+                       answer_index = self.get_correct_answer_index(),
                        )
 
     def set_correct_answer_index(self, index):
