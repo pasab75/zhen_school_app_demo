@@ -40,6 +40,32 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
+    def get_random(self, subject, chapter):
+        #TODO: make this pull a random question, this is just the id code from before
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    question = None
+                    sql = "SELECT * FROM questions WHERE `question_id`="+str(question_id)+";"
+                    cursor.execute(sql)
+                    request = cursor.fetchone()
+                    question = question_obj_generator.question(request['question_id'],
+                                            request['question_text'],
+                                            request['answer_a_text'],
+                                            request['answer_b_text'],
+                                            request['answer_c_text'],
+                                            request['answer_d_text'],
+                                            request['answer_e_text'],
+                                            request['answer_f_text'],
+                                            request['chapter'],
+                                            request['subject'],
+                                            request['answer_num'])
+                    return question
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
     def get_by_question_text(self, text):
         try:
             try:
