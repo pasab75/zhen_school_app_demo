@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, abort
 import json
 import datetime
 import db_access.db_question as db_access_layer
@@ -9,16 +9,19 @@ app = Flask(__name__)
 def index():
     return "Hello, World!"
 
-@app.route('/get/question/<int:task_id>', methods=['GET'])
-def get_question(task_id):
+@app.route('/get/question', methods=['POST'])
+def get_question():
     try:
+        incoming_request = request
+        print (incoming_request)
+        task_id = incoming_request.json['id']
         result = None
         dbconnect = db_access_layer.database_access()
         result = dbconnect.get_by_id(task_id)
         dbconnect.close_connection()
         return result.get_jsonified()
     except Exception as ex:
-        return "you passed in "+str(task_id)+ " exception give: "+str(ex)
+        abort(500, "Unable to find id or no id given")
 
 #TODO: enable CORS so that app can talk to API
 #need to research this to make sure it's safe to use like this
