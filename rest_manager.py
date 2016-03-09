@@ -13,9 +13,9 @@ def index():
 def get_question():
     try:
         incoming_request = request
-        print (incoming_request)
-        print(incoming_request.data)
-        task_id = incoming_request.data[0]
+        print(incoming_request)
+        task_id=(request.json['id'])
+        print(id)
         result = None
         dbconnect = db_access_layer.database_access()
         result = dbconnect.get_by_id(task_id)
