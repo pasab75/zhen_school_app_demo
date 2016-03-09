@@ -1,5 +1,6 @@
 from flask import jsonify
 
+
 class question:
     _question_id = ""
     _question_text = ""
@@ -55,9 +56,10 @@ class question:
     def get_jsonified(self):
         return jsonify(question_id=self.get_question_id(),
                        question_text=self.get_question_text(),
-                       answers = self.get_answers(),
-                       answer_index = self.get_correct_answer_index()
-        )
+                       answers=self.get_answers(),
+                       # answer_index = self.get_correct_answer_index()
+                       # answer validation should probably be done on the backend
+                       )
 
     def set_correct_answer_index(self, index):
         self._answer_index = index
@@ -68,8 +70,8 @@ class question:
     def set_answers(self, answers):
         self._answers = answers
 
-    def set_chapter(self,chapter):
+    def set_chapter(self, chapter):
         self._chapter = chapter
 
-    def set_subject(self,subject):
+    def set_subject(self, subject):
         self._subject = subject
