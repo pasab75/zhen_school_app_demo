@@ -33,8 +33,8 @@ $(document).ready(function(){
         console.log("error");
     };
     
-	var qID = ""; //question ID to get
-    getQ.getData(success,qID); 
+	var qID = {'id':'2'}; //question ID to get
+    getQ.getData(success, qID); 
 });
 
 $('.mcAnsBtn').click(function(){
