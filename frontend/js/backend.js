@@ -1,8 +1,11 @@
-var backend = function() {
-    this.getData = function(success,qID) {
+// This is a POST function that gets question by question ID
+// Will most likely need to diversify this function to cover more cases
+
+var postRequest = function() {
+    this.getData = function(success,qID,url) {
 		$.ajax({
 		  type: "POST",
-		  url: 'http://127.0.0.1:5000/get/question',
+		  url: url,
 		  data: JSON.stringify(qID, null, '\t'),
 		  contentType: 'application/json;charset=UTF-8',
 		  success: success,
