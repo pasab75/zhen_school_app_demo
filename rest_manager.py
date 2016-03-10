@@ -9,17 +9,17 @@ app = Flask(__name__)
 def index():
     return "Hello, World!"
 
-@app.route('get/random/MC', methods=['POST'])
+@app.route('/get/random/MC', methods=['POST'])
 
-@app.route('get/random/FR', methods=['POST'])
+@app.route('/get/random/FR', methods=['POST'])
 
-@app.route('get/random/DEF', methods=['POST'])
+@app.route('/get/random/DEF', methods=['POST'])
 
-@app.route('get/WORD', methods=['POST'])
+@app.route('/get/WORD', methods=['POST'])
 
-@app.route('get/DEF', methods=['POST'])
+@app.route('/get/DEF', methods=['POST'])
 
-@app.route('get/FR', methods=['POST'])
+@app.route('/get/FR', methods=['POST'])
 
 #TODO:make these routes available
 
