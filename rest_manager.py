@@ -9,7 +9,21 @@ app = Flask(__name__)
 def index():
     return "Hello, World!"
 
-@app.route('/get/question', methods=['POST'])
+@app.route('get/random/MC', methods=['POST'])
+
+@app.route('get/random/FR', methods=['POST'])
+
+@app.route('get/random/DEF', methods=['POST'])
+
+@app.route('get/WORD', methods=['POST'])
+
+@app.route('get/DEF', methods=['POST'])
+
+@app.route('get/FR', methods=['POST'])
+
+#TODO:make these routes available
+
+@app.route('/get/MC', methods=['POST'])
 def get_question():
     try:
         incoming_request = request
@@ -24,9 +38,7 @@ def get_question():
         print(ex)
         abort(500, "Unable to find id or no id given")
 
-#TODO: enable CORS so that app can talk to API
-#need to research this to make sure it's safe to use like this
-
+#TODO: check to see if this CORS implementation is safe
 @app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')
@@ -35,4 +47,8 @@ def after_request(response):
   return response
 
 if __name__ == '__main__':
-    app.run(debug=True)
+        app.debug = True
+        #be careful with this apparently it's a security hazard
+
+        app.run(host='0.0.0.0')
+        #this allows the API to use the public IP
