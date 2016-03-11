@@ -9,7 +9,7 @@ class database_access:
 
     def __init__(self):
         print("connected")
-        self.dbconnection = pymysql.connect(host='www.exbookapp.org',
+        self.dbconnection = pymysql.connect(host='localhost',
                              user='appuser',
                              password='carhorsebatterysuccess',
                              db='testDB',
@@ -18,13 +18,15 @@ class database_access:
                              autocommit=True
                             )
 
+
+
     def load_randomShit(self, numAdd):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
 
                     for i in range(0,numAdd):
-                        sql = "INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('This is question number " +  str(randint(3,100)) + "', 'one', 'two', 'three', 'four', 'five', 'six', '0', 'derpderp', '" + str(randint(1,6)) + "');"
+                        sql = "INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `answer_num`, `topic`, `question_type`) VALUES ('This is question number " +  str(randint(3,100)) + "', 'one', 'two', 'three', 'four', 'five', 'six', '" + str(randint(1,6)) + "', 'derpderp', '" + str(randint(1,6)) + "');"
                         cursor.execute(sql)
                     print("added " + str(numAdd) + " records to table")
 
@@ -63,7 +65,7 @@ class database_access:
                 print("Error connecting: "+str(e))
 
 
-    def get_id_by_subject(self, subject):
+    def get_id_by_topic(self, topic):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
@@ -91,9 +93,9 @@ class database_access:
                                             request['answer_d_text'],
                                             request['answer_e_text'],
                                             request['answer_f_text'],
-                                            request['chapter'],
-                                            request['subject'],
-                                            request['answer_num'])
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
                     return question
             except Exception as e:
                 print("Error fetching results: "+str(e))
@@ -116,9 +118,9 @@ class database_access:
                                             request['answer_d_text'],
                                             request['answer_e_text'],
                                             request['answer_f_text'],
-                                            request['chapter'],
-                                            request['subject'],
-                                            request['answer_num'])
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
                     return question
             except Exception as e:
                 print("Error fetching results: "+str(e))
@@ -141,9 +143,9 @@ class database_access:
                                             request['answer_d_text'],
                                             request['answer_e_text'],
                                             request['answer_f_text'],
-                                            request['chapter'],
-                                            request['subject'],
-                                            request['answer_num'])
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
                     return question
             except Exception as e:
                 print("Error fetching results: "+str(e))
@@ -158,7 +160,7 @@ class database_access:
                     for x in range (len(answers), 5):
                         answers.append(None)
 
-                    sql = "INSERT INTO `questions` (`question_id`,`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`)"+\
+                    sql = "INSERT INTO `questions` (`question_id`,`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `topic`, `answer_num`, `question_type`)"+\
                           " VALUES ('NULL','"+question.get_question_text()+\
                           "', '"+answers[0]+\
                           "', '"+answers[1]+\
@@ -166,9 +168,9 @@ class database_access:
                           "', '"+answers[3]+\
                           "', '"+answers[4]+\
                           "', '"+answers[5]+\
-                          "', '"+question.get_chapter()+\
-                          "', '"+question.get_subject()+\
-                          "', '"+str(question.get_correct_answer_index())+"');"
+                          "', '"+question.get_topic()+\
+                          "', '"+str(question.get_correct_answer_index())+\
+                          "', '"+question.get_type()+"');"
                     cursor.execute(sql)
                     return True
             except Exception as e:
@@ -194,8 +196,8 @@ class database_access:
                           '", answer_d_text="'+answers[3]+\
                           '", answer_e_text="'+answers[4]+\
                           '", answer_f_text="'+answers[5]+\
-                          '", chapter="'+question.get_chapter()+\
-                          '", subject="'+question.get_subject()+\
+                          '", topic="'+question.get_topic()+\
+                          '", question_type="'+question.get_type()+\
                           '", answer_num='+str(question.get_correct_answer_index())+\
                           " WHERE question_id="+str(question.get_question_id())+";"
                     cursor.execute(sql)
@@ -238,21 +240,21 @@ class database_access:
                                             request['answer_d_text'],
                                             request['answer_e_text'],
                                             request['answer_f_text'],
-                                            request['chapter'],
-                                            request['subject'],
-                                            request['answer_num'])
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
                     return question
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    def get_by_subject(self, subject):
+    def get_by_topic(self, topic):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
                     question = None
-                    sql = 'SELECT * FROM questions WHERE `subject`="'+str(subject)+'";'
+                    sql = 'SELECT * FROM questions WHERE `topic`="'+str(topic)+'";'
                     cursor.execute(sql)
                     request = cursor.fetchone()
                     question = question_obj_generator.question(request['question_id'],
@@ -263,9 +265,9 @@ class database_access:
                                             request['answer_d_text'],
                                             request['answer_e_text'],
                                             request['answer_f_text'],
-                                            request['chapter'],
-                                            request['subject'],
-                                            request['answer_num'])
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
                     return question
             except Exception as e:
                 print("Error fetching results: "+str(e))

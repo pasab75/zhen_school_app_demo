@@ -1,31 +1,22 @@
-CREATE DATABASE testDB;
-
-CREATE TABLE questions (
-	question_id int NOT NULL AUTO_INCREMENT,
-	question_text varchar(500) NOT NULL,
-	answer_a_text varchar(50) NOT NULL,
-	answer_b_text varchar(50) NOT NULL,
-	answer_c_text varchar(50),
-	answer_d_text varchar(50),
-	answer_e_text varchar(50),
-	answer_f_text varchar(50),
-	answer_num int,
-	chapter varchar(50),
-	`subject` varchar(50),
-	PRIMARY KEY (question_id)
-);
+CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
+  `question_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `question_text` VARCHAR(500) NOT NULL,
+  `answer_a_text` VARCHAR(50) NOT NULL,
+  `answer_b_text` VARCHAR(50) NOT NULL,
+  `answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_num`    INT         NULL DEFAULT NULL,
+  `topic`         VARCHAR(50) NULL DEFAULT NULL,
+  `question_type` INT         NULL DEFAULT NULL,
+  PRIMARY KEY (`question_id`))
+DEFAULT CHARACTER SET = utf8;
 
 #adding in a fake record to query
-INSERT INTO `testDB`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('1', 'How many valence electrons are in one atom of the element carbon?', 'one', 'two', 'three', 'four', 'five', 'six', '0', 'Counting Valence', '4');
-INSERT INTO `testDB`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('2', 'How much wood could a wood chuck chuck if a wood chuck could chuck wood?', 'A decent amount', 'An enormous amount', 'All the woods', 'None of the woods', 'This is a trick question', 'None of the above', '0', 'Random Trash', '4');
+INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `subject`, `answer_num`, `question_type`) VALUES ('How many valence electrons are in one atom of the element carbon?', 'one', 'two', 'three', 'four', 'five', 'six', 'Counting Valence', '4');
+INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `subject`, `answer_num`, `question_type`) VALUES ('How much wood could a wood chuck chuck if a wood chuck could chuck wood?', 'A decent amount', 'An enormous amount', 'All the woods', 'None of the woods', 'This is a trick question', 'None of the above', 'Chucking Wood', '4');
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
 GRANT SELECT,INSERT,DELETE,UPDATE ON testDB . * TO 'appuser'@'localhost';
-
-#we're altering this to add inew
-ALTER TABLE `testDB`.`questions`
-CHANGE COLUMN `answer_num` `answer_num` INT(11) NOT NULL ,
-ADD COLUMN `answer_f_text` VARCHAR(50) AFTER `answer_num`,
-ADD COLUMN `chapter` VARCHAR(50) NULL AFTER `answer_f_text`,
-ADD COLUMN `subject` VARCHAR(50) NULL AFTER `chapter`;

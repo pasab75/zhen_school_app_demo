@@ -6,10 +6,10 @@ class question:
     _question_text = ""
     _answers = []
     _answer_index = 0
-    _chapter = None
-    _subject = None
+    _topic = None
+    _type = None
 
-    def __init__(self, id, q_text, ans_a, ans_b, ans_c, ans_d, ans_e, ans_f, chapter, subject, answer):
+    def __init__(self, id, q_text, ans_a, ans_b, ans_c, ans_d, ans_e, ans_f, answer, topic, type):
         self._answers = []
         self._question_id = id
         self._question_text = q_text
@@ -25,9 +25,9 @@ class question:
             self._answers.append(ans_e)
         if ans_f is not None and ans_f != "":
             self._answers.append(ans_f)
-        self._chapter = chapter
-        self._subject = subject
         self._answer_index = answer
+        self._topic = topic
+        self._type = type
 
     def get_correct_answer_index(self):
         return self._answer_index
@@ -50,8 +50,11 @@ class question:
     def get_chapter(self):
         return self._chapter
 
-    def get_subject(self):
-        return self._subject
+    def get_topic(self):
+        return self._topic
+
+    def get_type(self):
+        return self._type
 
     def get_jsonified(self):
         return jsonify(
@@ -72,5 +75,8 @@ class question:
     def set_chapter(self, chapter):
         self._chapter = chapter
 
-    def set_subject(self, subject):
-        self._subject = subject
+    def set_topic(self, topic):
+        self._topic = topic
+
+    def set_type(self, type):
+        self._type = type

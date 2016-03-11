@@ -107,7 +107,11 @@ def get_validation():
         query = result = dbconnect.get_by_id(questionID)
         correctID = result.get_correct_answer_index()
 
-        dbconnect.get_numEntries('questions')
+        print(correctID)
+        print(result.get_type())
+        print(result.get_topic())
+
+        #dbconnect.get_numEntries('questions')
 
         if answerID == correctID:
             return jsonify(validation = 'true')
