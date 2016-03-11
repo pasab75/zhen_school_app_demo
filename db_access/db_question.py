@@ -9,7 +9,7 @@ class database_access:
 
     def __init__(self):
         print("connected")
-        self.dbconnection = pymysql.connect(host='localhost',
+        self.dbconnection = pymysql.connect(host='www.exbookapp.org',
                              user='appuser',
                              password='carhorsebatterysuccess',
                              db='testDB',
@@ -56,7 +56,7 @@ class database_access:
             try:
                 with self.dbconnection.cursor() as cursor:
                     return "derp"
-
+                #TODO: make this a thing
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
@@ -68,7 +68,7 @@ class database_access:
             try:
                 with self.dbconnection.cursor() as cursor:
                     return "derp"
-
+                #TODO: make this a thing
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:

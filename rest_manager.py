@@ -48,7 +48,7 @@ def get_question():
 
 
 # gets a random multiple choice question
-@app.route('/get/random/MC', methods=['POST'])
+@app.route('/get/MC/random', methods=['POST'])
 def get_random_mc():
     try:
         incoming_request = request
