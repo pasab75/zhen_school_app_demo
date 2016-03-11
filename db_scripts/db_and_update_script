@@ -1,4 +1,4 @@
-CREATE DATABASE rest_school_db;
+CREATE DATABASE testDB;
 
 CREATE TABLE questions (
 	question_id int NOT NULL AUTO_INCREMENT,
@@ -16,14 +16,15 @@ CREATE TABLE questions (
 );
 
 #adding in a fake record to query
-INSERT INTO `rest_school_db`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_num`) VALUES ('1', 'What color is the sky', 'green', 'your mom', 'orange', 'red', 'blue', '5');
+INSERT INTO `testDB`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('1', 'How many valence electrons are in one atom of the element carbon?', 'one', 'two', 'three', 'four', 'five', 'six', '0', 'Counting Valence', '4');
+INSERT INTO `testDB`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('2', 'How much wood could a wood chuck chuck if a wood chuck could chuck wood?', 'A decent amount', 'An enormous amount', 'All the woods', 'None of the woods', 'This is a trick question', 'None of the above', '0', 'Random Trash', '4');
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
-CREATE USER 'app_user'@'localhost' IDENTIFIED BY 'derp123';
-GRANT SELECT,INSERT,DELETE,UPDATE ON rest_school_db . questions TO 'app_user'@'localhost';
+CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
+GRANT SELECT,INSERT,DELETE,UPDATE ON testDB . * TO 'appuser'@'localhost';
 
 #we're altering this to add inew
-ALTER TABLE `rest_school_db`.`questions` 
+ALTER TABLE `testDB`.`questions`
 CHANGE COLUMN `answer_num` `answer_num` INT(11) NOT NULL ,
 ADD COLUMN `answer_f_text` VARCHAR(50) AFTER `answer_num`,
 ADD COLUMN `chapter` VARCHAR(50) NULL AFTER `answer_f_text`,

@@ -1,9 +1,11 @@
 $(document).ready(function(){
 
-    var POST = new request();
 
-	var qID = {'id':'2'}; //question ID to get
+    POST = new request();
 
-    POST.getMCQuestion(qID);
+    var qID = {'id':'2'}; //question ID to get
+
+    //POST.getMC(qID);
+    POST.getRNDMC();
 
 });

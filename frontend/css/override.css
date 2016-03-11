@@ -1,4 +1,25 @@
+
+/* answer buttons and container */
+
 .mcAnsBtn
 {
 	min-width: 200px !important;
+}
+
+.questionClicked{
+    background-color: #00b33c;
+    border-color: #00b33c;
+}
+
+/* button container */
+.mbr-section__container--isolated {
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
+/* question text padding */
+
+.questionText{
+    padding-left: 20px;
+    padding-right: 20px;
 }

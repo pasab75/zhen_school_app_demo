@@ -54,10 +54,10 @@ class question:
         return self._subject
 
     def get_jsonified(self):
-        return jsonify(question_id=self.get_question_id(),
+        return jsonify(
+                       questionID = self.get_question_id(),
                        question_text=self.get_question_text(),
                        answers=self.get_answers(),
-                       answer_index = self.get_correct_answer_index(),
                        )
 
     def set_correct_answer_index(self, index):

@@ -1,8 +1,11 @@
 import pymysql.cursors
 import business_objects.question as question_obj_generator
+from random import randint
 
 class database_access:
     dbconnection = None
+
+#TODO:differentiate between different questions types (multiple choice, word-definition pairs, and free response calculations) each of these will most likely need a separate set of methods
 
     def __init__(self):
         print("connected")
@@ -14,6 +17,63 @@ class database_access:
                              cursorclass=pymysql.cursors.DictCursor,
                              autocommit=True
                             )
+
+    def load_randomShit(self, numAdd):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+
+                    for i in range(0,numAdd):
+                        sql = "INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('This is question number " +  str(randint(3,100)) + "', 'one', 'two', 'three', 'four', 'five', 'six', '0', 'derpderp', '" + str(randint(1,6)) + "');"
+                        cursor.execute(sql)
+                    print("added " + str(numAdd) + " records to table")
+
+            except Exception as e:
+                print("Error loading random shit "+str(e))
+        except Exception as e:
+            print("Error while connecting "+str(e))
+
+
+
+    def get_numEntries(self, table):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    question = None
+                    sql = "SELECT COUNT(*) AS NumberofQuestions FROM " + str(table) + ";"
+                    cursor.execute(sql)
+                    request = cursor.fetchone()
+                    print(request)
+
+            except Exception as e:
+                print("Error counting rows "+str(e))
+        except Exception as e:
+            print("Error while connecting "+str(e))
+
+
+    def get_id_by_chapter(self, chapter):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    return "derp"
+
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
+
+    def get_id_by_subject(self, subject):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    return "derp"
+
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
 
     def get_by_id(self, question_id):
         try:
@@ -40,13 +100,12 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    def get_random(self, subject, chapter):
-        #TODO: make this pull a random question, this is just the id code from before
+    def get_randomALL(self):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
                     question = None
-                    sql = "SELECT * FROM questions WHERE `question_id`="+str(question_id)+";"
+                    sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
                     request = cursor.fetchone()
                     question = question_obj_generator.question(request['question_id'],

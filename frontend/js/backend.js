@@ -1,47 +1,94 @@
+
+var local = true; //determines whether you are testing locally or you are on the VPS
+
+var hostname = ''; //which server you are routing to
+var port = '5000'; //port that server is listening on
+
+if (local == true){
+    hostname = 'http://127.0.0.1'
+}
+
+else
+    hostname = 'http://www.exbookapp.org'
+
+hostroot = hostname + ':' + port + '/'
+
+console.log(hostroot)
+
+urlgetRNDMC = hostroot + 'get/random/MC';
+urlgetRNDFR = hostroot + 'get/random/FR';
+urlgetRNDDEF = hostroot + 'get/random/DEF';
+urlgetMC = hostroot + 'get/MC';
+urlgetWORD = hostroot + 'get/WORD';
+urlgetDEF = hostroot + 'get/DEF';
+urlgetFR = hostroot + 'get/FR';
+urlsendANS = hostroot + 'validate/MC';
+
+
 // This is POST object that contains all the various types of POSTS we will do
 
-var parseMCQuestion = function(data) { //this is the on success function for parsing a multiple choice question
-    $('#questionText').text(data.question_text); //adds question text to page
 
-    var $aProto = $('#a_proto'); //creates prototype question box
+    parseMCQuestion = function(data) { //this is the on success function for parsing a multiple choice question
+        $('#questionText').text(data.question_text); //adds question text to page
 
-    //var correctAns = data.answer_index;
+        var $aProto = $('#a_proto'); //creates prototype question box
 
-    var minWidth = 200; //this is the minimum width of an answer button to be displayed
+        //var correctAns = data.answer_index;
 
-    for (var i = 0; i < data.answers.length; i++) {
-        var $thisClone = $aProto.clone() //clones a prototype question box
-            .text(data.answers[i]) //inserts answer text into question boxes
-            .appendTo($('#mcContainer')) //puts question boxes in the correct container
-            .attr('data-index', i) //adds class identifiers to each question box
-            .removeClass('hidden'); //shows the question box
+        var minWidth = 200; //this is the minimum width of an answer button to be displayed
 
-            if ($thisClone.width() > minWidth){
+        for (var i = 0; i < data.answers.length; i++) {
+            var $thisClone = $aProto.clone() //clones a prototype question box
+                .text(data.answers[i]) //inserts answer text into question boxes
+                .appendTo($('#mcContainer')) //puts question boxes in the correct container
+                .attr('data-index', i) //adds class identifiers to each question box
+                .attr('data-qID', data.questionID) //adds question identifier to each question box
+                .removeClass('hidden'); //shows the question box
 
-            	minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
-            };
-            //if ((i+1) == correctAns){
-            //	$thisClone.addClass('correct');
-            //};
-         };
+                if ($thisClone.width() > minWidth){
+
+                    minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
+                };
+                //if ((i+1) == correctAns){
+                //	$thisClone.addClass('correct');
+                //};
+             };
 
 
-    $('.mcAnsBtn').each(function(){
-        $(this).width(minWidth); //standardizes box widths
-    });
+        $('.mcAnsBtn').each(function(){
+            $(this).width(minWidth); //standardizes box widths
+        });
 
-    $('#mcContainer').randomize('a'); //randomize answer boxes
+        $('#mcContainer').randomize('a'); //randomize answer boxes
 
-    var error = function() {
-        console.log("error");
+        var error = function() {
+            console.log("error");
+        };
     };
-};
 
-// request contains all the information required to make POST calls
+    var clearOldQuestion = function(){
+        $("#mcContainer").empty();
+        $('#questionText').text(''); //adds question text to page
+    };
+
+    // request contains all the information required to make POST calls
+
+    checkValid = function(data){
+        console.log(data);
+        if (data.validation == 'true'){
+            console.log('you are correct');
+            clearOldQuestion();
+            POST.getRNDMC();
+        };
+        if (data.validation == 'false'){
+            console.log('you are not correct');
+        };
+    }
 
 var request = function() {
 
-    var url = new API();//get access to API addresses
+/* success functions to pass POST object */
+
 
     //Generic POST function
 
@@ -60,26 +107,37 @@ var request = function() {
 		$.ajax({
 		  type: "POST",
 		  url: url,
+		  data: JSON.stringify({'id':'2'}, null, '\t'),
 		  contentType: 'application/json;charset=UTF-8',
 		  success: onSuccess,
 		  dataType: 'json'
 		});
     };
 
+    this.doNothing = function(url) {
+		$.ajax({
+		  type: "POST",
+		  url: url,
+		  data: JSON.stringify({'id':'2'}, null, '\t'),
+		  contentType: 'application/json;charset=UTF-8',
+		  dataType: 'json'
+		});
+    };
+
     this.getRNDMC = function(){
-        this.requestData(parseMCQuestion, url.getRNDMC)
-    }
+        this.requestData(parseMCQuestion, urlgetRNDMC);
+    };
 
     this.getRNDFR = function(){
-        this.requestData(parseMCQuestion, url.getRNDFR)
-    }
+        this.requestData(parseMCQuestion, urlgetRNDFR)
+    };
 
     this.getRNDDEF = function(){
-        this.requestData(parseMCQuestion, url.getRNDDEF)
-    }
+        this.requestData(parseMCQuestion, urlgetRNDDEF)
+    };
 
-    this.getMCQuestion = function(questID) {
-        this.postData(parseMCQuestion, questID, url.getMC);
+    this.getMC = function(questID) {
+        this.postData(parseMCQuestion, questID, urlgetMC);
     }; //gets a multiple choice question with ID questID
 
     this.getWORD = function(questID) {
@@ -95,22 +153,11 @@ var request = function() {
     }; //gets a free response question with ID questID
 
     this.validateAns = function(validation) {
-        this.postData()
+        this.postData(checkValid, validation, urlsendANS );
     }; //checks whether an answer to a question is correct or not; validation should be an object that contains question ID, chosen answer, user data (points, time, username etc)
+
+    this.addQuestions = function() {
+        this.doNothing('http://127.0.0.1:5000/add/dummy/questions');
+    };
+
 };
-
-//store the API addresses in this
-var API = function(){
-    var hostroot = 'http://exbookapp.org:5000/'
-
-    this.getRNDMC = hostroot + 'get/random/MC';
-    this.getRNDFR = hostroot + 'get/random/FR';
-    this.getRNDDEF = hostroot + 'get/random/DEF';
-
-    this.getMC = hostroot + 'get/MC';
-    this.getWORD = hostroot + 'get/WORD';
-    this.getDEF = hostroot + 'get/DEF';
-    this.getFR = hostroot + 'get/FR';
-
-    this.sendANS = hostroot + '';
-}
