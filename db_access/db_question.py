@@ -20,13 +20,15 @@ class database_access:
 
 
 
-    def load_randomShit(self, numAdd):
+    def load_questions_testing(self, numAdd):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
-
                     for i in range(0,numAdd):
-                        sql = "INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `answer_num`, `topic`, `question_type`) VALUES ('This is question number " +  str(randint(3,100)) + "', 'one', 'two', 'three', 'four', 'five', 'six', '" + str(randint(1,6)) + "', 'derpderp', '" + str(randint(1,6)) + "');"
+                        answerID = str(randint(0,5))
+                        questionType = str(randint(0,3))
+                        topic = "this is topic " + str(randint(0,30))
+                        sql = "INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `answer_num`, `topic`, `question_type`) VALUES ('I am a question. My answer index is " + answerID + ". My topic is  " + topic + ". My question type is " + questionType + "', 'one', 'two', 'three', 'four', 'five', 'six', '" + answerID + "','" + topic + "' , '" + questionType + "');"
                         cursor.execute(sql)
                     print("added " + str(numAdd) + " records to table")
 
@@ -35,6 +37,19 @@ class database_access:
         except Exception as e:
             print("Error while connecting "+str(e))
 
+
+    def empty_table(self):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    sql = "DELETE FROM questions"
+                    cursor.execute(sql)
+
+
+            except Exception as e:
+                print("Error loading random shit "+str(e))
+        except Exception as e:
+            print("Error while connecting "+str(e))
 
 
     def get_numEntries(self, table):
@@ -76,8 +91,83 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
+    def get_question_by_questiontype(self, type): #TODO: check to make sure this is legit
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    question = None
+                    sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " ORDER BY RAND() LIMIT 1;"
+                    cursor.execute(sql)
+                    request = cursor.fetchone()
+                    question = question_obj_generator.question(request['question_id'],
+                                            request['question_text'],
+                                            request['answer_a_text'],
+                                            request['answer_b_text'],
+                                            request['answer_c_text'],
+                                            request['answer_d_text'],
+                                            request['answer_e_text'],
+                                            request['answer_f_text'],
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
+                    return question
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
 
-    def get_by_id(self, question_id):
+    def get_question_by_questiontype_topic(self, type, topic): #TODO: check to make sure this is legit
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    question = None
+                    sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " AND topic = " + str(topic) + " ORDER BY RAND() LIMIT 1;"
+                    cursor.execute(sql)
+                    request = cursor.fetchone()
+                    question = question_obj_generator.question(request['question_id'],
+                                            request['question_text'],
+                                            request['answer_a_text'],
+                                            request['answer_b_text'],
+                                            request['answer_c_text'],
+                                            request['answer_d_text'],
+                                            request['answer_e_text'],
+                                            request['answer_f_text'],
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
+                    return question
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
+    def get_question_by_type_chapter(self, type, chapter): #TODO: Make this work. it doesn't work right now because chapter column doesn't exist there should be eventually a table that relates topics to chapters
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    question = None
+                    sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " AND chapter = " + str(chapter) + " ORDER BY RAND() LIMIT 1;"
+                    cursor.execute(sql)
+                    request = cursor.fetchone()
+                    question = question_obj_generator.question(request['question_id'],
+                                            request['question_text'],
+                                            request['answer_a_text'],
+                                            request['answer_b_text'],
+                                            request['answer_c_text'],
+                                            request['answer_d_text'],
+                                            request['answer_e_text'],
+                                            request['answer_f_text'],
+                                            request['answer_num'],
+                                            request['topic'],
+                                            request['question_type'])
+                    return question
+                #TODO: make this a thing
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
+    def get_question_by_id(self, question_id):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
@@ -102,7 +192,7 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    def get_randomALL(self):
+    def get_question_random(self):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
@@ -127,7 +217,7 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    def get_by_question_text(self, text):
+    def get_question_by_questiontext(self, text):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:

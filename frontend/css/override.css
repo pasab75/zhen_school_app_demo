@@ -6,6 +6,12 @@
 	min-width: 200px !important;
 }
 
+.btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
+    color: #ffffff;
+    background-color: #00b33c;
+    border-color: #00b33c;
+}
+
 .questionClicked{
     background-color: #00b33c;
     border-color: #00b33c;

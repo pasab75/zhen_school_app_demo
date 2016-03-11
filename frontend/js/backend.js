@@ -9,20 +9,13 @@ if (local == true){
 }
 
 else
-    hostname = 'http://www.exbookapp.org'
+    hostname = 'http://exbookapp.org'
 
 hostroot = hostname + ':' + port + '/'
 
-console.log(hostroot)
+urlgetrand = hostroot + 'get/question/random';
+urlsendANS = hostroot + 'validate/question';
 
-urlgetRNDMC = hostroot + 'get/MC/random';
-urlgetRNDFR = hostroot + 'get/random/FR';
-urlgetRNDDEF = hostroot + 'get/random/DEF';
-urlgetMC = hostroot + 'get/MC';
-urlgetWORD = hostroot + 'get/WORD';
-urlgetDEF = hostroot + 'get/DEF';
-urlgetFR = hostroot + 'get/FR';
-urlsendANS = hostroot + 'validate/MC';
 
 
 // This is POST object that contains all the various types of POSTS we will do
@@ -43,7 +36,9 @@ urlsendANS = hostroot + 'validate/MC';
                 .appendTo($('#mcContainer')) //puts question boxes in the correct container
                 .attr('data-index', i) //adds class identifiers to each question box
                 .attr('data-qID', data.questionID) //adds question identifier to each question box
-                .removeClass('hidden'); //shows the question box
+                .hide()
+                .removeClass('hidden')
+                .fadeIn('slow'); //shows the question box
 
                 if ($thisClone.width() > minWidth){
 
@@ -78,10 +73,14 @@ urlsendANS = hostroot + 'validate/MC';
         if (data.validation == 'true'){
             console.log('you are correct');
             clearOldQuestion();
-            POST.getRNDMC();
+            POST.getrandmc();
+            //$('[data-remodal-id=modal]').remodal().open();
+
         };
         if (data.validation == 'false'){
             console.log('you are not correct');
+            clearOldQuestion();
+            POST.getrandmc();
         };
     }
 
@@ -103,61 +102,28 @@ var request = function() {
 		});
     };
 
-    this.requestData = function(onSuccess, url) {
-		$.ajax({
-		  type: "POST",
-		  url: url,
-		  data: JSON.stringify({'id':'2'}, null, '\t'),
-		  contentType: 'application/json;charset=UTF-8',
-		  success: onSuccess,
-		  dataType: 'json'
-		});
+    this.getranddef = function(){
+        var qtype = {'question_type' : '0'};
+        this.postData(parseMCQuestion, qtype ,urlgetrand);
+    }
+
+    this.getrandmc = function(){
+        var qtype = {'question_type' : '1'};
+        this.postData(parseMCQuestion, 'derp' ,urlgetrand);
     };
 
-    this.doNothing = function(url) {
-		$.ajax({
-		  type: "POST",
-		  url: url,
-		  data: JSON.stringify({'id':'2'}, null, '\t'),
-		  contentType: 'application/json;charset=UTF-8',
-		  dataType: 'json'
-		});
+    this.getrandmc = function(){
+        var qtype = {'question_type' : '2'};
+        this.postData(parseMCQuestion, qtype ,urlgetrand);
     };
-
-    this.getRNDMC = function(){
-        this.requestData(parseMCQuestion, urlgetRNDMC);
-    };
-
-    this.getRNDFR = function(){
-        this.requestData(parseMCQuestion, urlgetRNDFR)
-    };
-
-    this.getRNDDEF = function(){
-        this.requestData(parseMCQuestion, urlgetRNDDEF)
-    };
-
-    this.getMC = function(questID) {
-        this.postData(parseMCQuestion, questID, urlgetMC);
-    }; //gets a multiple choice question with ID questID
-
-    this.getWORD = function(questID) {
-        this.postData
-    }; //gets a word from database with ID questID
-
-    this.getDefinition = function(questID) {
-
-    }; //gets a definition with ID questID
-
-    this.getFreeResponse = function(questID) {
-
-    }; //gets a free response question with ID questID
 
     this.validateAns = function(validation) {
         this.postData(checkValid, validation, urlsendANS );
     }; //checks whether an answer to a question is correct or not; validation should be an object that contains question ID, chosen answer, user data (points, time, username etc)
 
     this.addQuestions = function() {
-        this.doNothing('http://127.0.0.1:5000/add/dummy/questions');
+        var nothing = {'nothing' : '0'};
+        this.postData(console.log('added questions successfully'), {'nothing':'0'}, 'http://127.0.0.1:5000/add/dummy/questions' );
     };
 
 };

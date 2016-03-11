@@ -13,15 +13,9 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   PRIMARY KEY (`question_id`))
 DEFAULT CHARACTER SET = utf8;
 
-#adding in a fake record to query
-INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `topic`, `answer_num`, `question_type`) VALUES ('How many valence electrons are in one atom of the element carbon?', 'one', 'two', 'three', 'four', 'five', 'six', 'Counting Valence', '4', '1');
-INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `topic`, `answer_num`, `question_type`) VALUES ('How much wood could a wood chuck chuck if a wood chuck could chuck wood?', 'A decent amount', 'An enormous amount', 'All the woods', 'None of the woods', 'This is a trick question', 'None of the above', 'Chucking Wood', '4', '1');
-
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
 GRANT SELECT,INSERT,DELETE,UPDATE ON testDB . * TO 'appuser'@'localhost';
 
-#should make question prompts unique?
-ALTER TABLE `testdb`.`questions`
-ADD UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC),
-ADD UNIQUE INDEX `question_text_UNIQUE` (`question_text` ASC);
+#Just delete all of the records every time and load them with our testing method load_questions_testing(numberofentriestoload)
+DELETE FROM questions;
