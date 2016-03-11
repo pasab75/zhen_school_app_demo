@@ -15,7 +15,7 @@ hostroot = hostname + ':' + port + '/'
 
 console.log(hostroot)
 
-urlgetRNDMC = hostroot + 'get/random/MC';
+urlgetRNDMC = hostroot + 'get/MC/random';
 urlgetRNDFR = hostroot + 'get/random/FR';
 urlgetRNDDEF = hostroot + 'get/random/DEF';
 urlgetMC = hostroot + 'get/MC';
