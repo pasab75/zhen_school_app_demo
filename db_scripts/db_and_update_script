@@ -1,21 +1,25 @@
+CREATE SCHEMA IF NOT EXISTS `testdb` DEFAULT CHARACTER SET utf8 ;
+USE `testdb` ;
+
+-- -----------------------------------------------------
+-- Table `testdb`.`questions`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
-  `question_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `question_text` VARCHAR(500) NOT NULL,
-  `answer_a_text` VARCHAR(50) NOT NULL,
-  `answer_b_text` VARCHAR(50) NOT NULL,
-  `answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_num`    INT         NULL DEFAULT NULL,
-  `topic`         VARCHAR(50) NULL DEFAULT NULL,
-  `question_type` INT         NULL DEFAULT NULL,
+`question_id` INT(11) NOT NULL AUTO_INCREMENT,
+`question_text` VARCHAR(500) NOT NULL,
+`answer_a_text` VARCHAR(50) NOT NULL,
+`answer_b_text` VARCHAR(50) NULL DEFAULT NULL,
+`answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
+`answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
+`answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
+`answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
+`answer_num` INT(11) NULL DEFAULT NULL,
+`topic` VARCHAR(50) NULL DEFAULT NULL,
+`question_type` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`question_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8;
-
-ALTER TABLE `testdb`.`questions`
-CHANGE COLUMN `answer_b_text` `answer_b_text` VARCHAR(50) NULL DEFAULT NULL ;
-
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';

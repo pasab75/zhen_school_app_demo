@@ -28,6 +28,8 @@ class DatabaseAccess:
                         questionType = str(randint(0,2))
                         topic = "topic index " + str(randint(0,4))
 
+                        print('all good so far')
+
                         if questionType == '0':
                             sql = """INSERT INTO
                             `testDB`.`questions`

@@ -1,5 +1,5 @@
 
-var local = true; //determines whether you are testing locally or you are on the VPS
+var local = false; //determines whether you are testing locally or you are on the VPS
 
 var hostname = ''; //which server you are routing to
 var port = '5000'; //port that server is listening on
@@ -125,7 +125,7 @@ var request = function() {
 
     this.addQuestions = function() {
         var nothing = {'nothing' : '0'};
-        this.postData(console.log('added questions successfully'), nothing, 'http://127.0.0.1:5000/add/dummy/questions' );
+        this.postData(console.log('added questions successfully'), nothing, hostname +':5000/add/dummy/questions' );
     };
 
     this.debug = function(url){
