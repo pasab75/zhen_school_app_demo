@@ -3,6 +3,9 @@ import business_objects.question as question_obj_generator
 from random import randint, shuffle
 
 
+#TODO: I CAN RUN THIS LOCALLY WITH NO PROBLEMS, BUT THE SERVER GIVES AN ERROR ABOUT 'TOPIC' NOT BEING A FIELD IN THE TABLE??!?!?!
+# IT HAS SOMETHING TO DO WITH MY LOAD QUESTION SCRIPT LOOK INTO IT
+
 class DatabaseAccess:
     dbconnection = None
 
@@ -28,13 +31,13 @@ class DatabaseAccess:
                         questionType = str(randint(0,2))
                         topic = "topic index " + str(randint(0,4))
 
-                        #if questionType == '0':
-                        #    sql = "INSERT INTO testDB.questions (question_text, answer_a_text, topic , question_type) VALUES ('I am a definition blah blah blah blah blah blah blah blah blah my answer is " + answer + "', '" + answer + "', '" + topic + "', " + questionType + ");"
+                        if questionType == '0':
+                            sql = "INSERT INTO testDB.questions (question_text, answer_a_text, topic , question_type) VALUES ('I am a definition blah blah blah blah blah blah blah blah blah my answer is " + answer + "', '" + answer + "', '" + topic + "', " + questionType + ");"
 
-                        #else:
-                        #    sql = "INSERT INTO testDB.questions (question_text, answer_a_text, answer_b_text, answer_c_text, answer_d_text, answer_e_text, answer_f_text, answer_num, topic, question_type) VALUES ('I am a question. My answer is " + answer + ". My topic is  " + topic + ". My question type is " + questionType + "', 'one', 'two', 'three', 'four', 'five', 'six', " + answerID + ", '" + topic + "' , " + questionType + ");"
+                        else:
+                            sql = "INSERT INTO testDB.questions (question_text, answer_a_text, answer_b_text, answer_c_text, answer_d_text, answer_e_text, answer_f_text, answer_num, topic, question_type) VALUES ('I am a question. My answer is " + answer + ". My topic is  " + topic + ". My question type is " + questionType + "', 'one', 'two', 'three', 'four', 'five', 'six', " + answerID + ", '" + topic + "' , " + questionType + ");"
 
-                        #cursor.execute(sql)
+                        cursor.execute(sql)
                     print("added " + str(numAdd) + " records to table")
 
             except Exception as e:
