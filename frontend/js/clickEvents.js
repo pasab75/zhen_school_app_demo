@@ -12,6 +12,11 @@ $(document).ready(function(){
 	    $(this).addClass('questionClicked')
     });
 
+    $(document).on("click", "#debug-btn", function(){
+        debugURL = '';
+        POST.debug(debugURL);
+    });
+
     $(document).on("click", "#questionText", function(){
         POST.addQuestions();
     });

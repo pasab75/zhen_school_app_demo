@@ -13,9 +13,32 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   PRIMARY KEY (`question_id`))
 DEFAULT CHARACTER SET = utf8;
 
+ALTER TABLE `testdb`.`questions`
+CHANGE COLUMN `answer_b_text` `answer_b_text` VARCHAR(50) NULL DEFAULT NULL ;
+
+
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
-GRANT SELECT,INSERT,DELETE,UPDATE ON testDB . * TO 'appuser'@'localhost';
+GRANT SELECT,INSERT,DELETE,UPDATE ON testDB.* TO 'appuser'@'localhost';
 
 #Just delete all of the records every time and load them with our testing method load_questions_testing(numberofentriestoload)
 DELETE FROM questions;
+
+TODO: check to see if there is anything else that should be here
+CREATE TABLE `testdb`.`user_table` (
+  `user_name` VARCHAR(20) NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `password` VARCHAR(20) NOT NULL,
+  `last_activity` DATETIME NOT NULL,
+  `first_name` VARCHAR(20) NOT NULL,
+  `last_name` VARCHAR(20) NOT NULL,
+  `user_role` INT NOT NULL DEFAULT 0,
+  `e_mail` VARCHAR(20) NOT NULL,
+  `activated` TINYINT(1) NULL DEFAULT 0,
+  `last_question_id` INT NULL,
+  `current_lvl` INT NOT NULL DEFAULT 1,
+  `current_points` INT NOT NULL DEFAULT 0,
+  `class_code` VARCHAR(11) NOT NULL,
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
+  PRIMARY KEY (`user_name`),
+  UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC));

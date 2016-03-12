@@ -20,7 +20,7 @@ def index():
 def add_random():
     try:
         incoming_request = request
-        dbconnect = db_access_layer.database_access()
+        dbconnect = db_access_layer.DatabaseAccess()
         dbconnect.empty_table()
         dbconnect.load_questions_testing(1000)
 
@@ -34,16 +34,35 @@ def add_random():
 # student client routes
 
 
+@app.route('/get/defquestion/topic', methods=['POST'])
+def get_defquestion_topic():
+    try:
+        incoming_request = request
+        print(incoming_request)
+        topic_index = (request.json['topic'])
+        print(topic_index)
+
+        dbconnect = db_access_layer.DatabaseAccess()
+        result = dbconnect.get_question_def_by_topic(topic_index)
+
+        dbconnect.close_connection()
+        return result.get_jsonified()
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to retrieve random question")
+
+
 @app.route('/get/question/random', methods=['POST'])
-def get_random():
+def get_question_random():
     try:
         incoming_request = request
         print(incoming_request)
         qType = (request.json['question_type'])
         print(qType)
 
-        dbconnect = db_access_layer.database_access()
-        result = dbconnect.get_question_by_questiontype(qType)
+        dbconnect = db_access_layer.DatabaseAccess()
+        result = dbconnect.get_question_by_type(qType)
 
         dbconnect.close_connection()
         return result.get_jsonified()
@@ -56,7 +75,7 @@ def get_random():
 
 
 @app.route('/validate/question', methods=['POST'])
-def get_valid():
+def validate_question():
     try:
         incoming_request = request
         print(incoming_request)
@@ -67,7 +86,7 @@ def get_valid():
 
         result = None
 
-        dbconnect = db_access_layer.database_access()
+        dbconnect = db_access_layer.DatabaseAccess()
 
         # TODO: create user table and record point gain
         # TODO: create log table to record question statistics
@@ -84,57 +103,14 @@ def get_valid():
         print("question type index = " + str(result.get_type()))
         print("question topic index = " + str(result.get_topic()))
 
-        if answerID == correctID:
-            return jsonify(validation = 'true')
-        else:
-            return jsonify(validation = 'false')
-
         dbconnect.close_connection()
-
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to validate question")
-
-# checks if a multiple choice question is correct
-
-
-@app.route('/validate/MC', methods=['POST'])
-def get_validation():
-    try:
-        incoming_request = request
-        print(incoming_request)
-        questionID = (request.json['qID'])
-        answerID = int((request.json['aID']))
-        print("question ID = " + str(questionID))
-        print("given answer index = " + str(answerID))
-
-        result = None
-
-        dbconnect = db_access_layer.database_access()
-
-        # TODO: create user table and record point gain
-        # TODO: create log table to record question statistics
-
-        # TODO: how do we make sure students can't just game the system by writing some front end code that accesses the API to get free points? for example, a student has a frontend html file that requests the same question over and over again...
-        # TODO: add table that records sessions for users this should include what was the last question served to the user. we can use this for server side validation to make sure students aren't juking the system
-
-        # TODO: look at zhen's code and make sure it's not ass backwards
-
-        query = result = dbconnect.get_question_by_id(questionID)
-        correctID = result.get_correct_answer_index()
-
-        print("correct answer index = " + str(correctID))
-        print("question type index = " + str(result.get_type()))
-        print("question topic index = " + str(result.get_topic()))
-
-        # dbconnect.get_numEntries('questions')
 
         if answerID == correctID:
             return jsonify(validation = 'true')
         else:
             return jsonify(validation = 'false')
 
-        dbconnect.close_connection()
+
 
     except Exception as ex:
         print(ex)
@@ -151,13 +127,13 @@ def get_validation():
 
 
 @app.route('/get/question/byid', methods=['POST'])
-def get_question():
+def get_question_byid():
     try:
         incoming_request = request
         print(incoming_request)
         task_id = (request.json['id'])
         result = None
-        dbconnect = db_access_layer.database_access()
+        dbconnect = db_access_layer.DatabaseAccess()
         result = dbconnect.get_question_by_id(task_id)
 
         dbconnect.close_connection()

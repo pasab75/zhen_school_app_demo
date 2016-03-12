@@ -1,7 +1,6 @@
 import pymysql.cursors
 import business_objects.question as question_obj_generator
 
-#TODO: create user database
 #TODO: create methods to get information from user database
 #TODO: user name
 #TODO: user password

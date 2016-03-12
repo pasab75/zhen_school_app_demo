@@ -13,6 +13,7 @@ else
 
 hostroot = hostname + ':' + port + '/'
 
+urlgetdef = hostroot + 'get/defquestion/topic';
 urlgetrand = hostroot + 'get/question/random';
 urlsendANS = hostroot + 'validate/question';
 
@@ -37,11 +38,10 @@ urlsendANS = hostroot + 'validate/question';
                 .attr('data-index', i) //adds class identifiers to each question box
                 .attr('data-qID', data.questionID) //adds question identifier to each question box
                 .hide()
-                .removeClass('hidden')
-                .fadeIn('slow'); //shows the question box
+                .fadeIn('slow') //shows the question box
+                .removeClass('hidden');
 
                 if ($thisClone.width() > minWidth){
-
                     minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
                 };
                 //if ((i+1) == correctAns){
@@ -73,14 +73,16 @@ urlsendANS = hostroot + 'validate/question';
         if (data.validation == 'true'){
             console.log('you are correct');
             clearOldQuestion();
-            POST.getrandmc();
+            //POST.getrandmc();
+            POST.getranddef();
             //$('[data-remodal-id=modal]').remodal().open();
 
         };
         if (data.validation == 'false'){
             console.log('you are not correct');
             clearOldQuestion();
-            POST.getrandmc();
+            //POST.getrandmc();
+            POST.getranddef();
         };
     }
 
@@ -103,16 +105,16 @@ var request = function() {
     };
 
     this.getranddef = function(){
-        var qtype = {'question_type' : '0'};
-        this.postData(parseMCQuestion, qtype ,urlgetrand);
+        var qtype = {'question_type' : '0', 'topic': 'topic index 1' };
+        this.postData(parseMCQuestion, qtype ,urlgetdef);
     }
 
     this.getrandmc = function(){
         var qtype = {'question_type' : '1'};
-        this.postData(parseMCQuestion, 'derp' ,urlgetrand);
+        this.postData(parseMCQuestion, qtype ,urlgetrand);
     };
 
-    this.getrandmc = function(){
+    this.getrandfr = function(){
         var qtype = {'question_type' : '2'};
         this.postData(parseMCQuestion, qtype ,urlgetrand);
     };
@@ -123,7 +125,12 @@ var request = function() {
 
     this.addQuestions = function() {
         var nothing = {'nothing' : '0'};
-        this.postData(console.log('added questions successfully'), {'nothing':'0'}, 'http://127.0.0.1:5000/add/dummy/questions' );
+        this.postData(console.log('added questions successfully'), nothing, 'http://127.0.0.1:5000/add/dummy/questions' );
+    };
+
+    this.debug = function(url){
+        var nothing = {'nothing' : '0'};
+        this.postData(console.log('successful post at ' + url), nothing, url);
     };
 
 };

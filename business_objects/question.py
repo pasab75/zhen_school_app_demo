@@ -9,13 +9,13 @@ class question:
     _topic = None
     _type = None
 
-    def __init__(self, id, q_text, ans_a, ans_b, ans_c, ans_d, ans_e, ans_f, answer, topic, type):
+    def __init__(self, id, q_text, ans_a, ans_b, ans_c, ans_d, ans_e, ans_f, answer, topic, question_type):
         self._answers = []
         self._question_id = id
         self._question_text = q_text
         if ans_a is not None:
             self._answers.append(ans_a)
-        if ans_b is not None:
+        if ans_b is not None and ans_b != "":
             self._answers.append(ans_b)
         if ans_c is not None and ans_c != "":
             self._answers.append(ans_c)
@@ -27,7 +27,7 @@ class question:
             self._answers.append(ans_f)
         self._answer_index = answer
         self._topic = topic
-        self._type = type
+        self._type = question_type
 
     def get_correct_answer_index(self):
         return self._answer_index
@@ -72,11 +72,8 @@ class question:
     def set_answers(self, answers):
         self._answers = answers
 
-    def set_chapter(self, chapter):
-        self._chapter = chapter
-
     def set_topic(self, topic):
         self._topic = topic
 
-    def set_type(self, type):
-        self._type = type
+    def set_type(self, question_type):
+        self._type = question_type

@@ -1,11 +1,10 @@
 import pymysql.cursors
 import business_objects.question as question_obj_generator
-from random import randint
+from random import randint, shuffle
 
-class database_access:
+
+class DatabaseAccess:
     dbconnection = None
-
-#TODO:differentiate between different questions types (multiple choice, word-definition pairs, and free response calculations) each of these will most likely need a separate set of methods
 
     def __init__(self):
         print("connected")
@@ -18,17 +17,51 @@ class database_access:
                              autocommit=True
                             )
 
-
-
     def load_questions_testing(self, numAdd):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
                     for i in range(0,numAdd):
-                        answerID = str(randint(0,5))
-                        questionType = str(randint(0,3))
-                        topic = "this is topic " + str(randint(0,30))
-                        sql = "INSERT INTO `testDB`.`questions` (`question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `answer_num`, `topic`, `question_type`) VALUES ('I am a question. My answer index is " + answerID + ". My topic is  " + topic + ". My question type is " + questionType + "', 'one', 'two', 'three', 'four', 'five', 'six', '" + answerID + "','" + topic + "' , '" + questionType + "');"
+                        ranNum = randint(0,5)
+                        answerID = str(ranNum)
+                        answer = str(ranNum+1)
+                        questionType = str(randint(0,2))
+                        topic = "topic index " + str(randint(0,4))
+
+                        if questionType == '0':
+                            sql = """INSERT INTO
+                            `testDB`.`questions`
+                                (`question_text`,
+                                `answer_a_text`,
+                                `topic`,
+                                `question_type`)
+                                VALUES
+                                ('I am a definition blah blah blah blah blah blah blah blah blah my answer is """ + answer + "', '" + answer + "','" + topic + "' , '" + questionType + "');"
+
+                        else:
+                            sql = """INSERT INTO
+                                `testDB`.`questions`
+                                    (`question_text`,
+                                    `answer_a_text`,
+                                    `answer_b_text`,
+                                    `answer_c_text`,
+                                    `answer_d_text`,
+                                    `answer_e_text`,
+                                    `answer_f_text`,
+                                    `answer_num`,
+                                    `topic`,
+                                    `question_type`)
+                                    VALUES
+                                    ('I am a question. My answer is """ + answer + ". My topic is  " + topic + """.
+                                    My question type is """ + questionType + """',
+                                     'one',
+                                     'two',
+                                     'three',
+                                     'four',
+                                     'five',
+                                     'six',
+                                     '""" + answerID + "','" + topic + "' , '" + questionType + "');"
+
                         cursor.execute(sql)
                     print("added " + str(numAdd) + " records to table")
 
@@ -36,7 +69,6 @@ class database_access:
                 print("Error loading random shit "+str(e))
         except Exception as e:
             print("Error while connecting "+str(e))
-
 
     def empty_table(self):
         try:
@@ -50,7 +82,6 @@ class database_access:
                 print("Error loading random shit "+str(e))
         except Exception as e:
             print("Error while connecting "+str(e))
-
 
     def get_numEntries(self, table):
         try:
@@ -67,7 +98,6 @@ class database_access:
         except Exception as e:
             print("Error while connecting "+str(e))
 
-
     def get_id_by_chapter(self, chapter):
         try:
             try:
@@ -78,7 +108,6 @@ class database_access:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
-
 
     def get_id_by_topic(self, topic):
         try:
@@ -91,7 +120,7 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    def get_question_by_questiontype(self, type): #TODO: check to make sure this is legit
+    def get_question_by_type(self, type):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
@@ -116,7 +145,7 @@ class database_access:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    def get_question_by_questiontype_topic(self, type, topic): #TODO: check to make sure this is legit
+    def get_question_by_type_topic(self, type, topic):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
@@ -363,6 +392,65 @@ class database_access:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
+
+    def get_question_def_by_topic(self, topic):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    sql = "SELECT * FROM questions WHERE topic = '" + str(topic) + "' AND question_type = '0' ORDER BY RAND() LIMIT 6;"
+                    cursor.execute(sql)
+                    questions = cursor.fetchall()
+                    primary_question = questions[0]
+                    question_type = questions[0]['question_type']
+
+                    print('question type = ' + str(question_type))
+                    print('question ID = ' + str(primary_question['question_id']))
+
+                    shuffle(questions)
+                    correct_index = 0
+
+                    for i in range(len(questions)):
+                        if questions[i] == primary_question:
+                            correct_index = i
+
+                    if randint(0, 1) == 1:
+                        question = question_obj_generator.question(primary_question['question_id'],
+                                                                   primary_question['question_text'],
+                                                                   questions.pop()['answer_a_text'],
+                                                                   questions.pop()['answer_a_text'],
+                                                                   questions.pop()['answer_a_text'],
+                                                                   questions.pop()['answer_a_text'],
+                                                                   questions.pop()['answer_a_text'],
+                                                                   questions.pop()['answer_a_text'],
+                                                                   str(correct_index),
+                                                                   primary_question['topic'],
+                                                                   primary_question['question_type'])
+                    else:
+                        question = question_obj_generator.question(primary_question['question_id'],
+                                                                   primary_question['answer_a_text'],
+                                                                   questions.pop()['question_text'],
+                                                                   questions.pop()['question_text'],
+                                                                   questions.pop()['question_text'],
+                                                                   questions.pop()['question_text'],
+                                                                   questions.pop()['question_text'],
+                                                                   questions.pop()['question_text'],
+                                                                   str(correct_index),
+                                                                   primary_question['topic'],
+                                                                   primary_question['question_type'])
+
+                    return question
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
+
+    # define user table methods below
+
+    # TODO: Make the following methods:
+    # get id number from name
+    # get id number from email
+    # get all other attributes by id number
 
     def close_connection(self):
         self.dbconnection.close()
