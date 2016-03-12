@@ -1,23 +1,46 @@
-CREATE DATABASE testDB;
+-- MySQL Workbench Forward Engineering
 
-CREATE TABLE questions (
-	question_id int NOT NULL,
-	question_text varchar(500) NOT NULL,
-	answer_a_text varchar(50) NOT NULL,
-	answer_b_text varchar(50) NOT NULL,
-	answer_c_text varchar(50),
-	answer_d_text varchar(50),
-	answer_e_text varchar(50),
-    answer_f_text varchar(50),
-    chapter       int,
-    subject       varchar(50),
-	answer_num    int,
-	PRIMARY KEY (question_id)questions
-);
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-#adding in a fake record to query
-INSERT INTO `testDB`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('1', 'How many valence electrons are in one atom of the element carbon?', 'one', 'two', 'three', 'four', 'five', 'six', '0', 'Counting Valence', '4');
-INSERT INTO `testDB`.`questions` (`question_id`, `question_text`, `answer_a_text`, `answer_b_text`, `answer_c_text`, `answer_d_text`, `answer_e_text`, `answer_f_text`, `chapter`, `subject`, `answer_num`) VALUES ('2', 'How much wood could a wood chuck chuck if a wood chuck could chuck wood?', 'A decent amount', 'An enormous amount', 'All the woods', 'None of the woods', 'This is a trick question', 'None of the above', '0', 'Random Trash', '4');
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema testdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema testdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `testdb` DEFAULT CHARACTER SET utf8 ;
+USE `testdb` ;
+
+-- -----------------------------------------------------
+-- Table `testdb`.`questions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
+  `question_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `question_text` VARCHAR(500) NOT NULL,
+  `answer_a_text` VARCHAR(50) NOT NULL,
+  `answer_b_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
+  `answer_num` INT(11) NULL DEFAULT NULL,
+  `topic` VARCHAR(50) NULL DEFAULT NULL,
+  `question_type` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`question_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 0
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
