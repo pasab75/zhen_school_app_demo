@@ -1,5 +1,5 @@
 
-var local = false; //determines whether you are testing locally or you are on the VPS
+var local = true; //determines whether you are testing locally or you are on the VPS
 
 var hostname = ''; //which server you are routing to
 var port = '5000'; //port that server is listening on

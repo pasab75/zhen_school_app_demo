@@ -28,17 +28,8 @@ class DatabaseAccess:
                         questionType = str(randint(0,2))
                         topic = "topic index " + str(randint(0,4))
 
-                        print('all good so far')
-
                         if questionType == '0':
-                            sql = """INSERT INTO
-                            `testDB`.`questions`
-                                (`question_text`,
-                                `answer_a_text`,
-                                `topic`,
-                                `question_type`)
-                                VALUES
-                                ('I am a definition blah blah blah blah blah blah blah blah blah my answer is """ + answer + "', '" + answer + "','" + topic + "' , '" + questionType + "');"
+                            sql = "INSERT INTO testDB.questions (question_text, answer_a_text, topic , question_type) VALUES ('I am a definition blah blah blah blah blah blah blah blah blah my answer is " + answer + "', '" + answer + "', '" + topic + "', " + questionType + ");"
 
                         else:
                             sql = """INSERT INTO
