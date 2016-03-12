@@ -32,28 +32,7 @@ class DatabaseAccess:
                             sql = "INSERT INTO testDB.questions (question_text, answer_a_text, topic , question_type) VALUES ('I am a definition blah blah blah blah blah blah blah blah blah my answer is " + answer + "', '" + answer + "', '" + topic + "', " + questionType + ");"
 
                         else:
-                            sql = """INSERT INTO
-                                `testDB`.`questions`
-                                    (`question_text`,
-                                    `answer_a_text`,
-                                    `answer_b_text`,
-                                    `answer_c_text`,
-                                    `answer_d_text`,
-                                    `answer_e_text`,
-                                    `answer_f_text`,
-                                    `answer_num`,
-                                    `topic`,
-                                    `question_type`)
-                                    VALUES
-                                    ('I am a question. My answer is """ + answer + ". My topic is  " + topic + """.
-                                    My question type is """ + questionType + """',
-                                     'one',
-                                     'two',
-                                     'three',
-                                     'four',
-                                     'five',
-                                     'six',
-                                     '""" + answerID + "','" + topic + "' , '" + questionType + "');"
+                            sql = "INSERT INTO testDB.questions (question_text, answer_a_text, answer_b_text, answer_c_text, answer_d_text, answer_e_text, answer_f_text, answer_num, topic, question_type) VALUES ('I am a question. My answer is " + answer + ". My topic is  " + topic + ". My question type is " + questionType + "', 'one', 'two', 'three', 'four', 'five', 'six', " + answerID + ", '" + topic + "' , " + questionType + ");"
 
                         cursor.execute(sql)
                     print("added " + str(numAdd) + " records to table")
