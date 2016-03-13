@@ -22,19 +22,20 @@ class DatabaseAccess:
             try:
                 with self.dbconnection.cursor() as cursor:
                     for i in range(0,numAdd):
-                        ranNum = randint(0,5)
-                        answerID = str(ranNum)
-                        answer = str(ranNum+1)
                         questionType = str(randint(0,2))
                         topic = "topic index " + str(randint(0,4))
 
                         if questionType == '0':
+                            answer = str(randint(0,99999))
                             sql = "INSERT INTO questions (question_text, answer_a_text, topic , question_type) VALUES ('I am a definition blah blah blah blah blah blah blah blah blah my answer is " + answer +\
                                   "', '" + answer +\
                                   "', '" + topic +\
                                   "', " + questionType + ");"
 
                         else:
+                            ranNum = randint(0,5)
+                            answerID = str(ranNum)
+                            answer = str(ranNum+1)
                             sql = "INSERT INTO questions (question_text, answer_a_text, answer_b_text, answer_c_text, answer_d_text, answer_e_text, answer_f_text, answer_num, topic, question_type) VALUES ('I am a question. My answer is " + answer +\
                                   ". My topic is  " + topic +\
                                   ". My question type is " + questionType +\
@@ -372,6 +373,39 @@ class DatabaseAccess:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
+
+    def set_question_attribute_by_questionid(self, question_id, attribute, value):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    sql = "UPDATE `questions` SET `" + str(attribute) + "` = '" + str(value) + "' WHERE question_id = " + str(question_id) + ";"
+                    cursor.execute(sql)
+
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
+    def generate_INSERT_sql(self, table, fields, values):
+        try:
+            sql = "INSERT INTO `" + table + "` ("
+            j = len(fields)
+            for i in range(j):
+                sql = sql + "`" + str(fields[i])
+                if i != j:
+                    sql = sql + "`, "
+                else:
+                    sql = sql + "`) VALUES"
+
+            for i in range(j):
+                sql = sql + str(values[i])
+                if i != j:
+                    sql = sql + ", "
+                else:
+                    sql = sql + ")"
+
+        except Exception as e:
+            print("Error generating sql "+ str(e))
 
     def get_question_def_by_topic(self, topic):
         try:

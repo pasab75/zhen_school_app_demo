@@ -29,6 +29,26 @@ class question:
         self._topic = topic
         self._type = question_type
 
+    # def __init__(self, arguments):
+    #     self._answers = []
+    #     self._question_id = id
+    #     self._question_text = q_text
+    #     if ans_a is not None:
+    #         self._answers.append(ans_a)
+    #     if ans_b is not None and ans_b != "":
+    #         self._answers.append(ans_b)
+    #     if ans_c is not None and ans_c != "":
+    #         self._answers.append(ans_c)
+    #     if ans_d is not None and ans_d != "":
+    #         self._answers.append(ans_d)
+    #     if ans_e is not None and ans_e != "":
+    #         self._answers.append(ans_e)
+    #     if ans_f is not None and ans_f != "":
+    #         self._answers.append(ans_f)
+    #     self._answer_index = arguments.pop()
+    #     self._topic = arguments.pop()
+    #     self._type = arguments.pop()
+
     def get_correct_answer_index(self):
         return self._answer_index
 

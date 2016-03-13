@@ -4,6 +4,7 @@
 .mcAnsBtn
 {
 	min-width: 200px !important;
+    word-wrap: break-word !important;
 }
 
 .btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
@@ -21,6 +22,9 @@
 .mbr-section__container--isolated {
     padding-bottom: 25px;
     padding-top: 25px;
+}
+
+#mcContainer{
 }
 
 /* question text padding */
