@@ -11,7 +11,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+
+    keys = []
+    values = []
+    table = "testdb.topic_chapter"
+
+    keys.append("topic")
+    keys.append("chapter")
+    # keys.append("topic_index")
+
+    values.append("covalent bonds")
+    values.append("5")
+    # values.append("10")
+
+    dbconnect = db_access_layer.DatabaseAccess()
+    # dbconnect.save_new_row_in_table(keys, values, table)
+    dbconnect.update_row_in_table(keys, values, table, 0)
+    return "hihi"
 
 # adds some random test questions to the database
 
@@ -20,6 +36,7 @@ def index():
 def add_random():
     try:
         incoming_request = request
+        print(incoming_request)
         dbconnect = db_access_layer.DatabaseAccess()
         dbconnect.empty_table()
         dbconnect.load_questions_testing(1000)
@@ -62,7 +79,7 @@ def get_question_random():
         print(qType)
 
         dbconnect = db_access_layer.DatabaseAccess()
-        result = dbconnect.get_question_by_type(qType)
+        result = dbconnect.get_question_random_by_type(qType)
 
         dbconnect.close_connection()
         return result.get_jsonified()

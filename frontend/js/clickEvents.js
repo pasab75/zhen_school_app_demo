@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     $(document).on("click", "#a_proto", function(){
         $('.mcAnsBtn').each(function(){
-            $(this).removeClass('questionClicked'); //standardizes box widths
+            $(this).removeClass('questionClicked');
         });
 	    $(this).addClass('questionClicked')
     });
@@ -15,10 +15,6 @@ $(document).ready(function(){
     $(document).on("click", "#debug-btn", function(){
         debugURL = '';
         POST.debug(debugURL);
-    });
-
-    $(document).on("click", "#questionText", function(){
-        POST.addQuestions();
     });
 
     $(document).on('opening', '.remodal', function () {

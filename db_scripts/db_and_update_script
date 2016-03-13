@@ -1,9 +1,25 @@
+
+CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
+
+-- -----------------------------------------------------
+-- Schema testdb
+-- -----------------------------------------------------
+
 CREATE SCHEMA IF NOT EXISTS `testdb` DEFAULT CHARACTER SET utf8 ;
 USE `testdb` ;
 
 -- -----------------------------------------------------
+-- User appuser
+-- -----------------------------------------------------
+
+#we're making a new user to be the python program access, this is the actual password do not let this file out
+
+GRANT ALL ON testdb.* TO 'appuser'@'localhost';
+
+-- -----------------------------------------------------
 -- Table `testdb`.`questions`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
 `question_id` INT(11) NOT NULL AUTO_INCREMENT,
 `question_text` VARCHAR(500) NOT NULL,
@@ -21,28 +37,48 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8;
 
-#we're making a new user to be the python program access, this is the actual password do not let this file out
-CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
-GRANT SELECT,INSERT,DELETE,UPDATE ON testdb.* TO 'appuser'@'localhost';
+-- -----------------------------------------------------
+-- Table `testdb`.`users`
+-- -----------------------------------------------------
 
-#Just delete all of the records every time and load them with our testing method load_questions_testing(numberofentriestoload)
-DELETE FROM questions;
-
-TODO: check to see if there is anything else that should be here
-CREATE TABLE `testdb`.`user_table` (
+CREATE TABLE `testdb`.`users` (
+  `o_auth_key` VARCHAR(20) NOT NULL,
   `user_name` VARCHAR(20) NOT NULL,
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `password` VARCHAR(20) NOT NULL,
-  `last_activity` DATETIME NOT NULL,
+  `last_active` DATETIME NOT NULL,
   `first_name` VARCHAR(20) NOT NULL,
   `last_name` VARCHAR(20) NOT NULL,
   `user_role` INT NOT NULL DEFAULT 0,
   `e_mail` VARCHAR(20) NOT NULL,
-  `activated` TINYINT(1) NULL DEFAULT 0,
-  `last_question_id` INT NULL,
+  `current_activity_info` INT NULL,
   `current_lvl` INT NOT NULL DEFAULT 1,
   `current_points` INT NOT NULL DEFAULT 0,
-  `class_code` VARCHAR(11) NOT NULL,
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   PRIMARY KEY (`user_name`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC));
+
+-- -----------------------------------------------------
+-- Table `testdb`.`topic_chapter`
+-- -----------------------------------------------------
+
+CREATE TABLE `testdb`.`topic_chapter` (
+  `chapter` INT NULL DEFAULT 0,
+  `topic` VARCHAR(45) NOT NULL,
+  `topic_index` INT NULL,
+  PRIMARY KEY (`topic`),
+  UNIQUE INDEX `topic_UNIQUE` (`topic` ASC),
+  UNIQUE INDEX `topic_index_UNIQUE` (`topic_index` ASC));
+
+-- -----------------------------------------------------
+-- Table `testdb`.`activity_log`
+-- -----------------------------------------------------
+
+CREATE TABLE `testdb`.`activity_log` (
+  `user_id#` INT NOT NULL,
+  `time` TIME(4) NULL,
+  `date` DATE NULL,
+  `correct` TINYINT(1) NULL,
+  `latitude` DOUBLE NULL,
+  `longitude` DOUBLE NULL,
+  `activity` JSON NULL);
