@@ -9,7 +9,7 @@ class question:
     _topic = None
     _type = None
 
-    def __init__(self, id, q_text, ans_a, ans_b, ans_c, ans_d, ans_e, ans_f, answer, topic, question_type):
+    def __init__(self, id, q_text, ans_a, ans_b, answer, topic, question_type, ans_c=None, ans_d=None, ans_e=None, ans_f=None):
         self._answers = []
         self._question_id = id
         self._question_text = q_text
