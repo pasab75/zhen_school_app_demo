@@ -9,45 +9,19 @@ class question:
     _topic = None
     _type = None
 
-    def __init__(self, id, q_text, ans_a, ans_b, answer, topic, question_type, ans_c=None, ans_d=None, ans_e=None, ans_f=None):
+    def __init__(self, id, q_text, anslist, answer, topic, question_type):
         self._answers = []
+
+        for i in range(len(anslist)):
+            if anslist[i] is not None and not "":
+                self._answers.append(anslist[i])
+
         self._question_id = id
         self._question_text = q_text
-        if ans_a is not None:
-            self._answers.append(ans_a)
-        if ans_b is not None and ans_b != "":
-            self._answers.append(ans_b)
-        if ans_c is not None and ans_c != "":
-            self._answers.append(ans_c)
-        if ans_d is not None and ans_d != "":
-            self._answers.append(ans_d)
-        if ans_e is not None and ans_e != "":
-            self._answers.append(ans_e)
-        if ans_f is not None and ans_f != "":
-            self._answers.append(ans_f)
+
         self._answer_index = answer
         self._topic = topic
         self._type = question_type
-
-    # def __init__(self, arguments):
-    #     self._answers = []
-    #     self._question_id = id
-    #     self._question_text = q_text
-    #     if ans_a is not None:
-    #         self._answers.append(ans_a)
-    #     if ans_b is not None and ans_b != "":
-    #         self._answers.append(ans_b)
-    #     if ans_c is not None and ans_c != "":
-    #         self._answers.append(ans_c)
-    #     if ans_d is not None and ans_d != "":
-    #         self._answers.append(ans_d)
-    #     if ans_e is not None and ans_e != "":
-    #         self._answers.append(ans_e)
-    #     if ans_f is not None and ans_f != "":
-    #         self._answers.append(ans_f)
-    #     self._answer_index = arguments.pop()
-    #     self._topic = arguments.pop()
-    #     self._type = arguments.pop()
 
     def get_correct_answer_index(self):
         return self._answer_index

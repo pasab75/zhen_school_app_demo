@@ -109,14 +109,16 @@ class DatabaseAccess:
                     sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -134,14 +136,16 @@ class DatabaseAccess:
                     sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " AND topic = " + str(topic) + " ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -159,14 +163,16 @@ class DatabaseAccess:
                     sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " AND chapter = " + str(chapter) + " ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -185,14 +191,16 @@ class DatabaseAccess:
                     sql = "SELECT * FROM questions WHERE `question_id`="+str(question_id)+";"
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -210,14 +218,16 @@ class DatabaseAccess:
                     sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -236,14 +246,16 @@ class DatabaseAccess:
                     sql = 'SELECT * FROM questions WHERE `question_text`="'+str(text)+'";'
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -333,14 +345,16 @@ class DatabaseAccess:
                     sql = 'SELECT * FROM questions WHERE `chapter`="'+str(chapter)+'";'
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -357,14 +371,16 @@ class DatabaseAccess:
                     sql = 'SELECT * FROM questions WHERE `topic`="'+str(topic)+'";'
                     cursor.execute(sql)
                     request = cursor.fetchone()
+                    answerlist = []
+                    answerlist.append(request['answer_a_text'])
+                    answerlist.append(request['answer_b_text'])
+                    answerlist.append(request['answer_c_text'])
+                    answerlist.append(request['answer_d_text'])
+                    answerlist.append(request['answer_e_text'])
+                    answerlist.append(request['answer_f_text'])
                     question = question_obj_generator.question(request['question_id'],
                                             request['question_text'],
-                                            request['answer_a_text'],
-                                            request['answer_b_text'],
-                                            request['answer_c_text'],
-                                            request['answer_d_text'],
-                                            request['answer_e_text'],
-                                            request['answer_f_text'],
+                                            answerlist,
                                             request['answer_num'],
                                             request['topic'],
                                             request['question_type'])
@@ -427,27 +443,25 @@ class DatabaseAccess:
                         if questions[i] == primary_question:
                             correct_index = i
 
+                    answerlist = []
+
+
+
                     if randint(0, 1) == 1:
+                        for i in range(5):
+                            answerlist.append(questions.pop(0)['answer_a_text'])
                         question = question_obj_generator.question(primary_question['question_id'],
                                                                    primary_question['question_text'],
-                                                                   questions.pop(0)['answer_a_text'],
-                                                                   questions.pop(0)['answer_a_text'],
-                                                                   questions.pop(0)['answer_a_text'],
-                                                                   questions.pop(0)['answer_a_text'],
-                                                                   questions.pop(0)['answer_a_text'],
-                                                                   questions.pop(0)['answer_a_text'],
+                                                                   answerlist,
                                                                    str(correct_index),
                                                                    primary_question['topic'],
                                                                    primary_question['question_type'])
                     else:
+                        for i in range(5):
+                            answerlist.append(questions.pop(0)['question_text'])
                         question = question_obj_generator.question(primary_question['question_id'],
                                                                    primary_question['answer_a_text'],
-                                                                   questions.pop(0)['question_text'],
-                                                                   questions.pop(0)['question_text'],
-                                                                   questions.pop(0)['question_text'],
-                                                                   questions.pop(0)['question_text'],
-                                                                   questions.pop(0)['question_text'],
-                                                                   questions.pop(0)['question_text'],
+                                                                   answerlist,
                                                                    str(correct_index),
                                                                    primary_question['topic'],
                                                                    primary_question['question_type'])

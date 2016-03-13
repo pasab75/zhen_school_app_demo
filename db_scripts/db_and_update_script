@@ -23,7 +23,7 @@ DEFAULT CHARACTER SET = utf8;
 
 #we're making a new user to be the python program access, this is the actual password do not let this file out
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
-GRANT SELECT,INSERT,DELETE,UPDATE ON testDB.* TO 'appuser'@'localhost';
+GRANT SELECT,INSERT,DELETE,UPDATE ON testdb.* TO 'appuser'@'localhost';
 
 #Just delete all of the records every time and load them with our testing method load_questions_testing(numberofentriestoload)
 DELETE FROM questions;
