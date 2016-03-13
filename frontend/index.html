@@ -13,20 +13,22 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/mobirise/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  
-  
+  <link rel="stylesheet" href="css/override.css">
+  <link rel="stylesheet" href="css/remodal/remodal.css">
+  <link rel="stylesheet" href="css/remodal/remodal-default-theme.css">
+
+
 </head>
 <body>
-<section class="engine"><a rel="external" href="https://mobirise.com">Mobirise best free website builder</a></section>
-<section class="mbr-navbar mbr-navbar--freeze mbr-navbar--absolute mbr-navbar--sticky mbr-navbar--auto-collapse" id="ext_menu-3">
+<section class="engine"><a rel="external" href="https://mobirise.com"></a></section>
+<section class="mbr-navbar mbr-navbar--freeze mbr-navbar--absolute mbr-navbar--sticky mbr-navbar--auto-collapse" id="ext_menu-14">
     <div class="mbr-navbar__section mbr-section">
         <div class="mbr-section__container container">
             <div class="mbr-navbar__container">
                 <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
                     <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
                         
-                        <span class="mbr-brand__name"><a class="mbr-brand__name text-white" href="index.html">APPCHEM</a></span>
+                        <span class="mbr-brand__name"><a class="mbr-brand__name text-white" href="index.html">exBook</a></span>
                     </span>
                 </div>
                 <div class="mbr-navbar__hamburger mbr-hamburger text-white"><span class="mbr-hamburger__line"></span></div>
@@ -41,59 +43,68 @@
     </div>
 </section>
 
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-after-navbar" id="features1-16" style="background-color: rgb(255, 255, 255);">
-    
-    
-    <div class="mbr-section__container container mbr-section__container--std-top-padding">
-        <div class="mbr-section__row row">
-            <div class="mbr-section__col col-xs-12 col-sm-6">
-                <div class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
-                    <figure class="mbr-figure"><a href="FA.html"><img class="mbr-figure__img" src="assets/images/cards-1280x720-2.png"></a></figure>
-                </div>
-                <div class="mbr-section__container mbr-section__container--middle">
-                    <div class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
-                        <h3 class="mbr-header__text">Flash Cards</h3>
-                    </div>
-                </div>
-                <div class="mbr-section__container mbr-section__container--last">
-                    <div class="mbr-article mbr-article--wysiwyg">
-                        <p>Build your chemistry vocabulary with algorithmic flash cards from each chapter.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="mbr-section__col col-xs-12 col-sm-6">
-                <div class="mbr-section__container mbr-section__container--center mbr-section__container--middle">
-                    <figure class="mbr-figure"><a href="MC.html"><img class="mbr-figure__img" src="assets/images/time-1280x720-11.png"></a></figure>
-                </div>
-                <div class="mbr-section__container mbr-section__container--middle">
-                    <div class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
-                        <h3 class="mbr-header__text">Minute Questions</h3>
-                    </div>
-                </div>
-                <div class="mbr-section__container mbr-section__container--last">
-                    <div class="mbr-article mbr-article--wysiwyg">
-                        <p>Practice anywhere with questions designed to take you less than one minute! You don't need any materials!</p>
-                    </div>
-                </div>
-                
-            </div>
-            
-            
-            
-            
-            
-            
-            
+<section class="mbr-section mbr-after-navbar" id="header3-13">
+    <div class="mbr-section__container container mbr-section__container--isolated">
+        <div class="mbr-header mbr-header--wysiwyg row">
+            <a id="debug-btn" class ="mbr-buttons__btn btn btn-lg btn-danger">Do something</a>
+            <h3 id="questionText" class="col-sm-8 col-sm-offset-2"> </h3>
         </div>
     </div>
 </section>
 
+<section class="mbr-section" id="buttons1-15">
+    <div class="mbr-section__container container mbr-section__container--isolated">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <a id="a_proto" class="mbr-buttons__btn btn btn-lg btn-danger hidden mcAnsBtn"></a>
+                <div id="mcContainer" class="mbr-buttons mbr-buttons--center"> 
 
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/smooth-scroll/SmoothScroll.js"></script>
-  <script src="assets/mobirise/js/script.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- correct answer modal -->
+
+<div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+  <div>
+    <h2 id="modal1Title">Correct!</h2>
+    <p id="modal1Desc">
+      Great Job! You have earned BLANK Points!
+    </p>
+  </div>
+  <br>
+  <button data-remodal-action="cancel" class="remodal-cancel">Review Question</button>
+  <button data-remodal-action="confirm" class="remodal-confirm">Continue</button>
+</div>
+
+<!-- wrong answer modal -->
+
+<div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+  <div>
+    <h2 id="modal1Title">Remodal</h2>
+    <p id="modal1Desc">
+      Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin
+      with declarative state notation and hash tracking.
+    </p>
+  </div>
+  <br>
+  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+</div>
+
+    <script src="assets/web/assets/jquery/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/smooth-scroll/SmoothScroll.js"></script>
+    <script src="assets/mobirise/js/script.js"></script>
+    <script src="js/remodal/remodal.min.js"></script>
+
+    <script src="js/modalcontrol.js"></script>
+    <script src="js/methods.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/question_controller.js"></script>
+    <script src="js/clickEvents.js"></script>
   
   
 </body>

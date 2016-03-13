@@ -1,5 +1,5 @@
 
-var local = false; //determines whether you are testing locally or you are on the VPS
+var local = true; //determines whether you are testing locally or you are on the VPS
 
 var hostname = ''; //which server you are routing to
 var port = '5000'; //port that server is listening on
@@ -41,18 +41,18 @@ urlsendANS = hostroot + 'validate/question';
                 .fadeIn('slow') //shows the question box
                 .removeClass('hidden');
 
-                if ($thisClone.width() > minWidth){
-                    minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
-                };
+//                if ($thisClone.width() > minWidth){
+//                    minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
+//                };
                 //if ((i+1) == correctAns){
                 //	$thisClone.addClass('correct');
                 //};
              };
 
 
-        $('.mcAnsBtn').each(function(){
-            $(this).width(minWidth); //standardizes box widths
-        });
+//        $('.mcAnsBtn').each(function(){
+//            $(this).width(minWidth); //standardizes box widths
+//        });
 
         $('#mcContainer').randomize('a'); //randomize answer boxes
 

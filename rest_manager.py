@@ -84,8 +84,6 @@ def validate_question():
         print("question ID = " + str(questionID))
         print("given answer index = " + str(answerID))
 
-        result = None
-
         dbconnect = db_access_layer.DatabaseAccess()
 
         # TODO: create user table and record point gain
@@ -96,7 +94,7 @@ def validate_question():
 
         # TODO: look at zhen's code and make sure it's not ass backwards
 
-        query = result = dbconnect.get_question_by_id(questionID)
+        result = dbconnect.get_question_by_id(questionID)
         correctID = result.get_correct_answer_index()
 
         print("correct answer index = " + str(correctID))

@@ -3,9 +3,6 @@ import business_objects.question as question_obj_generator
 from random import randint, shuffle
 
 
-#TODO: I CAN RUN THIS LOCALLY WITH NO PROBLEMS, BUT THE SERVER GIVES AN ERROR ABOUT 'TOPIC' NOT BEING A FIELD IN THE TABLE??!?!?!
-# IT HAS SOMETHING TO DO WITH MY LOAD QUESTION SCRIPT LOOK INTO IT
-
 class DatabaseAccess:
     dbconnection = None
 
@@ -233,6 +230,7 @@ class DatabaseAccess:
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
+                    #TODO: Make this search in the question text and return a list of questions with matching question text instead of exact matches
                     question = None
                     sql = 'SELECT * FROM questions WHERE `question_text`="'+str(text)+'";'
                     cursor.execute(sql)
@@ -355,7 +353,6 @@ class DatabaseAccess:
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
-                    question = None
                     sql = 'SELECT * FROM questions WHERE `topic`="'+str(topic)+'";'
                     cursor.execute(sql)
                     request = cursor.fetchone()
@@ -399,27 +396,30 @@ class DatabaseAccess:
                     if randint(0, 1) == 1:
                         question = question_obj_generator.question(primary_question['question_id'],
                                                                    primary_question['question_text'],
-                                                                   questions.pop()['answer_a_text'],
-                                                                   questions.pop()['answer_a_text'],
-                                                                   questions.pop()['answer_a_text'],
-                                                                   questions.pop()['answer_a_text'],
-                                                                   questions.pop()['answer_a_text'],
-                                                                   questions.pop()['answer_a_text'],
+                                                                   questions.pop(0)['answer_a_text'],
+                                                                   questions.pop(0)['answer_a_text'],
+                                                                   questions.pop(0)['answer_a_text'],
+                                                                   questions.pop(0)['answer_a_text'],
+                                                                   questions.pop(0)['answer_a_text'],
+                                                                   questions.pop(0)['answer_a_text'],
                                                                    str(correct_index),
                                                                    primary_question['topic'],
                                                                    primary_question['question_type'])
                     else:
                         question = question_obj_generator.question(primary_question['question_id'],
                                                                    primary_question['answer_a_text'],
-                                                                   questions.pop()['question_text'],
-                                                                   questions.pop()['question_text'],
-                                                                   questions.pop()['question_text'],
-                                                                   questions.pop()['question_text'],
-                                                                   questions.pop()['question_text'],
-                                                                   questions.pop()['question_text'],
+                                                                   questions.pop(0)['question_text'],
+                                                                   questions.pop(0)['question_text'],
+                                                                   questions.pop(0)['question_text'],
+                                                                   questions.pop(0)['question_text'],
+                                                                   questions.pop(0)['question_text'],
+                                                                   questions.pop(0)['question_text'],
                                                                    str(correct_index),
                                                                    primary_question['topic'],
                                                                    primary_question['question_type'])
+
+                    sql = "UPDATE `questions` SET `answer_num` = '" + str(correct_index) + "' WHERE question_id = " + str(primary_question['question_id']) + ";"
+                    cursor.execute(sql)
 
                     return question
             except Exception as e:
