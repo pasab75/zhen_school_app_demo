@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request, abort
 import json
 import datetime
-import db_access.db_question as db_access_layer
+import db_access.db_question as questions_table_access_layer
+import db_access.db_user as users_table_access_layer
 
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
@@ -12,7 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    dbconnect = db_access_layer.DatabaseAccess()
+    dbconnect = users_table_access_layer.UserTableAccess()
     dbconnect.add_user_new(1234566, 'derpuser', 'derppassword', 'derp', 'man', 0, 'derpman@gmail.com')
 
     return "hihi"
@@ -25,7 +26,7 @@ def add_random():
     try:
         incoming_request = request
         print(incoming_request)
-        dbconnect = db_access_layer.DatabaseAccess()
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
         dbconnect.empty_table()
         dbconnect.load_questions_testing(1000)
 
@@ -47,7 +48,7 @@ def get_defquestion_topic():
         topic_index = (request.json['topic'])
         print(topic_index)
 
-        dbconnect = db_access_layer.DatabaseAccess()
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
         result = dbconnect.get_question_def_by_topic(topic_index)
 
         dbconnect.close_connection()
@@ -66,7 +67,7 @@ def get_question_random():
         qType = (request.json['question_type'])
         print(qType)
 
-        dbconnect = db_access_layer.DatabaseAccess()
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
         result = dbconnect.get_question_random_by_type(qType)
 
         dbconnect.close_connection()
@@ -89,7 +90,7 @@ def validate_question():
         print("question ID = " + str(questionID))
         print("given answer index = " + str(answerID))
 
-        dbconnect = db_access_layer.DatabaseAccess()
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
 
         # TODO: create user table and record point gain
         # TODO: create log table to record question statistics
@@ -136,7 +137,7 @@ def get_question_byid():
         print(incoming_request)
         task_id = (request.json['id'])
         result = None
-        dbconnect = db_access_layer.DatabaseAccess()
+        dbconnect = questions_table_access_layer.DatabaseAccess()
         result = dbconnect.get_question_by_id(task_id)
 
         dbconnect.close_connection()

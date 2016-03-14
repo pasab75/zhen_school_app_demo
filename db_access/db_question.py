@@ -1,15 +1,14 @@
 import pymysql.cursors
+from db_access.databaseaccess import GeneralDatabaseConnection
 import business_objects.question as question_obj_generator
 from random import randint, shuffle
 
 
-class DatabaseAccess:
+class QuestionTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
     # class variables
     # -------------------------------------------------------------
-
-    dbconnection = None
 
     # table fields
     # this gives string values for each column in each table
@@ -29,261 +28,19 @@ class DatabaseAccess:
     questions_fields[9] = 'topic'
     questions_fields[10] = 'question_type'
 
-    # users table
-    users_fields = [None]*12
-    users_fields[0] = 'o_auth_key'
-    users_fields[1] = 'user_name'
-    users_fields[2] = 'user_id'
-    users_fields[3] = 'password'
-    users_fields[4] = 'last_active'
-    users_fields[5] = 'first_name'
-    users_fields[6] = 'last_name'
-    users_fields[7] = 'user_role'
-    users_fields[8] = 'e_mail'
-    users_fields[9] = 'current_activity_info'
-    users_fields[10] = 'current_lvl'
-    users_fields[11] = 'current_points'
-
-    # topic_chapter table
-    topic_chapter_fields = [None]*3
-    topic_chapter_fields[0] = 'chapter'
-    topic_chapter_fields[1] = 'topic'
-    topic_chapter_fields[2] = 'topic_index'
-
-    # activity_log table
-    activity_log_fields = [None]*7
-    activity_log_fields[0] = 'user_id#'
-    activity_log_fields[1] = 'time'
-    activity_log_fields[2] = 'date'
-    activity_log_fields[3] = 'correct'
-    activity_log_fields[4] = 'latitude'
-    activity_log_fields[5] = 'longitude'
-    activity_log_fields[6] = 'activity'
-
     # -------------------------------------------------------------
     # class constructor
     # -------------------------------------------------------------
 
     def __init__(self):
-        print("connected")
-        self.dbconnection = pymysql.connect(host='localhost',
-                                            user='appuser',
-                                            password='carhorsebatterysuccess',
-                                            db='testdb',
-                                            charset='utf8mb4',
-                                            cursorclass=pymysql.cursors.DictCursor,
-                                            autocommit=True
-                                            )
-
-    # As a rule of thumb, all values that can be thought of as text input from the API should never
-    # be concatenated into a SQL query directly. Instead, they should be passed as arguments to the execution
-    # method. I've rewritten most, if not all, methods to reflect this
-
-    # -------------------------------------------------------------
-    # general methods
-    # -------------------------------------------------------------
-
-    # this is a general method to insert one row into a table
-    # the keylist is an ordered list of field names for the sql database
-    # the valuelist is an ordered list of values that correspond to the field names
-    # table is the name of the table that you are putting the row in
-    def save_new_row_in_table(self, keylist, valuelist, table):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    keystring = ",".join(map(str, keylist))
-
-                    nulllist = []
-
-                    for i in range(len(keylist)):
-                        nulllist.append("%s")
-
-                    nullstring = ','.join(nulllist)
-                    add_string = ("INSERT INTO " + table + " ( " + keystring + ") VALUES (" + nullstring + ")")
-
-                    # print(cursor.mogrify(add_string, valuelist))
-                    cursor.execute(add_string, valuelist)
-                    return True
-
-            except Exception as e:
-                print("Error saving new row: "+str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
-
-    # this is a general method to update a row in a table
-    # the keylist is an ordered list of field names for the sql database
-    # the valuelist is an ordered list of values that correspond to the field names
-    # table is the name of the table that you are searching in
-    # primary should be an index of the primary key that you are search with
-    # THE PRIMARY KEY WILL NOT BE UPDATED
-    def update_row_in_table(self, keylist, valuelist, table, primary):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-
-                    # formats each field to have =%s behind it
-                    for i in range(len(keylist)):
-                        keylist[i] += "=%s"
-
-                    # removes the primiary search key and value from respective lists
-                    searchkey = keylist.pop(primary)
-                    valuekey = valuelist.pop(primary)
-
-                    # puts the value back as the last element of the list
-                    valuelist.append(valuekey)
-
-                    # comma delimits the list of fields
-                    keystring = ",".join(map(str, keylist))
-
-                    # adds prefix to the string telling it we want to update
-                    prefix_command = "UPDATE " + str(table) + " SET "
-
-                    # puts together the sql execution string and adds the field to be search by at the end
-                    add_string = (prefix_command + keystring + " WHERE " + str(searchkey))
-
-                    # executes the sql code with list of values to update as a parameter
-                    cursor.execute(add_string, valuelist)
-
-                    return True
-            except Exception as e:
-                print("Error updating row: "+str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
-
-    def delete_row_in_table_with_attribute(self, table, field, value):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    sql = "DELETE FROM %s WHERE %s = %s"
-                    args = (table, field, value)
-                    cursor.execute(sql, args)
-
-                    return True
-            except Exception as e:
-                print("Error fetching results: "+str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
-
-    def close_connection(self):
-        self.dbconnection.close()
-
-    # -------------------------------------------------------------
-    # debug methods
-    # -------------------------------------------------------------
-
-    # loads number of randomly generated function to the questions database for testing purposes only
-    # remove this function when we go into production
-    # currently this function supports only definitions questions and multiple choice questions
-    # TODO: add support for calculation (free response) questions
-    def load_questions_testing(self, numAdd):
-        try:
-            for i in range(0, numAdd):
-                questionType = str(randint(0, 2))
-                topic = "topic index " + str(randint(0, 4))
-
-                fields = []
-                values = []
-
-                if questionType == '0':
-                    answer = str(randint(0,99999))
-
-                    fields.append('question_text')
-                    fields.append('answer_a_text')
-                    fields.append('topic')
-                    fields.append('question_type')
-
-                    values.append('I am a definition blah blah blah '
-                                  'blah blah blah blah blah blah my answer is ' + answer)
-                    values.append(answer)
-                    values.append(topic)
-                    values.append(questionType)
-
-                elif questionType == '1':
-                    ranNum = randint(0,5)
-
-                    answerid = str(ranNum)
-                    answer = str(ranNum+1)
-
-                    fields.append('question_text')
-                    fields.append('answer_a_text')
-                    fields.append('answer_b_text')
-                    fields.append('answer_c_text')
-                    fields.append('answer_d_text')
-                    fields.append('answer_e_text')
-                    fields.append('answer_f_text')
-                    fields.append('answer_num')
-                    fields.append('topic')
-                    fields.append('question_type')
-
-                    values.append('I am a multiple choice question. My answer is ' +
-                                  answer + '. My topic is ' + topic + ".")
-                    values.append("one")
-                    values.append("two")
-                    values.append("three")
-                    values.append("four")
-                    values.append("five")
-                    values.append("six")
-                    values.append(answerid)
-                    values.append(topic)
-                    values.append(questionType)
-
-                else:
-                    answer = str(randint(0, 100000))
-                    fields.append('question_text')
-                    fields.append('answer_a_text')
-                    fields.append('topic')
-                    fields.append('question_type')
-
-                    values.append('I am a calculation type question. My answer is ' +
-                                  answer + '. My topic is ' + topic + ".")
-                    values.append(answer)
-                    values.append(topic)
-                    values.append(questionType)
-
-                self.save_new_row_in_table(fields, values, 'questions')
-
-        except Exception as e:
-            print("Error loading random shit "+str(e))
-
-    # empties all rows from the questions table
-    # currently the front end requests that the questions table gets emptied every time and is replaced by new
-    # randomly generated questions
-    def empty_table(self):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    sql = "DELETE FROM questions"
-                    cursor.execute(sql)
-
-            except Exception as e:
-                print("Error emptying table "+str(e))
-        except Exception as e:
-            print("Error while connecting "+str(e))
-
-    # returns the number of rows in any table
-    def get_numrows(self, table):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    question = None
-                    sql = "SELECT COUNT(*) FROM %s"
-                    cursor.execute(sql, table)
-                    request = cursor.fetchone()
-                    print(request)
-
-            except Exception as e:
-                print("Error counting rows "+str(e))
-        except Exception as e:
-            print("Error while connecting "+str(e))
+        GeneralDatabaseConnection.__init__(self)
 
     # -------------------------------------------------------------
     # question table methods
+    # -------------------------------------------------------------
+
+    # -------------------------------------------------------------
+    # READ methods
     # -------------------------------------------------------------
 
     # returns which chapter a certain topic corresponds to
@@ -505,51 +262,6 @@ class DatabaseAccess:
             print("Error connecting: "+str(e))
             return False
 
-    # updates a question already in the database by using the question's question_id field
-    def update_question_from_object(self, question):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    answers = question.get_answers()
-                    for x in range (len(answers), 5):
-                        answers.append(None)
-                    #example query
-                    #UPDATE `rest_school_db`.`questions` SET `answer_d_text`='Why are you asking me this?', `answer_e_text`='you\'re a jerk!!!' WHERE `question_id`='4';
-                    sql = 'UPDATE `questions` SET question_text="'+question.get_question_text()+\
-                          '" , answer_a_text="'+answers[0]+\
-                          '", answer_b_text="'+answers[1]+\
-                          '", answer_c_text="'+answers[2]+\
-                          '", answer_d_text="'+answers[3]+\
-                          '", answer_e_text="'+answers[4]+\
-                          '", answer_f_text="'+answers[5]+\
-                          '", topic="'+question.get_topic()+\
-                          '", question_type="'+question.get_type()+\
-                          '", answer_num='+str(question.get_correct_answer_index())+\
-                          " WHERE question_id="+str(question.get_question_id())+";"
-                    cursor.execute(sql)
-                    return True
-            except Exception as e:
-                print("Error fetching results: "+str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
-
-    # deletes a question from the database using its question_id
-    def delete_question(self, question_id):
-        try:
-            self.delete_row_in_table_with_attribute('questions', 'question_id', question_id)
-        except Exception as e:
-            print("Could not delete question " + str(e))
-
-    # updates one or more columns of a question by question_id
-    def update_question_attribute_by_id(self, question_id, keylist, valuelist):
-        try:
-            self.update_row_in_table(keylist, valuelist, 'questions', question_id)
-
-        except Exception as e:
-                print("Error updating question: "+str(e))
-
     # this method creates a definition type question by combining 6 different questions from the database
     # it flips a coin to decide whether the answers should be words or definitions
     # it chooses one question to be the "primary question", which means that the word and definition are kept intact
@@ -621,39 +333,57 @@ class DatabaseAccess:
                 print("Error connecting: "+str(e))
 
     # -------------------------------------------------------------
-    # user table methods
+    # WRITE methods
     # -------------------------------------------------------------
 
-    # TODO: Make the following methods:
-
-    def add_user_new(self, oauthkey, username, password, first_name, last_name, user_role, e_mail):
+    # updates a question already in the database by using the question's question_id field
+    def update_question_from_object(self, question):
         try:
-            keylist = self.users_fields
-            print(keylist)
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    answers = question.get_answers()
+                    for x in range (len(answers), 5):
+                        answers.append(None)
+                    #example query
+                    #UPDATE `rest_school_db`.`questions` SET `answer_d_text`='Why are you asking me this?', `answer_e_text`='you\'re a jerk!!!' WHERE `question_id`='4';
+                    sql = 'UPDATE `questions` SET question_text="'+question.get_question_text()+\
+                          '" , answer_a_text="'+answers[0]+\
+                          '", answer_b_text="'+answers[1]+\
+                          '", answer_c_text="'+answers[2]+\
+                          '", answer_d_text="'+answers[3]+\
+                          '", answer_e_text="'+answers[4]+\
+                          '", answer_f_text="'+answers[5]+\
+                          '", topic="'+question.get_topic()+\
+                          '", question_type="'+question.get_type()+\
+                          '", answer_num='+str(question.get_correct_answer_index())+\
+                          " WHERE question_id="+str(question.get_question_id())+";"
+                    cursor.execute(sql)
+                    return True
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+                return False
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
 
-            keylist.remove('user_id')
-            keylist.remove('last_active')
-            keylist.remove('current_activity_info')
-            keylist.remove('current_lvl')
-            keylist.remove('current_points')
+    # deletes a question from the database using its question_id
+    def delete_question(self, question_id):
+        try:
+            self.delete_row_in_table_with_attribute('questions', 'question_id', question_id)
+        except Exception as e:
+            print("Could not delete question " + str(e))
 
-            valuelist = []
-            valuelist.append(oauthkey)
-            valuelist.append(username)
-            valuelist.append(password)
-            valuelist.append(first_name)
-            valuelist.append(last_name)
-            valuelist.append(user_role)
-            valuelist.append(e_mail)
+    # updates one or more columns of a question by question_id
+    def update_question_attribute_by_id(self, question_id, keylist, valuelist):
+        try:
+            self.update_row_in_table(keylist, valuelist, 'questions', question_id)
 
-            self.save_new_row_in_table(keylist, valuelist, 'users')
+        except Exception as e:
+                print("Error updating question: "+str(e))
 
-        except Exception as ex:
-            print("Unable to add new user: " + str(ex))
 
-    # get id number from name
-    # get id number from email
-    # get all other attributes by id number
+
+
 
 
 
