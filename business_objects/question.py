@@ -71,3 +71,51 @@ class question:
 
     def set_type(self, question_type):
         self._type = question_type
+
+
+class Definition(question):
+
+    def __init__(self, id, definition, word, topic):
+        self._answers = []
+
+        self._answers.append(word)
+
+        self._question_id = id
+        self._question_text = definition
+
+        self._answer_index = 0
+        self._topic = topic
+        self._type = 0
+
+
+class MultipleChoice(question):
+
+    def __init__(self, id, q_text, anslist, answer, topic):
+        self._answers = []
+
+        for i in range(len(anslist)):
+            if anslist[i] is not None and not "":
+                self._answers.append(anslist[i])
+
+        self._question_id = id
+        self._question_text = q_text
+
+        self._answer_index = answer
+        self._topic = topic
+        self._type = 1
+
+
+class FreeResponse(question):
+
+    def __init__(self, id, q_text, answer, topic):
+        self._answers = []
+
+        self._answers.append(answer)
+
+        self._question_id = id
+        self._question_text = q_text
+
+        self._answer_index = 0
+        self._topic = topic
+        self._type = 2
+

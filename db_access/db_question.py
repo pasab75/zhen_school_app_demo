@@ -15,67 +15,180 @@ class DatabaseAccess:
                                             charset='utf8mb4',
                                             cursorclass=pymysql.cursors.DictCursor,
                                             autocommit=True
-                            )
+                                            )
+
+# -------------------------------------------------------------
+# general methods
+# -------------------------------------------------------------
+
+    # this is a general method to insert one row into a table
+    # the keylist is an ordered list of field names for the sql database
+    # the valuelist is an ordered list of values that correspond to the field names
+    # table is the name of the table that you are putting the row in
+    def save_new_row_in_table(self, keylist, valuelist, table):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    keystring = ",".join(map(str, keylist))
+
+                    nulllist = []
+
+                    for i in range(len(keylist)):
+                        nulllist.append("%s")
+
+                    nullstring = ','.join(nulllist)
+                    add_string = ("INSERT INTO " + table + " ( " + keystring + ") VALUES (" + nullstring + ")")
+
+                    # print(cursor.mogrify(add_string, valuelist))
+                    cursor.execute(add_string, valuelist)
+                    return True
+
+            except Exception as e:
+                print("Error saving new row: "+str(e))
+                return False
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    # this is a general method to update a row in a table
+    # the keylist is an ordered list of field names for the sql database
+    # the valuelist is an ordered list of values that correspond to the field names
+    # table is the name of the table that you are searching in
+    # primary should be an index of the primary key that you are search with
+    # THE PRIMARY KEY WILL NOT BE UPDATED
+    def update_row_in_table(self, keylist, valuelist, table, primary):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+
+                    # formats each field to have =%s behind it
+                    for i in range(len(keylist)):
+                        keylist[i] += "=%s"
+
+                    # removes the primiary search key and value from respective lists
+                    searchkey = keylist.pop(primary)
+                    valuekey = valuelist.pop(primary)
+
+                    # puts the value back as the last element of the list
+                    valuelist.append(valuekey)
+
+                    # comma delimits the list of fields
+                    keystring = ",".join(map(str, keylist))
+
+                    # adds prefix to the string telling it we want to update
+                    prefix_command = "UPDATE " + str(table) + " SET "
+
+                    # puts together the sql execution string and adds the field to be search by at the end
+                    add_string = (prefix_command + keystring + " WHERE " + str(searchkey))
+
+                    # executes the sql code with list of values to update as a parameter
+                    cursor.execute(add_string, valuelist)
+
+                    return True
+            except Exception as e:
+                print("Error updating row: "+str(e))
+                return False
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def delete_row_in_table_with_attribute(self, table, field, value):
+        try:
+            try:
+                with self.dbconnection.cursor() as cursor:
+                    sql = "DELETE FROM %s WHERE %s = %s"
+                    args = (table, field, value)
+                    cursor.execute(sql, args)
+
+                    return True
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+                return False
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def close_connection(self):
+        self.dbconnection.close()
+
+# -------------------------------------------------------------
+# debug methods
+# -------------------------------------------------------------
+
     # loads number of randomly generated function to the questions database for testing purposes only
     # remove this function when we go into production
     # currently this function supports only definitions questions and multiple choice questions
     # TODO: add support for calculation (free response) questions
     def load_questions_testing(self, numAdd):
         try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    for i in range(0,numAdd):
-                        questionType = str(randint(0,2))
-                        topic = "topic index " + str(randint(0,4))
+            for i in range(0, numAdd):
+                questionType = str(randint(0, 2))
+                topic = "topic index " + str(randint(0, 4))
 
-                        if questionType == '0':
-                            answer = str(randint(0,99999))
-                            sql = ("INSERT INTO questions "
-                                   "(question_text, "
-                                   "answer_a_text, "
-                                   "topic , "
-                                   "question_type) "
-                                   "VALUES "
-                                   "('I am a definition blah blah blah blah blah blah blah blah blah my answer is " + answer +
-                                  "', '" + answer +
-                                  "', '" + topic +
-                                  "', " + questionType + ");")
+                fields = []
+                values = []
 
-                        else:
-                            ranNum = randint(0,5)
-                            answerID = str(ranNum)
-                            answer = str(ranNum+1)
-                            sql = ("INSERT INTO questions "
-                                   "(question_text, "
-                                   "answer_a_text, "
-                                   "answer_b_text, "
-                                   "answer_c_text, "
-                                   "answer_d_text, "
-                                   "answer_e_text, "
-                                   "answer_f_text, "
-                                   "answer_num, topic, "
-                                   "question_type) "
-                                   "VALUES "
-                                   "('I am a question. My answer is " + answer +
-                                  ". My topic is  " + topic +
-                                  ". My question type is " + questionType +
-                                  "', 'one', "
-                                  "'two', "
-                                  "'three', "
-                                  "'four', "
-                                  "'five', "
-                                  "'six', " +
-                                   answerID +
-                                  ", '" + topic +
-                                  "' , " + questionType + ");")
+                if questionType == '0':
+                    answer = str(randint(0,99999))
 
-                        cursor.execute(sql)
-                    print("added " + str(numAdd) + " records to table")
+                    fields.append('question_text')
+                    fields.append('answer_a_text')
+                    fields.append('topic')
+                    fields.append('question_type')
 
-            except Exception as e:
-                print("Error loading random shit "+str(e))
+                    values.append('I am a definition blah blah blah '
+                                  'blah blah blah blah blah blah my answer is ' + answer)
+                    values.append(answer)
+                    values.append(topic)
+                    values.append(questionType)
+
+                elif questionType == '1':
+                    ranNum = randint(0,5)
+
+                    answerid = str(ranNum)
+                    answer = str(ranNum+1)
+
+                    fields.append('question_text')
+                    fields.append('answer_a_text')
+                    fields.append('answer_b_text')
+                    fields.append('answer_c_text')
+                    fields.append('answer_d_text')
+                    fields.append('answer_e_text')
+                    fields.append('answer_f_text')
+                    fields.append('answer_num')
+                    fields.append('topic')
+                    fields.append('question_type')
+
+                    values.append('I am a multiple choice question. My answer is ' +
+                                  answer + '. My topic is ' + topic + ".")
+                    values.append("one")
+                    values.append("two")
+                    values.append("three")
+                    values.append("four")
+                    values.append("five")
+                    values.append("six")
+                    values.append(answerid)
+                    values.append(topic)
+                    values.append(questionType)
+
+                else:
+                    answer = str(randint(0, 100000))
+                    fields.append('question_text')
+                    fields.append('answer_a_text')
+                    fields.append('topic')
+                    fields.append('question_type')
+
+                    values.append('I am a calculation type question. My answer is ' +
+                                  answer + '. My topic is ' + topic + ".")
+                    values.append(answer)
+                    values.append(topic)
+                    values.append(questionType)
+
+                self.save_new_row_in_table(fields, values, 'questions')
+
         except Exception as e:
-            print("Error while connecting "+str(e))
+            print("Error loading random shit "+str(e))
+
 
     # empties all rows from the questions table
     # currently the front end requests that the questions table gets emptied every time and is replaced by new
@@ -99,8 +212,8 @@ class DatabaseAccess:
             try:
                 with self.dbconnection.cursor() as cursor:
                     question = None
-                    sql = "SELECT COUNT(*) FROM " + str(table) + ";"
-                    cursor.execute(sql)
+                    sql = "SELECT COUNT(*) FROM %s"
+                    cursor.execute(sql, table)
                     request = cursor.fetchone()
                     print(request)
 
@@ -109,35 +222,37 @@ class DatabaseAccess:
         except Exception as e:
             print("Error while connecting "+str(e))
 
+# -------------------------------------------------------------
+# question table methods
+# -------------------------------------------------------------
+
     # returns which chapter a certain topic corresponds to
-    # this is not usable yet because we need a relational database that has this information in it
-    # the current name for the table will be topic_chapter
     def get_chapter_by_topic(self, topic):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
-                    sql = "SELECT * FROM topic_chapter WHERE topic = " + str(topic) + " ;"
-                    cursor.execute(sql)
+                    sql = "SELECT * FROM topic_chapter WHERE topic = %s"
+                    cursor.execute(sql, topic)
                     request = cursor.fetchone()
 
                     return request['chapter']
+
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
 
     # returns a random topic from a specific chapter
-    # this is not usable yet because we need a relational database that has this information in it
-    # the current name for the table will be topic_chapter
     def get_topic_random_by_chapter(self, chapter):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
-                    sql = "SELECT * FROM topic_chapter WHERE chapter = " + str(chapter) + " ORDER BY RAND() LIMIT 1;"
-                    cursor.execute(sql)
+                    sql = "SELECT * FROM topic_chapter WHERE chapter = %s ORDER BY RAND() LIMIT 1"
+                    cursor.execute(sql, chapter)
                     request = cursor.fetchone()
 
                     return request['topic']
+
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
@@ -150,9 +265,11 @@ class DatabaseAccess:
             try:
                 with self.dbconnection.cursor() as cursor:
                     question = None
-                    sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " ORDER BY RAND() LIMIT 1;"
-                    cursor.execute(sql)
+
+                    sql = "SELECT * FROM questions WHERE question_type = %s ORDER BY RAND() LIMIT 1"
+                    cursor.execute(sql, type)
                     request = cursor.fetchone()
+
                     answerlist = []
                     answerlist.append(request['answer_a_text'])
                     answerlist.append(request['answer_b_text'])
@@ -178,9 +295,11 @@ class DatabaseAccess:
             try:
                 with self.dbconnection.cursor() as cursor:
                     question = None
-                    sql = "SELECT * FROM questions WHERE question_type = " + str(type) + " AND topic = " + str(topic) + " ORDER BY RAND() LIMIT 1;"
-                    cursor.execute(sql)
+                    sql = "SELECT * FROM questions WHERE question_type = %s AND topic = %s ORDER BY RAND() LIMIT 1;"
+                    args = (type, topic)
+                    cursor.execute(sql, args)
                     request = cursor.fetchone()
+
                     answerlist = []
                     answerlist.append(request['answer_a_text'])
                     answerlist.append(request['answer_b_text'])
@@ -195,6 +314,7 @@ class DatabaseAccess:
                                                                request['topic'],
                                                                request['question_type'])
                     return question
+
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
@@ -220,9 +340,10 @@ class DatabaseAccess:
             try:
                 with self.dbconnection.cursor() as cursor:
                     question = None
-                    sql = "SELECT * FROM questions WHERE `question_id`="+str(question_id)+";"
-                    cursor.execute(sql)
+                    sql = "SELECT * FROM questions WHERE `question_id`= %s"
+                    cursor.execute(sql, question_id)
                     request = cursor.fetchone()
+
                     answerlist = []
                     answerlist.append(request['answer_a_text'])
                     answerlist.append(request['answer_b_text'])
@@ -361,18 +482,9 @@ class DatabaseAccess:
     # deletes a question from the database using its question_id
     def delete_question(self, question_id):
         try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    #UPDATE `rest_school_db`.`questions` SET `answer_d_text`='Why are you asking me this?', `answer_e_text`='you\'re a jerk!!!' WHERE `question_id`='4';
-                    sql = "DELETE FROM `questions` WHERE question_id = "+str(question_id)+";"
-                    cursor.execute(sql)
-                    return True
-            except Exception as e:
-                print("Error fetching results: "+str(e))
-                return False
+            self.delete_row_in_table_with_attribute('questions', 'question_id', question_id)
         except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
+            print("Could not delete question " + str(e))
 
     # updates a specific column of a question from the questions database
     # may want to make this into something that takes a dictionary instead of just one key-value pair
@@ -381,36 +493,14 @@ class DatabaseAccess:
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
-                    sql = "UPDATE `questions` SET `" + str(attribute) + "` = '" + str(value) + "' WHERE question_id = " + str(question_id) + ";"
-                    cursor.execute(sql)
+                    sql = "UPDATE `questions` SET `%s` = %s WHERE question_id = %s"
+                    args = (attribute, value, question_id)
+                    cursor.execute(sql, args)
 
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
-
-    # delete this eventually
-    # it generates some insert SQL, but I think I tidied up the code enough that we probably don't need it
-    def generate_INSERT_sql(self, table, fields, values):
-        try:
-            sql = "INSERT INTO `" + table + "` ("
-            j = len(fields)
-            for i in range(j):
-                sql = sql + "`" + str(fields[i])
-                if i != j:
-                    sql = sql + "`, "
-                else:
-                    sql = sql + "`) VALUES"
-
-            for i in range(j):
-                sql = sql + str(values[i])
-                if i != j:
-                    sql = sql + ", "
-                else:
-                    sql = sql + ")"
-
-        except Exception as e:
-            print("Error generating sql "+ str(e))
 
     # this method creates a definition type question by combining 6 different questions from the database
     # it flips a coin to decide whether the answers should be words or definitions
@@ -423,12 +513,12 @@ class DatabaseAccess:
             try:
                 with self.dbconnection.cursor() as cursor:
                     sql = ("SELECT * FROM questions "
-                           "WHERE topic = '" + str(topic) +
-                           "' AND "
-                           "question_type = '0' "
+                           "WHERE topic = %s"
+                           " AND "
+                           "question_type = 0 "
                            "ORDER BY RAND() "
                            "LIMIT 6;")
-                    cursor.execute(sql)
+                    cursor.execute(sql, topic)
                     questions = cursor.fetchall()
                     primary_question = questions[0]
                     question_type = questions[0]['question_type']
@@ -467,10 +557,12 @@ class DatabaseAccess:
                                                                    primary_question['question_type'])
 
                     sql = ("UPDATE `questions` "
-                           "SET `answer_num` = '" + str(correct_index) +
-                           "' WHERE question_id = " + str(primary_question['question_id'])
-                           + ";")
-                    cursor.execute(sql)
+                           "SET `answer_num` = %s "
+                           "WHERE question_id = %s "
+                           ";")
+
+                    args = (correct_index, primary_question['question_id'])
+                    cursor.execute(sql, args)
 
                     return question
             except Exception as e:
@@ -478,77 +570,9 @@ class DatabaseAccess:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-    # this is a general method to insert one row into a table
-    # the keylist is an ordered list of field names for the sql database
-    # the valuelist is an ordered list of values that correspond to the field names
-    # table is the name of the table that you are putting the row in
-    def save_new_row_in_table(self, keylist, valuelist, table):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    keystring = ",".join(map(str, keylist))
-
-                    prefix_command = "INSERT INTO " + str(table) + "( "
-
-                    nulllist = []
-
-                    for i in range(len(keylist)):
-                        nulllist.append("%s")
-
-                    nullstring = ','.join(nulllist)
-                    add_string = (prefix_command + keystring + ") VALUES (" + nullstring + ")")
-                    cursor.execute(add_string, valuelist)
-                    return True
-            except Exception as e:
-                print("Error saving new row: "+str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
-
-    # this is a general method to update a row in a table
-    # the keylist is an ordered list of field names for the sql database
-    # the valuelist is an ordered list of values that correspond to the field names
-    # table is the name of the table that you are searching in
-    # primary should be an index of the primary key that you are search with
-    # THE PRIMARY KEY WILL NOT BE UPDATED
-    def update_row_in_table(self, keylist, valuelist, table, primary):
-        try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-
-                    # formats each field to have =%s behind it
-                    for i in range(len(keylist)):
-                        keylist[i] = keylist[i] + "=%s"
-
-                    # removes the primiary search key and value from respective lists
-                    searchkey = keylist.pop(primary)
-                    valuekey = valuelist.pop(primary)
-
-                    # puts the value back as the last element of the list
-                    valuelist.append(valuekey)
-
-                    # comma delimits the list of fields
-                    keystring = ",".join(map(str, keylist))
-
-                    # adds prefix to the string telling it we want to update
-                    prefix_command = "UPDATE " + str(table) + " SET "
-
-                    # puts together the sql execution string and adds the field to be search by at the end
-                    add_string = (prefix_command + keystring + " WHERE " + str(searchkey))
-
-                    # executes the sql code with list of values to update as a parameter
-                    cursor.execute(add_string, valuelist)
-
-                    print(add_string)
-
-                    return True
-            except Exception as e:
-                print("Error updating row: "+str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
+# -------------------------------------------------------------
+# user table methods
+# -------------------------------------------------------------
 
     # define user table methods below
 
@@ -557,8 +581,7 @@ class DatabaseAccess:
     # get id number from email
     # get all other attributes by id number
 
-    def close_connection(self):
-        self.dbconnection.close()
+
 
 
 

@@ -25,8 +25,7 @@ def index():
     # values.append("10")
 
     dbconnect = db_access_layer.DatabaseAccess()
-    # dbconnect.save_new_row_in_table(keys, values, table)
-    dbconnect.update_row_in_table(keys, values, table, 0)
+
     return "hihi"
 
 # adds some random test questions to the database
