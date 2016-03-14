@@ -4,7 +4,65 @@ from random import randint, shuffle
 
 
 class DatabaseAccess:
+
+    # -------------------------------------------------------------
+    # class variables
+    # -------------------------------------------------------------
+
     dbconnection = None
+
+    # table fields
+    # this gives string values for each column in each table
+    # this can be used instead of re-typing each
+
+    # questions table
+    questions_fields = [None]*11
+    questions_fields[0] = 'question_id'
+    questions_fields[1] = 'question_text'
+    questions_fields[2] = 'answer_a_text'
+    questions_fields[3] = 'answer_b_text'
+    questions_fields[4] = 'answer_c_text'
+    questions_fields[5] = 'answer_d_text'
+    questions_fields[6] = 'answer_e_text'
+    questions_fields[7] = 'answer_f_text'
+    questions_fields[8] = 'answer_num'
+    questions_fields[9] = 'topic'
+    questions_fields[10] = 'question_type'
+
+    # users table
+    users_fields = [None]*12
+    users_fields[0] = 'o_auth_key'
+    users_fields[1] = 'user_name'
+    users_fields[2] = 'user_id'
+    users_fields[3] = 'password'
+    users_fields[4] = 'last_active'
+    users_fields[5] = 'first_name'
+    users_fields[6] = 'last_name'
+    users_fields[7] = 'user_role'
+    users_fields[8] = 'e_mail'
+    users_fields[9] = 'current_activity_info'
+    users_fields[10] = 'current_lvl'
+    users_fields[11] = 'current_points'
+
+    # topic_chapter table
+    topic_chapter_fields = [None]*3
+    topic_chapter_fields[0] = 'chapter'
+    topic_chapter_fields[1] = 'topic'
+    topic_chapter_fields[2] = 'topic_index'
+
+    # activity_log table
+    activity_log_fields = [None]*7
+    activity_log_fields[0] = 'user_id#'
+    activity_log_fields[1] = 'time'
+    activity_log_fields[2] = 'date'
+    activity_log_fields[3] = 'correct'
+    activity_log_fields[4] = 'latitude'
+    activity_log_fields[5] = 'longitude'
+    activity_log_fields[6] = 'activity'
+
+    # -------------------------------------------------------------
+    # class constructor
+    # -------------------------------------------------------------
 
     def __init__(self):
         print("connected")
@@ -17,13 +75,13 @@ class DatabaseAccess:
                                             autocommit=True
                                             )
 
-# As a rule of thumb, all values that can be thought of as text input from the API should never
-# be concatenated into a SQL query directly. Instead, they should be passed as arguments to the execution
-# method. I've rewritten most, if not all, methods to reflect this
+    # As a rule of thumb, all values that can be thought of as text input from the API should never
+    # be concatenated into a SQL query directly. Instead, they should be passed as arguments to the execution
+    # method. I've rewritten most, if not all, methods to reflect this
 
-# -------------------------------------------------------------
-# general methods
-# -------------------------------------------------------------
+    # -------------------------------------------------------------
+    # general methods
+    # -------------------------------------------------------------
 
     # this is a general method to insert one row into a table
     # the keylist is an ordered list of field names for the sql database
@@ -115,9 +173,9 @@ class DatabaseAccess:
     def close_connection(self):
         self.dbconnection.close()
 
-# -------------------------------------------------------------
-# debug methods
-# -------------------------------------------------------------
+    # -------------------------------------------------------------
+    # debug methods
+    # -------------------------------------------------------------
 
     # loads number of randomly generated function to the questions database for testing purposes only
     # remove this function when we go into production
@@ -193,7 +251,6 @@ class DatabaseAccess:
         except Exception as e:
             print("Error loading random shit "+str(e))
 
-
     # empties all rows from the questions table
     # currently the front end requests that the questions table gets emptied every time and is replaced by new
     # randomly generated questions
@@ -203,7 +260,6 @@ class DatabaseAccess:
                 with self.dbconnection.cursor() as cursor:
                     sql = "DELETE FROM questions"
                     cursor.execute(sql)
-
 
             except Exception as e:
                 print("Error emptying table "+str(e))
@@ -226,9 +282,9 @@ class DatabaseAccess:
         except Exception as e:
             print("Error while connecting "+str(e))
 
-# -------------------------------------------------------------
-# question table methods
-# -------------------------------------------------------------
+    # -------------------------------------------------------------
+    # question table methods
+    # -------------------------------------------------------------
 
     # returns which chapter a certain topic corresponds to
     def get_chapter_by_topic(self, topic):
@@ -410,51 +466,47 @@ class DatabaseAccess:
     # saves a new question into the questions database
     # function takes a question object
     # code will null answers that aren't provided
-    def save_new_question(self, question):
+    def save_new_question_from_object(self, question):
         try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    answers = question.get_answers()
-                    for x in range (len(answers), 5):
-                        answers.append(None)
+            type_index = question.get_type()
 
-                    sql = ("INSERT INTO `questions` "
-                           "(`question_id`,"
-                           "`question_text`, "
-                           "`answer_a_text`, "
-                           "`answer_b_text`, "
-                           "`answer_c_text`, "
-                           "`answer_d_text`, "
-                           "`answer_e_text`, "
-                           "`answer_f_text`, "
-                           "`topic`, "
-                           "`answer_num`, "
-                           "`question_type`)"
-                           " VALUES "
-                           "('NULL','" +
-                           question.get_question_text() +
-                           "', '" + answers[0] +
-                           "', '" + answers[1] +
-                           "', '" + answers[2] +
-                           "', '" + answers[3] +
-                           "', '" + answers[4] +
-                           "', '" + answers[5] +
-                           "', '" + question.get_topic() +
-                           "', '" + str(question.get_correct_answer_index()) +
-                           "', '" + question.get_type() +
-                           "');")
+            fields = []
+            valuelist = []
 
-                    cursor.execute(sql)
-                    return True
-            except Exception as e:
-                print("Error fetching results: "+str(e))
-                return False
+            fields.append('question_text')
+            fields.append('answer_a_text')
+
+
+            valuelist.append(question.getquestion_text())
+            answers = question.get_answers()
+
+            for i in range(len(answers)):
+                valuelist.append(answers[i])
+
+            if type_index == 1:
+                fields.append('answer_b_text')
+                fields.append('answer_c_text')
+                fields.append('answer_d_text')
+                fields.append('answer_e_text')
+                fields.append('answer_f_text')
+                fields.append('answer_num')
+
+                valuelist.append(question.get_correct_answer_index)
+
+            fields.append('topic')
+            fields.append('question_type')
+
+            valuelist.append(question.get_topic())
+            valuelist.append(str(type_index))
+
+            self.save_new_row_in_table(keyfields, valuelist, 'questions')
+
         except Exception as e:
             print("Error connecting: "+str(e))
             return False
 
     # updates a question already in the database by using the question's question_id field
-    def update_question(self, question):
+    def update_question_from_object(self, question):
         try:
             try:
                 with self.dbconnection.cursor() as cursor:
@@ -490,21 +542,13 @@ class DatabaseAccess:
         except Exception as e:
             print("Could not delete question " + str(e))
 
-    # updates a specific column of a question from the questions database
-    # may want to make this into something that takes a dictionary instead of just one key-value pair
-    # TODO: make this able to take more than one key-value pair
-    def update_question_attribute_by_questionid(self, question_id, attribute, value):
+    # updates one or more columns of a question by question_id
+    def update_question_attribute_by_id(self, question_id, keylist, valuelist):
         try:
-            try:
-                with self.dbconnection.cursor() as cursor:
-                    sql = "UPDATE `questions` SET `%s` = %s WHERE question_id = %s"
-                    args = (attribute, value, question_id)
-                    cursor.execute(sql, args)
+            self.update_row_in_table(keylist, valuelist, 'questions', question_id)
 
-            except Exception as e:
-                print("Error fetching results: "+str(e))
         except Exception as e:
-                print("Error connecting: "+str(e))
+                print("Error updating question: "+str(e))
 
     # this method creates a definition type question by combining 6 different questions from the database
     # it flips a coin to decide whether the answers should be words or definitions
@@ -544,6 +588,7 @@ class DatabaseAccess:
                     if randint(0, 1) == 1:
                         for i in range(6):
                             answerlist.append(questions.pop(0)['answer_a_text'])
+
                         question = question_obj_generator.question(primary_question['question_id'],
                                                                    primary_question['question_text'],
                                                                    answerlist,
@@ -553,6 +598,7 @@ class DatabaseAccess:
                     else:
                         for i in range(6):
                             answerlist.append(questions.pop(0)['question_text'])
+
                         question = question_obj_generator.question(primary_question['question_id'],
                                                                    primary_question['answer_a_text'],
                                                                    answerlist,
@@ -574,13 +620,37 @@ class DatabaseAccess:
         except Exception as e:
                 print("Error connecting: "+str(e))
 
-# -------------------------------------------------------------
-# user table methods
-# -------------------------------------------------------------
-
-    # define user table methods below
+    # -------------------------------------------------------------
+    # user table methods
+    # -------------------------------------------------------------
 
     # TODO: Make the following methods:
+
+    def add_user_new(self, oauthkey, username, password, first_name, last_name, user_role, e_mail):
+        try:
+            keylist = self.users_fields
+            print(keylist)
+
+            keylist.remove('user_id')
+            keylist.remove('last_active')
+            keylist.remove('current_activity_info')
+            keylist.remove('current_lvl')
+            keylist.remove('current_points')
+
+            valuelist = []
+            valuelist.append(oauthkey)
+            valuelist.append(username)
+            valuelist.append(password)
+            valuelist.append(first_name)
+            valuelist.append(last_name)
+            valuelist.append(user_role)
+            valuelist.append(e_mail)
+
+            self.save_new_row_in_table(keylist, valuelist, 'users')
+
+        except Exception as ex:
+            print("Unable to add new user: " + str(ex))
+
     # get id number from name
     # get id number from email
     # get all other attributes by id number

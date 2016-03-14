@@ -12,19 +12,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    keys = []
-    values = []
-    table = "testdb.topic_chapter"
-
-    keys.append("topic")
-    keys.append("chapter")
-    # keys.append("topic_index")
-
-    values.append("covalent bonds")
-    values.append("5")
-    # values.append("10")
-
     dbconnect = db_access_layer.DatabaseAccess()
+    dbconnect.add_user_new(1234566, 'derpuser', 'derppassword', 'derp', 'man', 0, 'derpman@gmail.com')
 
     return "hihi"
 

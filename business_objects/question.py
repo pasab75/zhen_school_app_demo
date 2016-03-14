@@ -72,6 +72,44 @@ class question:
     def set_type(self, question_type):
         self._type = question_type
 
+    # def get_fieldlist(self):
+    #     qtype = self.get_type()
+    #     fieldlist = []
+    #
+    #     fieldlist.append('question_text')
+    #     fieldlist.append('answer_a_text')
+    #
+    #     if qtype == 1:
+    #         fieldlist.append('answer_b_text')
+    #         fieldlist.append('answer_c_text')
+    #         fieldlist.append('answer_d_text')
+    #         fieldlist.append('answer_e_text')
+    #         fieldlist.append('answer_f_text')
+    #         fieldlist.append('answer_num')
+    #
+    #     fieldlist.append('topic')
+    #     fieldlist.append('question_type')
+    #
+    #     return fieldlist
+    #
+    # def get_valuelist(self):
+    #         qtype = self.get_type()
+    #         valuelist = []
+    #
+    #         valuelist.append(self.get_question_text())
+    #         answers = self.get_answers()
+    #
+    #         for i in range(len(answers)):
+    #             valuelist.append(answers[i])
+    #
+    #         if qtype == 1:
+    #             valuelist.append(question.get_correct_answer_index)
+    #
+    #         valuelist.append(self.get_topic())
+    #         valuelist.append(str(qtype))
+    #
+    #         return valuelist
+
 
 class Definition(question):
 

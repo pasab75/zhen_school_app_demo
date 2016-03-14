@@ -58,6 +58,11 @@ CREATE TABLE `testdb`.`users` (
   PRIMARY KEY (`user_name`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC));
 
+ALTER TABLE `testdb`.`users`
+CHANGE COLUMN `last_active` `last_active` DATETIME NULL DEFAULT NULL ,
+CHANGE COLUMN `user_role` `user_role` INT(11) NOT NULL DEFAULT '0' ;
+
+
 -- -----------------------------------------------------
 -- Table `testdb`.`topic_chapter`
 -- -----------------------------------------------------
