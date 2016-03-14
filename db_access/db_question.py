@@ -17,6 +17,10 @@ class DatabaseAccess:
                                             autocommit=True
                                             )
 
+# As a rule of thumb, all values that can be thought of as text input from the API should never
+# be concatenated into a SQL query directly. Instead, they should be passed as arguments to the execution
+# method. I've rewritten most, if not all, methods to reflect this
+
 # -------------------------------------------------------------
 # general methods
 # -------------------------------------------------------------
