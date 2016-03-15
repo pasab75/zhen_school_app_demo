@@ -1,4 +1,3 @@
-import pymysql.cursors
 from db_access.db_general import GeneralDatabaseConnection
 
 

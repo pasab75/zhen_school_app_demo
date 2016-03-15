@@ -9,6 +9,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-signin-client_id" content="334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,7 +19,7 @@
                 padding-bottom: 20px;
             }
         </style>
-
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
 	    <link rel="stylesheet" href="css/main.css">
@@ -36,23 +37,25 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">exBook</a>
+
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+          <!--<form class="navbar-form navbar-right" role="form">-->
+            <!--<div class="form-group">-->
+              <!--<input type="text" placeholder="Email" class="form-control">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<input type="password" placeholder="Password" class="form-control">-->
+            <!--</div>-->
+            <!--<button type="submit" class="btn btn-success">Sign in</button>-->
+              <!---->
+          <!--</form>-->
+            <a class="navbar-right g-signin2" data-onsuccess="onSignIn"></a>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-	
     <div class="jumbotron">
       <div class="container">
 		<p id="questionText"></p>
@@ -68,9 +71,9 @@
         <div class="col-md-2">
 
 		</div>
-		
+
         <div id="mcContainer" class="col-md-8">
-			
+
         </div>
         <div class="col-md-2">
 
@@ -83,6 +86,7 @@
 		<script src="js/jquery/jquery-1.11.2.min.js"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>
 		<script src="js/google/google_auth.js"></script>
+
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. 
         <script>
