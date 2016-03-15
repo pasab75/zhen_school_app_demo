@@ -1,5 +1,4 @@
 import pymysql.cursors
-from random import randint
 
 
 class GeneralDatabaseConnection:
@@ -41,7 +40,7 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = 'SELECT FROM %s WHERE %s = %s' % (table, key, '%s')
+                    sql = "SELECT FROM {} WHERE '{}' = {}".format(table, key, '%s')
                     cursor.execute(sql, value)
 
                     return cursor.fetchone()
@@ -56,7 +55,7 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = 'SELECT FROM %s WHERE %s = %s' % (table, key, '%s')
+                    sql = "SELECT FROM {} WHERE '{}' = {}".format(table, key, '%s')
                     cursor.execute(sql, value)
 
                     return cursor.fetchall()
@@ -79,8 +78,8 @@ class GeneralDatabaseConnection:
             try:
                 with self.db_connection.cursor() as cursor:
                     placeholders = ', '.join(['%s'] * len(dictionary_to_add))
-                    columns = ', '.join(dictionary_to_add.keys())
-                    sql = "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
+                    columns = ", ".join(dictionary_to_add.keys())
+                    sql = "INSERT INTO {} ( {} ) VALUES ( {} )".format(table, columns, placeholders)
 
                     cursor.execute(sql, list(dictionary_to_add.values()))
 
@@ -104,9 +103,9 @@ class GeneralDatabaseConnection:
                     searchvalue = dictionary_to_add[primary]
                     del dictionary_to_add[primary]
 
-                    keystring = '=%s, '.join(dict.keys()) + '=%s'
+                    keystring = '={}, '.join(dictionary_to_add.keys()) + '={}'
 
-                    sql = "UPDATE %s SET %s WHERE %s=%s" % (table, keystring, primary, searchvalue)
+                    sql = "UPDATE {} SET {} WHERE '{}'=%s" .format(table, keystring, primary, searchvalue)
 
                     # executes the sql code with list of values to update as a parameter
                     cursor.execute(sql, dictionary_to_add.values())

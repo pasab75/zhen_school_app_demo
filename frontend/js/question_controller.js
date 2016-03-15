@@ -7,13 +7,11 @@ $(document).ready(function(){
 
     console.log(hostroot);
 
-    //POST.getMC(qID);
-
     addquestionsURL = hostname + ':5000/api/v1/add/dummy/questions';
 
 
     POST.debug(addquestionsURL);
-    //POST.getrandmc();
+
     POST.getranddef();
 
 });
