@@ -26,19 +26,20 @@ def index():
 @app.route('/api/v1/tokensignin', methods=['POST'])
 def sign_in():
     try:
-        token = request.form.getlist('idtoken')
-
+        token = request.form.get('idtoken')
         print(str(token))
 
-        CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3'
+        CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
         idinfo = client.verify_id_token(str(token), CLIENT_ID)
         userid = idinfo['sub']
 
         print(userid)
 
         return "false"
-    except crypt.AppIdentityError:
+    except Exception as e:
+        print(str(e))
         print('Invalid token')
+
 
 
 @app.route('/api/v1/add/dummy/questions', methods=['POST'])
