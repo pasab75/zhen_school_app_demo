@@ -4,6 +4,8 @@ import datetime
 import db_access.db_question as questions_table_access_layer
 import db_access.db_user as users_table_access_layer
 import requests
+from oauth2client import client, crypt
+
 
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
@@ -23,15 +25,20 @@ def index():
 
 @app.route('/api/v1/tokensignin', methods=['POST'])
 def sign_in():
-    # try:
-    #     token = request.form.getlist('idtoken')
-    #     clientid = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
-    #
-    #     r = requests.post('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={}'.format(token))
-    #     print(r.status_code, r.reason)
-    # except Exception as ex:
-    #     print('Invalid token')
-    return "hello, world!"
+    try:
+        token = request.form.getlist('idtoken')
+
+        print(str(token))
+
+        CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3'
+        idinfo = client.verify_id_token(str(token), CLIENT_ID)
+        userid = idinfo['sub']
+
+        print(userid)
+
+        return "false"
+    except crypt.AppIdentityError:
+        print('Invalid token')
 
 
 @app.route('/api/v1/add/dummy/questions', methods=['POST'])
