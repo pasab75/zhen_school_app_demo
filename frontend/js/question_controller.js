@@ -9,8 +9,7 @@ $(document).ready(function(){
 
     addquestionsURL = hostname + ':5000/api/v1/add/dummy/questions';
 
-
-    POST.debug(addquestionsURL);
+    // POST.debug(addquestionsURL);
 
     POST.getranddef();
 
