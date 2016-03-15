@@ -13,11 +13,10 @@ else
 
 hostroot = hostname + ':' + port + '/'
 
+tokensignin = hostroot + 'tokensignin'
 urlgetdef = hostroot + 'get/defquestion/topic';
 urlgetrand = hostroot + 'get/question/random';
 urlsendANS = hostroot + 'validate/question';
-
-
 
 // This is POST object that contains all the various types of POSTS we will do
 

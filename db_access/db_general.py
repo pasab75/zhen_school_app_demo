@@ -33,6 +33,44 @@ class GeneralDatabaseConnection:
     # general methods
     # -------------------------------------------------------------
 
+    # -------------------------------------------------------------
+    # READ methods
+    # -------------------------------------------------------------
+
+    def get_row_by_key_value(self, table, key, value):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = 'SELECT FROM %s WHERE %s = %s' % (table, key, '%s')
+                    cursor.execute(sql, value)
+
+                    return cursor.fetchone()
+
+            except Exception as ex:
+                print("error adding row to table :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def get_rows_by_key_value(self, table, key, value):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = 'SELECT FROM %s WHERE %s = %s' % (table, key, '%s')
+                    cursor.execute(sql, value)
+
+                    return cursor.fetchall()
+
+            except Exception as ex:
+                print("error adding row to table :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    # -------------------------------------------------------------
+    # WRITE methods
+    # -------------------------------------------------------------
+
     # this method adds a dictionary of key-value pairs to the database
     # the valuelist is an ordered list of values that correspond to the field names
     # table is the name of the table that you are putting the row in
@@ -40,19 +78,6 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    # columns = ','.join(dictionary_to_add.keys())
-                    # print(columns)
-                    #
-                    # placeholders = ','.join(['%s']) *len(dictionary_to_add)
-                    # print(placeholders)
-                    #
-                    # sql = "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
-                    # # cursor.execute(sql, dictionary_to_add.values())
-                    # print(sql)
-                    # # print(cursor.mogrify(sql, dictionary_to_add.values()))
-
-                    # dictionary_to_add.update((k, v) for k, v in dictionary_to_add.items() if v is not None)
-
                     placeholders = ', '.join(['%s'] * len(dictionary_to_add))
                     columns = ', '.join(dictionary_to_add.keys())
                     sql = "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)

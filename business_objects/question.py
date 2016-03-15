@@ -1,6 +1,5 @@
 from flask import jsonify
 
-
 class question:
     _dictionary = {'question_id': None,
                    'question_text': None,
@@ -15,24 +14,20 @@ class question:
                    'question_type': None,
                    }
 
-    def __init__(self, question_id, question_text, anslist, answer_index, topic, question_type):
+    def __init__(self, question_text=None, anslist=None, topic=None,
+                 question_type=None, answer_num=None, question_id=None):
         self._dictionary['question_id'] = question_id
         self._dictionary['question_text'] = question_text
-        self._dictionary['answer_num'] = answer_index
+        self._dictionary['answer_num'] = answer_num
         self._dictionary['topic'] = topic
         self._dictionary['question_type'] = question_type
-        if len(anslist) > 0:
-            self._dictionary['answer_a_text'] = anslist.pop(0)
-        if len(anslist) > 0:
-            self._dictionary['answer_b_text'] = anslist.pop(0)
-        if len(anslist) > 0:
-            self._dictionary['answer_c_text'] = anslist.pop(0)
-        if len(anslist) > 0:
-            self._dictionary['answer_d_text'] = anslist.pop(0)
-        if len(anslist) > 0:
-            self._dictionary['answer_e_text'] = anslist.pop(0)
-        if len(anslist) > 0:
-            self._dictionary['answer_f_text'] = anslist.pop(0)
+
+        for i in 'abcdef':
+            if anslist:
+                self._dictionary['answer_{}_text'.format(i)] = anslist.pop(0)
+
+    def set_dictionary(self, dictionary):
+        self._dictionary = dictionary
 
     def get_dictionary(self):
         return self._dictionary
@@ -45,12 +40,8 @@ class question:
 
     def get_answers(self):
         answers = []
-        answers.append(self._dictionary['answer_a_text'])
-        answers.append(self._dictionary['answer_b_text'])
-        answers.append(self._dictionary['answer_c_text'])
-        answers.append(self._dictionary['answer_d_text'])
-        answers.append(self._dictionary['answer_e_text'])
-        answers.append(self._dictionary['answer_f_text'])
+        for i in 'abcdef':
+            answers.append(self._dictionary['answer_{}_text'.format(i)])
         return answers
 
     def get_answer_text(self, key):

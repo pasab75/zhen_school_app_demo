@@ -3,6 +3,7 @@ import json
 import datetime
 import db_access.db_question as questions_table_access_layer
 import db_access.db_user as users_table_access_layer
+import requests
 
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
@@ -12,14 +13,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return "Hello!"
 
-    dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-    print( '=%s, '.join(dict.keys()) + "=%s" )
+@app.route('/tokensignin', methods=['POST'])
+def sign_in():
+    try:
+        token = request.form.getlist('idtoken')
+        clientid = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
 
-    return "hihi"
-
-# adds some random test questions to the database
+        r = requests.post('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={}'.format(token))
+        print(r.status_code, r.reason)
+    except Exception as ex:
+        print('Invalid token')
 
 
 @app.route('/add/dummy/questions', methods=['POST'])
@@ -101,7 +107,7 @@ def validate_question():
 
         # TODO: look at zhen's code and make sure it's not ass backwards
 
-        result = dbconnect.get_question_by_id(questionID)
+        result = dbconnect.get_question_by_question_id(questionID)
         correctID = result.get_correct_answer_index()
 
         print("correct answer index = " + str(correctID))
@@ -138,8 +144,8 @@ def get_question_byid():
         print(incoming_request)
         task_id = (request.json['id'])
         result = None
-        dbconnect = questions_table_access_layer.DatabaseAccess()
-        result = dbconnect.get_question_by_id(task_id)
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
+        result = dbconnect.get_question_by_question_id(task_id)
 
         dbconnect.close_connection()
         return result.get_jsonified()
