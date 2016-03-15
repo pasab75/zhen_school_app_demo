@@ -18,14 +18,15 @@ def index():
 
 @app.route('/tokensignin', methods=['POST'])
 def sign_in():
-    try:
-        token = request.form.getlist('idtoken')
-        clientid = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
-
-        r = requests.post('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={}'.format(token))
-        print(r.status_code, r.reason)
-    except Exception as ex:
-        print('Invalid token')
+    # try:
+    #     token = request.form.getlist('idtoken')
+    #     clientid = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
+    #
+    #     r = requests.post('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={}'.format(token))
+    #     print(r.status_code, r.reason)
+    # except Exception as ex:
+    #     print('Invalid token')
+    return "hello, world!"
 
 
 @app.route('/add/dummy/questions', methods=['POST'])
