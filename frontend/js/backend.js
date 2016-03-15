@@ -11,12 +11,13 @@ if (local == true){
 else
     hostname = 'http://exbookapp.org'
 
-hostroot = hostname + ':' + port + '/'
+hostroot = hostname + ':' + port + '/api/'
+version = "v1/"
 
-tokensignin = hostroot + 'tokensignin'
-urlgetdef = hostroot + 'get/defquestion/topic';
-urlgetrand = hostroot + 'get/question/random';
-urlsendANS = hostroot + 'validate/question';
+tokensignin = hostroot + version + 'tokensignin'
+urlgetdef = hostroot + version + 'get/question/definition/by/topic';
+urlgetrand = hostroot + version + 'get/question/random';
+urlsendANS = hostroot + version + 'validate/question';
 
 // This is POST object that contains all the various types of POSTS we will do
 
@@ -30,12 +31,12 @@ urlsendANS = hostroot + 'validate/question';
 
         var minWidth = 200; //this is the minimum width of an answer button to be displayed
 
-        for (var i = 0; i < data.answers.length; i++) {
+        for (var i = 0; i < data.answer_text.length; i++) {
             var $thisClone = $aProto.clone() //clones a prototype question box
-                .text(data.answers[i]) //inserts answer text into question boxes
+                .text(data.answer_text[i]) //inserts answer text into question boxes
                 .appendTo($('#mcContainer')) //puts question boxes in the correct container
                 .attr('data-index', i) //adds class identifiers to each question box
-                .attr('data-qID', data.questionID) //adds question identifier to each question box
+                .attr('data-qID', data.question_id) //adds question identifier to each question box
                 .hide()
                 .fadeIn('slow') //shows the question box
                 .removeClass('hidden');
@@ -124,7 +125,7 @@ var request = function() {
 
     this.addQuestions = function() {
         var nothing = {'nothing' : '0'};
-        this.postData(console.log('added questions successfully'), nothing, hostname +':5000/add/dummy/questions' );
+        this.postData(console.log('added questions successfully'), nothing, hostname +':5000/api/v1/add/dummy/questions' );
     };
 
     this.debug = function(url){

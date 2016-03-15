@@ -87,3 +87,23 @@ CREATE TABLE `testdb`.`activity_log` (
   `latitude` DOUBLE NULL,
   `longitude` DOUBLE NULL,
   `activity` JSON NULL);
+
+-- -----------------------------------------------------
+-- Table `testdb`.`quests`
+-- -----------------------------------------------------
+
+CREATE TABLE `testdb`.`quests` (
+  `activity_name_text` VARCHAR(20) NOT NULL,
+  `activity_id` INT NOT NULL,
+  `activity_topic_index_1` INT NULL,
+  `activity_topic_index_2` INT NULL DEFAULT NULL,
+  `activity_topic_index_3` INT NULL DEFAULT NULL,
+  `activity_topic_index_4` INT NULL DEFAULT NULL,
+  `activity_topic_index_5` INT NULL DEFAULT NULL,
+  `activity_topic_index_6` INT NULL DEFAULT NULL,
+  `activity_chapter_index` INT NULL DEFAULT NULL,
+  `number_of_questions` INT NOT NULL,
+  `types_of_questions` INT NOT NULL,
+  `point_value` INT NOT NULL,
+  `activity_description` VARCHAR(500) DEFAULT NULL,
+  PRIMARY KEY (`activity_id`));

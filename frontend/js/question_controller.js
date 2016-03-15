@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     //POST.getMC(qID);
 
-    addquestionsURL = hostname + ':5000/add/dummy/questions';
+    addquestionsURL = hostname + ':5000/api/v1/add/dummy/questions';
 
 
     POST.debug(addquestionsURL);

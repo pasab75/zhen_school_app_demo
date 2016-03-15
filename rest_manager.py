@@ -11,12 +11,17 @@ local = True
 app = Flask(__name__)
 
 
+# -------------------------------------------------------------
+# Routes
+# -------------------------------------------------------------
+
+
 @app.route('/')
 def index():
     return "Hello!"
 
 
-@app.route('/tokensignin', methods=['POST'])
+@app.route('/api/v1/tokensignin', methods=['POST'])
 def sign_in():
     # try:
     #     token = request.form.getlist('idtoken')
@@ -29,7 +34,7 @@ def sign_in():
     return "hello, world!"
 
 
-@app.route('/add/dummy/questions', methods=['POST'])
+@app.route('/api/v1/add/dummy/questions', methods=['POST'])
 def add_random():
     try:
         incoming_request = request
@@ -45,11 +50,114 @@ def add_random():
         print(ex)
         abort(500, "Unable to add questions to DB")
 
-# student client routes
+# -------------------------------------------------------------
+# Student client routes
+# -------------------------------------------------------------
 
 
-@app.route('/get/defquestion/topic', methods=['POST'])
-def get_defquestion_topic():
+@app.route('/api/v1/get/activities', methods=['POST'])
+def get_activities():
+    return True
+
+
+@app.route('/api/v1/get/activity/list', methods=['POST'])
+def get_activity_list():
+    try:
+        # grab current activity list
+
+        # return list text to user
+        return True
+
+    except Exception as ex:
+        print(ex)
+        print("Unable to retrieve activity list.")
+
+
+@app.route('/api/v1/set/activity/by/user', methods=['POST'])
+def set_activity_by_user():
+    try:
+        # save activity index in (user)? database?
+        return True
+
+    except Exception as ex:
+        print(ex)
+        print("Unable to save activity.")
+
+
+@app.route('/api/v1/get/question/next/by/activity', methods=['POST'])
+def get_question_next_by_activity():
+    try:
+        # determine user identity
+
+        # get current activity for user
+
+        # update activity progress
+
+        # generate valid question parameters for given activity
+        # get a question from database that matches question parameters
+        # return question to client
+
+        return True
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to retrieve next question.")
+
+
+@app.route('/api/v1/validate/question', methods=['POST'])
+def validate_question():
+    try:
+        incoming_request = request
+        print(incoming_request)
+
+        # TODO: implement the following psuedocode instead of what is here already
+        # identify user
+
+        # grab the last question that the user was served
+
+        # get the answer to the question
+
+        # compare the answer to the user's answer
+
+        # if answer is correct
+            # record point gain for user
+            # update the user's multiplier
+            # update user's activity progress
+            # return true
+
+        # if answer is incorrect
+            # update the user's multiplier
+            # update user's activity progress
+            # return false
+
+        questionID = (request.json['qID'])
+        answerID = int((request.json['aID']))
+        print("question ID = " + str(questionID))
+        print("given answer index = " + str(answerID))
+
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
+
+        result = dbconnect.get_question_by_question_id(questionID)
+        correctID = result.get_correct_answer_index()
+
+        print("correct answer index = " + str(correctID))
+        print("question type index = " + str(result.get_type()))
+        print("question topic index = " + str(result.get_topic()))
+
+        dbconnect.close_connection()
+
+        if answerID == correctID:
+            return jsonify(validation='true')
+        else:
+            return jsonify(validation='false')
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to validate question")
+
+
+@app.route('/api/v1/get/question/definition/by/topic', methods=['POST'])
+def get_question_definition_by_topic():
     try:
         incoming_request = request
         print(incoming_request)
@@ -67,7 +175,7 @@ def get_defquestion_topic():
         abort(500, "Unable to retrieve random question")
 
 
-@app.route('/get/question/random', methods=['POST'])
+@app.route('/api/v1/get/question/random', methods=['POST'])
 def get_question_random():
     try:
         incoming_request = request
@@ -85,52 +193,10 @@ def get_question_random():
         print(ex)
         abort(500, "Unable to retrieve random question")
 
-# checks if a multiple choice question is correct
 
-
-@app.route('/validate/question', methods=['POST'])
-def validate_question():
-    try:
-        incoming_request = request
-        print(incoming_request)
-        questionID = (request.json['qID'])
-        answerID = int((request.json['aID']))
-        print("question ID = " + str(questionID))
-        print("given answer index = " + str(answerID))
-
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
-
-        # TODO: create user table and record point gain
-        # TODO: create log table to record question statistics
-
-        # TODO: how do we make sure students can't just game the system by writing some front end code that accesses the API to get free points? for example, a student has a frontend html file that requests the same question over and over again...
-        # TODO: add table that records sessions for users this should include what was the last question served to the user. we can use this for server side validation to make sure students aren't juking the system
-
-        # TODO: look at zhen's code and make sure it's not ass backwards
-
-        result = dbconnect.get_question_by_question_id(questionID)
-        correctID = result.get_correct_answer_index()
-
-        print("correct answer index = " + str(correctID))
-        print("question type index = " + str(result.get_type()))
-        print("question topic index = " + str(result.get_topic()))
-
-        dbconnect.close_connection()
-
-        if answerID == correctID:
-            return jsonify(validation = 'true')
-        else:
-            return jsonify(validation = 'false')
-
-
-
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to validate question")
-
-
-# professor client routes
-
+# -------------------------------------------------------------
+# Professor client routes
+# -------------------------------------------------------------
 # TODO: add professor routes for changing the question database etc
 
 # gets a multiple choice question by question ID
@@ -138,7 +204,7 @@ def validate_question():
 # returns JSON that includes question text and answer text
 
 
-@app.route('/get/question/byid', methods=['POST'])
+@app.route('/api/v1/get/question/by_id', methods=['POST'])
 def get_question_byid():
     try:
         incoming_request = request
