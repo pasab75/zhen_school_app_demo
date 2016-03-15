@@ -1,24 +1,20 @@
 import pymysql.cursors
-from db_access.databaseaccess import GeneralDatabaseConnection
+from db_access.db_general import GeneralDatabaseConnection
 import business_objects.question as question_obj_generator
 from random import randint, shuffle
 
 
-class ActivityLogTableAccess(GeneralDatabaseConnection):
+class TopicChapterTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
     # class variables
     # -------------------------------------------------------------
 
-    # activity_log table
-    activity_log_fields = [None]*7
-    activity_log_fields[0] = 'user_id#'
-    activity_log_fields[1] = 'time'
-    activity_log_fields[2] = 'date'
-    activity_log_fields[3] = 'correct'
-    activity_log_fields[4] = 'latitude'
-    activity_log_fields[5] = 'longitude'
-    activity_log_fields[6] = 'activity'
+    # topic_chapter table
+    topic_chapter_fields = [None]*3
+    topic_chapter_fields[0] = 'chapter'
+    topic_chapter_fields[1] = 'topic'
+    topic_chapter_fields[2] = 'topic_index'
 
     # -------------------------------------------------------------
     # class constructor

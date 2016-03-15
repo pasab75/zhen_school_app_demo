@@ -13,8 +13,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    dbconnect = users_table_access_layer.UserTableAccess()
-    dbconnect.add_user_new(1234566, 'derpuser', 'derppassword', 'derp', 'man', 0, 'derpman@gmail.com')
+    dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+    print( '=%s, '.join(dict.keys()) + "=%s" )
 
     return "hihi"
 
@@ -27,7 +28,7 @@ def add_random():
         incoming_request = request
         print(incoming_request)
         dbconnect = questions_table_access_layer.QuestionTableAccess()
-        dbconnect.empty_table()
+        dbconnect.empty_table('questions')
         dbconnect.load_questions_testing(1000)
 
         dbconnect.close_connection()

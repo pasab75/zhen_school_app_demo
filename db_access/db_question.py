@@ -1,5 +1,5 @@
 import pymysql.cursors
-from db_access.databaseaccess import GeneralDatabaseConnection
+from db_access.db_general import GeneralDatabaseConnection
 import business_objects.question as question_obj_generator
 from random import randint, shuffle
 
@@ -9,24 +9,6 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     # -------------------------------------------------------------
     # class variables
     # -------------------------------------------------------------
-
-    # table fields
-    # this gives string values for each column in each table
-    # this can be used instead of re-typing each
-
-    # questions table
-    questions_fields = [None]*11
-    questions_fields[0] = 'question_id'
-    questions_fields[1] = 'question_text'
-    questions_fields[2] = 'answer_a_text'
-    questions_fields[3] = 'answer_b_text'
-    questions_fields[4] = 'answer_c_text'
-    questions_fields[5] = 'answer_d_text'
-    questions_fields[6] = 'answer_e_text'
-    questions_fields[7] = 'answer_f_text'
-    questions_fields[8] = 'answer_num'
-    questions_fields[9] = 'topic'
-    questions_fields[10] = 'question_type'
 
     # -------------------------------------------------------------
     # class constructor
@@ -40,6 +22,60 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     # -------------------------------------------------------------
 
     # -------------------------------------------------------------
+    # debug methods
+    # -------------------------------------------------------------
+
+    # loads number of randomly generated function to the questions database for testing purposes only
+    # remove this function when we go into production
+    # currently this function supports only definitions questions and multiple choice questions
+    # TODO: add support for calculation (free response) questions
+    def load_questions_testing(self, numAdd):
+        try:
+            for i in range(0, numAdd):
+                questionType = str(randint(0, 2))
+                topic = "topic index " + str(randint(0, 4))
+
+                answerlist = []
+
+                if questionType == '0':
+                    answer = str(randint(0,99999))
+                    question_text = ('I am a definition blah blah blah blah blah blah blah my answer is ' + answer)
+                    answerlist.append(answer)
+                    question = question_obj_generator.question(None, question_text, answerlist, None, topic, questionType)
+
+                elif questionType == '1':
+                    ranNum = randint(0,5)
+
+                    answerid = str(ranNum)
+                    answer = str(ranNum+1)
+
+                    question_text = ('I am a multiple choice question. My answer is ' +
+                                  answer + '. My topic is ' + topic + ".")
+                    answerlist.append("one")
+                    answerlist.append("two")
+                    answerlist.append("three")
+                    answerlist.append("four")
+                    answerlist.append("five")
+                    answerlist.append("six")
+
+                    question = question_obj_generator.question(None, question_text, answerlist, answerid, topic, questionType)
+
+                else:
+                    answer = str(randint(0, 100000))
+                    question_text = ('I am a calculation type question. My answer is ' +
+                                  answer + '. My topic is ' + topic + ".")
+                    answerlist.append(answer)
+
+                    question = question_obj_generator.question(None, question_text, answerlist, None, topic, questionType)
+
+                    print(question.get_dictionary())
+
+                self.save_new_row_in_table(question.get_dictionary(), 'questions')
+
+        except Exception as e:
+            print("Error loading random shit "+str(e))
+
+    # -------------------------------------------------------------
     # READ methods
     # -------------------------------------------------------------
 
@@ -47,7 +83,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_chapter_by_topic(self, topic):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     sql = "SELECT * FROM topic_chapter WHERE topic = %s"
                     cursor.execute(sql, topic)
                     request = cursor.fetchone()
@@ -63,7 +99,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_topic_random_by_chapter(self, chapter):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     sql = "SELECT * FROM topic_chapter WHERE chapter = %s ORDER BY RAND() LIMIT 1"
                     cursor.execute(sql, chapter)
                     request = cursor.fetchone()
@@ -80,7 +116,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_question_random_by_type(self, type):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     question = None
 
                     sql = "SELECT * FROM questions WHERE question_type = %s ORDER BY RAND() LIMIT 1"
@@ -110,7 +146,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_question_random_by_type_topic(self, type, topic):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     question = None
                     sql = "SELECT * FROM questions WHERE question_type = %s AND topic = %s ORDER BY RAND() LIMIT 1;"
                     args = (type, topic)
@@ -155,7 +191,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_question_by_id(self, question_id):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     question = None
                     sql = "SELECT * FROM questions WHERE `question_id`= %s"
                     cursor.execute(sql, question_id)
@@ -184,7 +220,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_question_random(self):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     question = None
                     sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
@@ -213,54 +249,12 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_questionlist_by_questiontext(self, text):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     print("derp I dont do anything yet")
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
-
-    # saves a new question into the questions database
-    # function takes a question object
-    # code will null answers that aren't provided
-    def save_new_question_from_object(self, question):
-        try:
-            type_index = question.get_type()
-
-            fields = []
-            valuelist = []
-
-            fields.append('question_text')
-            fields.append('answer_a_text')
-
-
-            valuelist.append(question.getquestion_text())
-            answers = question.get_answers()
-
-            for i in range(len(answers)):
-                valuelist.append(answers[i])
-
-            if type_index == 1:
-                fields.append('answer_b_text')
-                fields.append('answer_c_text')
-                fields.append('answer_d_text')
-                fields.append('answer_e_text')
-                fields.append('answer_f_text')
-                fields.append('answer_num')
-
-                valuelist.append(question.get_correct_answer_index)
-
-            fields.append('topic')
-            fields.append('question_type')
-
-            valuelist.append(question.get_topic())
-            valuelist.append(str(type_index))
-
-            self.save_new_row_in_table(keyfields, valuelist, 'questions')
-
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
 
     # this method creates a definition type question by combining 6 different questions from the database
     # it flips a coin to decide whether the answers should be words or definitions
@@ -271,7 +265,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def get_question_def_by_topic(self, topic):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     sql = ("SELECT * FROM questions "
                            "WHERE topic = %s"
                            " AND "
@@ -340,7 +334,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     def update_question_from_object(self, question):
         try:
             try:
-                with self.dbconnection.cursor() as cursor:
+                with self.db_connection.cursor() as cursor:
                     answers = question.get_answers()
                     for x in range (len(answers), 5):
                         answers.append(None)
@@ -380,6 +374,28 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
         except Exception as e:
                 print("Error updating question: "+str(e))
+
+    # saves a new question into the questions database
+    # function takes a question object
+    # code will null answers that aren't provided
+    def save_new_question_from_question_object(self, question):
+        try:
+            self.save_new_row_in_table(question.get_dictionary(), 'questions')
+
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    # saves a new question into the questions database
+    # function takes a question object
+    # code will null answers that aren't provided
+    def save_new_question_from_dictionary(self, question):
+        try:
+            self.save_new_row_in_table(question.get_dictionary(), 'questions')
+
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
 
 
 

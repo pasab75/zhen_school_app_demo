@@ -1,5 +1,5 @@
 import pymysql.cursors
-from db_access.databaseaccess import GeneralDatabaseConnection
+from db_access.db_general import GeneralDatabaseConnection
 
 #TODO: create methods to get information from user database
 #TODO: user name
@@ -26,7 +26,6 @@ class UserTableAccess(GeneralDatabaseConnection):
     users_fields[9] = 'current_activity_info'
     users_fields[10] = 'current_lvl'
     users_fields[11] = 'current_points'
-
 
     # -------------------------------------------------------------
     # class constructor
@@ -70,7 +69,6 @@ class UserTableAccess(GeneralDatabaseConnection):
             valuelist.append(e_mail)
 
             self.save_new_row_in_table(keylist, valuelist, 'users')
-
         except Exception as ex:
             print("Unable to add new user: " + str(ex))
 
