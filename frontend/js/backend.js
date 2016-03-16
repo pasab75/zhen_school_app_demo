@@ -34,6 +34,7 @@ urlsendANS = hostroot + version + 'validate/question';
         for (var i = 0; i < data.answer_text.length; i++) {
             var $thisClone = $aProto.clone() //clones a prototype question box
                 .text(data.answer_text[i]) //inserts answer text into question boxes
+                .addClass("clickable")
                 .appendTo($('#mcContainer')) //puts question boxes in the correct container
                 .attr('data-index', i) //adds class identifiers to each question box
                 .attr('data-qID', data.question_id) //adds question identifier to each question box
@@ -62,7 +63,7 @@ urlsendANS = hostroot + version + 'validate/question';
     };
 
     var clearOldQuestion = function(){
-        $("#mcContainer").empty();
+        $("#mcContainer").delay(600).empty();
         $('#questionText').text(''); //adds question text to page
     };
 
@@ -70,19 +71,44 @@ urlsendANS = hostroot + version + 'validate/question';
 
     checkValid = function(data){
         console.log(data);
+
+        $('.mcAnsBtn').each(function(){
+                $(this).removeClass("clickable")
+                $(this).removeClass("activated")
+        });
+
         if (data.validation == 'true'){
             console.log('you are correct');
-            clearOldQuestion();
-            //POST.getrandmc();
-            POST.getranddef();
-            //$('[data-remodal-id=modal]').remodal().open();
 
+            $('.mcAnsBtn').each(function(){
+                if ($(this).attr("data-index") == data.answer_index){
+                    $(this).removeClass("btn-warning")
+                    $(this).addClass("btn-success")
+                }
+            });
+
+            setTimeout(function(){
+                clearOldQuestion();
+                POST.getranddef();
+            },2000);
+
+            //$('[data-remodal-id=modal]').remodal().open();
         };
         if (data.validation == 'false'){
             console.log('you are not correct');
-            clearOldQuestion();
-            //POST.getrandmc();
-            POST.getranddef();
+
+            $('.mcAnsBtn').each(function(){
+                if ($(this).attr("data-index") == data.answer_index){
+                    $(this).addClass("btn-success")
+                }
+                if ($(this).attr("data-index") == data.given_answer){
+                    $(this).addClass('btn-warning');
+                }
+            });
+            setTimeout(function(){
+                clearOldQuestion();
+                POST.getranddef();
+            },2000);
         };
     }
 

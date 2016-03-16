@@ -165,9 +165,9 @@ def validate_question():
         dbconnect.close_connection()
 
         if answerID == correctID:
-            return jsonify(validation='true')
+            return jsonify(validation='true', answer_index=str(correctID),)
         else:
-            return jsonify(validation='false')
+            return jsonify(validation='false', answer_index=str(correctID), given_answer=str(answerID))
 
     except Exception as ex:
         print(ex)

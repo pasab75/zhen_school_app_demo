@@ -1,15 +1,18 @@
 $(document).ready(function(){
-    $(document).on("click", ".questionClicked", function(){
+    $(document).on("click", ".activated", function(){
 	    console.log($(this).attr('data-index'));
 	    var indexes = {'qID':$(this).attr('data-qID'), 'aID':$(this).attr('data-index')};
         POST.validateAns(indexes);
+
     });
 
-    $(document).on("click", "#a_proto", function(){
+    $(document).on("click", ".clickable", function(){
         $('.mcAnsBtn').each(function(){
-            $(this).removeClass('questionClicked');
+            $(this).removeClass('btn-warning');
+            $(this).removeClass('activated');
         });
-	    $(this).addClass('questionClicked')
+	    $(this).addClass('btn-warning')
+	    $(this).addClass('activated');
     });
 
     $(document).on("click", "#debug-btn", function(){
