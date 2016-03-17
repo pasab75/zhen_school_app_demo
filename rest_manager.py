@@ -148,8 +148,8 @@ def validate_question():
             # update user's activity progress
             # return false
 
-        questionID = (request.json['qID'])
-        answerID = int((request.json['aID']))
+        questionID = (request.json['question_id'])
+        answerID = int((request.json['answer_id']))
         print("question ID = " + str(questionID))
         print("given answer index = " + str(answerID))
 

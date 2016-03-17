@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $(document).on("click", ".activated", function(){
 	    console.log($(this).attr('data-index'));
-	    var indexes = {'qID':$(this).attr('data-qID'), 'aID':$(this).attr('data-index')};
+	    var indexes = {'question_id':$(this).attr('data-question_id'), 'answer_id':$(this).attr('data-index')};
         POST.validateAns(indexes);
 
     });

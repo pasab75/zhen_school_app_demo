@@ -13,3 +13,21 @@ $.fn.randomize = function(selector){
 
     return this;
 };
+
+$.fn.extend({
+    animateCss_in: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
+});
+
+$.fn.extend({
+    animateCss_out: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).remove();
+        });
+    }
+});

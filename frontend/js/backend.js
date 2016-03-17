@@ -23,24 +23,30 @@ urlsendANS = hostroot + version + 'validate/question';
 
 
     parseMCQuestion = function(data) { //this is the on success function for parsing a multiple choice question
-        $('#questionText').text(data.question_text); //adds question text to page
 
-        var $aProto = $('#a_proto'); //creates prototype question box
+        //var $question_box = '<p id="questionText">'++'</p>'
 
-        //var correctAns = data.answer_index;
-
+        $('#question_text').text(data.question_text)
+        $('#question_text').animateCss_in('fadeIn')
         var minWidth = 200; //this is the minimum width of an answer button to be displayed
 
         for (var i = 0; i < data.answer_text.length; i++) {
-            var $thisClone = $aProto.clone() //clones a prototype question box
-                .text(data.answer_text[i]) //inserts answer text into question boxes
-                .addClass("clickable")
-                .appendTo($('#mcContainer')) //puts question boxes in the correct container
-                .attr('data-index', i) //adds class identifiers to each question box
-                .attr('data-qID', data.question_id) //adds question identifier to each question box
-                .hide()
-                .fadeIn('slow') //shows the question box
-                .removeClass('hidden');
+            var $answer_button = '<div data-index="'+i+'" data-question_id="'+data.question_id+'" class="btn btn-primary clickable mcAnsBtn">'+data.answer_text[i]+'</div>'
+            $('#mcContainer').append($answer_button)
+
+
+//            var $thisClone = $aProto.clone() //clones a prototype question box
+//                .text(data.answer_text[i]) //inserts answer text into question boxes
+//                .addClass("clickable")
+//                .appendTo($('#mcContainer')) //puts question boxes in the correct container
+//                .attr('data-index', i) //adds class identifiers to each question box
+//                .attr('data-qID', data.question_id) //adds question identifier to each question box
+//                //.hide()
+//                .removeClass('hidden')
+//                //.show()
+//                .addClass('animated')
+//                .addClass('flipInX');
+
 
 //                if ($thisClone.width() > minWidth){
 //                    minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
@@ -56,15 +62,15 @@ urlsendANS = hostroot + version + 'validate/question';
 //        });
 
         $('#mcContainer').randomize('a'); //randomize answer boxes
-
+        $('.mcAnsBtn').animateCss_in('flipInX')
         var error = function() {
             console.log("error");
         };
     };
 
-    var clearOldQuestion = function(){
-        $("#mcContainer").delay(600).empty();
-        $('#questionText').text(''); //adds question text to page
+    clearOldQuestion = function(){
+        $('.mcAnsBtn').animateCss_out('flipOutX')
+        $('#question_text').animateCss_in('fadeOut')
     };
 
     // request contains all the information required to make POST calls
@@ -88,9 +94,13 @@ urlsendANS = hostroot + version + 'validate/question';
             });
 
             setTimeout(function(){
-                clearOldQuestion();
-                POST.getranddef();
+               clearOldQuestion();
             },2000);
+
+            setTimeout(function(){
+                POST.getranddef();
+            },2800);
+
 
             //$('[data-remodal-id=modal]').remodal().open();
         };
@@ -106,9 +116,13 @@ urlsendANS = hostroot + version + 'validate/question';
                 }
             });
             setTimeout(function(){
-                clearOldQuestion();
-                POST.getranddef();
+               clearOldQuestion();
             },2000);
+
+            setTimeout(function(){
+                POST.getranddef();
+            },2800);
+
         };
     }
 

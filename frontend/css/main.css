@@ -1,12 +1,14 @@
 .mcAnsBtn{
     margin-bottom: 5px;
+    height: 50px !important;
+    width: 800px !important;
 }
 
 .navbar-brand{
     color: #18bc9c !important;
 }
 
-#questionText{
+#question_text{
     text-align: center;
 }
 
