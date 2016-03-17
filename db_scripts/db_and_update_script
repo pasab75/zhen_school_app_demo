@@ -42,10 +42,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 
 CREATE TABLE `testdb`.`users` (
-  `o_auth_key` VARCHAR(20) NOT NULL,
-  `user_name` VARCHAR(20) NOT NULL,
-  `user_id` INT NOT NULL AUTO_INCREMENT,
-  `password` VARCHAR(20) NOT NULL,
+  `user_id` INT NOT NULL,
   `last_active` DATETIME NOT NULL,
   `first_name` VARCHAR(20) NOT NULL,
   `last_name` VARCHAR(20) NOT NULL,
@@ -55,7 +52,7 @@ CREATE TABLE `testdb`.`users` (
   `current_lvl` INT NOT NULL DEFAULT 1,
   `current_points` INT NOT NULL DEFAULT 0,
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
-  PRIMARY KEY (`user_name`),
+  PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC));
 
 ALTER TABLE `testdb`.`users`
@@ -108,3 +105,7 @@ CREATE TABLE `testdb`.`quests` (
   `point_value`            INT NOT NULL,
   `activity_description` VARCHAR(500) DEFAULT NULL,
   PRIMARY KEY (`activity_id`));
+
+CREATE TABLE `testdb`.`valid_keys` (
+  `key_value` CHAR(5) NOT NULL,
+  PRIMARY KEY (`key_value`));

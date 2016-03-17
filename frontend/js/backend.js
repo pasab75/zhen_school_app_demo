@@ -12,6 +12,7 @@ else
     hostname = 'http://exbookapp.org'
 
 hostroot = hostname + ':' + port + '/api/'
+
 version = "v1/"
 
 tokensignin = hostroot + version + 'tokensignin'
@@ -22,114 +23,123 @@ urlsendANS = hostroot + version + 'validate/question';
 // This is POST object that contains all the various types of POSTS we will do
 
 
-    parseMCQuestion = function(data) { //this is the on success function for parsing a multiple choice question
+parseQuestion = function(data){
+    // get the data
 
-        //var $question_box = '<p id="questionText">'++'</p>'
+    // figure out what kind of data it is
 
-        $('#question_text').text(data.question_text)
-        $('#question_text').animateCss_in('fadeIn')
-        var minWidth = 200; //this is the minimum width of an answer button to be displayed
+    // display the data on the page
+};
 
-        for (var i = 0; i < data.answer_text.length; i++) {
-            var $answer_button = '<div data-index="'+i+'" data-question_id="'+data.question_id+'" class="btn btn-primary clickable mcAnsBtn">'+data.answer_text[i]+'</div>'
-            $('#mcContainer').append($answer_button)
+parseAnswer = function(data){
+    // get server response
 
+    // figure out what kind of response it is
 
-//            var $thisClone = $aProto.clone() //clones a prototype question box
-//                .text(data.answer_text[i]) //inserts answer text into question boxes
-//                .addClass("clickable")
-//                .appendTo($('#mcContainer')) //puts question boxes in the correct container
-//                .attr('data-index', i) //adds class identifiers to each question box
-//                .attr('data-qID', data.question_id) //adds question identifier to each question box
-//                //.hide()
-//                .removeClass('hidden')
-//                //.show()
-//                .addClass('animated')
-//                .addClass('flipInX');
+    // display data on the page
 
+};
 
-//                if ($thisClone.width() > minWidth){
-//                    minWidth = $thisClone.width(); //checks for the maximum box width to standardize box widths
-//                };
-                //if ((i+1) == correctAns){
-                //	$thisClone.addClass('correct');
-                //};
-             };
+endActivity = function(){
+    // ends the current activity
+
+    // pushes user back to a selection screen
+}
+
+askServer = function(){
+    // not sure what to do, ask the server to give you something
+}
 
 
-//        $('.mcAnsBtn').each(function(){
-//            $(this).width(minWidth); //standardizes box widths
-//        });
 
-        $('#mcContainer').randomize('a'); //randomize answer boxes
-        $('.mcAnsBtn').animateCss_in('flipInX')
-        var error = function() {
-            console.log("error");
-        };
+parseMCQuestion = function(data) { //this is the on success function for parsing a multiple choice question
+    $('#question_text').text(data.question_text)
+    $('#question_text').animateCss_in('fadeIn')
+    var minWidth = 200; //this is the minimum width of an answer button to be displayed
+
+    for (var i = 0; i < data.answer_text.length; i++) {
+        var $answer_button = '<div data-index="'+i+'" data-question_id="'+data.question_id+'" class="btn btn-primary clickable mcAnsBtn">'+data.answer_text[i]+'</div>'
+        $('#mcContainer').append($answer_button)
+
+         };
+
+    $('#mcContainer').randomize('a'); //randomize answer boxes
+    $('.mcAnsBtn').animateCss_in('flipInX')
+    var error = function() {
+        console.log("error");
     };
+};
 
-    clearOldQuestion = function(){
-        $('.mcAnsBtn').animateCss_out('flipOutX')
-        $('#question_text').animateCss_in('fadeOut')
-    };
+clearOldQuestion = function(){
+    $('.mcAnsBtn').animateCss_out('flipOutX')
+    $('#question_text').animateCss_in('fadeOut')
+};
 
-    // request contains all the information required to make POST calls
+// request contains all the information required to make POST calls
 
-    checkValid = function(data){
-        console.log(data);
+checkValid = function(data){
+    console.log(data);
+
+    $('.mcAnsBtn').each(function(){
+            $(this).removeClass("clickable")
+            $(this).removeClass("activated")
+    });
+
+    if (data.validation == 'true'){
+        console.log('you are correct');
 
         $('.mcAnsBtn').each(function(){
-                $(this).removeClass("clickable")
-                $(this).removeClass("activated")
+            if ($(this).attr("data-index") == data.answer_index){
+                $(this).removeClass("btn-warning")
+                $(this).addClass("btn-success")
+            }
         });
 
-        if (data.validation == 'true'){
-            console.log('you are correct');
+        setTimeout(function(){
+           clearOldQuestion();
+        },1500);
 
-            $('.mcAnsBtn').each(function(){
-                if ($(this).attr("data-index") == data.answer_index){
-                    $(this).removeClass("btn-warning")
-                    $(this).addClass("btn-success")
-                }
-            });
-
-            setTimeout(function(){
-               clearOldQuestion();
-            },2000);
-
-            setTimeout(function(){
-                POST.getranddef();
-            },2800);
+        setTimeout(function(){
+            POST.getranddef();
+        },2000);
 
 
-            //$('[data-remodal-id=modal]').remodal().open();
-        };
-        if (data.validation == 'false'){
-            console.log('you are not correct');
+        //$('[data-remodal-id=modal]').remodal().open();
+    };
+    if (data.validation == 'false'){
+        console.log('you are not correct');
 
-            $('.mcAnsBtn').each(function(){
-                if ($(this).attr("data-index") == data.answer_index){
-                    $(this).addClass("btn-success")
-                }
-                if ($(this).attr("data-index") == data.given_answer){
-                    $(this).addClass('btn-warning');
-                }
-            });
-            setTimeout(function(){
-               clearOldQuestion();
-            },2000);
+        $('.mcAnsBtn').each(function(){
+            if ($(this).attr("data-index") == data.answer_index){
+                $(this).addClass("btn-success")
+            }
+            if ($(this).attr("data-index") == data.given_answer){
+                $(this).addClass('btn-warning');
+            }
+        });
+        setTimeout(function(){
+           clearOldQuestion();
+        },2000);
 
-            setTimeout(function(){
-                POST.getranddef();
-            },2800);
+        setTimeout(function(){
+            POST.getranddef();
+        },2800);
 
-        };
-    }
+    };
+}
+
+// payload to send to the server
+
+make_payload = function(user_identifier, question_id, user_answer, activity_choice){
+    var payload = {'question_id': question_id,
+                   'user_answer': user_answer,
+                   'user_identifier': user_identifier,
+                   'activity_choice': activity_choice
+                  };
+    return payload
+};
 
 var request = function() {
-
-/* success functions to pass POST object */
-
 
     //Generic POST function
 
@@ -161,16 +171,6 @@ var request = function() {
 
     this.validateAns = function(validation) {
         this.postData(checkValid, validation, urlsendANS );
-    }; //checks whether an answer to a question is correct or not; validation should be an object that contains question ID, chosen answer, user data (points, time, username etc)
-
-    this.addQuestions = function() {
-        var nothing = {'nothing' : '0'};
-        this.postData(console.log('added questions successfully'), nothing, hostname +':5000/api/v1/add/dummy/questions' );
-    };
-
-    this.debug = function(url){
-        var nothing = {'nothing' : '0'};
-        this.postData(console.log('successful post at ' + url), nothing, url);
     };
 
 };

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-
+//    show_login();
+//
     POST = new request();
 
     console.log(urlgetrand);

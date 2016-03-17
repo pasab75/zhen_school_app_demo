@@ -18,6 +18,40 @@ class UserTableAccess(GeneralDatabaseConnection):
     # READ methods
     # -------------------------------------------------------------
 
+    def check_if_user_valid(self, user_id):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+
+                    # check database for user
+
+                    # if user exists
+                        # check if user is validated (paid for the service)
+                            # if user is validated
+                                # return true
+                            # else
+                                # return false
+
+                    # else
+                        # create user in database
+                        # return false
+
+                    # add the key thing later
+
+                    sql = "SELECT COUNT(*) FROM `users` WHERE `user_id` = %s"
+                    cursor.execute(sql, user_id)
+                    exists = cursor.fetchone()['COUNT(*)']
+                    if exists == 1:
+                        return True
+                    else:
+                        return False
+
+            except Exception as ex:
+                print("Error checking if user exists :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
     # gets all users with the requested first name
     # returns a list of dictionaries
     def get_users_by_first_name(self, first_name):
@@ -106,3 +140,18 @@ class UserTableAccess(GeneralDatabaseConnection):
             self.update_row_in_table(user_info, 'users', 'user_id')
         except Exception as ex:
             print("Unable to update user: " + str(ex))
+
+    def update_user_points(self, user_id, points_to_add):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT FROM users WHERE 'user_id' = {} SET points = points + %s".format(user_id)
+                    cursor.execute(sql, points_to_add)
+
+                    return True
+
+            except Exception as ex:
+                print("Error updating points :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False

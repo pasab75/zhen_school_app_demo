@@ -1,18 +1,29 @@
 function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
+//    var profile = googleUser.getBasicProfile();
+//    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//    console.log('Name: ' + profile.getName());
+//    console.log('Image URL: ' + profile.getImageUrl());
+//    console.log('Email: ' + profile.getEmail());
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', tokensignin);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-        console.log('Signed in as: ' + xhr.responseText);
+    var response_function = function(data){
+        if (data.user_exists == 'true'){
+            clear_login();
+        }
+        else{
+            console.log('suck a dick')
+        }
     };
-    xhr.send('idtoken=' + id_token);
+
+    var authentication_payload = make_payload(id_token, '0','0','0');
+
+    $.post(tokensignin, authentication_payload, response_function);
+
+    sessionStorage.setItem("id_token", id_token);
+    localStorage.setItem("id_token", id_token);
+
+    //console.log(sessionStorage.getItem('id_token'));
+
 }
 
 function signOut() {

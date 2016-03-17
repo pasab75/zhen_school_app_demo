@@ -3,8 +3,8 @@ import json
 import datetime
 import db_access.db_question as questions_table_access_layer
 import db_access.db_user as users_table_access_layer
-import requests
-from oauth2client import client, crypt
+import business_objects.user as user_obj_generator
+from oauth2client import client
 
 
 local = True
@@ -38,15 +38,34 @@ def index():
 @app.route('/api/v1/tokensignin', methods=['POST'])
 def sign_in():
     try:
-        token = request.form.get('idtoken')
+        token = request.form.get('user_identifier')
 
         client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
         idinfo = client.verify_id_token(str(token), client_id)
-        userid = idinfo['sub']
 
-        print(userid)
+        dbconnect = users_table_access_layer.UserTableAccess()
 
-        return "false"
+        exists = dbconnect.check_if_user_valid(str(idinfo['sub']))
+
+        if exists:
+            dbconnect.close_connection()
+            print('user exists')
+            return jsonify(user_exists='false')
+        else:
+            print('user does not exist')
+            new_user = user_obj_generator.user(idinfo['sub'],
+                                               idinfo['given_name'],
+                                               idinfo['family_name'],
+                                               idinfo['email'],
+                                               '0'
+                                               '0'
+                                               )
+
+            dbconnect.add_user_new(new_user)
+            dbconnect.close_connection()
+            return jsonify(user_exists='false')
+
+
     except Exception as ex:
         print(ex)
         print('Invalid token')
@@ -165,7 +184,7 @@ def validate_question():
         dbconnect.close_connection()
 
         if user_answer == correct_answer:
-            return jsonify(validation='true', answer_index=str(question_id),)
+            return jsonify(validation='true', answer_index=str(question_id))
         else:
             return jsonify(validation='false', answer_index=str(correct_answer), given_answer=str(user_answer))
 

@@ -16,7 +16,40 @@
  line-height: 50px;
 }
 
+.login_box{
+    text-align: center;
+    margin: auto;
+}
 
+.login_text{
+    text-align: center;
+}
+
+html, body{
+  min-height: 100%;
+}
+body{
+  position: relative;
+}
+.overlay-top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  background-color: #008ae6;
+}
+
+.overlay-bottom{
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  background-color: #00ace6;
+}
 
 
 
