@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="you don't read these anyways, jerk.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/playingwithfields.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/Temp/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/Temp/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/Temp/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/Temp/bootstrap-theme.min.css.map" afterPath="" />
+    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/css/main.css" afterPath="$PROJECT_DIR$/frontend/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/index.html" afterPath="$PROJECT_DIR$/frontend/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/js/backend.js" afterPath="$PROJECT_DIR$/frontend/js/backend.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/js/clickEvents.js" afterPath="$PROJECT_DIR$/frontend/js/clickEvents.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/js/methods.js" afterPath="$PROJECT_DIR$/frontend/js/methods.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
     </list>
     <ignored path="python_rest.iws" />
@@ -79,7 +69,7 @@
           <file leaf-file-name="backend.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/frontend/js/backend.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.35714287">
+                <state vertical-scroll-proportion="0.35764375">
                   <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
                   <folding />
                 </state>
@@ -113,8 +103,8 @@
           <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_manager.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2745626">
-                  <caret line="140" column="37" selection-start-line="140" selection-start-column="37" selection-end-line="140" selection-end-column="37" />
+                <state vertical-scroll-proportion="0.54986525">
+                  <caret line="167" column="77" selection-start-line="167" selection-start-column="77" selection-end-line="167" selection-end-column="77" />
                   <folding>
                     <element signature="e#0#48#0" expanded="true" />
                   </folding>
@@ -227,12 +217,12 @@
         <option value="$PROJECT_DIR$/db_access/db_user.py" />
         <option value="$PROJECT_DIR$/frontend/js/question_controller.js" />
         <option value="$PROJECT_DIR$/frontend/playingwithfields.html" />
-        <option value="$PROJECT_DIR$/rest_manager.py" />
         <option value="$PROJECT_DIR$/frontend/js/clickEvents.js" />
         <option value="$PROJECT_DIR$/frontend/js/methods.js" />
         <option value="$PROJECT_DIR$/frontend/index.html" />
         <option value="$PROJECT_DIR$/frontend/css/main.css" />
         <option value="$PROJECT_DIR$/frontend/js/backend.js" />
+        <option value="$PROJECT_DIR$/rest_manager.py" />
       </list>
     </option>
   </component>
@@ -811,7 +801,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458095243866</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="you don't read these anyways, jerk.">
+      <created>1458176140478</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1458176140478</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -829,6 +825,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15911485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2607862" sideWeight="0.5057956" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25503355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -836,9 +833,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26149425" sideWeight="0.49420443" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26174498" sideWeight="0.49420443" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1220,16 +1216,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2745626">
-          <caret line="140" column="37" selection-start-line="140" selection-start-column="37" selection-end-line="140" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/playingwithfields.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.038462">
@@ -1288,9 +1274,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/js/backend.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35714287">
+        <state vertical-scroll-proportion="0.35764375">
           <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54986525">
+          <caret line="167" column="77" selection-start-line="167" selection-start-column="77" selection-end-line="167" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

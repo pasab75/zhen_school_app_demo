@@ -148,26 +148,26 @@ def validate_question():
             # update user's activity progress
             # return false
 
-        questionID = (request.json['question_id'])
-        answerID = int((request.json['answer_id']))
-        print("question ID = " + str(questionID))
-        print("given answer index = " + str(answerID))
+        question_id = (request.json['question_id'])
+        user_answer = int((request.json['answer_id']))
+        print("question ID = " + str(question_id))
+        print("given answer index = " + str(user_answer))
 
         dbconnect = questions_table_access_layer.QuestionTableAccess()
 
-        result = dbconnect.get_question_by_question_id(questionID)
-        correctID = result.get_correct_answer_index()
+        result = dbconnect.get_question_by_question_id(question_id)
+        correct_answer = result.get_correct_answer_index()
 
-        print("correct answer index = " + str(correctID))
+        print("correct answer index = " + str(correct_answer))
         print("question type index = " + str(result.get_type()))
         print("question topic index = " + str(result.get_topic()))
 
         dbconnect.close_connection()
 
-        if answerID == correctID:
-            return jsonify(validation='true', answer_index=str(correctID),)
+        if user_answer == correct_answer:
+            return jsonify(validation='true', answer_index=str(question_id),)
         else:
-            return jsonify(validation='false', answer_index=str(correctID), given_answer=str(answerID))
+            return jsonify(validation='false', answer_index=str(correct_answer), given_answer=str(user_answer))
 
     except Exception as ex:
         print(ex)
