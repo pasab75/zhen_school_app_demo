@@ -1,5 +1,6 @@
 from db_access.db_general import GeneralDatabaseConnection
-
+import datetime
+import business_objects.user as user_generator
 
 class UserTableAccess(GeneralDatabaseConnection):
 
@@ -46,6 +47,42 @@ class UserTableAccess(GeneralDatabaseConnection):
                     else:
                         return False
 
+            except Exception as ex:
+                print("Error checking if user exists :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def check_if_user_paid(self, user_id):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+
+                    # check database for user
+
+                    # if user exists
+                        # check if user is validated (paid for the service)
+                            # if user is validated
+                                # return true
+                            # else
+                                # return false
+
+                    # else
+                        # create user in database
+                        # return false
+
+                    # add the key thing later
+
+                    sql = "SELECT * FROM `users` WHERE `user_id` = %s"
+                    cursor.execute(sql, user_id)
+                    exists = cursor.fetchone()
+                    currentUser = user_generator.user()
+                    currentUser.set_dictionary(exists)
+                    currentTime = datetime.datetime.now()
+                    if currentUser.get_dictionary()['paided_through'] is not None:
+                        if currentUser.get_dictionary()['paided_through'] > currentTime:
+                            return True
+                    return False
             except Exception as ex:
                 print("Error checking if user exists :" + str(ex))
         except Exception as e:

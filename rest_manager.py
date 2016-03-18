@@ -22,7 +22,11 @@ def authenticate_user(request):
     client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
     idinfo = client.verify_id_token(str(token), client_id)
     exists = dbconnect_user.check_if_user_valid(str(idinfo['sub']))
-    return exists
+    if exists:
+        paid = dbconnect_user.check_if_user_paid(str(idinfo['sub']))
+        return paid
+    else:
+        return exists
 
 @app.route('/')
 def index():
@@ -223,6 +227,7 @@ def get_question_definition_by_topic():
     try:
         exists = authenticate_user(request)
         if exists:
+
             incoming_request = request
             print(incoming_request)
             topic_index = (request.json['topic'])
