@@ -156,25 +156,25 @@ var request = function() {
     };
 
     this.getranddef = function(){
-        var user_id = localStorage.getItem("id_token")
+        var user_id = sessionStorage.getItem("id_token")
         var qtype = {'user_identifier':user_id, 'question_type' : '0', 'topic': 'topic index 1' };
         this.postData(parseMCQuestion, qtype ,urlgetdef);
     }
 
     this.getrandmc = function(){
-        var user_id = localStorage.getItem("id_token")
+        var user_id = sessionStorage.getItem("id_token")
         var qtype = {'user_identifier':user_id, 'question_type' : '1'};
         this.postData(parseMCQuestion, qtype ,urlgetrand);
     };
 
     this.getrandfr = function(){
-        var user_id = localStorage.getItem("id_token")
+        var user_id = sessionStorage.getItem("id_token")
         var qtype = {'question_type' : '2'};
         this.postData(parseMCQuestion, qtype ,urlgetrand);
     };
 
     this.validateAns = function(validation) {
-        var user_id = localStorage.getItem("id_token")
+        var user_id = sessionStorage.getItem("id_token")
         this.postData(checkValid, validation, urlsendANS );
     };
 

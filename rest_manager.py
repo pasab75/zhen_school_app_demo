@@ -6,12 +6,10 @@ import db_access.db_user as users_table_access_layer
 import business_objects.user as user_obj_generator
 from oauth2client import client
 
-
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
 
 app = Flask(__name__)
-
 
 # -------------------------------------------------------------
 # Routes
@@ -90,7 +88,7 @@ def paid_sign_in():
         print(ex)
         print('Invalid token')
         abort(500, "Unable to retrieve random question")
-        
+
 # @app.route('/api/v1/add/dummy/questions', methods=['POST'])
 # def add_random():
 #     try:
@@ -106,7 +104,6 @@ def paid_sign_in():
 #     except Exception as ex:
 #         print(ex)
 #         abort(500, "Unable to add questions to DB")
-
 # -------------------------------------------------------------
 # Student client routes
 # -------------------------------------------------------------
