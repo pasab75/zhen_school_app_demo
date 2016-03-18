@@ -80,7 +80,17 @@ def sign_in():
         print(ex)
         print('Invalid token')
 
+@app.route('/api/v1/paidsignin', methods=['POST'])
+def paid_sign_in():
+    try:
+        auth = authenticate_user(request)
+        return jsonify(user_paid=auth)
 
+    except Exception as ex:
+        print(ex)
+        print('Invalid token')
+        abort(500, "Unable to retrieve random question")
+        
 # @app.route('/api/v1/add/dummy/questions', methods=['POST'])
 # def add_random():
 #     try:
@@ -244,9 +254,6 @@ def get_question_definition_by_topic():
     except Exception as ex:
         print(ex)
         abort(500, "Unable to retrieve random question")
-
-
-
 
 
 @app.route('/api/v1/get/question/random', methods=['POST'])
