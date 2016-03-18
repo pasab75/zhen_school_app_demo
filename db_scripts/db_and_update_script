@@ -1,5 +1,5 @@
 
-CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
+CREATE USER IF  'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
 
 -- -----------------------------------------------------
 -- Schema testdb

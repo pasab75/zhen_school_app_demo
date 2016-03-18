@@ -16,7 +16,13 @@ app = Flask(__name__)
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
-
+def authenticate_user(request):
+    dbconnect_user = users_table_access_layer.UserTableAccess()
+    token = request.json['user_identifier']
+    client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
+    idinfo = client.verify_id_token(str(token), client_id)
+    exists = dbconnect_user.check_if_user_valid(str(idinfo['sub']))
+    return exists
 
 @app.route('/')
 def index():
@@ -50,7 +56,7 @@ def sign_in():
         if exists:
             dbconnect.close_connection()
             print('user exists')
-            return jsonify(user_exists='false')
+            return jsonify(user_exists='true')
         else:
             print('user does not exist')
             new_user = user_obj_generator.user(idinfo['sub'],
@@ -94,17 +100,27 @@ def sign_in():
 
 @app.route('/api/v1/get/activities', methods=['POST'])
 def get_activities():
-    return True
-
+    try:
+        exists = authenticate_user(request)
+        if exists:
+            return True
+        else:
+            abort(403, "Unable to authenticate user")
+    except Exception as ex:
+        print(ex)
+        print("Unable to retrieve activity list.")
 
 @app.route('/api/v1/get/activity/list', methods=['POST'])
 def get_activity_list():
     try:
+        exists = authenticate_user(request)
+        if exists:
         # grab current activity list
 
         # return list text to user
-        return True
-
+            return True
+        else:
+            abort(403, "Unable to authenticate user")
     except Exception as ex:
         print(ex)
         print("Unable to retrieve activity list.")
@@ -113,9 +129,12 @@ def get_activity_list():
 @app.route('/api/v1/set/activity/by/user', methods=['POST'])
 def set_activity_by_user():
     try:
+        exists = authenticate_user(request)
+        if exists:
         # save activity index in (user)? database?
-        return True
-
+            return True
+        else:
+            abort(403, "Unable to authenticate user")
     except Exception as ex:
         print(ex)
         print("Unable to save activity.")
@@ -124,6 +143,8 @@ def set_activity_by_user():
 @app.route('/api/v1/get/question/next/by/activity', methods=['POST'])
 def get_question_next_by_activity():
     try:
+        exists = authenticate_user(request)
+        if exists:
         # determine user identity
 
         # get current activity for user
@@ -134,8 +155,9 @@ def get_question_next_by_activity():
         # get a question from database that matches question parameters
         # return question to client
 
-        return True
-
+            return True
+        else:
+            abort(403, "Unable to authenticate user")
     except Exception as ex:
         print(ex)
         abort(500, "Unable to retrieve next question.")
@@ -144,50 +166,53 @@ def get_question_next_by_activity():
 @app.route('/api/v1/validate/question', methods=['POST'])
 def validate_question():
     try:
-        incoming_request = request
-        print(incoming_request)
+        exists = authenticate_user(request)
+        if exists:
+            incoming_request = request
+            print(incoming_request)
 
-        # TODO: implement the following psuedocode instead of what is here already
-        # identify user
+            # TODO: implement the following psuedocode instead of what is here already
+            # identify user
 
-        # grab the last question that the user was served
+            # grab the last question that the user was served
 
-        # get the answer to the question
+            # get the answer to the question
 
-        # compare the answer to the user's answer
+            # compare the answer to the user's answer
 
-        # if answer is correct
-            # record point gain for user
-            # update the user's multiplier
-            # update user's activity progress
-            # return true
+            # if answer is correct
+                # record point gain for user
+                # update the user's multiplier
+                # update user's activity progress
+                # return true
 
-        # if answer is incorrect
-            # update the user's multiplier
-            # update user's activity progress
-            # return false
+            # if answer is incorrect
+                # update the user's multiplier
+                # update user's activity progress
+                # return false
 
-        question_id = (request.json['question_id'])
-        user_answer = int((request.json['answer_id']))
-        print("question ID = " + str(question_id))
-        print("given answer index = " + str(user_answer))
+            question_id = (request.json['question_id'])
+            user_answer = int((request.json['answer_id']))
+            print("question ID = " + str(question_id))
+            print("given answer index = " + str(user_answer))
 
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
+            dbconnect = questions_table_access_layer.QuestionTableAccess()
 
-        result = dbconnect.get_question_by_question_id(question_id)
-        correct_answer = result.get_correct_answer_index()
+            result = dbconnect.get_question_by_question_id(question_id)
+            correct_answer = result.get_correct_answer_index()
 
-        print("correct answer index = " + str(correct_answer))
-        print("question type index = " + str(result.get_type()))
-        print("question topic index = " + str(result.get_topic()))
+            print("correct answer index = " + str(correct_answer))
+            print("question type index = " + str(result.get_type()))
+            print("question topic index = " + str(result.get_topic()))
 
-        dbconnect.close_connection()
+            dbconnect.close_connection()
 
-        if user_answer == correct_answer:
-            return jsonify(validation='true', answer_index=str(question_id))
+            if user_answer == correct_answer:
+                return jsonify(validation='true', answer_index=str(question_id))
+            else:
+                return jsonify(validation='false', answer_index=str(correct_answer), given_answer=str(user_answer))
         else:
-            return jsonify(validation='false', answer_index=str(correct_answer), given_answer=str(user_answer))
-
+            abort(403, "Unable to authenticate user")
     except Exception as ex:
         print(ex)
         abort(500, "Unable to validate question")
@@ -196,36 +221,46 @@ def validate_question():
 @app.route('/api/v1/get/question/definition/by/topic', methods=['POST'])
 def get_question_definition_by_topic():
     try:
-        incoming_request = request
-        print(incoming_request)
-        topic_index = (request.json['topic'])
-        print(topic_index)
+        exists = authenticate_user(request)
+        if exists:
+            incoming_request = request
+            print(incoming_request)
+            topic_index = (request.json['topic'])
+            print(topic_index)
 
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
-        result = dbconnect.get_question_def_by_topic(topic_index)
+            dbconnect = questions_table_access_layer.QuestionTableAccess()
+            result = dbconnect.get_question_def_by_topic(topic_index)
 
-        dbconnect.close_connection()
-        return result.get_jsonified()
+            dbconnect.close_connection()
+            return result.get_jsonified()
+        else:
+            abort(403, "Unable to authenticate user")
 
     except Exception as ex:
         print(ex)
         abort(500, "Unable to retrieve random question")
 
 
+
+
+
 @app.route('/api/v1/get/question/random', methods=['POST'])
 def get_question_random():
     try:
-        incoming_request = request
-        print(incoming_request)
-        qType = (request.json['question_type'])
-        print(qType)
+        exists = authenticate_user(request)
+        if exists:
+            incoming_request = request
+            print(incoming_request)
+            qType = (request.json['question_type'])
+            print(qType)
 
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
-        result = dbconnect.get_question_random_by_type(qType)
+            dbconnect = questions_table_access_layer.QuestionTableAccess()
+            result = dbconnect.get_question_random_by_type(qType)
 
-        dbconnect.close_connection()
-        return result.get_jsonified()
-
+            dbconnect.close_connection()
+            return result.get_jsonified()
+        else:
+            abort(403, "Unable to authenticate user")
     except Exception as ex:
         print(ex)
         abort(500, "Unable to retrieve random question")
