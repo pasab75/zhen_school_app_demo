@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `correct` TINYINT(1) NULL DEFAULT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
-  `activity` JSON NULL DEFAULT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
  

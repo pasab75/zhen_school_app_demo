@@ -1,7 +1,7 @@
 from flask import jsonify
 
 class user:
-    def __init__(self, question_id=None, boolean=None, last_name=None, e_mail=None, user_role='0',
+    def __init__(self, response_type=None, question_validation=None, question_text=None, e_mail=None, user_role='0',
                  current_activity_info=None, current_lvl='1', current_points='0', last_active=None, paid_date=None):
         self._dictionary = {'user_id': user_id,
                             'first_name': first_name,
