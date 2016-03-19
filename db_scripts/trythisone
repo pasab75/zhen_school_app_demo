@@ -117,7 +117,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
  
 ALTER TABLE `testdb`.`users` 
-ADD COLUMN `paided_through` DATETIME NULL DEFAULT NULL AFTER `current_points`;
+ADD COLUMN `paid_through` DATETIME NULL DEFAULT NULL AFTER `current_points`;
 
  
 SET SQL_MODE=@OLD_SQL_MODE;

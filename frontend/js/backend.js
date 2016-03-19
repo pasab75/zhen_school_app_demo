@@ -11,32 +11,62 @@ if (local == true){
 else
     hostname = 'http://exbookapp.org'
 
-hostroot = hostname + ':' + port + '/api/'
+hostroot = hostname + ':' + port + '/api/';
 
-version = "v1/"
+version = "v1/";
 
 tokensignin = hostroot + version + 'tokensignin'
 urlgetdef = hostroot + version + 'get/question/definition/by/topic';
 urlgetrand = hostroot + version + 'get/question/random';
 urlsendANS = hostroot + version + 'validate/question';
 
-// This is POST object that contains all the various types of POSTS we will do
+
+// request object that both holds the data that we will send to the server
+// and also has a function that posts its own content to the server as JSON
+// server will receive the data as in the JSON field
+var Request = function(question_id, user_answer, activity_choice, topic){
+    this.request_content = JSON.stringify({'question_id': question_id,
+                            'user_answer': user_answer,
+                            'user_identifier': sessionStorage.getItem("id_token"),
+                            'activity_choice': activity_choice,
+                            'topic': topic
+                           });
+
+    this.send = function(url, success_function){
+        console.log(this.request_content)
+        $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              url: url,
+              data: this.request_content,
+              success: success_function,
+              dataType: "json",
+              contentType: "application/json, charset=utf-8"
+        });
+    };
+};
 
 
 parseQuestion = function(data){
-    // get the data
 
-    // figure out what kind of data it is
+    // gets raw data from server response
+    // parses it into a question_information
+    // calls a function to display it on the frontend
 
-    // display the data on the page
+};
+
+displayQuestion = function(question_information){
+
+    // displays a question on the screen
+    // takes question object
+
 };
 
 parseAnswer = function(data){
-    // get server response
 
+    // takes raw data from server response
     // figure out what kind of response it is
-
-    // display data on the page
+    // display changes on the frontend
 
 };
 
@@ -52,7 +82,7 @@ askServer = function(){
 
 
 
-parseMCQuestion = function(data) { //this is the on success function for parsing a multiple choice question
+parse_multiple_choice = function(data) { //this is the on success function for parsing a multiple choice question
     $('#question_text').text(data.question_text)
     $('#question_text').animateCss_in('fadeIn')
     var minWidth = 200; //this is the minimum width of an answer button to be displayed
@@ -70,12 +100,30 @@ parseMCQuestion = function(data) { //this is the on success function for parsing
     };
 };
 
+parse_free_response = function(data) { //this is the on success function for parsing a multiple choice question
+    $('#question_text').text(data.question_text)
+    $('#question_text').animateCss_in('fadeIn')
+    var minWidth = 200; //this is the minimum width of an answer button to be displayed
+
+    for (var i = 0; i < data.answer_text.length; i++) {
+        var $answer_button = '<div data-index="'+i+'" data-question_id="'+data.question_id+'" class="btn btn-primary clickable mcAnsBtn">'+data.answer_text[i]+'</div>'
+        $('#mcContainer').append($answer_button)
+
+         };
+
+    $('#mcContainer').randomize('a'); //randomize answer boxes
+    $('.mcAnsBtn').animateCss_in('flipInX')
+    var error = function() {
+        console.log("error");
+    };
+};
+
+
 clearOldQuestion = function(){
     $('.mcAnsBtn').animateCss_out('flipOutX')
     $('#question_text').animateCss_in('fadeOut')
 };
 
-// request contains all the information required to make POST calls
 
 checkValid = function(data){
     console.log(data);
@@ -92,6 +140,7 @@ checkValid = function(data){
             if ($(this).attr("data-index") == data.answer_index){
                 $(this).removeClass("btn-warning")
                 $(this).addClass("btn-success")
+                $(this).animateCss_in('pulse')
             }
         });
 
@@ -100,11 +149,10 @@ checkValid = function(data){
         },1500);
 
         setTimeout(function(){
-            POST.getranddef();
+        var randomPayload = new Request('0', '0', '0', 'topic index 4');
+        randomPayload.send(urlgetdef, parse_multiple_choice)
         },2000);
 
-
-        //$('[data-remodal-id=modal]').remodal().open();
     };
     if (data.validation == 'false'){
         console.log('you are not correct');
@@ -112,9 +160,10 @@ checkValid = function(data){
         $('.mcAnsBtn').each(function(){
             if ($(this).attr("data-index") == data.answer_index){
                 $(this).addClass("btn-success")
+                $(this).animateCss_in('pulse')
             }
             if ($(this).attr("data-index") == data.given_answer){
-                $(this).addClass('btn-warning');
+                $(this).addClass('btn-danger');
             }
         });
         setTimeout(function(){
@@ -122,60 +171,9 @@ checkValid = function(data){
         },2000);
 
         setTimeout(function(){
-            POST.getranddef();
+        var randomPayload = new Request('0', '0', '0', 'topic index 4');
+        randomPayload.send(urlgetdef, parse_multiple_choice)
         },2800);
 
     };
 }
-
-// payload to send to the server
-
-make_payload = function(user_identifier, question_id, user_answer, activity_choice){
-    var payload = {'question_id': question_id,
-                   'user_answer': user_answer,
-                   'user_identifier': user_identifier,
-                   'activity_choice': activity_choice
-                  };
-    return payload
-};
-
-var request = function() {
-
-    //Generic POST function
-
-
-    this.postData = function(onSuccess, outgoingData, url) {
-		$.ajax({
-		  type: "POST",
-		  url: url,
-		  data: JSON.stringify(outgoingData, null, '\t'),
-		  contentType: 'application/json;charset=UTF-8',
-		  success: onSuccess,
-		  dataType: 'json'
-		});
-    };
-
-    this.getranddef = function(){
-        var user_id = sessionStorage.getItem("id_token")
-        var qtype = {'user_identifier':user_id, 'question_type' : '0', 'topic': 'topic index 1' };
-        this.postData(parseMCQuestion, qtype ,urlgetdef);
-    }
-
-    this.getrandmc = function(){
-        var user_id = sessionStorage.getItem("id_token")
-        var qtype = {'user_identifier':user_id, 'question_type' : '1'};
-        this.postData(parseMCQuestion, qtype ,urlgetrand);
-    };
-
-    this.getrandfr = function(){
-        var user_id = sessionStorage.getItem("id_token")
-        var qtype = {'question_type' : '2'};
-        this.postData(parseMCQuestion, qtype ,urlgetrand);
-    };
-
-    this.validateAns = function(validation) {
-        var user_id = sessionStorage.getItem("id_token")
-        this.postData(checkValid, validation, urlsendANS );
-    };
-
-};

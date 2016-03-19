@@ -79,8 +79,8 @@ class UserTableAccess(GeneralDatabaseConnection):
                     currentUser = user_generator.user()
                     currentUser.set_dictionary(exists)
                     currentTime = datetime.datetime.now()
-                    if currentUser.get_dictionary()['paided_through'] is not None:
-                        if currentUser.get_dictionary()['paided_through'] > currentTime:
+                    if currentUser.get_dictionary()['paid_through'] is not None:
+                        if currentUser.get_dictionary()['paid_through'] > currentTime:
                             return True
                     return False
             except Exception as ex:

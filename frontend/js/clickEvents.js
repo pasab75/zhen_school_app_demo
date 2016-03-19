@@ -1,8 +1,8 @@
 $(document).ready(function(){
     $(document).on("click", ".activated", function(){
-	    console.log($(this).attr('data-index'));
-	    var indexes = {'question_id':$(this).attr('data-question_id'), 'answer_id':$(this).attr('data-index')};
-        POST.validateAns(indexes);
+	    console.log('Sending user answer = ' + $(this).attr('data-index'));
+        var validation_request = new Request($(this).attr('data-question_id'), $(this).attr('data-index'), '0', '0')
+        validation_request.send(urlsendANS, checkValid)
 
     });
 

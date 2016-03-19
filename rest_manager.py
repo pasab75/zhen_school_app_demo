@@ -1,30 +1,54 @@
-from flask import Flask, jsonify, request, abort
-import json
+from flask import Flask, jsonify, request, abort, json, g
 import datetime
 import db_access.db_question as questions_table_access_layer
 import db_access.db_user as users_table_access_layer
 import business_objects.user as user_obj_generator
 from oauth2client import client
 
+
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
 
 app = Flask(__name__)
 
+#
+
+
+@app.before_request
+def before_request():
+    print('Request Incoming')
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
+
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
+
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
+
+
 def authenticate_user(request):
-    dbconnect_user = users_table_access_layer.UserTableAccess()
+    g.dbconnect_user = users_table_access_layer.UserTableAccess()
     token = request.json['user_identifier']
     client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
     idinfo = client.verify_id_token(str(token), client_id)
-    exists = dbconnect_user.check_if_user_valid(str(idinfo['sub']))
+    exists = g.dbconnect_user.check_if_user_valid(str(idinfo['sub']))
     if exists:
-        paid = dbconnect_user.check_if_user_paid(str(idinfo['sub']))
-        return paid
+        is_paid = g.dbconnect_user.check_if_user_paid(str(idinfo['sub']))
+        return is_paid
     else:
-        return exists
+        return False
+
 
 @app.route('/')
 def index():
@@ -46,7 +70,8 @@ def index():
 @app.route('/api/v1/tokensignin', methods=['POST'])
 def sign_in():
     try:
-        token = request.form.get('user_identifier')
+        token = request.json['user_identifier']
+        print(token)
 
         client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
         idinfo = client.verify_id_token(str(token), client_id)
@@ -77,6 +102,7 @@ def sign_in():
     except Exception as ex:
         print(ex)
         print('Invalid token')
+
 
 @app.route('/api/v1/paidsignin', methods=['POST'])
 def paid_sign_in():
@@ -120,6 +146,7 @@ def get_activities():
     except Exception as ex:
         print(ex)
         print("Unable to retrieve activity list.")
+
 
 @app.route('/api/v1/get/activity/list', methods=['POST'])
 def get_activity_list():
@@ -203,7 +230,7 @@ def validate_question():
                 # return false
 
             question_id = (request.json['question_id'])
-            user_answer = int((request.json['answer_id']))
+            user_answer = int((request.json['user_answer']))
             print("question ID = " + str(question_id))
             print("given answer index = " + str(user_answer))
 
@@ -219,7 +246,7 @@ def validate_question():
             dbconnect.close_connection()
 
             if user_answer == correct_answer:
-                return jsonify(validation='true', answer_index=str(question_id))
+                return jsonify(validation='true', answer_index=str(correct_answer))
             else:
                 return jsonify(validation='false', answer_index=str(correct_answer), given_answer=str(user_answer))
         else:
@@ -302,14 +329,6 @@ def get_question_byid():
         abort(500, "Unable to find id or no id given")
 
 # TODO: check to see if this CORS implementation is safe
-
-
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-    return response
 
 if __name__ == '__main__':
 
