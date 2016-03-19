@@ -135,12 +135,33 @@ def paid_sign_in():
 # -------------------------------------------------------------
 
 
-@app.route('/api/v1/get/activities', methods=['POST'])
+@app.route('/api/v1/get/daily/activities', methods=['POST'])
 def get_activities():
     try:
         exists = authenticate_user(request)
         if exists:
-            return True
+            return jsonify(response_type='activity_list',
+                           activity_text_1='Random Activity 1',
+                           activity_description_1='This is a random activity',
+                           number_of_questions_1='30',
+                           point_value_1='300',
+                           activity_text_2='Random Activity 2',
+                           activity_description_2='This is a random activity',
+                           number_of_questions_2='25',
+                           point_value_2='300',
+                           activity_text_3='Random Activity 3',
+                           activity_description_3='This is a random activity',
+                           number_of_questions_3='20',
+                           point_value_3='300',
+                           activity_text_4='Random Activity 4',
+                           activity_description_4='This is a random activity',
+                           number_of_questions_4='50',
+                           point_value_4='300',
+                           activity_text_5='Random Activity 5',
+                           activity_description_5='This is a random activity',
+                           number_of_questions_5='15',
+                           point_value_5='300'
+                           )
         else:
             abort(403, "Unable to authenticate user")
     except Exception as ex:

@@ -1,11 +1,14 @@
 function onSignIn(googleUser) {
     sessionStorage.setItem("id_token", googleUser.getAuthResponse().id_token);
+    console.log(googleUser.getAuthResponse());
     var response_function = function(data){
         if (data.user_exists == 'true'){
-            clear_login();
+            //clear_login();
+            $('.login-page').animateCss_out('fadeOutUp')
         }
         else{
             console.log('suck a dick')
+            // redirect to buy page
         }
     };
 

@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `first_name` VARCHAR(20) NOT NULL,
   `last_name` VARCHAR(20) NOT NULL,
   `user_role` INT(11) NOT NULL DEFAULT '0',
-  `e_mail` VARCHAR(20) NOT NULL,
+  `e_mail` VARCHAR(50) NOT NULL,
   `current_activity_info` INT(11) NULL DEFAULT NULL,
   `current_lvl` INT(11) NOT NULL DEFAULT '1',
   `current_points` INT(11) NOT NULL DEFAULT '0',
