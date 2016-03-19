@@ -1,7 +1,7 @@
 .mcAnsBtn{
-    text-align: center;
-    margin: auto;
-    width:500px;
+    margin-bottom: 5px;
+    height: 50px !important;
+    width: 800px !important;
 }
 
 .navbar-brand{
@@ -23,10 +23,6 @@
 
 .login_text{
     text-align: center;
-}
-
-.login_btn{
-    width: 100%;
 }
 
 html, body{
@@ -55,20 +51,13 @@ body{
   background-color: #00ace6;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.login_page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-.form {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
+
+
+
+
+
+
+
+
+

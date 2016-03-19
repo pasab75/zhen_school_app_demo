@@ -15,10 +15,6 @@ $(document).ready(function(){
 	    $(this).addClass('activated');
     });
 
-    $('.message a').click(function(){
-       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-    });
-
     $(document).on("click", "#debug-btn", function(){
         debugURL = '';
         POST.debug(debugURL);
