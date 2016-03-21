@@ -2,38 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/404.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/angular-index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/apple-touch-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/browserconfig.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/crossdomain.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/css/animate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/humans.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/backend.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/clickEvents.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/events.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/google_auth.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/methods.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/modalcontrol.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/vendor/angular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/vendor/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/vendor/remodal.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/js/vendor/ui-bootstrap-tpls-1.2.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/robots.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/tile-wide.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/angular-frontend/tile.png" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/apple-touch-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/tile-wide.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/tile.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/404.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/browserconfig.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/css/main.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/css/normalize.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/css/normalize.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/humans.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/controllers/login-controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/vendor/angular-animate.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/vendor/angular-touch.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/vendor/angular.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/vendor/satellizer.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/js/vendor/ui-bootstrap-tpls-1.2.4.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/robots.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="python_rest.iws" />
@@ -179,20 +168,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="zhen_school_app_demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhen_school_app_demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhen_school_app_demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular-frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -513,7 +488,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458426493247</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Re-writing the frontend in angular. Backend shouldn't be changed">
+      <created>1458531256609</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1458531256609</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -573,7 +554,8 @@
     <MESSAGE value="fixed client id, need to store in app.googleusercontent.com" />
     <MESSAGE value="added in authentication on all routes, changed from end to pass from local storage the ID for all google authenticated users.  Change if not desired behavior" />
     <MESSAGE value="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint" />
+    <MESSAGE value="Re-writing the frontend in angular. Backend shouldn't be changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-writing the frontend in angular. Backend shouldn't be changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

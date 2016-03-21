@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app='exBook'>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>exBook</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-signin-client_id" content="334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="css/normalize.min.css">-->
+
+        <link rel="stylesheet" href="css/main.css">
+
+
+
+    </head>
+
+    <body>
+          <div class="login-page" ng-controller="login-controller as loginCtrl">
+            <div class="login-box" ng-show='!loggedIn()'>
+              <form class="login-form">
+                <button class="g-signin2" ng-click="authenticate('google')">LOGIN</button>
+                <div class='text-info'>
+                  {{'I am logged in: ' + loggedIn()}}
+                </div>
+              </form>
+            </div>
+
+            <div class="login-box" ng-show='loggedIn()'>
+              <form class="login-form">
+                <button ng-click="logOut();">LOG OUT</button>
+                <div class='text-info'>
+                  {{'I am logged in: ' + loggedIn()}}
+                </div>
+              </form>
+            </div>
+
+          <div ng-show='loggedIn()' class="question-container" ng-controller='question-controller as questCtrl'>
+            <div>
+                <div>
+                    <h2>
+                      {{questCtrl.question.question_text}}
+                    </h2>
+                </div>
+                <div ng-controller='answer-controller as ansCtrl'>
+                    <button ng-class="{'btn-warning':clickedOnce(0), 'btn-danger':clickedTwice(0)}" ng-click='addClick(0)' class='btn btn-primary'>{{questCtrl.question.answer_1}}</button>
+                    <button ng-class="{'btn-warning':clickedOnce(1), 'btn-danger':clickedTwice(1)}" ng-click='addClick(1)' class='btn btn-primary'>{{questCtrl.question.answer_2}}</button>
+                    <button ng-class="{'btn-warning':clickedOnce(2), 'btn-danger':clickedTwice(2)}" ng-click='addClick(2)' class='btn btn-primary'>{{questCtrl.question.answer_3}}</button>
+                    <button ng-class="{'btn-warning':clickedOnce(3), 'btn-danger':clickedTwice(3)}" ng-click='addClick(3)' class='btn btn-primary'>{{questCtrl.question.answer_4}}</button>
+                    <button ng-class="{'btn-warning':clickedOnce(4), 'btn-danger':clickedTwice(4)}" ng-click='addClick(4)' class='btn btn-primary'>{{questCtrl.question.answer_5}}</button>
+                    <button ng-class="{'btn-warning':clickedOnce(5), 'btn-danger':clickedTwice(5)}" ng-click='addClick(5)' class='btn btn-primary'>{{questCtrl.question.answer_6}}</button>
+                </div>
+            </div>
+          </div>
+
+<!-- third party -->
+          <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+          <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+          <script type="text/javascript" src="js/vendor/angular-animate.min.js"></script>
+          <script type="text/javascript" src="js/vendor/angular-touch.min.js"></script>
+          <script type="text/javascript" src="js/vendor/ui-bootstrap-tpls-1.2.4.min.js"></script>
+          <!--[if lte IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
+          <![endif]-->
+          <script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
+
+<!-- custom -->
+        <script src="js/app.js"></script>
+
+    </body>
+</html>
