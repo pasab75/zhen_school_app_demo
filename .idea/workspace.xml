@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_access/db_quest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/index.html" afterPath="$PROJECT_DIR$/angular-frontend/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js/app.js" afterPath="$PROJECT_DIR$/angular-frontend/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/question.py" afterPath="$PROJECT_DIR$/business_objects/question.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/user.py" afterPath="$PROJECT_DIR$/business_objects/user.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_activity_log.py" afterPath="$PROJECT_DIR$/db_access/db_activity_log.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_general.py" afterPath="$PROJECT_DIR$/db_access/db_general.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_question.py" afterPath="$PROJECT_DIR$/db_access/db_question.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_topic_chapter.py" afterPath="$PROJECT_DIR$/db_access/db_topic_chapter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_user.py" afterPath="$PROJECT_DIR$/db_access/db_user.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
     </list>
@@ -37,8 +30,8 @@
       <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7716418">
-              <caret line="146" column="12" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.32985073">
+              <caret line="82" column="53" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -69,8 +62,8 @@
       <file leaf-file-name="db_user.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_access/db_user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.137931">
-              <caret line="196" column="72" selection-start-line="196" selection-start-column="72" selection-end-line="196" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="203" column="95" selection-start-line="203" selection-start-column="95" selection-end-line="203" selection-end-column="95" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -154,8 +147,8 @@
         <option value="$PROJECT_DIR$/db_access/db_topic_chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/user.py" />
         <option value="$PROJECT_DIR$/db_access/db_general.py" />
-        <option value="$PROJECT_DIR$/db_access/db_user.py" />
         <option value="$PROJECT_DIR$/db_access/db_quest.py" />
+        <option value="$PROJECT_DIR$/db_access/db_user.py" />
         <option value="$PROJECT_DIR$/rest_manager.py" />
       </list>
     </option>
@@ -618,7 +611,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458634280500</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around.">
+      <created>1458684389194</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1458684389194</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -939,8 +938,8 @@
         <state vertical-scroll-proportion="-0.65384614">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <marker date="1458683261487" expanded="true" signature="7563:7574" placeholder="..." />
-            <marker date="1458683261487" expanded="true" signature="7563:7587" placeholder="..." />
+            <marker date="1458686640536" expanded="true" signature="7963:7974" placeholder="..." />
+            <marker date="1458686640536" expanded="true" signature="7963:7987" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1037,18 +1036,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python34/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1460" column="0" selection-start-line="1460" selection-start-column="0" selection-end-line="1460" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="18.51724">
           <caret line="57" column="76" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/db_quest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python34/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1460" column="0" selection-start-line="1460" selection-start-column="0" selection-end-line="1460" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1063,18 +1072,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.137931">
-          <caret line="196" column="72" selection-start-line="196" selection-start-column="72" selection-end-line="196" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_quest.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+          <caret line="203" column="95" selection-start-line="203" selection-start-column="95" selection-end-line="203" selection-end-column="95" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
@@ -1083,8 +1082,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7716418">
-          <caret line="146" column="12" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.32985073">
+          <caret line="82" column="53" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>

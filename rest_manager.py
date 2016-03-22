@@ -144,8 +144,52 @@ def get_question_by_quest():
             dbconnect = questions_table_access_layer.QuestionTableAccess()
             result = dbconnect.get_question_def_by_topic(topic_index)
             dbconnect.close_connection()
-            
-            return result.get_jsonified()
+
+            return jsonify(result)
+        else:
+            abort(403, "Unable to authenticate user")
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to retrieve random question")
+
+
+@app.route('/api/v1/get/validation', methods=['POST'])
+def get_validation():
+    try:
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
+            user_id = authentication_response['user_id']
+            incoming_request = request
+            print(incoming_request)
+            user_answer = (request.json['user_answer'])
+            print("User has chosen quest index: " + quest_index)
+
+            # get question index of current question
+            dbconnect = users_table_access_layer.UserTableAccess()
+            question_id = dbconnect.get_user_current_question_id_by_user_id(user_id)
+            dbconnect.close_connection()
+
+            # get question with current question index
+
+            dbconnect = questions_table_access_layer.QuestionTableAccess()
+            question = dbconnect.get_question_by_question_id(question_id)
+            correct_answer = question.get_correct_answer_index()
+            dbconnect.close_connection()
+
+            # check if this is the last question of the set
+
+            if user_answer == correct_answer:
+                print('do the things')
+                # update points
+                # increase multiplier
+            else:
+                print('do the other things')
+                # decrease multiplier
+
+            validation_package = {}
+
+            return validation_package
         else:
             abort(403, "Unable to authenticate user")
 

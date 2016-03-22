@@ -155,10 +155,17 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
-    def get_activity_by_user_id(self, user_id):
+    def get_user_quest_by_user_id(self, user_id):
         try:
             user_info = self.get_row_by_key_value('users', 'user_id', user_id)
-            return user_info['current_activity_info']
+            return user_info['quest_index']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_user_current_question_id_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value('users', 'user_id', user_id)
+            return user_info['current_question_id']
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
@@ -192,9 +199,9 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to update user: " + str(ex))
 
-    def set_quest_by_user_id(self, user_id, quest_index):
+    def set_user_quest_by_user_id(self, user_id, quest_index):
         try:
-            user_info = {'user_id': user_id, 'quest_index': quest_index}
+            user_info = {'user_id': user_id, 'quest_index': quest_index, 'quest_progress': '0'}
             self.update_row_in_table(user_info, 'users', 'user_id')
         except Exception as ex:
             print("Unable to update user: " + str(ex))

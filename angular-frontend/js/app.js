@@ -63,8 +63,20 @@
         );
       };
 
-      $scope.getQuestion = function(){
-        apiCall.debug(urlList.makeUrl('get/'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
+      $scope.getQuestQuestion = function(){
+        apiCall.debug(urlList.makeUrl('get/question/by/quest'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.getValidation = function(){
+        apiCall.debug(urlList.makeUrl('get/validation/'), JSON.stringify({'user_identifier': $auth.getToken(),'user_answer':'3'}),
           function(data){
             $scope.barf = data.data;
             $scope.status = 'I succeeded';

@@ -72,13 +72,30 @@
     </div> -->
 
     <div class='container debug' ng-controller='debug-controller as debug'>
-        <a class='btn btn-primary' ng-click='doSomething()'>Do Something</a>
-        <a class='btn btn-primary' ng-click='addDummyQuestions()'>Add Questions to Database</a>
-        <a class='btn btn-primary' ng-click='getQuestion()'>Get a Question</a>
-        <a class='btn btn-primary' ng-click='getDailies()'>Get quests</a>
-        <a class='btn btn-primary' ng-click='getUser()'>Get user information</a>
+        <div>
+            <a class='btn btn-primary' ng-click='doSomething()'>Do Something</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='addDummyQuestions()'>Add Questions to Database</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='getQuestion()'>Get a Question</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='getDailies()'>Get quests</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='getUser()'>Get user information</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='getQuestQuestion()'>Get quest question</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='getValidation()'>Check to see if answer is correct</a>
+        </div>
+
         <p>
-            {{status + " " + statusCount}}
+            {{status}}
         </p>
         <p>
             {{barf}}
