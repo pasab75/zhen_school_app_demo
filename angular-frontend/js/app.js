@@ -6,11 +6,8 @@
       $authProvider.google({
         clientId: '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com',
         responseType: 'token',
-        url: '/auth/google',
+        url: '/zhen_school_app_demo/angular-frontend/index.html',
         authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
-        redirectUri: window.location.origin,
-        requiredUrlParams: ['scope'],
-        optionalUrlParams: ['display'],
         scope: ['profile', 'email'],
         scopePrefix: 'openid',
         scopeDelimiter: ' ',
@@ -20,11 +17,43 @@
       });
     });
 
-    // app.controller('debugController', function($scope, $auth, login, payLoad){
-    //   $scope.doSomething = function(){
-    //     return
-    //   };
-    // });
+    app.controller('debug-controller', function($scope, $auth, apiCall, urlList){
+      $scope.status = "I haven't done anything yet";
+      $scope.statusCount = 0;
+      $scope.string_to_send = JSON.stringify({'user_identifier':$auth.getToken() ,'user_id':'12345'})
+      $scope.doSomething = function(){
+        apiCall.debug(urlList.makeUrl('get/next/prompt/by/student'), $scope.string_to_send, function(data){
+          $scope.status = 'I did something ' + data.data.response_type;
+          $scope.statusCount ++;}, function(data){
+            $scope.status = 'I failed ' +  data['response_type'];
+            $scope.statusCount = 0;});
+      };
+
+      $scope.addDummyQuestions = function(){
+        apiCall.debug(urlList.makeUrl('add/dummy/questions'), 'DO IT NOW', function(data){
+          $scope.status = 'I did something ' + data.data.response_type;
+          $scope.statusCount ++;}, function(data){
+            $scope.status = 'I failed ' +  data['response_type'];
+            $scope.statusCount = 0;});
+      };
+
+      $scope.clearQuestions = function(){
+
+      };
+
+      $scope.successFunction = function(data){
+        $scope.status = 'I did something ' + data;
+        $scope.statusCount ++;
+      };
+
+      $scope.failureFunction = function(data){
+        $scope.status = 'I failed ' + data;
+        $scope.statusCount = 0;
+      };
+
+
+
+    });
 
     app.controller('NavController', function ($scope, $location, $auth, login) {
         $scope.isCollapsed = true;
@@ -254,7 +283,7 @@
       };
 
       urlList.makeUrl = function(route){
-        return urlList.protocol + urlList.hostroot + urlList.port + urlList.prefix + urlList.version + urlList.route;
+        return urlList.protocol + urlList.hostroot + urlList.port + urlList.prefix + urlList.version + route;
       };
 
       return urlList;
@@ -282,26 +311,26 @@
 
     });
 
-    app.factory('apiCall', function(payload, urlList, $auth, $http, $q){
+    app.factory('apiCall', function($auth, $http, $q, urlList){
       var apiCall = {};
 
-      sevice.makeQuestionObject = function(){
+      apiCall.makeQuestionObject = function(){
         console.log('I should make a question object.');
       };
 
-      service.makeActivityObject = function(){
+      apiCall.makeActivityObject = function(){
         console.log('I should make an activity object.');
       };
 
-      service.makeMenuListObject = function(){
+      apiCall.makeMenuListObject = function(){
         console.log('I should make a men list object, whatever that means.')
       };
 
-      service.makeModalObject = function(){
+      apiCall.makeModalObject = function(){
         console.log('I should make a modal object.')
       }
 
-      service.decodeServerResponseType = function(data){
+      apiCall.decodeServerResponseType = function(data){
         switch (data.response_type) {
           case '0':
             service.makeActivityObject(data);
@@ -317,23 +346,27 @@
         }
       };
 
-      service.getActivity = function(){
+      apiCall.getActivity = function(){
 
       };
 
-      service.getQuestion = function(){
+      apiCall.getQuestion = function(){
 
       };
 
-      service.sendPayload = function(url, payload, success, error){
+      apiCall.sendPayload = function(url, payload, success, error){
         return $http.post(url, payload).then(success, failure);
       };
 
-      service.backendLogIn = function(urlList, $auth){
+      apiCall.backendLogIn = function(urlList, $auth){
         return $http.post(urlList.studentLogin(), $auth.getToken()).then();
       };
 
-      return service;
+      apiCall.debug = function(url, payload, success, failure){
+        return $http.post(url, payload).then(success, failure);
+      };
+
+      return apiCall;
     });//end of service
 
 })();// end of wrapper

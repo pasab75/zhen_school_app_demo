@@ -32,7 +32,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
         try:
             for i in range(0, numAdd):
                 questionType = str(randint(0, 2))
-                topic = "topic index " + str(randint(0, 4))
+                topic = str(randint(0, 4))
 
                 answerlist = []
 

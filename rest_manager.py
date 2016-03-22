@@ -3,7 +3,7 @@ import datetime
 import db_access.db_question as questions_table_access_layer
 import db_access.db_user as users_table_access_layer
 import business_objects.user as user_obj_generator
-from oauth2client import client
+import requests
 
 
 local = True
@@ -17,6 +17,7 @@ app = Flask(__name__)
 @app.before_request
 def before_request():
     print('Request Incoming')
+
 
 @app.after_request
 def after_request(response):
@@ -37,17 +38,19 @@ def teardown_request(exception):
 # -------------------------------------------------------------
 
 
-def authenticate_user(request):
-    g.dbconnect_user = users_table_access_layer.UserTableAccess()
-    token = request.json['user_identifier']
-    client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
-    idinfo = client.verify_id_token(str(token), client_id)
-    exists = g.dbconnect_user.check_if_user_valid(str(idinfo['sub']))
-    if exists:
-        is_paid = g.dbconnect_user.check_if_user_paid(str(idinfo['sub']))
-        return is_paid
-    else:
-        return False
+def authenticate_user(client_request):
+    try:
+        g.dbconnect_user = users_table_access_layer.UserTableAccess()
+        token = client_request.json['user_identifier']
+        r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
+        exists = g.dbconnect_user.check_if_user_valid(str(r.json()['sub']))
+        if exists:
+            is_paid = g.dbconnect_user.check_if_user_paid(str(r.json()['sub']))
+            return is_paid
+        else:
+            return False
+    except Exception as ex:
+        print(ex)
 
 
 @app.route('/')
@@ -71,14 +74,9 @@ def index():
 def sign_in():
     try:
         token = request.json['user_identifier']
-        print(token)
-
-        client_id = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
-        idinfo = client.verify_id_token(str(token), client_id)
-
+        r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
         dbconnect = users_table_access_layer.UserTableAccess()
-
-        exists = dbconnect.check_if_user_valid(str(idinfo['sub']))
+        exists = dbconnect.check_if_user_valid(str(r.json()['sub']))
 
         if exists:
             dbconnect.close_connection()
@@ -98,7 +96,6 @@ def sign_in():
             dbconnect.close_connection()
             return jsonify(user_exists='false')
 
-
     except Exception as ex:
         print(ex)
         print('Invalid token')
@@ -111,7 +108,7 @@ def get_next_prompt_by_student():
         if exists:
             user_id = (request.json['user_id'])
             print("user id = " + str(user_id))
-            return jsonify(response_type='0')
+            return jsonify(response_type='derpderp')
         else:
             abort(403, "Unable to authenticate user")
     except Exception as ex:
@@ -130,21 +127,22 @@ def paid_sign_in():
         print('Invalid token')
         abort(500, "Unable to retrieve random question")
 
-# @app.route('/api/v1/add/dummy/questions', methods=['POST'])
-# def add_random():
-#     try:
-#         incoming_request = request
-#         print(incoming_request)
-#         dbconnect = questions_table_access_layer.QuestionTableAccess()
-#         dbconnect.empty_table('questions')
-#         dbconnect.load_questions_testing(1000)
-#
-#         dbconnect.close_connection()
-#         return "false"
-#
-#     except Exception as ex:
-#         print(ex)Jin
-#         abort(500, "Unable to add questions to DB")
+
+@app.route('/api/v1/add/dummy/questions', methods=['POST'])
+def add_random():
+    try:
+        incoming_request = request
+        print(incoming_request)
+        dbconnect = questions_table_access_layer.QuestionTableAccess()
+        dbconnect.empty_table('questions')
+        dbconnect.load_questions_testing(1000)
+
+        dbconnect.close_connection()
+        return "false"
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to add questions to DB")
 
 
 # -------------------------------------------------------------
