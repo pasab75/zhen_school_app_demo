@@ -20,6 +20,12 @@
       });
     });
 
+    // app.controller('debugController', function($scope, $auth, login, payLoad){
+    //   $scope.doSomething = function(){
+    //     return
+    //   };
+    // });
+
     app.controller('NavController', function ($scope, $location, $auth, login) {
         $scope.isCollapsed = true;
 
