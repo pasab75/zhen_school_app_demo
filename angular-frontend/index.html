@@ -71,15 +71,22 @@
       <div class="progress-bar progress-bar-info" style="width: 20%"></div>
     </div> -->
 
-    <div class='debug' ng-controller='debug-controller as debug'>
+    <div class='container debug' ng-controller='debug-controller as debug'>
         <a class='btn btn-primary' ng-click='doSomething()'>Do Something</a>
         <a class='btn btn-primary' ng-click='addDummyQuestions()'>Add Questions to Database</a>
+        <a class='btn btn-primary' ng-click='getQuestion()'>Get a Question</a>
         <p>
             {{status + " " + statusCount}}
         </p>
+        <p>
+            {{barf}}
+        </p>
     </div>
 
-    <div ng-show='loggedIn()' class="activity-container" ng-controller='activity-controller as actCtrl'>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+    <div ng-show='loggedIn()' class="container activity-container col-sm-6" ng-controller='activity-controller as actCtrl'>
       <div>
           <div ng-repeat='activity in activities'>
                 <h2>
@@ -97,11 +104,11 @@
                 <p ng-repeat='topic in activity.topics'>
                     {{topic}}
                 </p>
-          </div>
-          </div>
-      </div>
+            </div>
+        </div>
+    </div>
 
-      <div ng-show='loggedIn()' class="question-container" ng-controller='question-controller as questCtrl'>
+      <div ng-show='loggedIn()' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
         <div>
             <div class='jumbotron'>
                 <h2>
@@ -141,9 +148,9 @@
                 </div>
             </div>
         </div>
-      </div>
+        </div>
 
-      <div ng-show='loggedIn()' class="question-container" ng-controller='question-controller as questCtrl'>
+      <div ng-show='loggedIn()' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
         <div>
             <div>
                 <h2>
@@ -157,6 +164,7 @@
                 </p>
             </div>
         </div>
+      </div>
       </div>
 
   <!-- third party -->

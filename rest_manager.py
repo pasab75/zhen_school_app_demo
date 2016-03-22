@@ -135,7 +135,7 @@ def add_random():
         print(incoming_request)
         dbconnect = questions_table_access_layer.QuestionTableAccess()
         dbconnect.empty_table('questions')
-        dbconnect.load_questions_testing(1000)
+        dbconnect.load_questions_testing(10000)
 
         dbconnect.close_connection()
         return "false"

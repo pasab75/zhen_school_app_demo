@@ -43,6 +43,13 @@ span.google-buttonText {
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
 }
+
+.container{
+  width=100%;
+  margin=auto;
+  text-align: center;
+}
+
 .debug {
   margin-top:100px;
 }

@@ -21,6 +21,8 @@
       $scope.status = "I haven't done anything yet";
       $scope.statusCount = 0;
       $scope.string_to_send = JSON.stringify({'user_identifier':$auth.getToken() ,'user_id':'12345'})
+      $scope.barf = "nothing to barf yet";
+
       $scope.doSomething = function(){
         apiCall.debug(urlList.makeUrl('get/next/prompt/by/student'), $scope.string_to_send, function(data){
           $scope.status = 'I did something ' + data.data.response_type;
@@ -37,6 +39,18 @@
             $scope.statusCount = 0;});
       };
 
+      $scope.getQuestion = function(){
+        apiCall.debug(urlList.makeUrl('get/question/definition/by/topic'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
       $scope.clearQuestions = function(){
 
       };
@@ -50,10 +64,7 @@
         $scope.status = 'I failed ' + data;
         $scope.statusCount = 0;
       };
-
-
-
-    });
+    });//end of controller
 
     app.controller('NavController', function ($scope, $location, $auth, login) {
         $scope.isCollapsed = true;
@@ -238,7 +249,7 @@
     });
 
     app.factory('login', function($auth, $http, $q){
-      var service = {};
+      var login = {};
       var _loggedIn = false;
 
       var makeUrl = function(){
@@ -249,15 +260,15 @@
         return _finalUrl;
       };
 
-      service.getLoginStatus = function(){
+      login.getLoginStatus = function(){
         return _loggedIn;
       };
 
-      service.setLoginStatus = function(bool){
+      login.setLoginStatus = function(bool){
         _loggedIn = bool;
       };
 
-        return service;
+        return login;
     });//end of service
 
     app.factory('urlList', function(){
@@ -291,23 +302,23 @@
     });//end of service
 
     app.factory('answer', function(){
-      var service = {};
+      var answer = {};
       var _clicked;
 
-      service.getClickedIndex = function(){
+      answer.getClickedIndex = function(){
         return _clicked;
       };
 
-      service.setClickedIndex = function(index){
+      answer.setClickedIndex = function(index){
         _clicked = index;
       };
 
-      service.checkSend = function(index){
+      answer.checkSend = function(index){
         if (_clicked === index){
         }
       };
 
-      return service;
+      return answer;
 
     });
 
@@ -367,6 +378,24 @@
       };
 
       return apiCall;
+    });//end of service
+
+    app.factory('clientModel', function($window){
+      var clientModel = {};
+
+      clientModel.setLocalModel = function(activity_index, number_of_questions, current_question){
+          $window.localStorage.model = {'activity_index':activity_index, 'number_of_questions':number_of_questions, 'current_question':current_question};
+      };
+
+      clientModel.getLocalModel = function(){
+        return $window.localStorage.model;
+      };
+
+      clientModel.getServerModel = function(){
+        //get user activity information from server
+      };
+
+      return clientModel;
     });//end of service
 
 })();// end of wrapper
