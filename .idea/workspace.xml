@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/css/btns.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_disabled_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_disabled_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_focus_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_focus_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_normal_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_normal_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_pressed_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_pressed_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_disabled_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_disabled_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_focus_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_focus_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_normal_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_normal_ios.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_pressed_ios.eps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_pressed_ios.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/css/main.css" afterPath="$PROJECT_DIR$/angular-frontend/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/index.html" afterPath="$PROJECT_DIR$/angular-frontend/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js/app.js" afterPath="$PROJECT_DIR$/angular-frontend/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_question.py" afterPath="$PROJECT_DIR$/db_access/db_question.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/trythisone" afterPath="$PROJECT_DIR$/db_scripts/trythisone" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -592,7 +569,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458613567427</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Re-writing the frontend in angular. Backend shouldn't be changed">
+      <created>1458626474319</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1458626474319</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
