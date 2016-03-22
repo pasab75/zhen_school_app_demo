@@ -20,6 +20,39 @@
       });
     });
 
+    app.controller('NavController', function ($scope, $location, $auth, login) {
+        $scope.isCollapsed = true;
+
+        $scope.loggedIn = function(){
+          return login.getLoginStatus();
+        }
+
+        $scope.logOut = function(){
+          $auth.logout();
+          login.setLoginStatus(false);
+        };
+
+        $scope.$on('$routeChangeSuccess', function () {
+            $scope.isCollapsed = true;
+        });
+
+        $scope.getClass = function (path) {
+          if(path === '/') {
+              if($location.path() === '/') {
+                  return "active";
+              } else {
+                  return "";
+              }
+          }
+
+          if ($location.path().substr(0, path.length) === path) {
+              return "active";
+          } else {
+              return "";
+          }
+      }
+    });
+
     app.controller('login-controller', function($scope, $auth, $log, login){
 
       $auth.setStorageType('sessionStorage');
@@ -49,6 +82,62 @@
 
     });//end of controller
 
+    app.controller('activity-controller', function($scope, login){
+      var activities = [
+        {
+          title: 'This is activity number 1',
+          number_questions: '30',
+          number_points: '400',
+          topics:[
+            'topic 1',
+            'topic 2',
+            'topic 3'
+          ]
+        },
+        {
+          title: 'This is activity number 2',
+          number_questions: '30',
+          number_points: '400',
+          topics:[
+            'topic 1',
+            'topic 2',
+            'topic 3'
+          ]
+        },
+        {
+          title: 'This is activity number 3',
+          number_questions: '30',
+          number_points: '400',
+          topics:[
+            'topic 1',
+            'topic 2',
+            'topic 3'
+          ]
+        },
+        {
+          title: 'This is activity number 4',
+          number_questions: '30',
+          number_points: '400',
+          topics:[
+            'topic 1',
+            'topic 2',
+            'topic 3'
+          ]
+        },
+      ];
+
+      $scope.activities = activities;
+
+      $scope.loggedIn = function(){
+        return login.getLoginStatus();
+      }
+
+      $scope.getQuestion = function(){
+
+      }
+
+    });//end of activity-controller
+
     app.controller('question-controller', function($scope, login){
 
       var question = {
@@ -62,8 +151,7 @@
         }
 
 
-      this.question = question;
-
+      $scope.question = question;
 
       $scope.loggedIn = function(){
         return login.getLoginStatus();
@@ -83,31 +171,33 @@
     });//end of controller
 
     app.controller('answer-controller', function($scope, $log, answer){
-      var clicked = [0,0,0,0,0,0]
-
-      $scope.isClicked = function(index){
-        return answer.getClickedIndex() === index;
-      };
+      var clicked = [0,0,0,0,0,0];
+      $scope.clicked = clicked;
+      $scope.user_answer = "";
 
       $scope.clickCount = function(index){
-        return clicked[index]
+        return $scope.clicked[index];
       }
 
       $scope.addClick = function(index){
-        clicked[index]++;
-        for (i=0; i<clicked.length;i++){
+        $scope.clicked[index]++;
+        for (i=0; i<$scope.clicked.length;i++){
           if (i != index ){
-            clicked[index] = 0;
+            $scope.clicked[i] = 0;
           };
         };
       };
+
+      $scope.clickedNone = function(index){
+        return clicked[index] === 0;
+      }
 
       $scope.clickedOnce = function(index){
         return clicked[index] === 1;
       }
 
       $scope.clickedTwice = function(index){
-        return clicked[index] === 2;
+        return clicked[index] >= 2;
       }
 
     });
@@ -132,21 +222,37 @@
         _loggedIn = bool;
       };
 
-      service.callBackend = function(){
-        makeUrl();
-        var deffered = $q.defer;
-        $http({
-          method: 'POST',
-          url: _finalUrl
-        }).success(function(data){
-          deferred.resolve(data);
-        }).error(function(){
-          deferred.reject('There was an error')
-        })
-        return deferred.promise;
+        return service;
+    });//end of service
+
+    app.factory('urlList', function(){
+      var urlList = {
+        protocol: 'http://',
+        hostroot: 'localhost:',
+        port: '5000/',
+        prefix: 'api/',
+        version: 'v1/',
+        route: ''
       };
 
-        return service;
+      urlList.studentLogin = function(){
+        urlList.makeUrl('tokensignin');
+      };
+
+      urlList.studentDailyActivities = function(){
+        urlList.makeUrl('get/daily/activities');
+      };
+
+      urlList.studentNext = function(){
+        urlList.makeUrl('get/next/prompt/by/student');
+      };
+
+      urlList.makeUrl = function(route){
+        return urlList.protocol + urlList.hostroot + urlList.port + urlList.prefix + urlList.version + urlList.route;
+      };
+
+      return urlList;
+
     });//end of service
 
     app.factory('answer', function(){
@@ -170,34 +276,58 @@
 
     });
 
-    // app.factory('payLoad', function($auth, $http, $q){
-    //   var service = {}
-    //
-    //   var makeUrl = function(url){
-    //     _hostname = '';
-    //     _port = '';
-    //     _version = '';
-    //     _finalUrl = _hostname+_port+_version+url
-    //     return _finalUrl;
-    //   };
-    //
-    //   var makePayload = function(contents){
-    //     return payLoad;
-    //   };
-    //
-    //   service.sendPayload = function(url, payload, function){
-    //     makePayload(payload);
-    //     var deffered = $q.defer;
-    //     $http({
-    //       method: 'POST',
-    //       url: _finalUrl
-    //     }).success(function(data){
-    //       deferred.resolve(data);
-    //     }).error(function(){
-    //       deferred.reject('There was an error')
-    //     })
-    //     return deferred.promise;
-    //   };
-    // });//end of service
+    app.factory('apiCall', function(payload, urlList, $auth, $http, $q){
+      var apiCall = {};
+
+      sevice.makeQuestionObject = function(){
+        console.log('I should make a question object.');
+      };
+
+      service.makeActivityObject = function(){
+        console.log('I should make an activity object.');
+      };
+
+      service.makeMenuListObject = function(){
+        console.log('I should make a men list object, whatever that means.')
+      };
+
+      service.makeModalObject = function(){
+        console.log('I should make a modal object.')
+      }
+
+      service.decodeServerResponseType = function(data){
+        switch (data.response_type) {
+          case '0':
+            service.makeActivityObject(data);
+            break;
+          case '1':
+            service.makeQuestionObject(data);
+            break;
+          case '2':
+            service.makeModalObject(data);
+            break;
+          default:
+            console.log('Something went wrong while processing server response.');
+        }
+      };
+
+      service.getActivity = function(){
+
+      };
+
+      service.getQuestion = function(){
+
+      };
+
+      service.sendPayload = function(url, payload, success, error){
+        return $http.post(url, payload).then(success, failure);
+      };
+
+      service.backendLogIn = function(urlList, $auth){
+        return $http.post(urlList.studentLogin(), $auth.getToken()).then();
+      };
+
+      return service;
+    });//end of service
 
 })();// end of wrapper

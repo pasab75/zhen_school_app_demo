@@ -2,56 +2,44 @@
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 2% 2% 3% 2%;
+  margin: auto;
+  margin-top: 100px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  background-color: #4e5d6c;
+}
+
+.btn-google-plus {
+  color: black;
+  font-family: "Roboto", sans-serif;
+  background-color: #FFFFFF;
+  border: 1px solid grey;
+  width:auto;
   margin: auto;
 }
-.login-box {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.login-box input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-.login-box button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #4CAF50;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+
+.btn-google-plus:hover,
+.btn-google-plus:focus {
+  color: black;
   cursor: pointer;
+  background-color: #c6dbfc;
 }
-.login-box button:hover, button:active,.form button:focus {
-  background: #43A047;
+
+span.google-icon {
+  background: url('../img/google/btn_google_light_normal_ios.svg') transparent 0px 50% no-repeat;
+  padding-right: 60px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
 }
-.login-box .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-.login-box .message a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-.login-box .register-form {
-  display: none;
+span.google-buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 42px;
+  padding-right: 42px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }

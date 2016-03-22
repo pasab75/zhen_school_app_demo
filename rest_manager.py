@@ -104,6 +104,21 @@ def sign_in():
         print('Invalid token')
 
 
+@app.route('/api/v1/get/next/prompt/by/student', methods=['POST'])
+def get_next_prompt_by_student():
+    try:
+        exists = authenticate_user(request)
+        if exists:
+            user_id = (request.json['user_id'])
+            print("user id = " + str(user_id))
+            return jsonify(response_type='0')
+        else:
+            abort(403, "Unable to authenticate user")
+    except Exception as ex:
+        print(ex)
+        print("Unable to retrieve activity list.")
+
+
 @app.route('/api/v1/paidsignin', methods=['POST'])
 def paid_sign_in():
     try:
@@ -128,8 +143,10 @@ def paid_sign_in():
 #         return "false"
 #
 #     except Exception as ex:
-#         print(ex)
+#         print(ex)Jin
 #         abort(500, "Unable to add questions to DB")
+
+
 # -------------------------------------------------------------
 # Student client routes
 # -------------------------------------------------------------

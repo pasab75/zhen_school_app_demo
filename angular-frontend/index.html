@@ -1,73 +1,173 @@
 <!DOCTYPE html>
 <html ng-app='exBook'>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>exBook</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="google-signin-client_id" content="334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!--<link rel="stylesheet" href="css/normalize.min.css">-->
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>exBook</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="google-signin-client_id" content="334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com">
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!--<link rel="stylesheet" href="css/normalize.min.css">-->
+      <link rel="stylesheet" href="css/main.css">
+  </head>
 
-        <link rel="stylesheet" href="css/main.css">
-
-
-
-    </head>
-
-    <body>
-          <div class="login-page" ng-controller="login-controller as loginCtrl">
-            <div class="login-box" ng-show='!loggedIn()'>
-              <form class="login-form">
-                <button class="g-signin2" ng-click="authenticate('google')">LOGIN</button>
-                <div class='text-info'>
-                  {{'I am logged in: ' + loggedIn()}}
-                </div>
-              </form>
-            </div>
-
-            <div class="login-box" ng-show='loggedIn()'>
-              <form class="login-form">
-                <button ng-click="logOut();">LOG OUT</button>
-                <div class='text-info'>
-                  {{'I am logged in: ' + loggedIn()}}
-                </div>
-              </form>
-            </div>
-
-          <div ng-show='loggedIn()' class="question-container" ng-controller='question-controller as questCtrl'>
-            <div>
-                <div>
-                    <h2>
-                      {{questCtrl.question.question_text}}
-                    </h2>
-                </div>
-                <div ng-controller='answer-controller as ansCtrl'>
-                    <button ng-class="{'btn-warning':clickedOnce(0), 'btn-danger':clickedTwice(0)}" ng-click='addClick(0)' class='btn btn-primary'>{{questCtrl.question.answer_1}}</button>
-                    <button ng-class="{'btn-warning':clickedOnce(1), 'btn-danger':clickedTwice(1)}" ng-click='addClick(1)' class='btn btn-primary'>{{questCtrl.question.answer_2}}</button>
-                    <button ng-class="{'btn-warning':clickedOnce(2), 'btn-danger':clickedTwice(2)}" ng-click='addClick(2)' class='btn btn-primary'>{{questCtrl.question.answer_3}}</button>
-                    <button ng-class="{'btn-warning':clickedOnce(3), 'btn-danger':clickedTwice(3)}" ng-click='addClick(3)' class='btn btn-primary'>{{questCtrl.question.answer_4}}</button>
-                    <button ng-class="{'btn-warning':clickedOnce(4), 'btn-danger':clickedTwice(4)}" ng-click='addClick(4)' class='btn btn-primary'>{{questCtrl.question.answer_5}}</button>
-                    <button ng-class="{'btn-warning':clickedOnce(5), 'btn-danger':clickedTwice(5)}" ng-click='addClick(5)' class='btn btn-primary'>{{questCtrl.question.answer_6}}</button>
-                </div>
-            </div>
+  <body>
+      <nav ng-controller="NavController" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">exBook</a>
           </div>
 
-<!-- third party -->
-          <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-          <script type="text/javascript" src="js/vendor/angular.min.js"></script>
-          <script type="text/javascript" src="js/vendor/angular-animate.min.js"></script>
-          <script type="text/javascript" src="js/vendor/angular-touch.min.js"></script>
-          <script type="text/javascript" src="js/vendor/ui-bootstrap-tpls-1.2.4.min.js"></script>
-          <!--[if lte IE 9]>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
-          <![endif]-->
-          <script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
+          <div class="navbar-collapse" ng-class="isCollapsed ? 'collapse' : 'in'">
+            <ul class="nav navbar-nav navbar-left">
+              <!-- <div class="btn-group" uib-dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                  Button dropdown <span class="caret"></span>
+                </button>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a href="#">Action</a></li>
+                  <li role="menuitem"><a href="#">Another action</a></li>
+                  <li role="menuitem"><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li role="menuitem"><a href="#">Separated link</a></li>
+                </ul>
+              </div> -->
+            </ul>
+            <!-- <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form> -->
 
-<!-- custom -->
-        <script src="js/app.js"></script>
+            <ul ng-show='loggedIn()' class="nav navbar-nav navbar-right">
+              <li><a href="#">PROFILE</a></li>
+              <li><a ng-click="logOut();">LOGOUT</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-    </body>
+    <div class="login-page" ng-show='!loggedIn()' ng-controller="login-controller as loginCtrl">
+      <div class="login-box">
+        <form class="login-form">
+          <h3 >Please log in with your google account.</h3>
+          <button class="btn btn-block btn-google-plus" ng-click="authenticate('google')">
+            <span class="google-icon"></span>Sign in with Google
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- <div class="progress">
+      <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+    </div> -->
+
+    <div ng-controller='debug-controller'>
+        <a class='btn btn-primary' ng-click='doSomething()'>Do Something</a>
+    </div>
+
+    <div ng-show='loggedIn()' class="activity-container" ng-controller='activity-controller as actCtrl'>
+      <div>
+          <div ng-repeat='activity in activities'>
+                <h2>
+                    {{activity.title}}
+                </h2>
+                <h3>
+                    {{'Number of questions: ' + activity.number_questions}}
+                </h3>
+                <h3>
+                    {{'Number of points: ' + activity.number_points}}
+                </h3>
+                <p>
+                    Topics include:
+                </p>
+                <p ng-repeat='topic in activity.topics'>
+                    {{topic}}
+                </p>
+          </div>
+          </div>
+      </div>
+
+      <div ng-show='loggedIn()' class="question-container" ng-controller='question-controller as questCtrl'>
+        <div>
+            <div class='jumbotron'>
+                <h2>
+                  {{question.question_text}}
+                </h2>
+            </div>
+            <div ng-controller='answer-controller as ansCtrl'>
+                <div ng-class="{'panel-default':clickedNone(0), 'panel-warning':clickedOnce(0), 'panel-danger':clickedTwice(0)}" ng-click='addClick(0)' class='panel'>
+                    <p>
+                        {{question.answer_1+" I have been clicked "+clicked[0]}}
+                    </p>
+                </div>
+                <div ng-class="{'panel-default':clickedNone(1), 'panel-warning':clickedOnce(1), 'panel-danger':clickedTwice(1)}" ng-click='addClick(1)' class='panel'>
+                    <p>
+                        {{question.answer_2+" I have been clicked "+clicked[1]}}
+                    </p>
+                </div>
+                <div ng-class="{'panel-default':clickedNone(2), 'panel-warning':clickedOnce(2), 'panel-danger':clickedTwice(2)}" ng-click='addClick(2)' class='panel'>
+                    <p>
+                        {{question.answer_3+" I have been clicked "+clicked[2]}}
+                    </p>
+                </div>
+                <div ng-class="{'panel-default':clickedNone(3), 'panel-warning':clickedOnce(3), 'panel-danger':clickedTwice(3)}" ng-click='addClick(3)' class='panel'>
+                    <p>
+                        {{question.answer_4+" I have been clicked "+clicked[3]}}
+                    </p>
+                </div>
+                <div ng-class="{'panel-default':clickedNone(4), 'panel-warning':clickedOnce(4), 'panel-danger':clickedTwice(4)}" ng-click='addClick(4)' class='panel'>
+                    <p>
+                        {{question.answer_5+" I have been clicked "+clicked[4]}}
+                    </p>
+                </div>
+                <div ng-class="{'panel-default':clickedNone(5), 'panel-warning':clickedOnce(5), 'panel-danger':clickedTwice(5)}" ng-click='addClick(5)' class='panel'>
+                    <p>
+                        {{question.answer_6+" I have been clicked "+clicked[5]}}
+                    </p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div ng-show='loggedIn()' class="question-container" ng-controller='question-controller as questCtrl'>
+        <div>
+            <div>
+                <h2>
+                  {{question.question_text}}
+                </h2>
+            </div>
+            <div ng-controller='answer-controller as ansCtrl'>
+                <input ng-model="user_answer" class="form-control" placeholder="Input your answer here." title="Answer"</input>
+                <p>
+                    {{user_answer}}
+                </p>
+            </div>
+        </div>
+      </div>
+
+  <!-- third party -->
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular-animate.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular-touch.min.js"></script>
+        <script type="text/javascript" src="js/vendor/ui-bootstrap-tpls-1.2.4.min.js"></script>
+        <!--[if lte IE 9]>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
+        <![endif]-->
+        <script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
+
+  <!-- custom -->
+      <script src="js/app.js"></script>
+
+  </body>
 </html>
