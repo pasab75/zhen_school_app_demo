@@ -26,13 +26,11 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
     # loads number of randomly generated function to the questions database for testing purposes only
     # remove this function when we go into production
-    # currently this function supports only definitions questions and multiple choice questions
-    # TODO: add support for calculation (free response) questions
     def load_questions_testing(self, numAdd):
         try:
             for i in range(0, numAdd):
                 questionType = str(randint(0, 2))
-                topic = str(randint(0, 4))
+                topic = str(randint(1, 30))
 
                 answerlist = []
 

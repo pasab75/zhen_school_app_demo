@@ -51,6 +51,42 @@
         );
       };
 
+      $scope.getDailies = function(){
+        apiCall.debug(urlList.makeUrl('get/quests/daily'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.getQuestion = function(){
+        apiCall.debug(urlList.makeUrl('get/'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.getUser = function(){
+        apiCall.debug(urlList.makeUrl('get/user'), JSON.stringify({'user_identifier': $auth.getToken()}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
       $scope.clearQuestions = function(){
 
       };

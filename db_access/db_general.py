@@ -40,7 +40,7 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT FROM {} WHERE '{}' = {}".format(table, key, '%s')
+                    sql = "SELECT * FROM {} WHERE {} = %s".format(table, key)
                     cursor.execute(sql, value)
 
                     return cursor.fetchone()
@@ -55,7 +55,7 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT FROM {} WHERE '{}' = {}".format(table, key, '%s')
+                    sql = "SELECT FROM {} WHERE '{}' = %s".format(table, key)
                     cursor.execute(sql, value)
 
                     return cursor.fetchall()

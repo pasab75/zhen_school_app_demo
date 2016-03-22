@@ -109,7 +109,7 @@ class UserTableAccess(GeneralDatabaseConnection):
     # returns one dictionary
     def get_user_by_user_id(self, user_id):
         try:
-            self.get_row_by_key_value('users', 'user_id', user_id)
+            return self.get_row_by_key_value('users', 'user_id', user_id)
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
@@ -166,6 +166,20 @@ class UserTableAccess(GeneralDatabaseConnection):
     # WRITE methods
     # -------------------------------------------------------------
 
+    def update_user_activity(self, user_id, activity_index):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT FROM users WHERE 'user_id' = %s SET 'current_activity_index' = %s"
+                    cursor.execute(sql, user_id, activity_index)
+
+                    return True
+
+            except Exception as ex:
+                print("Error updating points :" + str(ex))
+        except Exception as ex:
+            print("Unable to update user: " + str(ex))
+
     def add_user_new(self, user):
         try:
             self.save_new_row_in_table(user.get_dictionary(), 'users')
@@ -174,6 +188,13 @@ class UserTableAccess(GeneralDatabaseConnection):
 
     def update_user(self, user_info):
         try:
+            self.update_row_in_table(user_info, 'users', 'user_id')
+        except Exception as ex:
+            print("Unable to update user: " + str(ex))
+
+    def set_quest_by_user_id(self, user_id, quest_index):
+        try:
+            user_info = {'user_id': user_id, 'quest_index': quest_index}
             self.update_row_in_table(user_info, 'users', 'user_id')
         except Exception as ex:
             print("Unable to update user: " + str(ex))
