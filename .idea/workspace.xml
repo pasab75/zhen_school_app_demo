@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/question.py" afterPath="$PROJECT_DIR$/business_objects/question.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_question.py" afterPath="$PROJECT_DIR$/db_access/db_question.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/trythisone" afterPath="$PROJECT_DIR$/db_scripts/trythisone" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,14 +24,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.310345">
-              <caret line="446" column="41" selection-start-line="446" selection-start-column="41" selection-end-line="446" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.38059703">
+              <caret line="159" column="60" selection-start-line="159" selection-start-column="60" selection-end-line="159" selection-end-column="60" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="trythisone" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db_scripts/trythisone">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="130" column="47" selection-start-line="130" selection-start-column="47" selection-end-line="130" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,10 +112,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="question.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="question.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/question.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71343285">
+            <state vertical-scroll-proportion="-39.86207">
               <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
               <folding />
             </state>
@@ -149,7 +157,6 @@
         <option value="$PROJECT_DIR$/frontend/angular-frontend/angular-index.html" />
         <option value="$PROJECT_DIR$/frontend/index.html" />
         <option value="$PROJECT_DIR$/angular-frontend/index.html" />
-        <option value="$PROJECT_DIR$/db_scripts/trythisone" />
         <option value="$PROJECT_DIR$/db_access/db_activity_log.py" />
         <option value="$PROJECT_DIR$/db_access/db_topic_chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/user.py" />
@@ -159,6 +166,7 @@
         <option value="$PROJECT_DIR$/rest_manager.py" />
         <option value="$PROJECT_DIR$/db_access/db_question.py" />
         <option value="$PROJECT_DIR$/business_objects/question.py" />
+        <option value="$PROJECT_DIR$/db_scripts/trythisone" />
       </list>
     </option>
   </component>
@@ -632,7 +640,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458688496956</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go.">
+      <created>1458694734879</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1458694734879</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -976,14 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/trythisone">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4320457">
-          <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_topic_chapter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1078,16 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.310345">
-          <caret line="446" column="41" selection-start-line="446" selection-start-column="41" selection-end-line="446" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_question.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.6896553">
@@ -1100,9 +1096,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/question.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71343285">
+        <state vertical-scroll-proportion="-39.86207">
           <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/trythisone">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="130" column="47" selection-start-line="130" selection-start-column="47" selection-end-line="130" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38059703">
+          <caret line="159" column="60" selection-start-line="159" selection-start-column="60" selection-end-line="159" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

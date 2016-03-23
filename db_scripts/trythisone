@@ -22,12 +22,12 @@ USE `testdb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `user_id` CHAR(21) NOT NULL,
-  `time` TIME NULL DEFAULT NULL,
-  `date` DATE NULL DEFAULT NULL,
-  `correct` TINYINT(1) NULL DEFAULT NULL,
+  `time` TIME NOT NULL,
+  `date` DATE NOT NULL,
+  `correct` TINYINT(1) NOT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
-  `activity` INT(11) NULL DEFAULT NULL)
+  `activity` INT(11) NOT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -38,13 +38,14 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   `question_id` INT(11) NOT NULL AUTO_INCREMENT,
   `question_text` VARCHAR(500) NOT NULL,
+  `image_path` VARCHAR(200) NULL DEFAULT NULL,
   `answer_a_text` VARCHAR(50) NOT NULL,
   `answer_b_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_num` INT(11) NULL DEFAULT NULL,
+  `correct_answer_index` INT(11) NULL DEFAULT NULL,
   `topic` INT(11) NULL DEFAULT NULL,
   `question_type` INT(11) NULL DEFAULT NULL,
   `avg_time_to_solve` TIME NULL DEFAULT NULL,
@@ -52,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   PRIMARY KEY (`question_id`),
   UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2001
+AUTO_INCREMENT = 14001
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -60,17 +61,21 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `testdb`.`quests`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
-  `activity_name_text` VARCHAR(20) NOT NULL,
-  `activity_id` INT(11) NOT NULL,
+  `quest_index` INT(11) NOT NULL AUTO_INCREMENT,
+  `quest_name` VARCHAR(20) NOT NULL,
   `topic_index` INT(11) NULL DEFAULT NULL,
   `chapter_index` INT(11) NULL DEFAULT NULL,
   `number_of_questions` INT(11) NOT NULL,
-  `types_of_questions` INT(11) NOT NULL,
   `point_value` INT(11) NOT NULL,
-  `activity_description` VARCHAR(500) NULL DEFAULT NULL,
+  `quest_description` VARCHAR(500) NULL DEFAULT NULL,
   `cumulative` TINYINT(1) NULL DEFAULT '0',
-  PRIMARY KEY (`activity_id`))
+  `type_0_allowed` TINYINT(1) NULL DEFAULT '1',
+  `type_1_allowed` TINYINT(1) NULL DEFAULT '1',
+  `type_2_allowed` TINYINT(1) NULL DEFAULT '1',
+  `daily` TINYINT(1) NULL DEFAULT '0',
+  PRIMARY KEY (`quest_index`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -100,10 +105,12 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `last_name` VARCHAR(20) NOT NULL,
   `user_role` INT(11) NOT NULL DEFAULT '0',
   `e_mail` VARCHAR(50) NOT NULL,
-  `current_activity_index` INT(11) NULL DEFAULT NULL,
   `current_lvl` INT(11) NOT NULL DEFAULT '1',
   `current_points` INT(11) NOT NULL DEFAULT '0',
   `paid_through` DATETIME NULL DEFAULT NULL,
+  `quest_index` INT(11) NULL DEFAULT NULL,
+  `quest_progress` INT(11) NULL DEFAULT '0',
+  `current_question_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
 ENGINE = InnoDB
