@@ -17,6 +17,42 @@ class QuestTableAccess(GeneralDatabaseConnection):
         GeneralDatabaseConnection.__init__(self)
 
     # -------------------------------------------------------------
+    # DEBUG methods
+    # -------------------------------------------------------------
+
+    def add_dummy_quests(self, number_of_quests):
+        try:
+            for i in range(number_of_quests):
+                coinflip = randint(0, 1)
+                type_0_allowed = randint(0, 1)
+                type_1_allowed = randint(0, 1)
+                type_2_allowed = randint(0, 1)
+                daily = randint(0, 1)
+                number_of_questions = randint(10, 50)
+                point_value = number_of_questions*10
+
+                quest_name = 'I am a quest. I contain ' + str(number_of_questions) + ' questions.'
+
+                quest = {'quest_name': quest_name,
+                         'type_0_allowed': type_0_allowed,
+                         'type_1_allowed': type_1_allowed,
+                         'type_2_allowed': type_2_allowed,
+                         'daily': daily,
+                         'number_of_questions': number_of_questions,
+                         'point_value': point_value
+                         }
+
+                if coinflip == 0:
+                    quest['chapter_index'] = randint(1, 10)
+                    quest['cumulative'] = randint(0, 1)
+                else:
+                    quest['topic_index'] = randint(1, 100)
+
+                self.add_quest(quest)
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
+    # -------------------------------------------------------------
     # READ methods
     # -------------------------------------------------------------
 
@@ -116,7 +152,14 @@ class QuestTableAccess(GeneralDatabaseConnection):
     # WRITE methods
     # -------------------------------------------------------------
 
-    def update_question_from_object_with_primarykey(self, question, primary):
+    def add_quest(self, quest):
+        try:
+            self.save_new_row_in_table(quest, 'quests')
+        except Exception as e:
+            print("Could not update function: "+str(e))
+            return False
+
+    def update_quest_from_object_with_primarykey(self, quest, primary):
         try:
             self.update_row_in_table(question.get_dictionary(), 'questions', primary)
         except Exception as e:

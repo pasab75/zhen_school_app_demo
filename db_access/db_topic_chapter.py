@@ -1,5 +1,6 @@
 from db_access.db_general import GeneralDatabaseConnection
 from random import randint, shuffle
+import math
 
 
 class TopicChapterTableAccess(GeneralDatabaseConnection):
@@ -14,6 +15,28 @@ class TopicChapterTableAccess(GeneralDatabaseConnection):
 
     def __init__(self):
         GeneralDatabaseConnection.__init__(self)
+
+    # -------------------------------------------------------------
+    # DEBUG methods
+    # -------------------------------------------------------------
+
+    def add_dummy_topics(self, number_of_topics):
+        try:
+            topics_per_chapter = math.floor(number_of_topics/10)
+            chapter = 0
+            for i in range(1, number_of_topics+1):
+                if i % topics_per_chapter == 1:
+                    chapter += 1
+                topic = {'chapter': chapter,
+                         'chapter_name': 'Chapter ' + str(chapter),
+                         'topic_index': str(i),
+                         'topic_name': 'Topic ' + str(i)
+                         }
+
+                self.add_topic(topic)
+
+        except Exception as e:
+                print("Error connecting: "+str(e))
 
     # -------------------------------------------------------------
     # READ methods
@@ -72,6 +95,13 @@ class TopicChapterTableAccess(GeneralDatabaseConnection):
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------
+
+    def add_topic(self, topic):
+        try:
+            self.save_new_row_in_table(topic, 'topic_chapter')
+        except Exception as e:
+            print("Could save new topic: "+str(e))
+            return False
 
     def update_question_from_object_with_primarykey(self, question, primary):
         try:

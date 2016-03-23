@@ -5,6 +5,13 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema testdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `testdb` DEFAULT CHARACTER SET utf8 ;
@@ -13,6 +20,8 @@ USE `testdb` ;
 -- -----------------------------------------------------
 -- Table `testdb`.`activity_log`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`activity_log` ;
+
 CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `user_id` CHAR(21) NOT NULL,
   `time` TIME NOT NULL,
@@ -28,6 +37,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `testdb`.`questions`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`questions` ;
+
 CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   `question_id` INT(11) NOT NULL AUTO_INCREMENT,
   `question_text` VARCHAR(500) NOT NULL,
@@ -46,16 +57,18 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   PRIMARY KEY (`question_id`),
   UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14001
+AUTO_INCREMENT = 54001
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `testdb`.`quests`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`quests` ;
+
 CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
   `quest_index` INT(11) NOT NULL AUTO_INCREMENT,
-  `quest_name` VARCHAR(20) NOT NULL,
+  `quest_name` VARCHAR(100) NOT NULL,
   `topic_index` INT(11) NULL DEFAULT NULL,
   `chapter_index` INT(11) NULL DEFAULT NULL,
   `number_of_questions` INT(11) NOT NULL,
@@ -68,13 +81,15 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
   `daily` TINYINT(1) NULL DEFAULT '0',
   PRIMARY KEY (`quest_index`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 414
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `testdb`.`topic_chapter`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`topic_chapter` ;
+
 CREATE TABLE IF NOT EXISTS `testdb`.`topic_chapter` (
   `chapter` INT(11) NULL DEFAULT '0',
   `chapter_name` VARCHAR(45) NULL DEFAULT NULL,
@@ -82,8 +97,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`topic_chapter` (
   `topic_index` INT(11) NOT NULL,
   PRIMARY KEY (`topic_name`, `topic_index`),
   UNIQUE INDEX `topic_UNIQUE` (`topic_name` ASC),
-  UNIQUE INDEX `topic_index_UNIQUE` (`topic_index` ASC),
-  UNIQUE INDEX `chapter_name_UNIQUE` (`chapter_name` ASC))
+  UNIQUE INDEX `topic_index_UNIQUE` (`topic_index` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -91,6 +105,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `testdb`.`users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`users` ;
+
 CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `user_id` CHAR(21) NOT NULL,
   `last_active` DATETIME NULL DEFAULT NULL,
@@ -104,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `quest_index` INT(11) NULL DEFAULT NULL,
   `quest_progress` INT(11) NULL DEFAULT '0',
   `current_question_id` INT(11) NULL DEFAULT NULL,
+  `date_quest_started` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
 ENGINE = InnoDB
@@ -113,6 +130,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `testdb`.`valid_keys`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`valid_keys` ;
+
 CREATE TABLE IF NOT EXISTS `testdb`.`valid_keys` (
   `key_value` CHAR(12) NOT NULL,
   PRIMARY KEY (`key_value`))

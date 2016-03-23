@@ -26,17 +26,17 @@
       $scope.doSomething = function(){
         apiCall.debug(urlList.makeUrl('get/next/prompt/by/student'), $scope.string_to_send, function(data){
           $scope.status = 'I did something ' + data.data.response_type;
-          $scope.statusCount ++;}, function(data){
+          $scope.barf = data.data;}, function(data){
             $scope.status = 'I failed ' +  data['response_type'];
-            $scope.statusCount = 0;});
+            $scope.barf = data.data;});
       };
 
-      $scope.addDummyQuestions = function(){
-        apiCall.debug(urlList.makeUrl('add/dummy/questions'), 'DO IT NOW', function(data){
+      $scope.initializeDatabase = function(){
+        apiCall.debug(urlList.makeUrl('database/initialize'), 'DO IT NOW', function(data){
           $scope.status = 'I did something ' + data.data.response_type;
-          $scope.statusCount ++;}, function(data){
+          $scope.barf = data.data;}, function(data){
             $scope.status = 'I failed ' +  data['response_type'];
-            $scope.statusCount = 0;});
+            $scope.barf = data.data;});
       };
 
       $scope.getQuestion = function(){

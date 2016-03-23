@@ -47,6 +47,7 @@ def authenticate_user(client_request):
         token = client_request.json['user_identifier']
         r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
         user_id = str(r.json()['sub'])
+        print(user_id)
         exists = g.dbconnect_user.check_if_user_valid(user_id)
         if exists:
             is_paid = g.dbconnect_user.check_if_user_paid(user_id)
@@ -59,15 +60,29 @@ def authenticate_user(client_request):
 
 @app.route('/')
 def index():
+    return 'Hello, World!'
+
+
+@app.route('/api/v1/database/initialize', methods=['POST'])
+def database_init():
     try:
-        incoming_request = request
-        print(incoming_request)
+        dbconnect = topic_chapter_table_access_layer.TopicChapterTableAccess()
+        dbconnect.empty_table('topic_chapter')
+        dbconnect.add_dummy_topics(100)
+        dbconnect.close_connection()
+
+        dbconnect = quest_table_access_layer.QuestTableAccess()
+        dbconnect.empty_table('quests')
+        dbconnect.add_dummy_quests(100)
+        dbconnect.close_connection()
+
         dbconnect = questions_table_access_layer.QuestionTableAccess()
         dbconnect.empty_table('questions')
-        dbconnect.load_questions_testing(1000)
+        dbconnect.load_questions_testing(5000)
 
         dbconnect.close_connection()
-        return "false"
+        response_text = {'response': 'all good'}
+        return jsonify(response_text)
 
     except Exception as ex:
         print(ex)
@@ -119,21 +134,34 @@ def get_quests_daily():
 @app.route('/api/v1/get/question/by/quest', methods=['POST'])
 def get_question_by_quest():
     try:
+        incoming_request = request
+        print(incoming_request)
+
         authentication_response = authenticate_user(request)
         if authentication_response['is_paid']:
+            # init variable names
             user_id = authentication_response['user_id']
-            incoming_request = request
-            print(incoming_request)
-            quest_index = (request.json['quest_index'])
+            # quest_index = (request.json['quest_index'])
             print("User has chosen quest index: " + quest_index)
 
-            # first we should check if the selected quest is actually a daily quest today
+            # get quest from user table if user is already on quest
 
-            # get activity information
+            dbconnect = users_table_access_layer.UserTableAccess()
+            user = dbconnect.get_user_quest_by_user_id(user_id)
+            quest_index = user['quest_index']
 
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            quest = dbconnect.get_quest_by_quest_index(quest_index)
-            dbconnect.close_connection()
+            # if user is already on a quest, get it from table according to quest index
+
+            if quest_index:
+                dbconnect = quest_table_access_layer.QuestTableAccess()
+                quest = dbconnect.get_quest_by_quest_index(quest_index)
+                dbconnect.close_connection()
+
+            # check to make sure the quest is a currently daily
+            # make sure quest is not expired (from yesterday or something)
+            # they can resume only on the same day if it's a daily quest
+            # TODO: timestamp the quest when the user gets put on the quest
+            # we can save an extra database call this way
 
             if int(quest['daily']) == 0:
                 print('go fuck yourself')

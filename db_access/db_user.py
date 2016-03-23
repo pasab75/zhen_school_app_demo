@@ -201,7 +201,11 @@ class UserTableAccess(GeneralDatabaseConnection):
 
     def set_user_quest_by_user_id(self, user_id, quest_index):
         try:
-            user_info = {'user_id': user_id, 'quest_index': quest_index, 'quest_progress': '0'}
+            user_info = {'user_id': user_id,
+                         'quest_index': quest_index,
+                         'quest_progress': '0',
+                         'date_quest_started': datetime.datetime.now()
+                         }
             self.update_row_in_table(user_info, 'users', 'user_id')
         except Exception as ex:
             print("Unable to update user: " + str(ex))
