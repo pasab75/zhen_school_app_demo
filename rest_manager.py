@@ -6,6 +6,7 @@ import db_access.db_quest as quest_table_access_layer
 import db_access.db_topic_chapter as topic_chapter_table_access_layer
 import business_objects.user as user_obj_generator
 import requests
+import random
 
 
 local = True
@@ -120,7 +121,7 @@ def get_question_by_quest():
     try:
         authentication_response = authenticate_user(request)
         if authentication_response['is_paid']:
-
+            user_id = authentication_response['user_id']
             incoming_request = request
             print(incoming_request)
             quest_index = (request.json['quest_index'])
@@ -128,21 +129,52 @@ def get_question_by_quest():
 
             # first we should check if the selected quest is actually a daily quest today
 
-            # set user on quest in user table
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.set_user_quest_by_user_id(quest_index)
-            dbconnect.close_connection()
-
             # get activity information
 
             dbconnect = quest_table_access_layer.QuestTableAccess()
-            dbconnect.get_quest_by_quest_index(quest_index)
+            quest = dbconnect.get_quest_by_quest_index(quest_index)
+            dbconnect.close_connection()
+
+            if int(quest['daily']) == 0:
+                print('go fuck yourself')
+                return False
+
+            if quest['chapter_index']:
+                chapter = quest['chapter_index']
+            elif quest['topic_index']:
+                topic = quest['topic_index']
+            else:
+                return False
+
+            # set user on quest in user table
+            # sets user current progress to 0
+
+            dbconnect = users_table_access_layer.UserTableAccess()
+            dbconnect.set_user_quest_by_user_id(user_id, quest_index)
             dbconnect.close_connection()
 
             # choose a question based on the activity guidelines
 
+            # TODO make a question function to get by quest!
+            allowed_types = []
+
+            if int(quest['type_0_allowed']) == 1:
+                allowed_types.append(0)
+            if int(quest['type_1_allowed']) == 1:
+                allowed_types.append(1)
+            if int(quest['type_2_allowed']) == 1:
+                allowed_types.append(2)
+
+            question_type = random.choice(allowed_types)
+
             dbconnect = questions_table_access_layer.QuestionTableAccess()
-            result = dbconnect.get_question_def_by_topic(topic_index)
+            if chapter:
+                result = dbconnect.get_question_random_by_type_and_chapter(question_type, chapter)
+            elif topic:
+                result = dbconnect.get_question_random_by_type_and_topic(question_type, topic)
+            else:
+                result = {'error': 'Something bad has occured.'}
+
             dbconnect.close_connection()
 
             return jsonify(result)

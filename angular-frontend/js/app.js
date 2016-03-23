@@ -64,7 +64,7 @@
       };
 
       $scope.getQuestQuestion = function(){
-        apiCall.debug(urlList.makeUrl('get/question/by/quest'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
+        apiCall.debug(urlList.makeUrl('get/question/by/quest'), JSON.stringify({'user_identifier': $auth.getToken(),'quest_index':'3'}),
           function(data){
             $scope.barf = data.data;
             $scope.status = 'I succeeded';

@@ -99,7 +99,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                     cursor.execute(sql, chapter)
                     request = cursor.fetchone()
 
-                    return request['topic']
+                    return request['topic_index']
 
             except Exception as e:
                 print("Error fetching results: "+str(e))
@@ -108,13 +108,13 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
     # returns a random question object given a type of question
     # this question can be from any topic
-    def get_question_random_by_type(self, type):
+    def get_question_random_by_type(self, question_type):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
                     sql = "SELECT * FROM questions WHERE question_type = %s ORDER BY RAND() LIMIT 1"
 
-                    cursor.execute(sql, type)
+                    cursor.execute(sql, question_type)
                     question = question_obj_generator.question()
                     question.set_dictionary(cursor.fetchone())
 
@@ -126,12 +126,12 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                 print("Error connecting: "+str(e))
 
     # return a random question object given a question type AND a topic
-    def get_question_random_by_type_and_topic(self, type, topic):
+    def get_question_random_by_type_and_topic(self, question_type, topic):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
                     sql = "SELECT * FROM questions WHERE question_type = %s AND topic = %s ORDER BY RAND() LIMIT 1;"
-                    args = (type, topic)
+                    args = (question_type, topic)
 
                     cursor.execute(sql, args)
                     question = question_obj_generator.question()
@@ -147,11 +147,11 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     # returns a random question given a question type AND chapter
     # this uses two previously defined methods to get a random topic given a chapter
     # then pulls a question from that topic
-    def get_question_random_by_type_and_chapter(self, type, chapter):
+    def get_question_random_by_type_and_chapter(self, question_type, chapter):
         try:
             try:
                 topic = self.get_topic_random_by_chapter(chapter)
-                self.get_question_random_by_type_and_topic(type, topic)
+                self.get_question_random_by_type_and_topic(question_type, topic)
 
             except Exception as e:
                 print("Error fetching results: "+str(e))
@@ -242,7 +242,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
                         question = question_obj_generator.question(primary_question['question_text'],
                                                                    answerlist,
-                                                                   primary_question['topic'],
+                                                                   primary_question['topic_index'],
                                                                    primary_question['question_type'],
                                                                    str(correct_index),
                                                                    primary_question['question_id'])
@@ -252,7 +252,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
                         question = question_obj_generator.question(primary_question['answer_a_text'],
                                                                    answerlist,
-                                                                   primary_question['topic'],
+                                                                   primary_question['topic_index'],
                                                                    primary_question['question_type'],
                                                                    str(correct_index),
                                                                    primary_question['question_id'])

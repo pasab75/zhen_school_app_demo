@@ -35,6 +35,21 @@ class QuestTableAccess(GeneralDatabaseConnection):
         except Exception as e:
                 print("Error connecting: "+str(e))
 
+    def get_quest_is_daily(self, quest_index):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT COUNT(*) FROM quests WHERE quest_index = %s AND daily = 1"
+                    cursor.execute(sql, quest_index)
+                    request = cursor.fetchone()
+
+                    return request
+
+            except Exception as e:
+                print("Error fetching results: "+str(e))
+        except Exception as e:
+                print("Error connecting: "+str(e))
+
     def get_quest_random_by_chapter_index(self, chapter):
         try:
             try:
