@@ -258,7 +258,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                                                                    primary_question['question_id'])
 
                     sql = ("UPDATE `questions` "
-                           "SET `answer_num` = %s "
+                           "SET `correct_answer_index` = %s "
                            "WHERE question_id = %s "
                            ";")
 

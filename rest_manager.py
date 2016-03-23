@@ -320,8 +320,8 @@ def set_activity():
 @app.route('/api/v1/get/activity/list', methods=['POST'])
 def get_activity_list():
     try:
-        exists = authenticate_user(request)
-        if exists:
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
         # grab current activity list
 
         # return list text to user
@@ -336,8 +336,8 @@ def get_activity_list():
 @app.route('/api/v1/set/activity/by/user', methods=['POST'])
 def set_activity_by_user():
     try:
-        exists = authenticate_user(request)
-        if exists:
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
         # save activity index in (user)? database?
             return True
         else:
@@ -355,8 +355,8 @@ def set_activity_by_options():
 @app.route('/api/v1/get/question/next/by/activity', methods=['POST'])
 def get_question_next_by_activity():
     try:
-        exists = authenticate_user(request)
-        if exists:
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
         # determine user identity
 
         # get current activity for user
@@ -378,8 +378,8 @@ def get_question_next_by_activity():
 @app.route('/api/v1/validate/question', methods=['POST'])
 def validate_question():
     try:
-        exists = authenticate_user(request)
-        if exists:
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
             incoming_request = request
             print(incoming_request)
 
@@ -433,9 +433,8 @@ def validate_question():
 @app.route('/api/v1/get/question/definition/by/topic', methods=['POST'])
 def get_question_definition_by_topic():
     try:
-        exists = authenticate_user(request)
-        if exists:
-
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
             incoming_request = request
             print(incoming_request)
             topic_index = (request.json['topic'])
@@ -457,8 +456,8 @@ def get_question_definition_by_topic():
 @app.route('/api/v1/get/question/random', methods=['POST'])
 def get_question_random():
     try:
-        exists = authenticate_user(request)
-        if exists:
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
             incoming_request = request
             print(incoming_request)
             qType = (request.json['question_type'])
