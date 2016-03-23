@@ -132,10 +132,9 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                 with self.db_connection.cursor() as cursor:
                     sql = "SELECT * FROM questions WHERE question_type = %s AND topic = %s ORDER BY RAND() LIMIT 1;"
                     args = (question_type, topic)
-
+                    print(type(question_type))
                     cursor.execute(sql, args)
-                    question = question_obj_generator.question()
-                    question.set_dictionary(cursor.fetchone())
+                    question = cursor.fetchone()
 
                     return question
 
@@ -151,7 +150,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 topic = self.get_topic_random_by_chapter(chapter)
-                self.get_question_random_by_type_and_topic(question_type, topic)
+                return self.get_question_random_by_type_and_topic(question_type, topic)
 
             except Exception as e:
                 print("Error fetching results: "+str(e))

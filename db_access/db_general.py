@@ -100,15 +100,17 @@ class GeneralDatabaseConnection:
             try:
                 with self.db_connection.cursor() as cursor:
                     # removes the primary search key and value
-                    searchvalue = dictionary_to_add[primary]
+                    searchvalue = str(dictionary_to_add[primary])
                     del dictionary_to_add[primary]
 
-                    keystring = '={}, '.join(dictionary_to_add.keys()) + '={}'
+                    keystring = '=%s, '.join(dictionary_to_add.keys()) + '=%s'
 
-                    sql = "UPDATE {} SET {} WHERE '{}'=%s" .format(table, keystring, primary, searchvalue)
+                    sql = "UPDATE %s SET %s WHERE %s=%s" % (table, keystring, primary, searchvalue)
 
                     # executes the sql code with list of values to update as a parameter
-                    cursor.execute(sql, dictionary_to_add.values())
+                    print(dictionary_to_add.values())
+                    print(type(dictionary_to_add.values()))
+                    cursor.execute(sql, list(dictionary_to_add.values()))
 
                     return True
             except Exception as e:
