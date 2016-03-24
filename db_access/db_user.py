@@ -210,6 +210,21 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to update user: " + str(ex))
 
+    def update_user_current_question(self, user_id, question_id):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT FROM users WHERE 'user_id' = {} SET points = points + %s".format(user_id)
+                    cursor.execute(sql, question_id)
+
+                    return True
+
+            except Exception as ex:
+                print("Error updating points :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
     def update_user_points(self, user_id, points_to_add):
         try:
             try:
@@ -221,6 +236,19 @@ class UserTableAccess(GeneralDatabaseConnection):
 
             except Exception as ex:
                 print("Error updating points :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def null_user_quest(self, user_id):
+        try:
+            user_info = {'quest_index': 'NULL',
+                         'quest_progress': 'NULL',
+                         'date_quest_started': 'NULL',
+                         'current_question_id': 'NULL'
+                         }
+            self.update_row_in_table(user_info, 'users', user_id)
+            return True
         except Exception as e:
             print("Error connecting: "+str(e))
             return False

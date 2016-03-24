@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   PRIMARY KEY (`question_id`),
   UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 54001
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
   `daily` TINYINT(1) NULL DEFAULT '0',
   PRIMARY KEY (`quest_index`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 414
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -110,8 +110,8 @@ DROP TABLE IF EXISTS `testdb`.`users` ;
 CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `user_id` CHAR(21) NOT NULL,
   `last_active` DATETIME NULL DEFAULT NULL,
-  `first_name` VARCHAR(20) NOT NULL,
-  `last_name` VARCHAR(20) NOT NULL,
+  `first_name` VARCHAR(20) NULL DEFAULT NULL,
+  `last_name` VARCHAR(20) NULL DEFAULT NULL,
   `user_role` INT(11) NOT NULL DEFAULT '0',
   `e_mail` VARCHAR(50) NOT NULL,
   `current_lvl` INT(11) NOT NULL DEFAULT '1',

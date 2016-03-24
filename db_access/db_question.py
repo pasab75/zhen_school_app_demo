@@ -30,7 +30,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
         try:
             for i in range(0, numAdd):
                 questionType = str(randint(0, 2))
-                topic = str(randint(1, 30))
+                topic = str(randint(1, 100))
 
                 answerlist = []
 
@@ -162,12 +162,10 @@ class QuestionTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM questions WHERE `question_id`= %s"
+                    sql = "SELECT * FROM questions WHERE question_id = %s"
                     cursor.execute(sql, question_id)
-                    question = question_obj_generator.question()
-                    question.set_dictionary(cursor.fetchone())
 
-                    return question
+                    return cursor.fetchone()
             except Exception as e:
                 print("Error fetching results: "+str(e))
         except Exception as e:

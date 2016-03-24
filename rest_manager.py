@@ -29,16 +29,24 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
-
-@app.teardown_request
-def teardown_request(exception):
-    db = getattr(g, 'db', None)
-    if db is not None:
-        db.close()
-
 # -------------------------------------------------------------
-# Routes
+# Functions
 # -------------------------------------------------------------
+
+
+def check_access_token(client_request):
+    try:
+        g.dbconnect_user = users_table_access_layer.UserTableAccess()
+        token = client_request.json['user_identifier']
+        r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
+
+        if str(r.json()['sub']):
+            return r
+        else:
+            return False
+
+    except Exception as ex:
+        print(ex)
 
 
 def authenticate_user(client_request):
@@ -56,6 +64,10 @@ def authenticate_user(client_request):
             return False
     except Exception as ex:
         print(ex)
+
+# -------------------------------------------------------------
+# Routes
+# -------------------------------------------------------------
 
 
 @app.route('/')
@@ -122,6 +134,7 @@ def get_quests_daily():
             dbconnect = quest_table_access_layer.QuestTableAccess()
 
             current_dailies = dbconnect.get_daily_quests_by_chapter(3)
+            dbconnect.close_connection()
 
             return json.dumps(current_dailies)
         else:
@@ -131,57 +144,33 @@ def get_quests_daily():
         print("Unable to retrieve user.")
 
 
-@app.route('/api/v1/get/question/by/quest', methods=['POST'])
-def get_question_by_quest():
+@app.route('/api/v1/start/quest', methods=['POST'])
+def start_quest():
     try:
         incoming_request = request
         print(incoming_request)
 
+        # check authentication
         authentication_response = authenticate_user(request)
         if authentication_response['is_paid']:
-            # init variable names
             user_id = authentication_response['user_id']
-            # quest_index = (request.json['quest_index'])
-            print("User has chosen quest index: " + quest_index)
 
-            # get quest from user table if user is already on quest
-
+            # get rid of whatever they have already just in case they have a quest
             dbconnect = users_table_access_layer.UserTableAccess()
-            user = dbconnect.get_user_quest_by_user_id(user_id)
-            quest_index = user['quest_index']
-
-            # if user is already on a quest, get it from table according to quest index
-
-            if quest_index:
-                dbconnect = quest_table_access_layer.QuestTableAccess()
-                quest = dbconnect.get_quest_by_quest_index(quest_index)
-                dbconnect.close_connection()
-
-            # check to make sure the quest is a currently daily
-            # make sure quest is not expired (from yesterday or something)
-            # they can resume only on the same day if it's a daily quest
-            # TODO: timestamp the quest when the user gets put on the quest
-            # we can save an extra database call this way
-
-            if int(quest['daily']) == 0:
-                print('go fuck yourself')
-                return False
-
-            if quest['chapter_index']:
-                chapter = quest['chapter_index']
-            elif quest['topic_index']:
-                topic = quest['topic_index']
-            else:
-                return False
-
-            # set user on quest in user table
-            # sets user current progress to 0
-
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.set_user_quest_by_user_id(user_id, quest_index)
+            dbconnect.null_user_quest(user_id)
+            # get current user from table
+            user = dbconnect.get_user_by_user_id(user_id)
             dbconnect.close_connection()
 
-            # choose a question based on the activity guidelines
+            user_input_quest = request.json['quest_index']
+            dbconnect = users_table_access_layer.UserTableAccess()
+            dbconnect.set_user_quest_by_user_id(user_id, user_input_quest)
+            dbconnect.close_connection()
+
+            dbconnect = quest_table_access_layer.QuestTableAccess()
+            quest = dbconnect.get_quest_by_quest_index(user_input_quest)
+            dbconnect.close_connection()
+
 
             # TODO make a question function to get by quest!
             allowed_types = []
@@ -196,16 +185,124 @@ def get_question_by_quest():
             question_type = random.choice(allowed_types)
 
             dbconnect = questions_table_access_layer.QuestionTableAccess()
-            if chapter:
-                result = dbconnect.get_question_random_by_type_and_chapter(question_type, chapter)
-            elif topic:
-                result = dbconnect.get_question_random_by_type_and_topic(question_type, topic)
+            if quest['chapter_index']:
+                question = dbconnect.get_question_random_by_type_and_chapter(question_type, quest['chapter_index'])
+            elif quest['topic_index']:
+                question = dbconnect.get_question_random_by_type_and_topic(question_type, quest['topic_index'])
             else:
-                result = {'error': 'Something bad has occured.'}
+                question = {'error': 'Something bad has occurred.'}
+
+            dbconnect.close_connection()
+
+            dbconnect = users_table_access_layer.UserTableAccess()
+            dbconnect.update_user_current_question(user_id, question['question_id'])
+            dbconnect.close_connection()
+
+            return jsonify(question)
+
+        else:
+            abort(403, "Unable to authenticate user")
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to retrieve random question")
+
+
+@app.route('/api/v1/stop/quest', methods=['POST'])
+def stop_quest():
+    try:
+        incoming_request = request
+        print(incoming_request)
+
+        # check authentication
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
+            user_id = authentication_response['user_id']
+
+            # initiate connection to user table
+            dbconnect = users_table_access_layer.UserTableAccess()
+            dbconnect.null_user_quest(user_id)
+            dbconnect.close_connection()
+
+            dbconnect = quest_table_access_layer.QuestTableAccess()
+            current_dailies = dbconnect.get_daily_quests_by_chapter(3)
+            dbconnect.close_connection()
+
+            return json.dumps(current_dailies)
+
+        else:
+            abort(403, "Unable to authenticate user")
+
+    except Exception as ex:
+        print(ex)
+        abort(500, "Unable to retrieve random question")
+
+
+@app.route('/api/v1/resume/quest', methods=['POST'])
+def resume_quest():
+    try:
+        incoming_request = request
+        print(incoming_request)
+
+        # check authentication
+        authentication_response = authenticate_user(request)
+        if authentication_response['is_paid']:
+            user_id = authentication_response['user_id']
+            print(type(user_id))
+
+            # initiate connection to user table
+            dbconnect = users_table_access_layer.UserTableAccess()
+
+            # get current user from table
+            user = dbconnect.get_user_by_user_id(user_id)
+            dbconnect.close_connection()
+
+            daily_reset = datetime.datetime.today().replace(hour=4, second=0, minute=0, microsecond=0)
+            # check if that quest is valid
+            if user['date_quest_started'] > daily_reset:
+                dbconnect = questions_table_access_layer.QuestionTableAccess()
+                question = dbconnect.get_question_by_question_id(user['current_question_id'])
+                dbconnect.close_connection()
+
+                return jsonify(question)
+            else:
+                print('quest is outdated, please start a new quest')
+
+        else:
+            user_input_quest = request.json['quest_index']
+            dbconnect = users_table_access_layer.UserTableAccess()
+            dbconnect.set_user_quest_by_user_id(user_id, user_input_quest)
+            dbconnect.close_connection()
+
+            dbconnect = quest_table_access_layer.QuestTableAccess()
+            quest = dbconnect.get_quest_by_quest_index(user_input_quest)
+            dbconnect.close_connection()
+
+
+            # TODO make a question function to get by quest!
+            allowed_types = []
+
+            if int(quest['type_0_allowed']) == 1:
+                allowed_types.append(0)
+            if int(quest['type_1_allowed']) == 1:
+                allowed_types.append(1)
+            if int(quest['type_2_allowed']) == 1:
+                allowed_types.append(2)
+
+            question_type = random.choice(allowed_types)
+
+            dbconnect = questions_table_access_layer.QuestionTableAccess()
+            if quest['chapter_index']:
+                result = dbconnect.get_question_random_by_type_and_chapter(question_type, quest['chapter_index'])
+            elif quest['topic_index']:
+                result = dbconnect.get_question_random_by_type_and_topic(question_type, quest['topic_index'])
+            else:
+                result = {'error': 'Something bad has occurred.'}
 
             dbconnect.close_connection()
 
             return jsonify(result)
+
         else:
             abort(403, "Unable to authenticate user")
 
@@ -223,7 +320,6 @@ def get_validation():
             incoming_request = request
             print(incoming_request)
             user_answer = (request.json['user_answer'])
-            print("User has chosen quest index: " + quest_index)
 
             # get question index of current question
             dbconnect = users_table_access_layer.UserTableAccess()
@@ -258,26 +354,32 @@ def get_validation():
         abort(500, "Unable to retrieve random question")
 
 
-@app.route('/api/v1/tokensignin', methods=['POST'])
-def sign_in():
+@app.route('/api/v1/create/account', methods=['POST'])
+def create_account():
     try:
+        incoming_request = request
+        print(incoming_request)
+
         token = request.json['user_identifier']
         r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
+        user_id = str(r.json()['sub'])
+        user_email = str(r.json()['email'])
+        print(user_id)
+
         dbconnect = users_table_access_layer.UserTableAccess()
-        exists = dbconnect.check_if_user_valid(str(r.json()['sub']))
+        exists = dbconnect.check_if_user_valid(str(user_id))
 
         if exists:
             dbconnect.close_connection()
-            print('user exists')
+            print('user already exists')
             return jsonify(user_exists='true')
         else:
             print('user does not exist')
-            new_user = user_obj_generator.user(idinfo['sub'],
-                                               idinfo['given_name'],
-                                               idinfo['family_name'],
-                                               idinfo['email'],
-                                               '0'
-                                               '0'
+            new_user = user_obj_generator.user(user_id=user_id,
+                                               first_name='derpington',
+                                               last_name='derpserson',
+                                               e_mail=user_email,
+                                               paid_through=datetime.datetime.today() + datetime.timedelta(days=365)
                                                )
 
             dbconnect.add_user_new(new_user)
@@ -287,21 +389,6 @@ def sign_in():
     except Exception as ex:
         print(ex)
         print('Invalid token')
-
-
-@app.route('/api/v1/get/next/prompt/by/student', methods=['POST'])
-def get_next_prompt_by_student():
-    try:
-        exists = authenticate_user(request)
-        if exists:
-            user_id = (request.json['user_id'])
-            print("user id = " + str(user_id))
-            return jsonify(response_type='derpderp')
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        print("Unable to retrieve activity list.")
 
 
 @app.route('/api/v1/paidsignin', methods=['POST'])
@@ -337,204 +424,6 @@ def add_random():
 # Student client routes
 # -------------------------------------------------------------
 
-
-@app.route('/api/v1/get/activity/daily', methods=['POST'])
-def get_activity_daily():
-    try:
-        exists = authenticate_user(request)
-        if exists:
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            current_chapter = 3 # change this to get the current chapter OR topic
-
-            dailies = dbconnect.get_daily_quests_by_chapter(current_chapter)
-            dbconnect.close_connection()
-            print(type(dailies))
-            return json.dumps(dailies)
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        print("Unable to retrieve activity list.")
-
-
-@app.route('/api/v1/set/activity', methods=['POST'])
-def set_activity():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            dbconnect = users_table_access_layer.UserTableAccess()
-
-            dbconnect.update_user_activity(authentication_response['user_id'], request['activity_index'])
-            dbconnect.close_connection()
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-
-            return json.dumps(dailies)
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        print("Unable to retrieve activity list.")
-
-
-@app.route('/api/v1/get/activity/list', methods=['POST'])
-def get_activity_list():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-        # grab current activity list
-
-        # return list text to user
-            return True
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        print("Unable to retrieve activity list.")
-
-
-@app.route('/api/v1/set/activity/by/user', methods=['POST'])
-def set_activity_by_user():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-        # save activity index in (user)? database?
-            return True
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        print("Unable to save activity.")
-
-
-@app.route('/api/vi/set/activity/<chapter>/<topic>/<question_type>', methods=['POST'])
-def set_activity_by_options():
-    return True
-
-
-@app.route('/api/v1/get/question/next/by/activity', methods=['POST'])
-def get_question_next_by_activity():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-        # determine user identity
-
-        # get current activity for user
-
-        # update activity progress
-
-        # generate valid question parameters for given activity
-        # get a question from database that matches question parameters
-        # return question to client
-
-            return True
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to retrieve next question.")
-
-
-@app.route('/api/v1/validate/question', methods=['POST'])
-def validate_question():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            incoming_request = request
-            print(incoming_request)
-
-            # TODO: implement the following psuedocode instead of what is here already
-            # identify user
-
-            # grab the last question that the user was served
-
-            # get the answer to the question
-
-            # compare the answer to the user's answer
-
-            # if answer is correct
-                # record point gain for user
-                # update the user's multiplier
-                # update user's activity progress
-                # return true
-
-            # if answer is incorrect
-                # update the user's multiplier
-                # update user's activity progress
-                # return false
-
-            question_id = (request.json['question_id'])
-            user_answer = int((request.json['user_answer']))
-            print("question ID = " + str(question_id))
-            print("given answer index = " + str(user_answer))
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-
-            result = dbconnect.get_question_by_question_id(question_id)
-            correct_answer = result.get_correct_answer_index()
-
-            print("correct answer index = " + str(correct_answer))
-            print("question type index = " + str(result.get_type()))
-            print("question topic index = " + str(result.get_topic()))
-
-            dbconnect.close_connection()
-
-            if user_answer == correct_answer:
-                return jsonify(validation='true', answer_index=str(correct_answer))
-            else:
-                return jsonify(validation='false', answer_index=str(correct_answer), given_answer=str(user_answer))
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to validate question")
-
-
-@app.route('/api/v1/get/question/definition/by/topic', methods=['POST'])
-def get_question_definition_by_topic():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            incoming_request = request
-            print(incoming_request)
-            topic_index = (request.json['topic'])
-            print(topic_index)
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-            result = dbconnect.get_question_def_by_topic(topic_index)
-
-            dbconnect.close_connection()
-            return result.get_jsonified()
-        else:
-            abort(403, "Unable to authenticate user")
-
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to retrieve random question")
-
-
-@app.route('/api/v1/get/question/random', methods=['POST'])
-def get_question_random():
-    try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            incoming_request = request
-            print(incoming_request)
-            qType = (request.json['question_type'])
-            print(qType)
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-            result = dbconnect.get_question_random_by_type(qType)
-
-            dbconnect.close_connection()
-            return result.get_jsonified()
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to retrieve random question")
-
-
 # -------------------------------------------------------------
 # Professor client routes
 # -------------------------------------------------------------
@@ -545,8 +434,8 @@ def get_question_random():
 # returns JSON that includes question text and answer text
 
 
-@app.route('/api/v1/get/question/by_id', methods=['POST'])
-def get_question_byid():
+@app.route('/api/v1/get/question/<question>', methods=['POST'])
+def get_question_by_question_id():
     try:
         incoming_request = request
         print(incoming_request)

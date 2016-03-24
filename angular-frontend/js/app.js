@@ -99,6 +99,42 @@
         );
       };
 
+      $scope.startQuest = function(){
+        apiCall.debug(urlList.makeUrl('start/quest'), JSON.stringify({'user_identifier': $auth.getToken(), 'quest_index': '46'}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.resumeQuest = function(){
+        apiCall.debug(urlList.makeUrl('get/user'), JSON.stringify({'user_identifier': $auth.getToken()}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.createAccount = function(){
+        apiCall.debug(urlList.makeUrl('create/account'), JSON.stringify({'user_identifier': $auth.getToken()}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
       $scope.clearQuestions = function(){
 
       };
