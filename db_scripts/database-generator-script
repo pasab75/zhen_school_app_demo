@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   PRIMARY KEY (`question_id`),
   UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 18392
+AUTO_INCREMENT = 28392
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
   `daily` TINYINT(1) NULL DEFAULT '0',
   PRIMARY KEY (`quest_index`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3201
+AUTO_INCREMENT = 5201
 DEFAULT CHARACTER SET = utf8;
 
 
