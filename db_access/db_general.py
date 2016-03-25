@@ -16,13 +16,13 @@ class GeneralDatabaseConnection:
     def __init__(self):
         print("connected")
         self.db_connection = pymysql.connect(host='localhost',
-                                            user='appuser',
-                                            password='carhorsebatterysuccess',
-                                            db='testdb',
-                                            charset='utf8mb4',
-                                            cursorclass=pymysql.cursors.DictCursor,
-                                            autocommit=True
-                                            )
+                                             user='appuser',
+                                             password='carhorsebatterysuccess',
+                                             db='testdb',
+                                             charset='utf8mb4',
+                                             cursorclass=pymysql.cursors.DictCursor,
+                                             autocommit=True
+                                             )
 
     # As a rule of thumb, all values that can be thought of as text input from the API should never
     # be concatenated into a SQL query directly. Instead, they should be passed as arguments to the execution
@@ -124,8 +124,8 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "DELETE FROM %s WHERE %s = %s"
-                    args = (table, field, value)
+                    sql = "DELETE FROM {} WHERE %s = %s".format(table)
+                    args = (field, value)
                     cursor.execute(sql, args)
 
                     return True
