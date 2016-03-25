@@ -1,6 +1,6 @@
 from db_access.db_general import GeneralDatabaseConnection
 import business_objects.question as question_obj_generator
-from random import shuffle, randint
+from random import shuffle, randint, choice
 
 
 class QuestionTableAccess(GeneralDatabaseConnection):
@@ -55,15 +55,19 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                     answerlist.append("five")
                     answerlist.append("six")
 
-                    question = question_obj_generator.question(question_text, answerlist, topic, questionType, answerid)
+                    question = question_obj_generator.question(question_text,
+                                                               answerlist,
+                                                               topic,
+                                                               questionType,
+                                                               answerlist[int(answerid)]
+                                                               )
 
                 else:
-                    answer = str(randint(0, 100000))
+                    answerid = str(randint(0, 100000))
                     question_text = ('I am a calculation type question. My answer is ' +
-                                  answer + '. My topic is ' + topic + ".")
-                    answerlist.append(answer)
+                                  answerid + '. My topic is ' + topic + ".")
 
-                    question = question_obj_generator.question(question_text, answerlist, topic, questionType)
+                    question = question_obj_generator.question(question_text, answerlist, topic, questionType, answerid)
 
                 self.save_new_row_in_table(question.get_dictionary(), 'questions')
 
@@ -73,6 +77,32 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     # -------------------------------------------------------------
     # READ methods
     # -------------------------------------------------------------
+
+    def get_question_by_quest(self, quest):
+        try:
+            allowed_types = []
+
+            if int(quest['type_0_allowed']) == 1:
+                allowed_types.append(0)
+            if int(quest['type_1_allowed']) == 1:
+                allowed_types.append(1)
+            if int(quest['type_2_allowed']) == 1:
+                allowed_types.append(2)
+
+            question_type = choice(allowed_types)
+
+            if quest['chapter_index']:
+                topic = self.get_topic_random_by_chapter(quest['chapter_index'])
+            else:
+                topic = quest['topic_index']
+
+            if question_type == 0:
+                return self.get_question_definition_by_topic(topic)
+            else:
+                return self.get_question_random_by_type_and_topic(question_type, topic)
+
+        except Exception as e:
+            print("Error getting quest question: " + str(e))
 
     # returns which chapter a certain topic corresponds to
     def get_chapter_by_topic(self, topic):
@@ -178,8 +208,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                 with self.db_connection.cursor() as cursor:
                     sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 1;"
                     cursor.execute(sql)
-                    question = question_obj_generator.question()
-                    question.set_dictionary(cursor.fetchone())
+                    question = cursor.fetchone()
 
                     return question
             except Exception as e:
@@ -205,7 +234,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
     # it uses the other 5 questions to put in answer distractors
     # it will return a question object and then updates the correct answer field of the primary question using the
     # question_id
-    def get_question_def_by_topic(self, topic):
+    def get_question_definition_by_topic(self, topic):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
@@ -241,7 +270,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                                                                    answerlist,
                                                                    primary_question['topic_index'],
                                                                    primary_question['question_type'],
-                                                                   str(correct_index),
+                                                                   primary_question['answer_a_text'],
                                                                    primary_question['question_id'])
                     else:
                         for i in range(6):
@@ -251,15 +280,15 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                                                                    answerlist,
                                                                    primary_question['topic_index'],
                                                                    primary_question['question_type'],
-                                                                   str(correct_index),
+                                                                   primary_question['question_text'],
                                                                    primary_question['question_id'])
 
                     sql = ("UPDATE `questions` "
-                           "SET `correct_answer_index` = %s "
+                           "SET `correct_answer` = %s "
                            "WHERE question_id = %s "
                            ";")
 
-                    args = (question.get_correct_answer_index(), question.get_question_id())
+                    args = (question.get_correct_answer(), question.get_question_id())
                     cursor.execute(sql, args)
 
                     return question

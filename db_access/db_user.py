@@ -2,6 +2,7 @@ from db_access.db_general import GeneralDatabaseConnection
 import datetime
 import business_objects.user as user_generator
 
+
 class UserTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
@@ -173,20 +174,6 @@ class UserTableAccess(GeneralDatabaseConnection):
     # WRITE methods
     # -------------------------------------------------------------
 
-    def update_user_activity(self, user_id, activity_index):
-        try:
-            try:
-                with self.db_connection.cursor() as cursor:
-                    sql = "SELECT FROM users WHERE 'user_id' = %s SET 'current_activity_index' = %s"
-                    cursor.execute(sql, user_id, activity_index)
-
-                    return True
-
-            except Exception as ex:
-                print("Error updating points :" + str(ex))
-        except Exception as ex:
-            print("Unable to update user: " + str(ex))
-
     def add_user_new(self, user):
         try:
             self.save_new_row_in_table(user.get_dictionary(), 'users')
@@ -214,13 +201,14 @@ class UserTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT FROM users WHERE 'user_id' = {} SET points = points + %s".format(user_id)
-                    cursor.execute(sql, question_id)
+                    sql = "UPDATE users SET current_question_id = %s WHERE user_id = %s"
+                    args = (question_id, user_id)
+                    cursor.execute(sql, args)
 
                     return True
 
             except Exception as ex:
-                print("Error updating points :" + str(ex))
+                print("Error updating user question :" + str(ex))
         except Exception as e:
             print("Error connecting: "+str(e))
             return False
@@ -229,8 +217,9 @@ class UserTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT FROM users WHERE 'user_id' = {} SET points = points + %s".format(user_id)
-                    cursor.execute(sql, points_to_add)
+                    sql = "UPDATE users SET current_points = current_points + %s WHERE user_id = %s"
+                    args = (points_to_add, user_id)
+                    cursor.execute(sql, args)
 
                     return True
 
@@ -240,14 +229,46 @@ class UserTableAccess(GeneralDatabaseConnection):
             print("Error connecting: "+str(e))
             return False
 
+    def update_user_multiplier(self, user_id, multiplier_increase):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "UPDATE users SET point_multiplier = point_multiplier + %s WHERE user_id = %s"
+                    args = (multiplier_increase, user_id)
+                    cursor.execute(sql, args)
+
+                    return True
+
+            except Exception as ex:
+                print("Error updating user multiplier :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def update_user_quest_progress(self, user_id):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "UPDATE users SET quest_progress = quest_progress + 1 WHERE user_id = %s"
+                    cursor.execute(sql, user_id)
+
+                    return True
+
+            except Exception as ex:
+                print("Error updating quest progress :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
     def null_user_quest(self, user_id):
         try:
-            user_info = {'quest_index': 'NULL',
-                         'quest_progress': 'NULL',
-                         'date_quest_started': 'NULL',
-                         'current_question_id': 'NULL'
+            user_info = {'user_id': user_id,
+                         'quest_index': None,
+                         'quest_progress': None,
+                         'date_quest_started': None,
+                         'current_question_id': None
                          }
-            self.update_row_in_table(user_info, 'users', user_id)
+            self.update_row_in_table(user_info, 'users', 'user_id')
             return True
         except Exception as e:
             print("Error connecting: "+str(e))

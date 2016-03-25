@@ -85,7 +85,7 @@ def database_init():
 
         dbconnect = quest_table_access_layer.QuestTableAccess()
         dbconnect.empty_table('quests')
-        dbconnect.add_dummy_quests(100)
+        dbconnect.add_dummy_quests(1000)
         dbconnect.close_connection()
 
         dbconnect = questions_table_access_layer.QuestionTableAccess()
@@ -144,6 +144,10 @@ def get_quests_daily():
         print("Unable to retrieve user.")
 
 
+# starts a quest of the user's selection
+# this route requires a json object with the following fields:
+# quest_index = index of the quest user is requesting to start
+# user_identifier = user's access token
 @app.route('/api/v1/start/quest', methods=['POST'])
 def start_quest():
     try:
@@ -171,27 +175,8 @@ def start_quest():
             quest = dbconnect.get_quest_by_quest_index(user_input_quest)
             dbconnect.close_connection()
 
-
-            # TODO make a question function to get by quest!
-            allowed_types = []
-
-            if int(quest['type_0_allowed']) == 1:
-                allowed_types.append(0)
-            if int(quest['type_1_allowed']) == 1:
-                allowed_types.append(1)
-            if int(quest['type_2_allowed']) == 1:
-                allowed_types.append(2)
-
-            question_type = random.choice(allowed_types)
-
             dbconnect = questions_table_access_layer.QuestionTableAccess()
-            if quest['chapter_index']:
-                question = dbconnect.get_question_random_by_type_and_chapter(question_type, quest['chapter_index'])
-            elif quest['topic_index']:
-                question = dbconnect.get_question_random_by_type_and_topic(question_type, quest['topic_index'])
-            else:
-                question = {'error': 'Something bad has occurred.'}
-
+            question = dbconnect.get_question_by_quest(quest)
             dbconnect.close_connection()
 
             dbconnect = users_table_access_layer.UserTableAccess()
@@ -208,6 +193,9 @@ def start_quest():
         abort(500, "Unable to retrieve random question")
 
 
+# clears current quest data for a user in case they want to start something new
+# request requires only
+# user_identifier = user's access token
 @app.route('/api/v1/stop/quest', methods=['POST'])
 def stop_quest():
     try:
@@ -238,6 +226,9 @@ def stop_quest():
         abort(500, "Unable to retrieve random question")
 
 
+# returns the last question the user worked on by looking it up from user table
+# request requires only
+# user_identifier = user's access token
 @app.route('/api/v1/resume/quest', methods=['POST'])
 def resume_quest():
     try:
@@ -269,41 +260,6 @@ def resume_quest():
                 print('quest is outdated, please start a new quest')
 
         else:
-            user_input_quest = request.json['quest_index']
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.set_user_quest_by_user_id(user_id, user_input_quest)
-            dbconnect.close_connection()
-
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            quest = dbconnect.get_quest_by_quest_index(user_input_quest)
-            dbconnect.close_connection()
-
-
-            # TODO make a question function to get by quest!
-            allowed_types = []
-
-            if int(quest['type_0_allowed']) == 1:
-                allowed_types.append(0)
-            if int(quest['type_1_allowed']) == 1:
-                allowed_types.append(1)
-            if int(quest['type_2_allowed']) == 1:
-                allowed_types.append(2)
-
-            question_type = random.choice(allowed_types)
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-            if quest['chapter_index']:
-                result = dbconnect.get_question_random_by_type_and_chapter(question_type, quest['chapter_index'])
-            elif quest['topic_index']:
-                result = dbconnect.get_question_random_by_type_and_topic(question_type, quest['topic_index'])
-            else:
-                result = {'error': 'Something bad has occurred.'}
-
-            dbconnect.close_connection()
-
-            return jsonify(result)
-
-        else:
             abort(403, "Unable to authenticate user")
 
     except Exception as ex:
@@ -311,6 +267,10 @@ def resume_quest():
         abort(500, "Unable to retrieve random question")
 
 
+# returns the correct answer for the user's current question
+# request requires
+# user_identifier = user's access token
+# user_answer = either the index or the value of the user's answer
 @app.route('/api/v1/get/validation', methods=['POST'])
 def get_validation():
     try:
@@ -319,33 +279,69 @@ def get_validation():
             user_id = authentication_response['user_id']
             incoming_request = request
             print(incoming_request)
-            user_answer = (request.json['user_answer'])
 
+            user_answer = (request.json['user_answer'])
+            print(request.json)
             # get question index of current question
             dbconnect = users_table_access_layer.UserTableAccess()
-            question_id = dbconnect.get_user_current_question_id_by_user_id(user_id)
+            user = dbconnect.get_user_by_user_id(user_id)
+            question_id = user['current_question_id']
             dbconnect.close_connection()
 
             # get question with current question index
-
             dbconnect = questions_table_access_layer.QuestionTableAccess()
             question = dbconnect.get_question_by_question_id(question_id)
-            correct_answer = question.get_correct_answer_index()
             dbconnect.close_connection()
+
+            correct_answer = str(question['correct_answer'])
 
             # check if this is the last question of the set
 
+            dbconnect = users_table_access_layer.UserTableAccess()
+            print(type(user_answer))
+            print(type(correct_answer))
+            print('user answer is ' + user_answer)
+            print('correct answer is ' + correct_answer)
+
             if user_answer == correct_answer:
-                print('do the things')
+                print('user is correct')
                 # update points
+                dbconnect.update_user_points(user_id, 10*int(user['point_multiplier']))
                 # increase multiplier
+                if user['point_multiplier'] < 10:
+                    dbconnect.update_user_multiplier(user_id, 1)
             else:
-                print('do the other things')
+                print('user is incorrect')
                 # decrease multiplier
+                if user['point_multiplier'] > 1:
+                    dbconnect.update_user_multiplier(user_id, -1)
 
-            validation_package = {}
+            dbconnect.update_user_quest_progress(user_id)
+            user = dbconnect.get_user_by_user_id(user_id)
+            dbconnect.close_connection()
 
-            return validation_package
+            dbconnect = quest_table_access_layer.QuestTableAccess()
+            quest = dbconnect.get_quest_by_quest_index(user['quest_index'])
+            dbconnect.close_connection()
+
+            dbconnect = questions_table_access_layer.QuestionTableAccess()
+            new_question = dbconnect.get_question_by_quest(quest)
+            dbconnect.close_connection()
+
+            dbconnect = users_table_access_layer.UserTableAccess()
+            dbconnect.update_user_current_question(user_id, new_question['question_id'])
+            dbconnect.close_connection()
+
+            validation_package = {'correct_answer': correct_answer,
+                                  'multiplier': user['point_multiplier'],
+                                  'points': user['current_points'],
+                                  'lvl': user['current_lvl']
+                                  }
+
+            # get a new question id for the user
+            # put it in the user table so the user can get the question when they resume the quest
+
+            return jsonify(validation_package)
         else:
             abort(403, "Unable to authenticate user")
 

@@ -3,7 +3,7 @@ from flask import jsonify
 
 class question():
     def __init__(self, question_text=None, anslist=None, topic=None,
-                 question_type=None, correct_answer_index=None, question_id=None,
+                 question_type=None, correct_answer=None, question_id=None,
                  difficulty=None, image_path=None, avg_time_to_solve=None):
         self._dictionary = {'question_id': question_id,
                             'question_text': question_text,
@@ -13,10 +13,11 @@ class question():
                             "answer_d_text": None,
                             "answer_e_text": None,
                             "answer_f_text": None,
-                            'correct_answer_index': correct_answer_index,
+                            'correct_answer': correct_answer,
                             'topic': topic,
                             'question_type': question_type,
-                            'difficulty': difficulty,
+                            'instructor_difficulty': difficulty,
+                            'user_difficulty': 0,
                             'image_path': image_path,
                             'avg_time_to_solve': avg_time_to_solve
                             }
@@ -50,8 +51,8 @@ class question():
         except Exception as e:
             print("This question does not have that key. " + str(e))
 
-    def get_correct_answer_index(self):
-        return self._dictionary['correct_answer_index']
+    def get_correct_answer(self):
+        return self._dictionary['correct_answer']
 
     def get_question_text(self):
         return self._dictionary['question_text']

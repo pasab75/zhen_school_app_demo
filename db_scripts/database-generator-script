@@ -26,10 +26,11 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `user_id` CHAR(21) NOT NULL,
   `time` TIME NOT NULL,
   `date` DATE NOT NULL,
-  `correct` TINYINT(1) NOT NULL,
+  `correct` TINYINT(1) NULL DEFAULT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
-  `activity` INT(11) NOT NULL)
+  `activity` INT(11) NULL DEFAULT NULL,
+  `question_id` INT(11) NULL DEFAULT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -43,21 +44,22 @@ CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
   `question_id` INT(11) NOT NULL AUTO_INCREMENT,
   `question_text` VARCHAR(500) NOT NULL,
   `image_path` VARCHAR(200) NULL DEFAULT NULL,
-  `answer_a_text` VARCHAR(50) NOT NULL,
+  `answer_a_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_b_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
   `answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
-  `correct_answer_index` INT(11) NULL DEFAULT NULL,
+  `correct_answer` VARCHAR(500) NULL DEFAULT NULL,
   `topic` INT(11) NULL DEFAULT NULL,
   `question_type` INT(11) NULL DEFAULT NULL,
   `avg_time_to_solve` TIME NULL DEFAULT NULL,
-  `difficulty` INT(11) NULL DEFAULT NULL,
+  `instructor_difficulty` INT(11) NULL DEFAULT NULL,
+  `user_difficulty` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`question_id`),
   UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 18392
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -81,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
   `daily` TINYINT(1) NULL DEFAULT '0',
   PRIMARY KEY (`quest_index`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 3201
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -116,11 +118,13 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `e_mail` VARCHAR(50) NOT NULL,
   `current_lvl` INT(11) NOT NULL DEFAULT '1',
   `current_points` INT(11) NOT NULL DEFAULT '0',
+  `point_multiplier` INT(11) NULL DEFAULT '1',
   `paid_through` DATETIME NULL DEFAULT NULL,
   `quest_index` INT(11) NULL DEFAULT NULL,
+  `date_quest_started` DATETIME NULL DEFAULT NULL,
   `quest_progress` INT(11) NULL DEFAULT '0',
   `current_question_id` INT(11) NULL DEFAULT NULL,
-  `date_quest_started` DATETIME NULL DEFAULT NULL,
+  `datetime_question_started` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
 ENGINE = InnoDB

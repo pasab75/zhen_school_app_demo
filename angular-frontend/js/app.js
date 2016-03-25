@@ -22,14 +22,9 @@
       $scope.statusCount = 0;
       $scope.string_to_send = JSON.stringify({'user_identifier':$auth.getToken() ,'user_id':'12345'})
       $scope.barf = "nothing to barf yet";
-
-      $scope.doSomething = function(){
-        apiCall.debug(urlList.makeUrl('get/next/prompt/by/student'), $scope.string_to_send, function(data){
-          $scope.status = 'I did something ' + data.data.response_type;
-          $scope.barf = data.data;}, function(data){
-            $scope.status = 'I failed ' +  data['response_type'];
-            $scope.barf = data.data;});
-      };
+      $scope.topic = '';
+      $scope.quest = '';
+      $scope.answer = '';
 
       $scope.initializeDatabase = function(){
         apiCall.debug(urlList.makeUrl('database/initialize'), 'DO IT NOW', function(data){
@@ -37,54 +32,6 @@
           $scope.barf = data.data;}, function(data){
             $scope.status = 'I failed ' +  data['response_type'];
             $scope.barf = data.data;});
-      };
-
-      $scope.getQuestion = function(){
-        apiCall.debug(urlList.makeUrl('get/question/definition/by/topic'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.getDailies = function(){
-        apiCall.debug(urlList.makeUrl('get/quests/daily'), JSON.stringify({'user_identifier': $auth.getToken(),'topic':'3'}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.getQuestQuestion = function(){
-        apiCall.debug(urlList.makeUrl('get/question/by/quest'), JSON.stringify({'user_identifier': $auth.getToken(),'quest_index':'3'}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.getValidation = function(){
-        apiCall.debug(urlList.makeUrl('get/validation/'), JSON.stringify({'user_identifier': $auth.getToken(),'user_answer':'3'}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
       };
 
       $scope.getUser = function(){
@@ -99,8 +46,20 @@
         );
       };
 
+      $scope.getDailies = function(){
+        apiCall.debug(urlList.makeUrl('get/quests/daily'), JSON.stringify({'user_identifier': $auth.getToken(),'topic': $scope.topic}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
       $scope.startQuest = function(){
-        apiCall.debug(urlList.makeUrl('start/quest'), JSON.stringify({'user_identifier': $auth.getToken(), 'quest_index': '46'}),
+        apiCall.debug(urlList.makeUrl('start/quest'), JSON.stringify({'user_identifier': $auth.getToken(), 'quest_index': $scope.quest}),
           function(data){
             $scope.barf = data.data;
             $scope.status = 'I succeeded';
@@ -112,7 +71,31 @@
       };
 
       $scope.resumeQuest = function(){
-        apiCall.debug(urlList.makeUrl('get/user'), JSON.stringify({'user_identifier': $auth.getToken()}),
+        apiCall.debug(urlList.makeUrl('resume/quest'), JSON.stringify({'user_identifier': $auth.getToken()}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.stopQuest = function(){
+        apiCall.debug(urlList.makeUrl('stop/quest'), JSON.stringify({'user_identifier': $auth.getToken()}),
+          function(data){
+            $scope.barf = data.data;
+            $scope.status = 'I succeeded';
+          },
+          function(data){
+            $scope.status = 'I failed ';
+          }
+        );
+      };
+
+      $scope.getValidation = function(){
+        apiCall.debug(urlList.makeUrl('get/validation'), JSON.stringify({'user_identifier': $auth.getToken(),'user_answer': $scope.answer}),
           function(data){
             $scope.barf = data.data;
             $scope.status = 'I succeeded';
@@ -133,20 +116,6 @@
             $scope.status = 'I failed ';
           }
         );
-      };
-
-      $scope.clearQuestions = function(){
-
-      };
-
-      $scope.successFunction = function(data){
-        $scope.status = 'I did something ' + data;
-        $scope.statusCount ++;
-      };
-
-      $scope.failureFunction = function(data){
-        $scope.status = 'I failed ' + data;
-        $scope.statusCount = 0;
       };
     });//end of controller
 

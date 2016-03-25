@@ -73,32 +73,36 @@
 
     <div class='container debug' ng-controller='debug-controller as debug'>
         <div>
-            <a class='btn btn-primary' ng-click='doSomething()'>Do Something</a>
-        </div>
-        <div>
             <a class='btn btn-primary' ng-click='initializeDatabase()'>Rebuild Database</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='getQuestion()'>Get a Question</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='getDailies()'>Get quests</a>
         </div>
         <div>
             <a class='btn btn-primary' ng-click='getUser()'>Get user information</a>
         </div>
         <div>
-            <a class='btn btn-primary' ng-click='getQuestQuestion()'>Get quest question</a>
+            topic: <input ng-model='topic' />
+            <a class='btn btn-primary' ng-click='getDailies()'>Get quests</a>
         </div>
         <div>
+            quest: <input ng-model='quest' />
+            <a class='btn btn-primary' ng-click='startQuest()'>Start a Quest</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='resumeQuest()'>Resume a Quest</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='stopQuest()'>End a Quest</a>
+        </div>
+        <div>
+            answer: <input ng-model='answer' />
             <a class='btn btn-primary' ng-click='getValidation()'>Check to see if answer is correct</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='startQuest()'>Start quest 5</a>
         </div>
         <div>
             <a class='btn btn-primary' ng-click='createAccount()'>Create new user</a>
         </div>
+
+        <p>
+            topic: {{topic}} answer: {{answer}} quest: {{quest}}
+        </p>
 
         <p>
             {{status}}
