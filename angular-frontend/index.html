@@ -9,6 +9,7 @@
       <meta name="google-signin-client_id" content="334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com">
       <link rel="apple-touch-icon" href="apple-touch-icon.png">
       <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/animate.css">
       <!--<link rel="stylesheet" href="css/normalize.min.css">-->
       <link rel="stylesheet" href="css/main.css">
   </head>
@@ -71,7 +72,14 @@
       <div class="progress-bar progress-bar-info" style="width: 20%"></div>
     </div> -->
 
-    <div class='container debug' ng-controller='debug-controller as debug'>
+    <div class='container debug' ng-show='exists.views.debug' ng-controller='debug-controller as debug'>
+        <div>
+        <div>
+            <a class='btn btn-primary' ng-click='displayQuestionType(0)'>Display Question</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='displayQuestSelect()'>Display Quest Selection</a>
+        </div>
         <div>
             <a class='btn btn-primary' ng-click='initializeDatabase()'>Rebuild Database</a>
         </div>
@@ -105,17 +113,29 @@
         </p>
 
         <p>
-            {{status}}
+            {{exists.views}}
         </p>
         <p>
             {{barf}}
         </p>
+        </div>
     </div>
 
-
     <div class="row">
+
         <div class="col-sm-3"></div>
-    <div ng-show='loggedIn()' class="container activity-container col-sm-6" ng-controller='activity-controller as actCtrl'>
+
+    <div ng-show='exists.views.sectionSelect' class="col-sm-6 container">
+    <div>
+        <h1>Free Study</h1>
+        <h2>Coming Soon!</h2>
+    </div>
+    <div>
+        <h1>Daily Quests</h1>
+    </div>
+    </div>
+
+    <div ng-show='exists.views.questSelect' class="container activity-container col-sm-6" ng-controller='activity-controller as actCtrl'>
       <div>
           <div ng-repeat='activity in activities'>
                 <h2>
@@ -137,49 +157,32 @@
         </div>
     </div>
 
-      <div ng-show='loggedIn()' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
-        <div>
-            <div class='jumbotron'>
-                <h2>
-                  {{question.question_text}}
-                </h2>
-            </div>
-            <div ng-controller='answer-controller as ansCtrl'>
-                <div ng-class="{'panel-default':clickedNone(0), 'panel-warning':clickedOnce(0), 'panel-danger':clickedTwice(0)}" ng-click='addClick(0)' class='panel'>
-                    <p>
-                        {{question.answer_1+" I have been clicked "+clicked[0]}}
-                    </p>
-                </div>
-                <div ng-class="{'panel-default':clickedNone(1), 'panel-warning':clickedOnce(1), 'panel-danger':clickedTwice(1)}" ng-click='addClick(1)' class='panel'>
-                    <p>
-                        {{question.answer_2+" I have been clicked "+clicked[1]}}
-                    </p>
-                </div>
-                <div ng-class="{'panel-default':clickedNone(2), 'panel-warning':clickedOnce(2), 'panel-danger':clickedTwice(2)}" ng-click='addClick(2)' class='panel'>
-                    <p>
-                        {{question.answer_3+" I have been clicked "+clicked[2]}}
-                    </p>
-                </div>
-                <div ng-class="{'panel-default':clickedNone(3), 'panel-warning':clickedOnce(3), 'panel-danger':clickedTwice(3)}" ng-click='addClick(3)' class='panel'>
-                    <p>
-                        {{question.answer_4+" I have been clicked "+clicked[3]}}
-                    </p>
-                </div>
-                <div ng-class="{'panel-default':clickedNone(4), 'panel-warning':clickedOnce(4), 'panel-danger':clickedTwice(4)}" ng-click='addClick(4)' class='panel'>
-                    <p>
-                        {{question.answer_5+" I have been clicked "+clicked[4]}}
-                    </p>
-                </div>
-                <div ng-class="{'panel-default':clickedNone(5), 'panel-warning':clickedOnce(5), 'panel-danger':clickedTwice(5)}" ng-click='addClick(5)' class='panel'>
-                    <p>
-                        {{question.answer_6+" I have been clicked "+clicked[5]}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        </div>
+    <div ng-show='exists.views.question_type[0]' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
+      <div>
+          <div>
+              <a class='btn btn-primary' ng-click='doStuff()'>Change Question</a>
+          </div>
+          <div class='jumbotron'>
+              <h2>
+                {{question.question_text}}
+              </h2>
+          </div>
+          <div ng-controller='answer-controller as ansCtrl'>
+              <div
+                  ng-repeat='answer in question.answers'
+                  ng-animate="{enter: 'flipInX', leave: 'flipOutX'}"
+                  ng-class="{'panel-default': clickArray[$index] == 0, 'panel-warning': clickArray[$index] == 1, 'panel-danger': clickArray[$index] >= 2}"
+                  ng-click='clickUpdate($index)'
+                  class='panel panel-warning'>
+                  <p>
+                      {{answer + " I have been clicked " + clickArray[$index]}}
+                  </p>
+              </div>
+          </div>
+      </div>
+      </div>
 
-      <div ng-show='loggedIn()' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
+      <div ng-show='exists.views.question_type[2]' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
         <div>
             <div>
                 <h2>
@@ -194,6 +197,9 @@
             </div>
         </div>
       </div>
+
+      <div class="col-sm-3"></div>
+
       </div>
 
   <!-- third party -->
@@ -208,7 +214,8 @@
         <script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
 
   <!-- custom -->
-      <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/app.js"></script>
 
   </body>
 </html>

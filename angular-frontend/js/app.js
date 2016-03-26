@@ -1,6 +1,6 @@
 
 (function(){
-  var app = angular.module('exBook', ['ui.bootstrap', 'satellizer']);
+  var app = angular.module('exBook', ['services', 'ui.bootstrap', 'satellizer']);
 
     app.config(function($authProvider){
       $authProvider.google({
@@ -17,7 +17,7 @@
       });
     });
 
-    app.controller('debug-controller', function($scope, $auth, apiCall, urlList){
+    app.controller('debug-controller', function($scope, $auth, apiCall, urlList, ViewState){
       $scope.status = "I haven't done anything yet";
       $scope.statusCount = 0;
       $scope.string_to_send = JSON.stringify({'user_identifier':$auth.getToken() ,'user_id':'12345'})
@@ -25,6 +25,16 @@
       $scope.topic = '';
       $scope.quest = '';
       $scope.answer = '';
+
+      $scope.exists = ViewState.data;
+
+      $scope.displayQuestionType = function(index){
+        ViewState.displayQuestionType(index);
+      };
+
+      $scope.displayQuestSelect = function(){
+        ViewState.displayQuestSelect();
+      };
 
       $scope.initializeDatabase = function(){
         apiCall.debug(urlList.makeUrl('database/initialize'), 'DO IT NOW', function(data){
@@ -152,10 +162,12 @@
       }
     });
 
-    app.controller('login-controller', function($scope, $auth, $log, login){
+    app.controller('login-controller', function($scope, $auth, $log, login, ViewState){
 
       $auth.setStorageType('sessionStorage');
       $scope.data = {};
+
+      $scope.exists = ViewState.data;
 
       $scope.loggedIn = function(){
         return login.getLoginStatus();
@@ -181,7 +193,7 @@
 
     });//end of controller
 
-    app.controller('activity-controller', function($scope, login){
+    app.controller('activity-controller', function($scope, login, ViewState){
       var activities = [
         {
           title: 'This is activity number 1',
@@ -225,6 +237,8 @@
         },
       ];
 
+      $scope.exists = ViewState.data;
+
       $scope.activities = activities;
 
       $scope.loggedIn = function(){
@@ -237,218 +251,85 @@
 
     });//end of activity-controller
 
-    app.controller('question-controller', function($scope, login){
-
-      var question = {
+    app.controller('question-controller', function($scope, login, ViewState){
+      var question1 = {
           question_text: 'This is question number 1',
-          answer_1: 'This is answer number 1',
-          answer_2: 'This is answer number 2',
-          answer_3: 'This is answer number 3',
-          answer_4: 'This is answer number 4',
-          answer_5: 'This is answer number 5',
-          answer_6: 'This is answer number 1',
+          answers:[
+                    'Q1 This is answer number 1',
+                    'Q1 This is answer number 2',
+                    'Q1 This is answer number 3',
+                    'Q1 This is answer number 4',
+                    'Q1 This is answer number 5',
+                    'Q1 This is answer number 6'
+                  ]
         }
 
+      var question2 = {
+          question_text: 'This is question number 2',
+          answers:[
+                    'Q2 This is answer number 1',
+                    'Q2 This is answer number 2',
+                    'Q2 This is answer number 3',
+                    'Q2 This is answer number 4',
+                    'Q2 This is answer number 5',
+                    'Q2 This is answer number 6'
+                  ]
+        }
+
+        var question0 = {
+            question_text: '',
+            answers:[
+                    ]
+          }
+
+      var question = question1;
+
+      $scope.exists = ViewState.data
 
       $scope.question = question;
+
+      $scope.doStuff = function(){
+        ViewState.displayLogin();
+      };
 
       $scope.loggedIn = function(){
         return login.getLoginStatus();
       };
 
-      $scope.validateAnswer = function(){
-        // do something
+      $scope.changeQuestion = function(){
+        if($scope.question == question0){
+          $scope.question = question1;
+        }
+        else if($scope.question == question1){
+          $scope.question = question2;
+        }
+        else{
+          $scope.question = question0;
+        }
       };
 
-      $scope.isCorrect = function(){
-
-      };
-
-      $scope.isIncorrect = function(){
-
-      };
     });//end of controller
 
-    app.controller('answer-controller', function($scope, $log, answer){
-      var clicked = [0,0,0,0,0,0];
-      $scope.clicked = clicked;
-      $scope.user_answer = "";
+    app.controller('answer-controller', function($scope, $log){
+      $scope.clickArray = [0,0,0,0,0,0];
+      var clickable = true;
 
-      $scope.clickCount = function(index){
-        return $scope.clicked[index];
-      }
-
-      $scope.addClick = function(index){
-        $scope.clicked[index]++;
-        for (i=0; i<$scope.clicked.length;i++){
-          if (i != index ){
-            $scope.clicked[i] = 0;
-          };
+      $scope.clickUpdate = function(index){
+        if (clickable){
+          for (i = 0; i < 6; i++){
+            if (i == index){
+              $scope.clickArray[i]++;
+            }
+            else{
+              $scope.clickArray[i] = 0;
+            }
+          }
+          if ($scope.clickArray[index] >= 2){
+            $log.log('sending api call');
+            clickable = false;
+          }
         };
       };
-
-      $scope.clickedNone = function(index){
-        return clicked[index] === 0;
-      }
-
-      $scope.clickedOnce = function(index){
-        return clicked[index] === 1;
-      }
-
-      $scope.clickedTwice = function(index){
-        return clicked[index] >= 2;
-      }
-
     });
-
-    app.factory('login', function($auth, $http, $q){
-      var login = {};
-      var _loggedIn = false;
-
-      var makeUrl = function(){
-        _hostname = '';
-        _port = '';
-        _version = '';
-        _finalUrl = _hostname+_port+_version+'/googlesignin'
-        return _finalUrl;
-      };
-
-      login.getLoginStatus = function(){
-        return _loggedIn;
-      };
-
-      login.setLoginStatus = function(bool){
-        _loggedIn = bool;
-      };
-
-        return login;
-    });//end of service
-
-    app.factory('urlList', function(){
-      var urlList = {
-        protocol: 'http://',
-        hostroot: 'localhost:',
-        port: '5000/',
-        prefix: 'api/',
-        version: 'v1/',
-        route: ''
-      };
-
-      urlList.studentLogin = function(){
-        urlList.makeUrl('tokensignin');
-      };
-
-      urlList.studentDailyActivities = function(){
-        urlList.makeUrl('get/daily/activities');
-      };
-
-      urlList.studentNext = function(){
-        urlList.makeUrl('get/next/prompt/by/student');
-      };
-
-      urlList.makeUrl = function(route){
-        return urlList.protocol + urlList.hostroot + urlList.port + urlList.prefix + urlList.version + route;
-      };
-
-      return urlList;
-
-    });//end of service
-
-    app.factory('answer', function(){
-      var answer = {};
-      var _clicked;
-
-      answer.getClickedIndex = function(){
-        return _clicked;
-      };
-
-      answer.setClickedIndex = function(index){
-        _clicked = index;
-      };
-
-      answer.checkSend = function(index){
-        if (_clicked === index){
-        }
-      };
-
-      return answer;
-
-    });
-
-    app.factory('apiCall', function($auth, $http, $q, urlList){
-      var apiCall = {};
-
-      apiCall.makeQuestionObject = function(){
-        console.log('I should make a question object.');
-      };
-
-      apiCall.makeActivityObject = function(){
-        console.log('I should make an activity object.');
-      };
-
-      apiCall.makeMenuListObject = function(){
-        console.log('I should make a men list object, whatever that means.')
-      };
-
-      apiCall.makeModalObject = function(){
-        console.log('I should make a modal object.')
-      }
-
-      apiCall.decodeServerResponseType = function(data){
-        switch (data.response_type) {
-          case '0':
-            service.makeActivityObject(data);
-            break;
-          case '1':
-            service.makeQuestionObject(data);
-            break;
-          case '2':
-            service.makeModalObject(data);
-            break;
-          default:
-            console.log('Something went wrong while processing server response.');
-        }
-      };
-
-      apiCall.getActivity = function(){
-
-      };
-
-      apiCall.getQuestion = function(){
-
-      };
-
-      apiCall.sendPayload = function(url, payload, success, error){
-        return $http.post(url, payload).then(success, failure);
-      };
-
-      apiCall.backendLogIn = function(urlList, $auth){
-        return $http.post(urlList.studentLogin(), $auth.getToken()).then();
-      };
-
-      apiCall.debug = function(url, payload, success, failure){
-        return $http.post(url, payload).then(success, failure);
-      };
-
-      return apiCall;
-    });//end of service
-
-    app.factory('clientModel', function($window){
-      var clientModel = {};
-
-      clientModel.setLocalModel = function(activity_index, number_of_questions, current_question){
-          $window.localStorage.model = {'activity_index':activity_index, 'number_of_questions':number_of_questions, 'current_question':current_question};
-      };
-
-      clientModel.getLocalModel = function(){
-        return $window.localStorage.model;
-      };
-
-      clientModel.getServerModel = function(){
-        //get user activity information from server
-      };
-
-      return clientModel;
-    });//end of service
 
 })();// end of wrapper
