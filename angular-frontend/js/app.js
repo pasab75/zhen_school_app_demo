@@ -56,94 +56,22 @@
         );
       };
 
-      $scope.getDailies = function(){
-        apiCall.debug(urlList.makeUrl('get/quests/daily'), JSON.stringify({'user_identifier': $auth.getToken(),'topic': $scope.topic}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
 
-      $scope.startQuest = function(){
-        apiCall.debug(urlList.makeUrl('start/quest'), JSON.stringify({'user_identifier': $auth.getToken(), 'quest_index': $scope.quest}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.resumeQuest = function(){
-        apiCall.debug(urlList.makeUrl('resume/quest'), JSON.stringify({'user_identifier': $auth.getToken()}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.stopQuest = function(){
-        apiCall.debug(urlList.makeUrl('stop/quest'), JSON.stringify({'user_identifier': $auth.getToken()}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.getValidation = function(){
-        apiCall.debug(urlList.makeUrl('get/validation'), JSON.stringify({'user_identifier': $auth.getToken(),'user_answer': $scope.answer}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
-
-      $scope.createAccount = function(){
-        apiCall.debug(urlList.makeUrl('create/account'), JSON.stringify({'user_identifier': $auth.getToken()}),
-          function(data){
-            $scope.barf = data.data;
-            $scope.status = 'I succeeded';
-          },
-          function(data){
-            $scope.status = 'I failed ';
-          }
-        );
-      };
     });//end of controller
 
-    app.controller('NavController', function ($scope, $location, $auth, login) {
+    app.controller('NavController', function ($scope, $location, $auth, ViewState) {
         $scope.isCollapsed = true;
 
-        $scope.loggedIn = function(){
-          return login.getLoginStatus();
-        }
+        $scope.exists = ViewState.data;
 
         $scope.logOut = function(){
           $auth.logout();
-          login.setLoginStatus(false);
+          ViewState.setLoggedOut();
         };
 
-        $scope.$on('$routeChangeSuccess', function () {
-            $scope.isCollapsed = true;
-        });
+        // $scope.$on('$routeChangeSuccess', function () {
+        //     $scope.isCollapsed = true;
+        // });
 
         $scope.getClass = function (path) {
           if(path === '/') {
@@ -162,16 +90,12 @@
       }
     });
 
-    app.controller('login-controller', function($scope, $auth, $log, login, ViewState){
+    app.controller('login-controller', function($scope, $auth, $log, ViewState, apiCall){
 
       $auth.setStorageType('sessionStorage');
       $scope.data = {};
 
       $scope.exists = ViewState.data;
-
-      $scope.loggedIn = function(){
-        return login.getLoginStatus();
-      }
 
       $scope.authenticate = function(provider){
         $auth.authenticate(provider)
@@ -179,7 +103,11 @@
             console.log(response)
             console.log(response.access_token);
             $auth.setToken(response.access_token);
-            login.setLoginStatus(true);
+            $log.log('finished setting access token')
+            ViewState.setLoggedIn();
+            ViewState.displayQuestSelect();
+            apiCall.getDailies();
+            $log.log('finished getting dailies')
           })
           .catch(function(response) {
             console.log('something went wrong');
@@ -188,21 +116,19 @@
 
       $scope.logOut = function(){
         $auth.logout();
-        login.setLoginStatus(false);
+        ViewState.setLoggedOut()
       };
 
     });//end of controller
 
-    app.controller('activity-controller', function($scope, login, ViewState){
+    app.controller('activity-controller', function($scope, ViewState){
       var activities = [
         {
           title: 'This is activity number 1',
           number_questions: '30',
           number_points: '400',
           topics:[
-            'topic 1',
-            'topic 2',
-            'topic 3'
+            'topic 1'
           ]
         },
         {
@@ -210,9 +136,7 @@
           number_questions: '30',
           number_points: '400',
           topics:[
-            'topic 1',
-            'topic 2',
-            'topic 3'
+            'topic 1'
           ]
         },
         {
@@ -220,9 +144,7 @@
           number_questions: '30',
           number_points: '400',
           topics:[
-            'topic 1',
-            'topic 2',
-            'topic 3'
+            'topic 1'
           ]
         },
         {
@@ -230,28 +152,22 @@
           number_questions: '30',
           number_points: '400',
           topics:[
-            'topic 1',
-            'topic 2',
-            'topic 3'
+            'topic 1'
           ]
         },
       ];
 
       $scope.exists = ViewState.data;
 
-      $scope.activities = activities;
-
-      $scope.loggedIn = function(){
-        return login.getLoginStatus();
-      }
+      $scope.viewAccess = ViewState.data;
 
       $scope.getQuestion = function(){
-
+        ViewState.displayQuestionType(0);
       }
 
     });//end of activity-controller
 
-    app.controller('question-controller', function($scope, login, ViewState){
+    app.controller('question-controller', function($scope, ViewState){
       var question1 = {
           question_text: 'This is question number 1',
           answers:[
@@ -284,17 +200,9 @@
 
       var question = question1;
 
-      $scope.exists = ViewState.data
+      $scope.exists = ViewState.data;
 
-      $scope.question = question;
-
-      $scope.doStuff = function(){
-        ViewState.displayLogin();
-      };
-
-      $scope.loggedIn = function(){
-        return login.getLoginStatus();
-      };
+      $scope.question = question1;
 
       $scope.changeQuestion = function(){
         if($scope.question == question0){

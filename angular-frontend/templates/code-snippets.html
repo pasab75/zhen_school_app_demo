@@ -1,0 +1,92 @@
+
+
+    <!-- <div class="progress">
+      <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+    </div> -->
+
+    <div class='container debug' ng-show='exists.views.debug' ng-controller='debug-controller as debug'>
+        <div>
+        <div>
+            <a class='btn btn-primary' ng-click='displayQuestionType(0)'>Display Question</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='displayQuestSelect()'>Display Quest Selection</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='initializeDatabase()'>Rebuild Database</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='getUser()'>Get user information</a>
+        </div>
+        <div>
+            topic: <input ng-model='topic' />
+            <a class='btn btn-primary' ng-click='getDailies()'>Get quests</a>
+        </div>
+        <div>
+            quest: <input ng-model='quest' />
+            <a class='btn btn-primary' ng-click='startQuest()'>Start a Quest</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='resumeQuest()'>Resume a Quest</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='stopQuest()'>End a Quest</a>
+        </div>
+        <div>
+            answer: <input ng-model='answer' />
+            <a class='btn btn-primary' ng-click='getValidation()'>Check to see if answer is correct</a>
+        </div>
+        <div>
+            <a class='btn btn-primary' ng-click='createAccount()'>Create new user</a>
+        </div>
+
+        <p>
+            topic: {{topic}} answer: {{answer}} quest: {{quest}}
+        </p>
+
+        <p>
+            {{exists.views}}
+        </p>
+        <p>
+            {{barf}}
+        </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-3"></div>
+
+    <div ng-show='exists.views.sectionSelect' class="col-sm-6 container">
+    <div>
+        <h1>Free Study</h1>
+        <h2>Coming Soon!</h2>
+    </div>
+    <div>
+        <h1>Daily Quests</h1>
+    </div>
+    </div>
+
+
+
+
+
+      <div ng-show='exists.views.question_type[2]' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
+        <div>
+            <div>
+                <h2>
+                  {{question.question_text}}
+                </h2>
+            </div>
+            <div ng-controller='answer-controller as ansCtrl'>
+                <input ng-model="user_answer" class="form-control" placeholder="Input your answer here." title="Answer"</input>
+                <p>
+                    {{user_answer}}
+                </p>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3"></div>
+
+      </div>

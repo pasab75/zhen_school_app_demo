@@ -1,5 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.app-body{
+  width: 75%;
+  margin: auto;
+  margin-top:50px;
+  padding-bottom: 50px;
+  background-color: grey;
+}
+
 .login-page {
   width: 360px;
   padding: 2% 2% 3% 2%;

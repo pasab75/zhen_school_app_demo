@@ -135,7 +135,7 @@ def get_quests_daily():
 
             current_dailies = dbconnect.get_daily_quests_by_chapter(3)
             dbconnect.close_connection()
-
+            print('derpderp')
             return json.dumps(current_dailies)
         else:
             abort(403, "Unable to authenticate user")

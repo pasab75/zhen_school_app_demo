@@ -29,176 +29,80 @@
 
           <div class="navbar-collapse" ng-class="isCollapsed ? 'collapse' : 'in'">
             <ul class="nav navbar-nav navbar-left">
-              <!-- <div class="btn-group" uib-dropdown is-open="status.isopen">
-                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-                  Button dropdown <span class="caret"></span>
-                </button>
-                <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                  <li role="menuitem"><a href="#">Action</a></li>
-                  <li role="menuitem"><a href="#">Another action</a></li>
-                  <li role="menuitem"><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li role="menuitem"><a href="#">Separated link</a></li>
-                </ul>
-              </div> -->
             </ul>
-            <!-- <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form> -->
 
-            <ul ng-show='loggedIn()' class="nav navbar-nav navbar-right">
+            <ul ng-show='!exists.views.loggedOut' class="nav navbar-nav navbar-right">
               <li><a href="#">PROFILE</a></li>
-              <li><a ng-click="logOut();">LOGOUT</a></li>
+              <li><a ng-click="logOut()">LOGOUT</a></li>
             </ul>
+
           </div>
         </div>
       </nav>
 
-    <div class="login-page" ng-show='!loggedIn()' ng-controller="login-controller as loginCtrl">
-      <div class="login-box">
-        <form class="login-form">
-          <h3 >Please log in with your google account.</h3>
-          <button class="btn btn-block btn-google-plus" ng-click="authenticate('google')">
-            <span class="google-icon"></span>Sign in with Google
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <!-- <div class="progress">
-      <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-    </div> -->
-
-    <div class='container debug' ng-show='exists.views.debug' ng-controller='debug-controller as debug'>
-        <div>
-        <div>
-            <a class='btn btn-primary' ng-click='displayQuestionType(0)'>Display Question</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='displayQuestSelect()'>Display Quest Selection</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='initializeDatabase()'>Rebuild Database</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='getUser()'>Get user information</a>
-        </div>
-        <div>
-            topic: <input ng-model='topic' />
-            <a class='btn btn-primary' ng-click='getDailies()'>Get quests</a>
-        </div>
-        <div>
-            quest: <input ng-model='quest' />
-            <a class='btn btn-primary' ng-click='startQuest()'>Start a Quest</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='resumeQuest()'>Resume a Quest</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='stopQuest()'>End a Quest</a>
-        </div>
-        <div>
-            answer: <input ng-model='answer' />
-            <a class='btn btn-primary' ng-click='getValidation()'>Check to see if answer is correct</a>
-        </div>
-        <div>
-            <a class='btn btn-primary' ng-click='createAccount()'>Create new user</a>
-        </div>
-
-        <p>
-            topic: {{topic}} answer: {{answer}} quest: {{quest}}
-        </p>
-
-        <p>
-            {{exists.views}}
-        </p>
-        <p>
-            {{barf}}
-        </p>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-sm-3"></div>
-
-    <div ng-show='exists.views.sectionSelect' class="col-sm-6 container">
-    <div>
-        <h1>Free Study</h1>
-        <h2>Coming Soon!</h2>
-    </div>
-    <div>
-        <h1>Daily Quests</h1>
-    </div>
-    </div>
-
-    <div ng-show='exists.views.questSelect' class="container activity-container col-sm-6" ng-controller='activity-controller as actCtrl'>
-      <div>
-          <div ng-repeat='activity in activities'>
-                <h2>
-                    {{activity.title}}
-                </h2>
-                <h3>
-                    {{'Number of questions: ' + activity.number_questions}}
-                </h3>
-                <h3>
-                    {{'Number of points: ' + activity.number_points}}
-                </h3>
-                <p>
-                    Topics include:
-                </p>
-                <p ng-repeat='topic in activity.topics'>
-                    {{topic}}
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show='exists.views.question_type[0]' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
-      <div>
-          <div>
-              <a class='btn btn-primary' ng-click='doStuff()'>Change Question</a>
-          </div>
-          <div class='jumbotron'>
-              <h2>
-                {{question.question_text}}
-              </h2>
-          </div>
-          <div ng-controller='answer-controller as ansCtrl'>
-              <div
-                  ng-repeat='answer in question.answers'
-                  ng-animate="{enter: 'flipInX', leave: 'flipOutX'}"
-                  ng-class="{'panel-default': clickArray[$index] == 0, 'panel-warning': clickArray[$index] == 1, 'panel-danger': clickArray[$index] >= 2}"
-                  ng-click='clickUpdate($index)'
-                  class='panel panel-warning'>
-                  <p>
-                      {{answer + " I have been clicked " + clickArray[$index]}}
-                  </p>
-              </div>
-          </div>
-      </div>
-      </div>
-
-      <div ng-show='exists.views.question_type[2]' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
-        <div>
-            <div>
-                <h2>
-                  {{question.question_text}}
-                </h2>
-            </div>
-            <div ng-controller='answer-controller as ansCtrl'>
-                <input ng-model="user_answer" class="form-control" placeholder="Input your answer here." title="Answer"</input>
-                <p>
-                    {{user_answer}}
-                </p>
-            </div>
-        </div>
-      </div>
+      <div class="app-body row">
 
       <div class="col-sm-3"></div>
+
+        <div class="login-page" ng-show='exists.views.loggedOut' ng-controller="login-controller as loginCtrl">
+            <div class="login-box">
+              <form class="login-form">
+                <h3 >Please log in with your google account.</h3>
+                <button class="btn btn-block btn-google-plus" ng-click="authenticate('google')">
+                  <span class="google-icon"></span>Sign in with Google
+                </button>
+              </form>
+            </div>
+        </div>
+
+        <div ng-show='exists.views.questSelect' class="container activity-container col-sm-6" ng-controller='activity-controller as actCtrl'>
+            <div>
+                <div ng-repeat='quest in viewAccess.views.quests'>
+                      <h2 ng-click='getQuestion()'>
+                          {{quest.quest_name}}
+                      </h2>
+                      <!-- <h3>
+                          {{'Number of questions: ' + activity.number_questions}}
+                      </h3>
+                      <h3>
+                          {{'Number of points: ' + activity.number_points}}
+                      </h3>
+                      <p>
+                          Topics include:
+                      </p>
+                      <p ng-repeat='topic in activity.topics'>
+                          {{topic}}
+                      </p> -->
+                  </div>
+              </div>
+        </div>
+
+        <div ng-show='exists.views.question_type[0]' class="container question-container col-sm-6" ng-controller='question-controller as questCtrl'>
+            <div>
+                <div>
+                    <a class='btn btn-primary' ng-click='changeQuestion()'>Change Question</a>
+                </div>
+                <div class='jumbotron'>
+                    <h2>
+                      {{question.question_text}}
+                    </h2>
+                </div>
+                <div ng-controller='answer-controller as ansCtrl'>
+                    <div
+                        ng-repeat='answer in question.answers'
+                        ng-animate="{enter: 'flipInX', leave: 'flipOutX'}"
+                        ng-class="{'panel-default': clickArray[$index] == 0, 'panel-warning': clickArray[$index] == 1, 'panel-danger': clickArray[$index] >= 2}"
+                        ng-click='clickUpdate($index)'
+                        class='panel panel-warning'>
+                        <p>
+                            {{answer + " I have been clicked " + clickArray[$index]}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3"></div>
 
       </div>
 
