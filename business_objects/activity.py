@@ -1,15 +1,15 @@
 from flask import jsonify
 
 class activity:
-    _user_id = None;
-    _time = None;
-    _date = None;
-    _correct = False;
-    _latitude = None;
-    _longitude = None;
-    _quest_progess = None;
-    _activity = None;
-    _question_id = None;
+    _user_id = None
+    _time = None
+    _date = None
+    _correct = False
+    _latitude = None
+    _longitude = None
+    _quest_progess = None
+    _activity = None
+    _question_id = None
 
     def __init__(self, user_id, question_id, time, date, correct, latitude=None,
                  longitude=None, quest_progress=None, activity=None):
