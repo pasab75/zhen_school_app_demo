@@ -2,11 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/core/view.controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/templates/code-snippets.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/apple-touch-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/browserconfig.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/crossdomain.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/animate.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/bootstrap.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/humans.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/backend.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/bootstrap/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/clickEvents.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/events.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/google/google_auth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/google_auth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/jquery/jquery-1.11.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/jquery/jquery-2.2.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/modalcontrol.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/remodal/remodal.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/jquery-2.2.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/remodal.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/js/vendor/ui-bootstrap-tpls-1.2.4.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/playingwithfields.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/robots.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/tile-wide.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frontend/tile.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/index.html" afterPath="$PROJECT_DIR$/angular-frontend/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/view/view.controller.js" afterPath="$PROJECT_DIR$/angular-frontend/js-exbook/view/view.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.service.js" afterPath="$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.service.js" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,11 +70,21 @@
       <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="431">
+              <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/angular-frontend/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,7 +119,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular-frontend/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
@@ -402,6 +452,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -929,7 +997,14 @@
       <option name="project" value="LOCAL" />
       <updated>1459459192427</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Writing skeleton for angular frontend">
+      <created>1459459943519</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1459459943519</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TodoView">
@@ -951,18 +1026,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.50394946" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28283796" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34099618" sideWeight="0.49605057" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34099618" sideWeight="0.49605057" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1010,13 +1085,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db_access/db_question.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/unit_testing/test_db_question.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1334,16 +1402,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.directive.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1355,6 +1413,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1377,6 +1436,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular-frontend/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding />
         </state>
       </provider>

@@ -5,8 +5,10 @@
         .module('exBook')
         .service('questservice', questservice);
 
+    questservice.$inject = ['httpwrapper'];
+
     /* @ngInject */
-    function questservice() {
+    function questservice(httpwrapper) {
       var vm = this;
 
       vm.quests = [
@@ -20,6 +22,22 @@
             name: 'quest 3'
           }
       ]
+
+      vm.getQuests = getQuests;
+      vm.getQuestSuccess = getQuestSuccess;
+      vm.getQuestError = getQuestError;
+
+      function getQuests(){
+        httpwrapper.genericApiCall('get/quests/daily', )
+      };
+
+      function getQuestSuccess(){
+
+      };
+
+      function getQuestError(){
+
+      };
 
     }
 })();
