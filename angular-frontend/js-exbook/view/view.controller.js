@@ -11,12 +11,10 @@
     function ViewController(viewservice) {
         var vm = this;
 
-        vm.view = viewservice;
-
         activate();
 
         function activate() {
-
+          vm.view = viewservice;
         }
     }
 })();
