@@ -61,7 +61,7 @@ class LogEntry:
         self._quest_progress = qp
 
     def get_quest_progress(self):
-        return self._quest_progess
+        return self._quest_progress
 
     def set_activity(self, activity):
         self._activity = activity

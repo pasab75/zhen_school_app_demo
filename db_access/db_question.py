@@ -248,17 +248,9 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                     questionlist = cursor.fetchall()
 
                     primary_question = questionlist[0]
-                    question_type = questionlist[0]['question_type']
-
-                    print('question type = ' + str(question_type))
-                    print('question ID = ' + str(primary_question['question_id']))
+                    question_id = primary_question['question_id']
 
                     shuffle(questionlist)
-                    correct_index = 0
-
-                    for i in range(len(questionlist)):
-                        if questionlist[i] == primary_question:
-                            correct_index = i
 
                     answerlist = []
 
