@@ -1,6 +1,6 @@
 import pymysql.cursors
 from db_access.db_general import GeneralDatabaseConnection
-import business_objects.question as question_obj_generator
+import business_objects.Question as question_obj_generator
 from random import randint, shuffle
 
 

@@ -1,5 +1,5 @@
 from db_access.db_general import GeneralDatabaseConnection
-import business_objects.question as question_obj_generator
+import business_objects.Question as question_obj_generator
 from random import shuffle, randint, choice
 
 
@@ -268,7 +268,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
                         question = question_obj_generator.question(primary_question['question_text'],
                                                                    answerlist,
-                                                                   primary_question['topic_index'],
+                                                                   primary_question['topic'],
                                                                    primary_question['question_type'],
                                                                    primary_question['answer_a_text'],
                                                                    primary_question['question_id'])
@@ -278,7 +278,7 @@ class QuestionTableAccess(GeneralDatabaseConnection):
 
                         question = question_obj_generator.question(primary_question['answer_a_text'],
                                                                    answerlist,
-                                                                   primary_question['topic_index'],
+                                                                   primary_question['topic'],
                                                                    primary_question['question_type'],
                                                                    primary_question['question_text'],
                                                                    primary_question['question_id'])

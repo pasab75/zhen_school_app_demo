@@ -27,6 +27,9 @@
       <!-- custom -->
         <script src="js-exBook/core/app.module.js"></script>
 
+        <script src="js-exBook/http/http.wrapper.service.js"></script>
+        <script src="js-exBook/debug/debug.service.js"></script>
+
         <script src="js-exBook/view/view.service.js"></script>
         <script src="js-exBook/view/view.controller.js"></script>
 
@@ -49,13 +52,11 @@
 
     <ex-navbar></ex-navbar>
     <ex-login-box></ex-login-box>
-    <div class="col-sm-3"></div>
-    <div class='app-body col-sm-6' ng-show='!viewCtrl.view.login'>
-        {{viewCtrl.view.login}}
+
+    <div class='app-body' ng-show='!viewCtrl.view.login'>
         <ex-quest-select></ex-quest-select>
         <ex-question></ex-question>
     </div>
-    <div class="col-sm-3"></div>
       <!-- <div class="app-body row">
 
       <div class="col-sm-3"></div>

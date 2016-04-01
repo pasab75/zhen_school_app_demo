@@ -5,38 +5,28 @@
         .module('exBook')
         .service('questservice', questservice);
 
-    questservice.$inject = ['httpwrapper'];
+    questservice.$inject = ['$log', '$auth', 'httpwrapper'];
 
     /* @ngInject */
-    function questservice(httpwrapper) {
+    function questservice($log, $auth, httpwrapper) {
       var vm = this;
 
-      vm.quests = [
-          {
-            name: 'quest 1'
-          },
-          {
-            name: 'quest 2'
-          },
-          {
-            name: 'quest 3'
-          }
-      ]
+      vm.quests = [];
 
       vm.getQuests = getQuests;
-      vm.getQuestSuccess = getQuestSuccess;
-      vm.getQuestError = getQuestError;
 
       function getQuests(){
-        httpwrapper.genericApiCall('get/quests/daily', )
+        httpwrapper.genericApiCall('get/quests/daily', {user_identifier: $auth.getToken()}, success, failure);
       };
 
-      function getQuestSuccess(){
-
+      function success(response){
+        $log.log('Succeeded getting quests')
+        $log.log(response)
+        vm.quests = response.data;
       };
 
-      function getQuestError(){
-
+      function failure(response){
+        $log.log('Failed getting quests')
       };
 
     }

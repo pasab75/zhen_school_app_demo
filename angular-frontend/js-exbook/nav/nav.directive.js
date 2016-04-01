@@ -19,9 +19,9 @@
 
   };
 
-  NavController.$inject = ['loginservice'];
+  NavController.$inject = ['loginservice', 'debug'];
 
-  function NavController(loginservice) {
+  function NavController(loginservice, debug) {
     var vm = this;
 
     activate();
@@ -29,6 +29,7 @@
     function activate(){
       vm.isCollapsed = true;
       vm.login = loginservice;
+      vm.debug = debug;
     };
 
     // activate();

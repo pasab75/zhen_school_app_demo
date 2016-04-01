@@ -4,7 +4,7 @@ import db_access.db_question as questions_table_access_layer
 import db_access.db_user as users_table_access_layer
 import db_access.db_quest as quest_table_access_layer
 import db_access.db_topic_chapter as topic_chapter_table_access_layer
-import business_objects.user as user_obj_generator
+import business_objects.User as user_obj_generator
 import requests
 import random
 
@@ -78,6 +78,7 @@ def index():
 @app.route('/api/v1/database/initialize', methods=['POST'])
 def database_init():
     try:
+        print(request)
         dbconnect = topic_chapter_table_access_layer.TopicChapterTableAccess()
         dbconnect.empty_table('topic_chapter')
         dbconnect.add_dummy_topics(100)
@@ -85,7 +86,7 @@ def database_init():
 
         dbconnect = quest_table_access_layer.QuestTableAccess()
         dbconnect.empty_table('quests')
-        dbconnect.add_dummy_quests(1000)
+        dbconnect.add_dummy_quests(10)
         dbconnect.close_connection()
 
         dbconnect = questions_table_access_layer.QuestionTableAccess()
@@ -94,6 +95,7 @@ def database_init():
 
         dbconnect.close_connection()
         response_text = {'response': 'all good'}
+        print('all good')
         return jsonify(response_text)
 
     except Exception as ex:
@@ -133,9 +135,9 @@ def get_quests_daily():
         if authentication_response['is_paid']:
             dbconnect = quest_table_access_layer.QuestTableAccess()
 
-            current_dailies = dbconnect.get_daily_quests_by_chapter(3)
+            current_dailies = dbconnect.get_quests_daily(6)
             dbconnect.close_connection()
-            print('derpderp')
+            print(current_dailies)
             return json.dumps(current_dailies)
         else:
             abort(403, "Unable to authenticate user")
@@ -162,12 +164,8 @@ def start_quest():
             # get rid of whatever they have already just in case they have a quest
             dbconnect = users_table_access_layer.UserTableAccess()
             dbconnect.null_user_quest(user_id)
-            # get current user from table
-            user = dbconnect.get_user_by_user_id(user_id)
-            dbconnect.close_connection()
 
             user_input_quest = request.json['quest_index']
-            dbconnect = users_table_access_layer.UserTableAccess()
             dbconnect.set_user_quest_by_user_id(user_id, user_input_quest)
             dbconnect.close_connection()
 

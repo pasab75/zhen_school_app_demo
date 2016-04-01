@@ -28,6 +28,7 @@
           .then(function(response){
             viewservice.toggleLogin();
             $log.log(response)
+            $auth.setToken(response.access_token)
           })
           .catch(function(response){
             $log.log('something wrong has happened')

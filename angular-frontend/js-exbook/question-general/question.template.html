@@ -1,8 +1,10 @@
+
 <div>
-    <div>
-        <h2>{{questionCtrl.data.question.question_text}}</h2>
-        <div class='btn btn-primary' ng-repeat='answer in questionCtrl.data.question.answers'>
-            {{answer}}
-        </div>
+    <h2>{{questionCtrl.data.question.question_text}}</h2>
+    <div class='btn btn-primary' ng-repeat='answer in questionCtrl.data.question.answers'>
+        {{answer}}
     </div>
+</div>
+<div ng-click='questionCtrl.data.getQuestion()'>
+    click me for a question
 </div>

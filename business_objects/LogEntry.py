@@ -1,13 +1,14 @@
 from flask import jsonify
 
-class activity:
+
+class LogEntry:
     _user_id = None
     _time = None
     _date = None
     _correct = False
     _latitude = None
     _longitude = None
-    _quest_progess = None
+    _quest_progress = None
     _activity = None
     _question_id = None
 
@@ -19,7 +20,7 @@ class activity:
         self._correct = correct
         self._latitude = latitude
         self._longitude = longitude
-        self._quest_progess = quest_progress
+        self._quest_progress = quest_progress
         self._activity = activity
         self._question_id = question_id
 
@@ -57,7 +58,7 @@ class activity:
         return self._longitude
 
     def set_quest_progress(self, qp):
-        self._quest_progess = qp
+        self._quest_progress = qp
 
     def get_quest_progress(self):
         return self._quest_progess
@@ -79,7 +80,7 @@ class activity:
                     correct = self._correct,
                     latitude = self._latitude,
                     longitude = self._longitude,
-                    quest_progress = self._quest_progess,
+                    quest_progress = self._quest_progress,
                     activity = self._activity,
                     question_id = self._question_id
                 )

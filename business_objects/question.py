@@ -4,7 +4,7 @@ from flask import jsonify
 class question():
     def __init__(self, question_text=None, anslist=None, topic=None,
                  question_type=None, correct_answer=None, question_id=None,
-                 difficulty=None, image_path=None, avg_time_to_solve=None):
+                 difficulty=None, image_path=None, avg_answer_time=None):
         self._dictionary = {'question_id': question_id,
                             'question_text': question_text,
                             'answer_a_text': None,
@@ -19,7 +19,7 @@ class question():
                             'instructor_difficulty': difficulty,
                             'user_difficulty': 0,
                             'image_path': image_path,
-                            'avg_time_to_solve': avg_time_to_solve
+                            'avg_answer_time': avg_answer_time
                             }
 
         for i in 'abcdef':

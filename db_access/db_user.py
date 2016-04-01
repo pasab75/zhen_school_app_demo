@@ -1,6 +1,6 @@
 from db_access.db_general import GeneralDatabaseConnection
 import datetime
-import business_objects.user as user_generator
+import business_objects.User as user_generator
 
 
 class UserTableAccess(GeneralDatabaseConnection):

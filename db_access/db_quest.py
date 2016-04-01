@@ -23,11 +23,9 @@ class QuestTableAccess(GeneralDatabaseConnection):
     def add_dummy_quests(self, number_of_quests):
         try:
             for i in range(number_of_quests):
-                coinflip = randint(0, 1)
-                type_0_allowed = randint(0, 1)
-                type_1_allowed = randint(0, 1)
-                type_2_allowed = randint(0, 1)
-                daily = randint(0, 1)
+                coinflip = 0
+                type_0_allowed = 1
+                daily = 1
                 number_of_questions = randint(10, 50)
                 point_value = number_of_questions*10
 
@@ -35,8 +33,6 @@ class QuestTableAccess(GeneralDatabaseConnection):
 
                 quest = {'quest_name': quest_name,
                          'type_0_allowed': type_0_allowed,
-                         'type_1_allowed': type_1_allowed,
-                         'type_2_allowed': type_2_allowed,
                          'daily': daily,
                          'number_of_questions': number_of_questions,
                          'point_value': point_value
@@ -147,6 +143,21 @@ class QuestTableAccess(GeneralDatabaseConnection):
                 print("Error fetching results: "+str(e))
         except Exception as e:
                 print("Error connecting: "+str(e))
+
+    def get_quests_daily(self, number_of_quests):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT * FROM quests WHERE daily = '1' ORDER BY RAND() LIMIT {}".format(number_of_quests)
+                    cursor.execute(sql)
+                    request = cursor.fetchall()
+
+                    return request
+
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
 
     # -------------------------------------------------------------
     # WRITE methods

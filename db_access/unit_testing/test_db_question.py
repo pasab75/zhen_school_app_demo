@@ -1,5 +1,5 @@
 from db_access.db_question import database_access
-import business_objects.question as question_obj_generator
+import business_objects.Question as question_obj_generator
 
 #test to see we can make a new record
 db = database_access()
