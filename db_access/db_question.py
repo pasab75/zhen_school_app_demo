@@ -248,7 +248,6 @@ class QuestionTableAccess(GeneralDatabaseConnection):
                     questionlist = cursor.fetchall()
 
                     primary_question = questionlist[0]
-                    question_id = primary_question['question_id']
 
                     shuffle(questionlist)
 

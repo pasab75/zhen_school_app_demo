@@ -172,7 +172,7 @@ class QuestTableAccess(GeneralDatabaseConnection):
 
     def update_quest_from_object_with_primarykey(self, quest, primary):
         try:
-            self.update_row_in_table(question.get_dictionary(), 'questions', primary)
+            self.update_row_in_table(quest.get_dictionary(), 'questions', primary)
         except Exception as e:
             print("Could not update function: "+str(e))
             return False
