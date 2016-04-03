@@ -1,6 +1,3 @@
-from flask import jsonify
-
-
 class AbstractQuestion:
     _topic = None
     _question_id = None

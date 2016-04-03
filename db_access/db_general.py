@@ -80,7 +80,7 @@ class GeneralDatabaseConnection:
                     placeholders = ', '.join(['%s'] * len(dictionary_to_add))
                     columns = ", ".join(dictionary_to_add.keys())
                     sql = "INSERT INTO {} ( {} ) VALUES ( {} )".format(table, columns, placeholders)
-
+                    print(cursor.mogrify(sql, list(dictionary_to_add.values())))
                     cursor.execute(sql, list(dictionary_to_add.values()))
 
                     return True

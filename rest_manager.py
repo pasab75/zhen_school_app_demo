@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, abort, json, g
 import datetime
 import db_access.db_question as questions_table_access_layer
+import db_access.db_definition_question as definition_questions_access_layer
 import db_access.db_user as users_table_access_layer
 import db_access.db_quest as quest_table_access_layer
 import db_access.db_topic_chapter as topic_chapter_table_access_layer
@@ -89,11 +90,11 @@ def database_init():
         dbconnect.add_dummy_quests(10)
         dbconnect.close_connection()
 
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
-        dbconnect.empty_table('questions')
-        dbconnect.load_questions_testing(5000)
-
+        dbconnect = definition_questions_access_layer.DefinitionQuestionTableAccess()
+        dbconnect.empty_table('definition_questions')
+        dbconnect.initialize_definition_questions(5000)
         dbconnect.close_connection()
+
         response_text = {'response': 'all good'}
         print('all good')
         return jsonify(response_text)

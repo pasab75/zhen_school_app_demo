@@ -1,7 +1,8 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
 
-class quest:
+
+class Quest:
     _quest_id = None
     _quest_name = None
     _topic_index = None
@@ -14,8 +15,19 @@ class quest:
     _definition_allowed = None
     _daily = False
 
-    def __init__(self, quest_id=None, quest_name=None, topic_index=None, chapter_index=None, number_of_questions=None, point_value=None,
-                 quest_description=None, cumulative=False, multiple_choice_allowed=False, definition_allowed=False, daily=False):
+    def __init__(self,
+                 quest_id=None,
+                 quest_name=None,
+                 topic_index=None,
+                 chapter_index=None,
+                 number_of_questions=None,
+                 point_value=None,
+                 quest_description=None,
+                 cumulative=False,
+                 multiple_choice_allowed=False,
+                 definition_allowed=False,
+                 daily=False):
+
         self._quest_id = quest_id
         self._quest_name = quest_name
         self._topic_index = topic_index
@@ -90,14 +102,14 @@ class quest:
     def get_jsonified(self):
         return jsonify(
             quest_id=self._quest_id,
-            quest_name = self._quest_name,
-            topic_index = self._topic_index,
-            chapter_index = self._chapter_index,
-            number_of_questions = self._number_of_questions,
-            point_value = self._point_value,
-            quest_description = self.quest_description,
-            cumulative = self._cumulative,
-            multiple_choice_allowed = self._multiple_choice_allowed,
-            definition_allowed = self._definition_allowed,
-            daily = self._daily
+            quest_name=self._quest_name,
+            topic_index=self._topic_index,
+            chapter_index=self._chapter_index,
+            number_of_questions=self._number_of_questions,
+            point_value=self._point_value,
+            quest_description=self._quest_description,
+            cumulative=self._cumulative,
+            multiple_choice_allowed=self._multiple_choice_allowed,
+            definition_allowed=self._definition_allowed,
+            daily=self._daily
             )
