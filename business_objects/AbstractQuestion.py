@@ -8,13 +8,13 @@ class AbstractQuestion:
     def __init__(self,
                  topic=None,
                  question_id=None,
-                 user_difficulty=1,
+                 _calculated_difficulty=1,
                  instructor_difficulty=None,
                  avg_answer_time=None):
 
         self._topic = topic
         self._question_id = question_id
-        self._calculated_difficulty = user_difficulty
+        self._calculated_difficulty = _calculated_difficulty
         self._instructor_difficulty = instructor_difficulty
         self._avg_answer_time = avg_answer_time
 
@@ -27,7 +27,7 @@ class AbstractQuestion:
     def get_question_id(self):
         return self._question_id
 
-    def get_user_difficulty(self):
+    def get_calculated_difficulty(self):
         return self._calculated_difficulty
 
     def set_user_difficulty(self, difficulty):
