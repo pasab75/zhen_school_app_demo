@@ -3,7 +3,7 @@ from db_access.db_general import GeneralDatabaseConnection
 # provides interface to the multiple choice table
 
 
-class DefinitionTableAccess(GeneralDatabaseConnection):
+class MultipleChoiceTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
     # class constructor
@@ -77,10 +77,10 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
             print("Could not update function: " + str(e))
             return False
 
-    # deletes a question from the database using its question_id
-    def delete_definition_by_id(self, id):
+    # deletes a question from the database using its index
+    def delete_definition_by_index(self, index):
         try:
-            self.delete_row_in_table_with_attribute('definition_questions', 'question_id', question_id)
+            self.delete_row_in_table_with_attribute('definition_questions', 'question_id', index)
         except Exception as e:
             print("Could not delete question: " + str(e))
 

@@ -6,6 +6,7 @@ import business_objects.Definition as Definition
 import db_access.db_topic_chapter as topic_chapter_access_layer
 from random import randint
 
+
 class Quest:
     _quest_id = None
     _quest_name = None
@@ -44,10 +45,22 @@ class Quest:
         self._definition_allowed = definition_allowed
         self._daily = daily
 
-    def get_random_topic_or_chapter(self):
-        dbconnect = topic_chapter_access_layer.TopicChapterTableAccess()
-        dbconnect.get_chapter_by_topic()
+    # returns a random allowed topic index
+    def get_topic_random(self):
+        if self._topic_index:
+            return self._topic_index
+        else:
+            if self._cumulative:
+                chapter = randint(0, self._chapter_index)
+            else:
+                chapter = self._chapter_index
 
+            database = topic_chapter_access_layer.TopicChapterTableAccess()
+            topic = database.get_topic_random_by_chapter(chapter)
+            database.close_connection()
+            return topic
+
+    # returns a randomly allowed question
     def get_question(self):
         try:
             if self._multiple_choice_allowed and self._definition_allowed:
