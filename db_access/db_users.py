@@ -1,6 +1,6 @@
 from db_access.db_general import GeneralDatabaseConnection
 import datetime
-import business_objects.User as user_generator
+import business_objects.User as userGenerator
 
 
 class UserTableAccess(GeneralDatabaseConnection):
@@ -176,7 +176,7 @@ class UserTableAccess(GeneralDatabaseConnection):
 
     def add_user_new(self, user):
         try:
-            self.save_new_row_in_table(user.get_dictionary(), 'users')
+            self.save_new_row_in_table(user.get_database_format(), 'users')
         except Exception as ex:
             print("Unable to add new user: " + str(ex))
 

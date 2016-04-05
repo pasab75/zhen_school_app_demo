@@ -10,7 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `testdb` ;
 
 -- -----------------------------------------------------
 -- Schema testdb
@@ -37,12 +36,12 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`calculation`
+-- Table `testdb`.`calculations`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`calculation` ;
+DROP TABLE IF EXISTS `testdb`.`calculations` ;
 
-CREATE TABLE IF NOT EXISTS `testdb`.`calculation` (
-  `question_id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `testdb`.`calculations` (
+  `index` INT(11) NOT NULL AUTO_INCREMENT,
   `question_text` VARCHAR(500) NOT NULL,
   `image_path` VARCHAR(100) NULL DEFAULT NULL,
   `answer` DOUBLE NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`calculation` (
   `avg_answer_time` TIME NULL DEFAULT NULL,
   `instructor_difficulty` INT(11) NULL DEFAULT NULL,
   `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`question_id`))
+  PRIMARY KEY (`index`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -62,19 +61,19 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`definitions` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
-  `question_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `index` INT(11) NOT NULL AUTO_INCREMENT,
   `word` VARCHAR(100) NOT NULL,
   `definition_1` VARCHAR(500) NOT NULL,
   `definition_2` VARCHAR(500) NULL DEFAULT NULL,
   `definition_3` VARCHAR(500) NULL DEFAULT NULL,
-  `definition_4` VARCHAR(500) NULL DEFAULT NULL,
   `topic` INT(11) NOT NULL,
   `avg_answer_time` TIME NULL DEFAULT NULL,
   `instructor_difficulty` INT(11) NULL DEFAULT NULL,
   `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`question_id`),
-  UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
+  PRIMARY KEY (`index`),
+  UNIQUE INDEX `question_id_UNIQUE` (`index` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5001
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -84,7 +83,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`multiple_choice` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`multiple_choice` (
-  `question_id` INT(11) NOT NULL,
+  `index` INT(11) NOT NULL AUTO_INCREMENT,
   `question_text` VARCHAR(500) NOT NULL,
   `image_path` VARCHAR(100) NULL DEFAULT NULL,
   `answer_0` VARCHAR(100) NULL DEFAULT NULL,
@@ -97,60 +96,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`multiple_choice` (
   `avg_answer_time` TIME NOT NULL,
   `instructor_difficulty` INT(11) NULL DEFAULT NULL,
   `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`question_id`))
+  PRIMARY KEY (`index`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`quest_types`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`quest_types` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`quest_types` (
-  `quest_type_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `type_0_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_1_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_2_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_3_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_4_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_5_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_6_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_7_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_8_allowed` TINYINT(1) NULL DEFAULT NULL,
-  `type_9_allowed` TINYINT(1) NULL DEFAULT NULL,
-  PRIMARY KEY (`quest_type_id`),
-  UNIQUE INDEX `quest_type_id_UNIQUE` (`quest_type_id` ASC))
-ENGINE = InnoDB
-AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`questions`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`questions` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`questions` (
-  `question_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `question_text` VARCHAR(500) NOT NULL,
-  `image_path` VARCHAR(200) NULL DEFAULT NULL,
-  `answer_a_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_b_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_c_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_d_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_e_text` VARCHAR(50) NULL DEFAULT NULL,
-  `answer_f_text` VARCHAR(50) NULL DEFAULT NULL,
-  `correct_answer` VARCHAR(500) NULL DEFAULT NULL,
-  `topic` INT(11) NULL DEFAULT NULL,
-  `question_type` INT(11) NULL DEFAULT NULL,
-  `avg_answer_time` TIME NULL DEFAULT NULL,
-  `instructor_difficulty` INT(11) NULL DEFAULT NULL,
-  `user_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`question_id`),
-  UNIQUE INDEX `question_id_UNIQUE` (`question_id` ASC))
-ENGINE = InnoDB
-AUTO_INCREMENT = 38392
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -174,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quests` (
   `daily` TINYINT(1) NULL DEFAULT '0',
   PRIMARY KEY (`quest_index`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7211
+AUTO_INCREMENT = 7281
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -237,5 +184,3 @@ DEFAULT CHARACTER SET = utf8;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-

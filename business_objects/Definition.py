@@ -1,8 +1,8 @@
 from business_objects.AbstractQuestion import AbstractQuestion
-import db_access.db_multiple_choice as questions_table_access_layer
+import db_access.db_definitions as definitions_table_access_layer
 
 
-class MultipleChoiceQuestion(AbstractQuestion):
+class Definition(AbstractQuestion):
 
     def __init__(self,
                  question_text=None,
@@ -17,9 +17,7 @@ class MultipleChoiceQuestion(AbstractQuestion):
                  question_id=None,
                  calculated_difficulty=1,
                  instructor_difficulty=None,
-                 avg_answer_time=None,
-                 image_path=None
-                 ):
+                 avg_answer_time=None):
 
         AbstractQuestion.__init__(self,
                                   topic,
@@ -30,7 +28,6 @@ class MultipleChoiceQuestion(AbstractQuestion):
 
         self._question_text = question_text
         self._answer = answer
-        self._image_path = image_path
         self._answer_1 = answer_1
         self._answer_2 = answer_2
         self._answer_3 = answer_3
@@ -72,7 +69,7 @@ class MultipleChoiceQuestion(AbstractQuestion):
 
     # TODO: change db access layer to
     def construct_from_db_id(self, question_id):
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
+        dbconnect = definitions_table_access_layer.QuestionTableAccess()
         result = dbconnect.get_question_by_question_id(question_id)
         self.set_from_database(result)
         dbconnect.close_connection()
@@ -88,39 +85,3 @@ class MultipleChoiceQuestion(AbstractQuestion):
 
     def set_answer(self, answer):
         self._answer = answer
-
-    def get_answer_1(self):
-        return self._answer_1
-
-    def set_answer_1(self, answer):
-        self._answer_1 = answer
-
-    def get_answer_2(self):
-        return self._answer_2
-
-    def set_answer_2(self, answer):
-        self._answer_2 = answer
-
-    def get_answer_3(self):
-        return self._answer_3
-
-    def set_answer_3(self, answer):
-        self._answer_3 = answer
-
-    def get_answer_4(self):
-        return self._answer_4
-
-    def set_answer_4(self, answer):
-        self._answer_4 = answer
-
-    def get_answer_5(self):
-        return self._answer_5
-
-    def set_answer_5(self, answer):
-        self._answer_5 = answer
-
-    def get_answer_6(self):
-        return self._answer_6
-
-    def set_answer_6(self, answer):
-        self._answer_6 = answer

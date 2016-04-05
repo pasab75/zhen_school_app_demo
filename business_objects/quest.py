@@ -1,6 +1,10 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
-
+import business_objects.CalculationQuestion as Calculation
+import business_objects.MultipleChoiceQuestion as MultipleChoice
+import business_objects.Definition as Definition
+import db_access.db_topic_chapter as topic_chapter_access_layer
+from random import randint
 
 class Quest:
     _quest_id = None
@@ -39,6 +43,34 @@ class Quest:
         self._multiple_choice_allowed = multiple_choice_allowed
         self._definition_allowed = definition_allowed
         self._daily = daily
+
+    def get_random_topic_or_chapter(self):
+        dbconnect = topic_chapter_access_layer.TopicChapterTableAccess()
+        dbconnect.get_chapter_by_topic()
+
+    def get_question(self):
+        try:
+            if self._multiple_choice_allowed and self._definition_allowed:
+                coinflip = randint(0, 1)
+                if coinflip == 0:
+                    question = MultipleChoice.MultipleChoiceQuestion()
+
+                    # make a multiple choice question with current quest
+                    # return multiple choice question
+                else:
+                    question = MultipleChoice.MultipleChoiceQuestion()
+
+                    # make a definition question with current quest
+                    # return definition question
+            elif self._multiple_choice_allowed:
+                return True
+                # make multiple choice and return it
+            else:
+                return True
+                # make definition and return it
+
+        except Exception as ex:
+            print(ex)
 
     def get_quest_id(self):
         return self._quest_id
