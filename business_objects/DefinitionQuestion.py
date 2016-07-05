@@ -7,6 +7,7 @@ from enum import Enum
 
 class DefinitionQuestion():
     _word_index = None
+    _word = None
     _definition = None
     _topic_index = None
     _words = []
@@ -23,13 +24,6 @@ class DefinitionQuestion():
         self._topic_index = topic_index
         self._type = type
 
-    def get_database_format(self):
-        return {
-            'word_index': self._word_index,
-            'definition': self._definition,
-            'topic_index': self._topic_index
-        }
-
     def get_jsonified(self):
         return jsonify(
             word_index=self._word_index,
@@ -44,6 +38,7 @@ class DefinitionQuestion():
         db_def = db_definition.DefinitionTableAccess()
         definition = db_def.get_definition_by_wordindex(self._word_index)
         word = Word(word)
+        self._word = word
         self._type = type
 
         if type == 0:
