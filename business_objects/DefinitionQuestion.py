@@ -8,7 +8,7 @@ import random
 from enum import Enum
 
 
-class DefinitionQuestion():
+class DefinitionQuestion:
     _word_index = None
     _word = None
     _definition = None
@@ -51,7 +51,7 @@ class DefinitionQuestion():
     def make_from_topic_index(self, topic_index, num_wanted, type):
         db_def = db_definition.DefinitionTableAccess()
         db_word = db_wordzors.WordTableAccess()
-        word = Word.word.set_from_database(db_word.get_word_random_by_topic_index(topic_index))
+        word = Word.Word.set_from_database(db_word.get_word_random_by_topic_index(topic_index))
         definition = db_def.get_definition_by_wordindex(word.get_index())
         self._word = word
         self._type = type
@@ -63,7 +63,7 @@ class DefinitionQuestion():
             self._words.append(word)
             db_words = db_word.get_word_random_by_topic_index(self._topic_index, num_wanted)
             for word_obj in db_words:
-                filler_word = Word.word.set_from_database(word_obj)
+                filler_word = Word.Word.set_from_database(word_obj)
                 self._words.append(filler_word.get_word())
 
         if type == 1:
@@ -81,7 +81,7 @@ class DefinitionQuestion():
     def make_from_topic(self, topic, num_wanted, type):
         db_def = db_definition.DefinitionTableAccess()
         db_word = db_wordzors.WordTableAccess()
-        word = Word.word.set_from_database(db_word.get_word_random_by_topic(topic))
+        word = Word.Word.set_from_database(db_word.get_word_random_by_topic(topic))
         definition = db_def.get_definition_by_wordindex(word.get_index())
         self._word = word
         self._type = type
@@ -93,7 +93,7 @@ class DefinitionQuestion():
             self._words.append(word)
             db_words = db_word.get_word_random_by_topic_index(self._topic_index, num_wanted)
             for word_obj in db_words:
-                filler_word = Word.word.set_from_database(word_obj)
+                filler_word = Word.Word.set_from_database(word_obj)
                 self._words.append(filler_word.get_word())
 
         if type == 1:

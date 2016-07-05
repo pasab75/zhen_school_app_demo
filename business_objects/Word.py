@@ -2,7 +2,8 @@
 from flask import jsonify
 import db_access.db_words as db_wordzors
 
-class word():
+
+class Word:
     _index = None
     _word = None
     _topic_index = None
