@@ -37,6 +37,7 @@ class DefinitionQuestion():
             topic_index=self._topic_index
         )
 
+    # word is the business object not the db_obj version of it
     # 0 would be a words presented question, 1 is a definitions presented question
     def make_from_word(self, word, num_wanted, type):
         db_word = db_words.WordTableAccess()
