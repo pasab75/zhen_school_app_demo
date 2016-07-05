@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business_objects/TopicChapter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
     </list>
@@ -70,11 +69,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="false">
+          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="856">
-                  <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+                  <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -92,7 +91,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TopicChapter.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TopicChapter.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/business_objects/TopicChapter.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="221">
@@ -791,13 +790,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00006" summary="adding db_update_script, and changed route to be a POST instead of a git.  Expects input to be a request, for request.json['id'] to exist">
-      <created>1457495979647</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1457495979647</updated>
-    </task>
     <task id="LOCAL-00007" summary="route order fixed">
       <created>1457657000907</created>
       <option name="number" value="00007" />
@@ -1134,7 +1126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467746300216</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Refactored some names&#10;Created database dummy loading script&#10;TODO: make chapter index business object">
+      <created>1467747077661</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1467747077661</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1513,14 +1512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
-          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/TopicChapter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1528,6 +1519,14 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="856">
+          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
