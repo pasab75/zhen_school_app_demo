@@ -73,7 +73,7 @@
             <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="856">
-                  <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+                  <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -790,13 +790,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00007" summary="route order fixed">
-      <created>1457657000907</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1457657000907</updated>
-    </task>
     <task id="LOCAL-00008" summary="fixed to use remote database, changed routes to be appropriate">
       <created>1457657618448</created>
       <option name="number" value="00008" />
@@ -1133,7 +1126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467747077661</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Refactored some names&#10;Created database dummy loading script&#10;TODO: make chapter index business object">
+      <created>1467747986888</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1467747986888</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1525,7 +1525,7 @@
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="856">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding />
         </state>
       </provider>

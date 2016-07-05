@@ -10,6 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `testdb` ;
 
 -- -----------------------------------------------------
 -- Schema testdb
@@ -36,6 +37,19 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `testdb`.`chapters`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`chapters` ;
+
+CREATE TABLE IF NOT EXISTS `testdb`.`chapters` (
+  `index` INT(11) NOT NULL,
+  `chapter_name` VARCHAR(500) NULL DEFAULT NULL,
+  PRIMARY KEY (`index`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `testdb`.`words`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `testdb`.`words` ;
@@ -47,7 +61,13 @@ CREATE TABLE IF NOT EXISTS `testdb`.`words` (
   `instructor_difficulty` INT(11) NULL DEFAULT NULL,
   `calculated_difficulty` INT(11) NULL DEFAULT NULL,
   `avg_answer_time` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`index`))
+  PRIMARY KEY (`index`),
+  INDEX `chapter_index_idx` (`chapter_index` ASC),
+  CONSTRAINT `FK_word_chapter_index`
+    FOREIGN KEY (`chapter_index`)
+    REFERENCES `testdb`.`chapters` (`index`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -60,8 +80,15 @@ DROP TABLE IF EXISTS `testdb`.`definitions` ;
 CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
   `word_index` INT(11) NOT NULL,
   `definition` VARCHAR(500) NOT NULL,
+  `chapter_index` INT(11) NOT NULL,
   PRIMARY KEY (`definition`),
   INDEX `word_index_idx` (`word_index` ASC),
+  INDEX `chapter_index_idx` (`chapter_index` ASC),
+  CONSTRAINT `FK_def_chapter_index`
+    FOREIGN KEY (`chapter_index`)
+    REFERENCES `testdb`.`chapters` (`index`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `word_index`
     FOREIGN KEY (`word_index`)
     REFERENCES `testdb`.`words` (`index`)
