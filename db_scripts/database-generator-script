@@ -10,7 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `testdb` ;
 
 -- -----------------------------------------------------
 -- Schema testdb
@@ -32,6 +31,23 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `longitude` DOUBLE NULL DEFAULT NULL,
   `activity` INT(11) NULL DEFAULT NULL,
   `question_id` INT(11) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `testdb`.`topic_chapter`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`topic_chapter` ;
+
+CREATE TABLE IF NOT EXISTS `testdb`.`topic_chapter` (
+  `chapter` INT(11) NULL DEFAULT '0',
+  `chapter_name` VARCHAR(45) NULL DEFAULT NULL,
+  `topic_name` VARCHAR(45) NOT NULL,
+  `topic_index` INT(11) NOT NULL,
+  PRIMARY KEY (`topic_name`, `topic_index`),
+  UNIQUE INDEX `topic_UNIQUE` (`topic_name` ASC),
+  UNIQUE INDEX `topic_index_UNIQUE` (`topic_index` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -64,6 +80,12 @@ CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
   `topic_index` INT(11) NOT NULL,
   PRIMARY KEY (`definition`),
   INDEX `word_index_idx` (`word_index` ASC),
+  INDEX `topic_index_idx` (`topic_index` ASC),
+  CONSTRAINT `topic_index`
+    FOREIGN KEY (`topic_index`)
+    REFERENCES `testdb`.`topic_chapter` (`topic_index`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `word_index`
     FOREIGN KEY (`word_index`)
     REFERENCES `testdb`.`words` (`index`)
@@ -98,23 +120,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`topic_chapter`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`topic_chapter` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`topic_chapter` (
-  `chapter` INT(11) NULL DEFAULT '0',
-  `chapter_name` VARCHAR(45) NULL DEFAULT NULL,
-  `topic_name` VARCHAR(45) NOT NULL,
-  `topic_index` INT(11) NOT NULL,
-  PRIMARY KEY (`topic_name`, `topic_index`),
-  UNIQUE INDEX `topic_UNIQUE` (`topic_name` ASC),
-  UNIQUE INDEX `topic_index_UNIQUE` (`topic_index` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `testdb`.`users`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `testdb`.`users` ;
@@ -133,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `quest_index` INT(11) NULL DEFAULT NULL,
   `date_quest_started` DATETIME NULL DEFAULT NULL,
   `quest_progress` INT(11) NULL DEFAULT '0',
-  `current_question_id` INT(11) NULL DEFAULT NULL,
+  `current_word_id` INT(11) NULL DEFAULT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
