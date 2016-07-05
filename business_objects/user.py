@@ -1,5 +1,3 @@
-import business_objects.db_user as user_table_access_layer
-
 
 class User:
     def __init__(self, user_id=None,

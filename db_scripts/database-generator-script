@@ -10,6 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `testdb` ;
 
 -- -----------------------------------------------------
 -- Schema testdb
@@ -36,21 +37,18 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`calculations`
+-- Table `testdb`.`words`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`calculations` ;
+DROP TABLE IF EXISTS `testdb`.`words` ;
 
-CREATE TABLE IF NOT EXISTS `testdb`.`calculations` (
-  `index` INT(11) NOT NULL AUTO_INCREMENT,
-  `question_text` VARCHAR(500) NOT NULL,
-  `image_path` VARCHAR(100) NULL DEFAULT NULL,
-  `answer` DOUBLE NOT NULL,
-  `answer_units` VARCHAR(20) NULL DEFAULT NULL,
-  `answer_tolerance` DOUBLE NOT NULL,
-  `avg_answer_time` TIME NULL DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `testdb`.`words` (
+  `word_index` INT(11) NOT NULL,
+  `word` VARCHAR(100) NOT NULL,
+  `topic_index` INT(11) NOT NULL,
   `instructor_difficulty` INT(11) NULL DEFAULT NULL,
   `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`index`))
+  `avg_answer_time` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`word_index`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -61,42 +59,15 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`definitions` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
-  `index` INT(11) NOT NULL AUTO_INCREMENT,
-  `word` VARCHAR(100) NOT NULL,
-  `definition_1` VARCHAR(500) NOT NULL,
-  `definition_2` VARCHAR(500) NULL DEFAULT NULL,
-  `definition_3` VARCHAR(500) NULL DEFAULT NULL,
-  `topic` INT(11) NOT NULL,
-  `avg_answer_time` TIME NULL DEFAULT NULL,
-  `instructor_difficulty` INT(11) NULL DEFAULT NULL,
-  `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`index`),
-  UNIQUE INDEX `question_id_UNIQUE` (`index` ASC))
-ENGINE = InnoDB
-AUTO_INCREMENT = 5001
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`multiple_choice`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`multiple_choice` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`multiple_choice` (
-  `index` INT(11) NOT NULL AUTO_INCREMENT,
-  `question_text` VARCHAR(500) NOT NULL,
-  `image_path` VARCHAR(100) NULL DEFAULT NULL,
-  `answer_0` VARCHAR(100) NULL DEFAULT NULL,
-  `answer_1` VARCHAR(100) NOT NULL,
-  `answer_2` VARCHAR(100) NOT NULL,
-  `answer_3` VARCHAR(100) NOT NULL,
-  `answer_4` VARCHAR(100) NOT NULL,
-  `answer_5` VARCHAR(100) NOT NULL,
-  `answer_index` INT(11) NULL DEFAULT NULL,
-  `avg_answer_time` TIME NOT NULL,
-  `instructor_difficulty` INT(11) NULL DEFAULT NULL,
-  `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`index`))
+  `word_index` INT(11) NOT NULL,
+  `definition` VARCHAR(500) NOT NULL,
+  `topic_index` INT(11) NOT NULL,
+  INDEX `word_index_idx` (`word_index` ASC),
+  CONSTRAINT `word_index`
+    FOREIGN KEY (`word_index`)
+    REFERENCES `testdb`.`words` (`word_index`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
