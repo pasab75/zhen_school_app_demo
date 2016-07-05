@@ -1,13 +1,8 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
-import business_objects.CalculationQuestion as Calculation
-import business_objects.MultipleChoiceQuestion as MultipleChoice
-import business_objects.Definition as Definition
-import db_access.db_topic_chapter as topic_chapter_access_layer
-from random import randint
 
 
-class Word:
+class Word():
     _index = None
     _word = None
     _topic_index = None
@@ -49,3 +44,12 @@ class Word:
             'calculated_difficulty': self._calculated_difficulty,
             'avg_answer_time': self._avg_answer_time
         }
+
+
+    def set_from_database(self, word):
+        self._index = word['index']
+        self._word = question['word']
+        self._topic_index = question['topic_index']
+        self._instructor_difficulty = question['instructor_difficulty']
+        self._calculated_difficulty = question['calculated_difficulty']
+        self._avg_answer_time = question['avg_answer_time']

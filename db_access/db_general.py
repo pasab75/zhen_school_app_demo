@@ -80,6 +80,8 @@ class GeneralDatabaseConnection:
             except Exception as e:
                 print("Error connecting: " + str(e))
                 return False
+
+
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------
