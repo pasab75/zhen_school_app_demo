@@ -48,8 +48,23 @@ class Word():
 
     def set_from_database(self, word):
         self._index = word['index']
-        self._word = question['word']
-        self._topic_index = question['topic_index']
-        self._instructor_difficulty = question['instructor_difficulty']
-        self._calculated_difficulty = question['calculated_difficulty']
-        self._avg_answer_time = question['avg_answer_time']
+        self._word = word['word']
+        self._topic_index = word['topic_index']
+        self._instructor_difficulty = word['instructor_difficulty']
+        self._calculated_difficulty = word['calculated_difficulty']
+        self._avg_answer_time = word['avg_answer_time']
+
+    def get_word(self):
+        return self._word
+
+    def get_index(self):
+        return self._index
+
+    def set_index(self, index):
+        self._index = index
+
+    def get_topic_index(self):
+        return self._topic_index
+
+    def set_topic_index(self, index):
+        self._topic_index = index

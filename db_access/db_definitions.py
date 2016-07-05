@@ -14,49 +14,7 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
         GeneralDatabaseConnection.__init__(self)
 
     # -------------------------------------------------------------
-    # question table methods
-    # -------------------------------------------------------------
-
-    # -------------------------------------------------------------
-    # debug methods
-    # -------------------------------------------------------------
-
-    # loads number of randomly generated function to the questions database for testing purposes only
-    # remove this function when we go into production
-    # def initialize_definitions(self, num_questions):
-    #     try:
-    #         for i in range(0, num_questions):
-    #             topic = str(randint(1, 100))
-    #             difficulty = str(randint(1, 10))
-    #
-    #             word = str(randint(0, 99999))
-    #             definition_1 = ('I am definition number 1. My difficulty level is '+
-    #                             difficulty +
-    #                             '. My corresponding word is ' +
-    #                             word)
-    #             definition_2 = ('I am definition number 2. My difficulty level is ' +
-    #                             difficulty +
-    #                             ', My corresponding word is ' +
-    #                             word)
-    #             definition_3 = ('I am definition number 3. My difficulty level is ' +
-    #                             difficulty +
-    #                             '. My corresponding word is ' +
-    #                             word)
-    #
-    #             question = questionGenerator.DefinitionQuestion(word=word,
-    #                                                             definition_1=definition_1,
-    #                                                             definition_2=definition_2,
-    #                                                             definition_3=definition_3,
-    #                                                             topic=topic,
-    #                                                             instructor_difficulty=difficulty)
-    #
-    #             self.save_new_row_in_table(question.get_database_format(), 'definition_questions')
-    #
-    #     except Exception as e:
-    #         print("Error loading random shit "+str(e))
-
-    # -------------------------------------------------------------
-    # READ methods
+    # fetch db_obj methods
     # -------------------------------------------------------------
 
     def get_definition_by_wordindex(self, index):
@@ -92,7 +50,16 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
+    def get_definition_random_by_topic_index(self, topic_index):
+        try:
+            try:
+                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_index)
+                return db_obj
 
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------

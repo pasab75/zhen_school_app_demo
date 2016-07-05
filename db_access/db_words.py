@@ -33,7 +33,28 @@ class WordTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
+    def get_word_random_by_topic(self, topic):
+        try:
+            try:
+                topic_obj = self.get_row_by_key_value("topic_chapter", "topic_name", topic)
+                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_obj["topic_index"])
+                return db_obj
 
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+
+    def get_word_random_by_topic_index(self, topic_index):
+        try:
+            try:
+                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_index)
+                return db_obj
+
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------

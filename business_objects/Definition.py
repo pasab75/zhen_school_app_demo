@@ -34,3 +34,9 @@ class Definition():
             definition=self._definition,
             topic_index=self._topic_index
         )
+
+    def get_word_index(self):
+        return self._word_index
+
+    def get_definition(self):
+        return self._definition
