@@ -1,6 +1,6 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
-
+import db_access.db_words as db_wordzors
 
 class word():
     _index = None
@@ -68,3 +68,13 @@ class word():
 
     def set_topic_index(self, index):
         self._topic_index = index
+
+    #only call this if you're sure this doesn't exist in the db already
+    def save_new(self):
+        try:
+            db_word = db_wordzors.WordTableAccess()
+            db_word.save_new_word_from_object(self.get_database_format())
+            return True
+        except Exception as e:
+            print("Could not delete question: " + str(e))
+            return False

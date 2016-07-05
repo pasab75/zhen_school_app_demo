@@ -117,7 +117,7 @@ class DefQuestionType(Enum):
     definition = 1
 
 def main():
-    defQuestion = DefinitionQuestion().make_from_topic(1,2,0)
+    defQuestion = DefinitionQuestion().make_from_topic_index(1,2,0)
 
 if __name__ == "__main__":
     print("Starting run")

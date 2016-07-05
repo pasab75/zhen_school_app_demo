@@ -1,5 +1,5 @@
 from flask import jsonify
-
+import db_access.db_definitions as db_definition
 
 class Definition():
 
@@ -40,3 +40,13 @@ class Definition():
 
     def get_definition(self):
         return self._definition
+
+    # only call this if you're sure this doesn't exist in the db already
+    def save_new(self):
+        try:
+            db_def = db_definition.DefinitionTableAccess()
+            db_def.save_new_definition_from_object(self.get_database_format())
+            return True
+        except Exception as e:
+            print("Could not delete question: " + str(e))
+            return False
