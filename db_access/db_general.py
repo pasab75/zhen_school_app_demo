@@ -40,9 +40,8 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} WHERE {} = %s".format(table, key)
-                    cursor.execute(sql, value)
-
+                    sql = "SELECT * FROM {} WHERE {} = {}".format(table, key, value)
+                    cursor.execute(sql)
                     return cursor.fetchone()
 
             except Exception as ex:
@@ -51,29 +50,13 @@ class GeneralDatabaseConnection:
             print("Error connecting: "+str(e))
             return False
 
-    def get_rows_by_key_value(self, table, key, value):
+    def get_row_random(self, table,  number=1):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT FROM {} WHERE '{}' = %s".format(table, key)
-                    cursor.execute(sql, value)
-
+                    sql = "SELECT * FROM {} ORDER BY RAND() LIMIT {}".format(table, number)
+                    cursor.execute(sql)
                     return cursor.fetchall()
-
-            except Exception as ex:
-                print("error adding row to table :" + str(ex))
-        except Exception as e:
-            print("Error connecting: "+str(e))
-            return False
-
-    def get_row_random(self, table):
-        try:
-            try:
-                with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} ORDER BY RAND() LIMIT 1".format(table)
-                    cursor.execute(sql, value)
-
-                    return cursor.fetchone()
 
             except Exception as ex:
                 print("error adding row to table :" + str(ex))
@@ -81,13 +64,13 @@ class GeneralDatabaseConnection:
             print("Error connecting: " + str(e))
             return False
 
-    def get_row_random_by_key(self, table, key_to_use, key_value):
+    def get_row_random_by_key(self, table, key_to_use, key_value, number=1):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} WHERE {} = {} ORDER BY RAND() LIMIT 1".format(table, key_to_use, key_value)
-
-                    return cursor.fetchone()
+                    sql = "SELECT * FROM {} WHERE {} = {} ORDER BY RAND() LIMIT {}".format(table, key_to_use, key_value, number)
+                    cursor.execute(sql)
+                    return cursor.fetchall()
 
             except Exception as ex:
                 print("error adding row to table :" + str(ex))

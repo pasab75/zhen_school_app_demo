@@ -2,7 +2,7 @@
 from flask import jsonify
 
 
-class Word():
+class word():
     _index = None
     _word = None
     _topic_index = None

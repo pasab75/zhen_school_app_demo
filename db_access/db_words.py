@@ -2,6 +2,7 @@ from db_access.db_general import GeneralDatabaseConnection
 
 table_name = "words"
 
+
 class WordTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
@@ -45,10 +46,10 @@ class WordTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    def get_word_random_by_topic_index(self, topic_index):
+    def get_word_random_by_topic_index(self, topic_index, number_wanted=1):
         try:
             try:
-                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_index)
+                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_index, number=number_wanted)
                 return db_obj
 
             except Exception as e:
