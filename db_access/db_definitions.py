@@ -70,7 +70,6 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    #TODO: update this tomorrow with random by word index
     def get_word_random(self):
         try:
             try:
@@ -81,15 +80,12 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    # TODO: fix topic index to topic fetch
     def get_definition_random_by_topic(self, topic):
         try:
             try:
-                with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM definitions WHERE topic = %s ORDER BY RAND() LIMIT 1"
-
-                    cursor.execute(sql, topic)
-                    return cursor.fetchone()
+                topic_obj = self.get_row_by_key_value("topic_chapter", "topic_name", topic)
+                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_obj["topic_index"])
+                return db_obj
 
             except Exception as e:
                 print("Error fetching results: " + str(e))
