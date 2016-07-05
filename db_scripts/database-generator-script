@@ -42,13 +42,13 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`words` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`words` (
-  `word_index` INT(11) NOT NULL,
+  `index` INT(11) NOT NULL,
   `word` VARCHAR(100) NOT NULL,
   `topic_index` INT(11) NOT NULL,
   `instructor_difficulty` INT(11) NULL DEFAULT NULL,
   `calculated_difficulty` INT(11) NULL DEFAULT NULL,
   `avg_answer_time` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`word_index`))
+  PRIMARY KEY (`index`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -62,10 +62,11 @@ CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
   `word_index` INT(11) NOT NULL,
   `definition` VARCHAR(500) NOT NULL,
   `topic_index` INT(11) NOT NULL,
+  PRIMARY KEY (`definition`),
   INDEX `word_index_idx` (`word_index` ASC),
   CONSTRAINT `word_index`
     FOREIGN KEY (`word_index`)
-    REFERENCES `testdb`.`words` (`word_index`)
+    REFERENCES `testdb`.`words` (`index`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db_scripts/moretables" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/python_rest.iml" afterPath="$PROJECT_DIR$/.idea/python_rest.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/user.py" afterPath="$PROJECT_DIR$/business_objects/user.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
     </list>
     <ignored path="python_rest.iws" />
@@ -76,9 +76,27 @@
           <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1003">
-                  <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+                <state relative-caret-position="856">
+                  <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="db_general.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="162">
+                  <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+                  <folding>
+                    <marker date="1459559029211" expanded="true" signature="1745:1775" ph="SELECT * FRO... missing_value" />
+                    <marker date="1459559029211" expanded="true" signature="2266:2296" ph="SELECT FROM missing_value... " />
+                    <marker date="1459559029211" expanded="true" signature="3319:3354" ph="INSERT INTO missing_value... " />
+                    <marker date="1459559029211" expanded="true" signature="4502:4528" ph="UPDATE missi... " />
+                    <marker date="1459559029211" expanded="true" signature="5295:5323" ph="DELETE FROM " />
+                    <marker date="1459559029211" expanded="true" signature="6255:6267" ph="DELETE FROM " />
+                    <marker date="1459559029211" expanded="true" signature="6726:6749" ph="SELECT COUNT... " />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -350,7 +368,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Images" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -767,13 +785,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00003" summary="commit the changes to the DB, changes to the test_db_question unit tests, changes to the DB access list, new access methods to the DB access layer for questions">
-      <created>1457404047438</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1457404047438</updated>
-    </task>
     <task id="LOCAL-00004" summary="adding db_update_script">
       <created>1457483913731</created>
       <option name="number" value="00004" />
@@ -1110,7 +1121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1459831634520</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="New database generation script in db_scripts">
+      <created>1467680755075</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1467680755075</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1179,7 +1197,8 @@
     <MESSAGE value="Created file to keep functions that sanitize outgoing data packets. These will trim the database dictionaries and instead create json objects that will be directly usable by the client." />
     <MESSAGE value="Writing skeleton for angular frontend" />
     <MESSAGE value="changing database logic so that business objects call the database directly. The rest manager does not need to know about the database access layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing database logic so that business objects call the database directly. The rest manager does not need to know about the database access layer" />
+    <MESSAGE value="New database generation script in db_scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="New database generation script in db_scripts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1343,7 +1362,7 @@
         <state relative-caret-position="680">
           <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
           <folding>
-            <element signature="e#72#97#0" expanded="true" />
+            <element signature="e#72#97#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1406,7 +1425,7 @@
         <state relative-caret-position="638">
           <caret line="71" column="50" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
           <folding>
-            <element signature="e#0#62#0" expanded="true" />
+            <element signature="e#0#62#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1416,23 +1435,7 @@
         <state relative-caret-position="17">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1960">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding>
-            <marker date="1459559029211" expanded="true" signature="1745:1775" ph="SELECT * FRO... missing_value" />
-            <marker date="1459559029211" expanded="true" signature="2266:2296" ph="SELECT FROM missing_value... " />
-            <marker date="1459559029211" expanded="true" signature="3319:3354" ph="INSERT INTO missing_value... " />
-            <marker date="1459559029211" expanded="true" signature="4502:4528" ph="UPDATE missi... " />
-            <marker date="1459559029211" expanded="true" signature="5295:5323" ph="DELETE FROM " />
-            <marker date="1459559029211" expanded="true" signature="6255:6267" ph="DELETE FROM " />
-            <marker date="1459559029211" expanded="true" signature="6726:6749" ph="SELECT COUNT... " />
+            <element signature="e#0#62#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1501,10 +1504,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+          <folding>
+            <marker date="1459559029211" expanded="true" signature="1745:1775" ph="SELECT * FRO... missing_value" />
+            <marker date="1459559029211" expanded="true" signature="2266:2296" ph="SELECT FROM missing_value... " />
+            <marker date="1459559029211" expanded="true" signature="3319:3354" ph="INSERT INTO missing_value... " />
+            <marker date="1459559029211" expanded="true" signature="4502:4528" ph="UPDATE missi... " />
+            <marker date="1459559029211" expanded="true" signature="5295:5323" ph="DELETE FROM " />
+            <marker date="1459559029211" expanded="true" signature="6255:6267" ph="DELETE FROM " />
+            <marker date="1459559029211" expanded="true" signature="6726:6749" ph="SELECT COUNT... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+        <state relative-caret-position="856">
+          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
           <folding />
         </state>
       </provider>
