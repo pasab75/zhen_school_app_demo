@@ -1,4 +1,5 @@
 from db_access.db_general import GeneralDatabaseConnection
+import random
 
 table_name = "words"
 
@@ -34,11 +35,11 @@ class WordTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    def get_word_random_by_topic(self, topic):
+    def get_word_random_by_topic(self, topic, number_wanted=1):
         try:
             try:
                 topic_obj = self.get_row_by_key_value("topic_chapter", "topic_name", topic)
-                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_obj["topic_index"])
+                db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_obj["topic_index"], number=number_wanted)
                 return db_obj
 
             except Exception as e:
@@ -50,6 +51,40 @@ class WordTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 db_obj = self.get_row_random_by_key(table_name, "topic_index", topic_index, number=number_wanted)
+                return db_obj
+
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+
+    def get_word_random_by_chapter(self, chapter, number_wanted=1):
+        try:
+            try:
+                db_obj_words = []
+                topic_array = self.get_all_by_key_value("topic_chapter", "chapter_name", chapter)
+                for x in range(0,number_wanted):
+                    random.shuffle(topic_array)
+                    topic = topic_array[0]
+                    db_obj = self.get_row_random_by_key(table_name, "topic_index", topic["topic_index"], number=number_wanted)
+                    db_obj_words.append(db_obj)
+                return db_obj_words
+
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+
+    def get_word_random_by_chapter_index(self, chapter_index, number_wanted=1):
+        try:
+            try:
+                db_obj_words = []
+                topic_array = self.get_all_by_key_value("topic_chapter", "chapter_index", chapter_index)
+                for x in range(0, number_wanted):
+                    random.shuffle(topic_array)
+                    topic = topic_array[0]
+                    db_obj = self.get_row_random_by_key(table_name, "topic_index", topic["topic_index"], number=number_wanted)
+                    db_obj_words.append(db_obj)
                 return db_obj
 
             except Exception as e:

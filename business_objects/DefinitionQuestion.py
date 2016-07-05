@@ -64,14 +64,14 @@ class DefinitionQuestion():
             db_words = db_word.get_word_random_by_topic_index(self._topic_index, num_wanted)
             for word_obj in db_words:
                 filler_word = Word.word.set_from_database(word_obj)
-                self._words.append(filler_word.get_word())
+                self._words.append(filler_word)
 
         if type == 1:
             self._definitions.append(definition)
             db_defs = db_def.get_definition_random_by_topic_index(self._topic_index, num_wanted)
             for def_obj in db_defs:
-                filler_def = Definition.Definition.set_from_database(db_def.get_definition_random_by_topic_index(self._topic_index))
-                self._definitions.append(filler_word.get_definition())
+                filler_def = Definition.Definition.set_from_database(def_obj)
+                self._definitions.append(filler_def)
 
         db_word.close_connection()
         db_def.close_connection()
@@ -94,18 +94,74 @@ class DefinitionQuestion():
             db_words = db_word.get_word_random_by_topic_index(self._topic_index, num_wanted)
             for word_obj in db_words:
                 filler_word = Word.word.set_from_database(word_obj)
-                self._words.append(filler_word.get_word())
+                self._words.append(filler_word)
 
         if type == 1:
             self._definitions.append(definition)
             db_defs = db_def.get_definition_random_by_topic_index(self._topic_index, num_wanted)
             for def_obj in db_defs:
-                filler_def = Definition.Definition.set_from_database(
-                    db_def.get_definition_random_by_topic_index(self._topic_index))
-                self._definitions.append(filler_word.get_definition())
+                filler_def = Definition.Definition.set_from_database(def_obj)
+                self._definitions.append(filler_def)
 
         db_word.close_connection()
         db_def.close_connection()
+
+    def make_from_chapter_index(self, chapter_index, num_wanted, type):
+        db_def = db_definition.DefinitionTableAccess()
+        db_word = db_wordzors.WordTableAccess()
+        word = Word.word.set_from_database(db_word.get_word_random_by_chapter_index(chapter_index))
+        definition = db_def.get_definition_by_wordindex(word.get_index())
+        self._word = word
+        self._type = type
+        self._word_index = word.get_index()
+        self._definition = definition.get_definition()
+        self._topic_index = word.get_topic_index()
+
+        if type == 0:
+            self._words.append(word)
+            db_words = db_word.get_word_random_by_chapter_index(chapter_index, num_wanted)
+            for word_obj in db_words:
+                filler_word = Word.word.set_from_database(word_obj)
+                self._words.append(filler_word)
+
+        if type == 1:
+            self._definitions.append(definition)
+            db_defs = db_def.get_definition_random_by_chapter_index(chapter_index, num_wanted)
+            for def_obj in db_defs:
+                filler_def = Definition.Definition.set_from_database(def_obj)
+                self._definitions.append(filler_def)
+
+        db_word.close_connection()
+        db_def.close_connection()
+
+    def make_from_chapter(self, chapter, num_wanted, type):
+        db_def = db_definition.DefinitionTableAccess()
+        db_word = db_wordzors.WordTableAccess()
+        word = Word.word.set_from_database(db_word.get_word_random_by_chapter(chapter))
+        definition = db_def.get_definition_by_wordindex(word.get_index())
+        self._word = word
+        self._type = type
+        self._word_index = word.get_index()
+        self._definition = definition.get_definition()
+        self._topic_index = word.get_topic_index()
+
+        if type == 0:
+            self._words.append(word)
+            db_words = db_word.get_word_random_by_chapter(chapter, num_wanted)
+            for word_obj in db_words:
+                filler_word = Word.word.set_from_database(word_obj)
+                self._words.append(filler_word)
+
+        if type == 1:
+            self._definitions.append(definition)
+            db_defs = db_def.get_definition_random_by_chapter(chapter, num_wanted)
+            for def_obj in db_defs:
+                filler_def = Definition.Definition.set_from_database(def_obj)
+                self._definitions.append(filler_def)
+
+        db_word.close_connection()
+        db_def.close_connection()
+
     def get_word_index(self):
         return self._word_index
 
