@@ -1,8 +1,8 @@
-from business_objects.Definition import Definition
 from db_access.db_general import GeneralDatabaseConnection
 import random
 # provides interface to the definition question table
 table_name = "definitions"
+
 
 class DefinitionTableAccess(GeneralDatabaseConnection):
 
@@ -17,7 +17,7 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     # fetch db_obj methods
     # -------------------------------------------------------------
 
-    def get_definition_by_wordindex(self, index):
+    def get_definition_by_word_index(self, index):
         try:
             try:
                 db_obj = self.get_row_by_key_value(table_name, "word_index", index)
@@ -65,9 +65,9 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     # -------------------------------------------------------------
 
     # updates a question already in the database by using the question's question_id field
-    def update_from_object_with_primary_key(self, question, primary):
+    def update_from_object_with_primary_key(self, definition, primary):
         try:
-            self.update_row_in_table(question.get_database_format(), table_name, primary)
+            self.update_row_in_table(definition, table_name, primary)
         except Exception as e:
             print("Could not update function: " + str(e))
             return False
@@ -82,9 +82,9 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     # saves a new question into the questions database
     # function takes a question object
     # code will null answers that aren't provided
-    def save_new_definition_from_object(self, question):
+    def save_new_definition_from_object(self, definition):
         try:
-            self.save_new_row_in_table(Definition.get_database_format(), 'definition_questions')
+            self.save_new_row_in_table(definition, 'definition_questions')
 
         except Exception as e:
             print("Could not save question: " + str(e))

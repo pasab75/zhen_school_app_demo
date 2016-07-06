@@ -1,7 +1,8 @@
 from flask import jsonify
 import db_access.db_definitions as db_definition
 
-class Definition():
+
+class Definition:
 
     _word_index = None
     _definition = None
