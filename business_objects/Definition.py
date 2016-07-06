@@ -6,34 +6,34 @@ class Definition:
 
     _word_index = None
     _definition = None
-    _topic_index = None
+    _chapter_index = None
 
     def __init__(self,
                  word_index=None,
                  definition=None,
-                 topic_index=None):
+                 chapter_index=None):
 
         self._word_index = word_index
         self._definition = definition
-        self._topic_index = topic_index
+        self._chapter_index = chapter_index
 
     def get_database_format(self):
         return {
             'word_index': self._word_index,
             'definition': self._definition,
-            'topic_index': self._topic_index
+            'chapter_index': self._chapter_index
         }
 
     def set_from_database(self, question):
         self._word_index = question['word_index']
         self._definition = question['definition']
-        self._topic_index = question['topic_index']
+        self._chapter_index = question['chapter_index']
 
     def get_jsonified(self):
         return jsonify(
             word_index=self._word_index,
             definition=self._definition,
-            topic_index=self._topic_index
+            chapter_index=self._chapter_index
         )
 
     def generate_random_from_chapter_index(self, index):

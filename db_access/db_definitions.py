@@ -84,7 +84,7 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     # code will null answers that aren't provided
     def save_new_definition_from_object(self, definition):
         try:
-            self.save_new_row_in_table(definition, 'definition_questions')
+            self.save_new_row_in_table(definition, table_name)
 
         except Exception as e:
             print("Could not save question: " + str(e))

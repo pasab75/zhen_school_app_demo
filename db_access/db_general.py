@@ -2,7 +2,6 @@ import pymysql.cursors
 
 
 class GeneralDatabaseConnection:
-
     # -------------------------------------------------------------
     # class variables
     # -------------------------------------------------------------
@@ -61,10 +60,10 @@ class GeneralDatabaseConnection:
             except Exception as ex:
                 print("error adding row to table :" + str(ex))
         except Exception as e:
-            print("Error connecting: "+str(e))
+            print("Error connecting: " + str(e))
             return False
 
-    def get_row_random(self, table,  number=1):
+    def get_row_random(self, table, number=1):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
@@ -82,7 +81,8 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} WHERE {} = {} ORDER BY RAND() LIMIT {}".format(table, key_to_use, key_value, number)
+                    sql = "SELECT * FROM {} WHERE {} = {} ORDER BY RAND() LIMIT {}".format(table, key_to_use, key_value,
+                                                                                           number)
                     cursor.execute(sql)
                     return cursor.fetchall()
 
@@ -96,12 +96,9 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} WHERE {} >= {} AND {} <= {} ORDER BY RAND() LIMIT {}".format(table,
-                                                                                                         key,
-                                                                                                         lower,
-                                                                                                         key,
-                                                                                                         upper,
-                                                                                                         number)
+                    sql = "SELECT * FROM {} WHERE {} >= {} AND {} <= {} ORDER BY RAND() LIMIT {}".format(table, key,
+                                                                                                         lower, key,
+                                                                                                         upper, number)
                     cursor.execute(sql)
                     return cursor.fetchall()
 
@@ -125,7 +122,7 @@ class GeneralDatabaseConnection:
                     placeholders = ', '.join(['%s'] * len(dictionary_to_add))
                     columns = ", ".join(dictionary_to_add.keys())
                     sql = "INSERT INTO {} ( {} ) VALUES ( {} )".format(table, columns, placeholders)
-                    print(cursor.mogrify(sql, list(dictionary_to_add.values())))
+                    # print(cursor.mogrify(sql, list(dictionary_to_add.values())))
                     cursor.execute(sql, list(dictionary_to_add.values()))
 
                     return True
@@ -133,7 +130,7 @@ class GeneralDatabaseConnection:
             except Exception as ex:
                 print("error adding row to table :" + str(ex))
         except Exception as e:
-            print("Error connecting: "+str(e))
+            print("Error connecting: " + str(e))
             return False
 
     # this method updates an existing row with key-value pairs given by the dictionary
@@ -153,16 +150,16 @@ class GeneralDatabaseConnection:
                     sql = "UPDATE %s SET %s WHERE %s=%s" % (table, keystring, primary, searchvalue)
 
                     # executes the sql code with list of values to update as a parameter
-                    print(dictionary_to_add.values())
-                    print(type(dictionary_to_add.values()))
+                    #print(dictionary_to_add.values())
+                    #print(type(dictionary_to_add.values()))
                     cursor.execute(sql, list(dictionary_to_add.values()))
 
                     return True
             except Exception as e:
-                print("Error updating row: "+str(e))
+                print("Error updating row: " + str(e))
                 return False
         except Exception as e:
-            print("Error connecting: "+str(e))
+            print("Error connecting: " + str(e))
             return False
 
     def delete_row_in_table_with_attribute(self, table, field, value):
@@ -175,10 +172,10 @@ class GeneralDatabaseConnection:
 
                     return True
             except Exception as e:
-                print("Error fetching results: "+str(e))
+                print("Error fetching results: " + str(e))
                 return False
         except Exception as e:
-            print("Error connecting: "+str(e))
+            print("Error connecting: " + str(e))
             return False
 
     def close_connection(self):
@@ -199,9 +196,9 @@ class GeneralDatabaseConnection:
                     cursor.execute(sql)
 
             except Exception as e:
-                print("Error emptying table "+str(e))
+                print("Error emptying table " + str(e))
         except Exception as e:
-            print("Error while connecting "+str(e))
+            print("Error while connecting " + str(e))
 
     # returns the number of rows in any table
     def get_numrows(self, table):
@@ -215,6 +212,6 @@ class GeneralDatabaseConnection:
                     print(request)
 
             except Exception as e:
-                print("Error counting rows "+str(e))
+                print("Error counting rows " + str(e))
         except Exception as e:
-            print("Error while connecting "+str(e))
+            print("Error while connecting " + str(e))
