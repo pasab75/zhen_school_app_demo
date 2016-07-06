@@ -69,7 +69,7 @@ class ChapterTableAccess(GeneralDatabaseConnection):
 
     def save_new_chapter_from_object(self, chapter):
         try:
-            self.save_new_row_in_table(chapter.get_database_format(), table_name)
+            self.save_new_row_in_table(chapter, table_name)
 
         except Exception as e:
             print("Could not save question: " + str(e))

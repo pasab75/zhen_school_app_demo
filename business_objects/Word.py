@@ -3,7 +3,7 @@ import db_access.db_words as db_wordzors
 
 
 class Word:
-    _index = None
+    _word_index = None
     _word = None
     _chapter_index = None
     _instructor_difficulty = False
@@ -18,7 +18,7 @@ class Word:
                  calculate_difficulty=None,
                  avg_answer_time=None):
 
-        self._index = index
+        self._word_index = index
         self._word = word
         self._chapter_index = chapter_index
         self._instructor_difficulty = instructor_difficulty
@@ -27,7 +27,7 @@ class Word:
 
     def get_jsonified(self):
         return jsonify(
-            index = self._index,
+            word_index = self._word_index,
             word = self._word,
             chapter_index = self._chapter_index,
             instructor_difficulty = self._instructor_difficulty,
@@ -37,7 +37,7 @@ class Word:
 
     def get_database_format(self):
         return {
-            'index': self._index,
+            'word_index': self._word_index,
             'word': self._word,
             'chapter_index': self._chapter_index,
             'instructor_difficulty': self._instructor_difficulty,
@@ -47,7 +47,7 @@ class Word:
 
 
     def set_from_database(self, word):
-        self._index = word['index']
+        self._word_index = word['word_index']
         self._word = word['word']
         self._chapter_index = word['chapter_index']
         self._instructor_difficulty = word['instructor_difficulty']
@@ -71,10 +71,10 @@ class Word:
         return self._word
 
     def get_index(self):
-        return self._index
+        return self._word_index
 
     def set_index(self, index):
-        self._index = index
+        self._word_index = index
 
     def get_chapter_index(self):
         return self._chapter_index
