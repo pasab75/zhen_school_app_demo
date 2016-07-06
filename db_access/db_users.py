@@ -294,16 +294,3 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: "+str(e))
             return False
-
-    def update_user_rewards(self):
-        try:
-            user_info = {'user_id': user_id,
-                         'current_lvl': current_lvl,
-                         'current_points': current_points,
-                         'current_multiplier': current_multiplier,
-                         }
-            self.update_row_in_table(user_info, 'users', 'user_id')
-            return True
-        except Exception as e:
-            print("Error connecting: " + str(e))
-            return False

@@ -1,4 +1,4 @@
-import db_access.db_users as users_table_access_layer
+import db_access.db_users as User_db
 import flask.jsonify as jsonify
 import datetime
 
@@ -68,26 +68,26 @@ class User:
 
     def get_database_format(self):
         return {
-            "user_id":self._user_id,
-            "first_name":self._first_name,
-            "last_name":self._last_name,
-            "e_mail":self._e_mail,
-            "user_role":self._user_role,
-            "current_lvl":self._current_lvl,
-            "current_points":self._current_points,
-            "current_multiplier":self._current_multiplier ,
-            "chapter_index":self._chapter_index,
-            "cumulative":self._cumulative,
-            "number_of_questions":self._number_of_questions,
-            "points_per_question":self._points_per_question,
-            "seconds_per_question":self._seconds_per_question,
-            "completion_points":self._completion_points,
-            "date_quest_started":self._date_quest_started,
-            "current_word_index":self._current_word_index,
-            "current_progress":self._current_progress,
-            "number_correct":self._number_correct,
-            "last_active":self._last_active,
-            "paid_through":self._paid_through
+            "user_id": self._user_id,
+            "first_name": self._first_name,
+            "last_name": self._last_name,
+            "e_mail": self._e_mail,
+            "user_role": self._user_role,
+            "current_lvl": self._current_lvl,
+            "current_points": self._current_points,
+            "current_multiplier": self._current_multiplier ,
+            "chapter_index": self._chapter_index,
+            "cumulative": self._cumulative,
+            "number_of_questions": self._number_of_questions,
+            "points_per_question": self._points_per_question,
+            "seconds_per_question": self._seconds_per_question,
+            "completion_points": self._completion_points,
+            "date_quest_started": self._date_quest_started,
+            "current_word_index": self._current_word_index,
+            "current_progress": self._current_progress,
+            "number_correct": self._number_correct,
+            "last_active": self._last_active,
+            "paid_through": self._paid_through
         }
 
     def jsonify(self):
@@ -156,7 +156,7 @@ class User:
         self.add_current_points(points*self.get_current_multiplier())
 
     def generate_from_id(self, id):
-        dbconnect = users_table_access_layer.UserTableAccess()
+        dbconnect = User_db.UserTableAccess()
         current_user = dbconnect.get_user_by_user_id(id)
         self.set_from_database(current_user)
         dbconnect.close_connection()
@@ -296,3 +296,7 @@ class User:
 
     def set_number_correct(self, value):
         self._number_correct = value
+
+    def update_current_user(self):
+        user_db = User_db.UserTableAccess()
+        user_db.update_user(self.get_database_format())
