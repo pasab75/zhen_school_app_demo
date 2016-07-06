@@ -108,25 +108,6 @@ class GeneralDatabaseConnection:
             print("Error connecting: " + str(e))
             return False
 
-    def get_row_by_attributes(self, dictionary_to_search, table):
-        try:
-            try:
-                with self.db_connection.cursor() as cursor:
-
-                    keystring = '=%s, '.join(dictionary_to_search.keys()) + '=%s'
-
-                    sql = "SELECT * FROM %s WHERE %s=%s" % (table, keystring, searchvalue)
-
-                    cursor.execute(sql, list(dictionary_to_add.values()))
-
-                    return True
-            except Exception as e:
-                print("Error updating row: " + str(e))
-                return False
-        except Exception as e:
-            print("Error connecting: " + str(e))
-            return False
-
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------
