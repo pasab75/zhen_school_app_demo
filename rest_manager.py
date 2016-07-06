@@ -53,7 +53,7 @@ def authenticate_user(client_request):
         user_id = str(r.json()['sub'])
         print(user_id)
         user = User.user.generate_from_id(user_id)
-        if user and user.isPaid():
+        if user and user.is_paid():
             return user
         else:
             return False
