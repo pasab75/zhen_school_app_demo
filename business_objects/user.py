@@ -136,6 +136,25 @@ class User:
         self._last_active = user['last_active']
         self._paid_through = user['paid_through']
 
+    def update_user_quest(self, chapter_index=None, current_progress=None, date_quest_started=None,
+                          current_word_index=None, number_correct=None, completion_points=None,
+                          seconds_per_question=None, points_per_question=None, number_of_questions=None,
+                          cumulative=None):
+        self._chapter_index = chapter_index
+        self._cumulative = cumulative
+        self._number_of_questions = number_of_questions
+        self._points_per_question = points_per_question
+        self._seconds_per_question = seconds_per_question
+        self._completion_points = completion_points
+        self._date_quest_started = date_quest_started
+        self._current_word_index = current_word_index
+        self._current_progress = current_progress
+        self._number_correct = number_correct
+
+    def update_user_rewards(self, points, current_multiplier_increment=.1):
+        self.set_current_multiplier(self.get_current_multiplier()+current_multiplier_increment)
+        self.add_current_points(points*self.get_current_multiplier())
+
     def generate_from_id(self, id):
         dbconnect = users_table_access_layer.UserTableAccess()
         current_user = dbconnect.get_user_by_user_id(id)

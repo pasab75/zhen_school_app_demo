@@ -295,29 +295,6 @@ class UserTableAccess(GeneralDatabaseConnection):
             print("Error connecting: "+str(e))
             return False
 
-    def update_user_quest(self, user_id, chapter_index=None, current_progress=None, date_quest_started=None,
-                          current_word_index=None, number_correct=None, completion_points=None,
-                          seconds_per_question=None, points_per_question=None, number_of_questions=None,
-                          cumulative=None):
-        try:
-            user_info = {'user_id': user_id,
-                         'chapter_index': chapter_index,
-                         'current_progress': current_progress,
-                         'date_quest_started': date_quest_started,
-                         'current_word_index': current_word_index,
-                         'number_correct': number_correct,
-                         'completion_points': completion_points,
-                         'seconds_per_question': seconds_per_question,
-                         'points_per_question': points_per_question,
-                         'number_of_questions': number_of_questions,
-                         'cumulative': cumulative
-                         }
-            self.update_row_in_table(user_info, 'users', 'user_id')
-            return True
-        except Exception as e:
-            print("Error connecting: " + str(e))
-            return False
-
     def update_user_rewards(self):
         try:
             user_info = {'user_id': user_id,
