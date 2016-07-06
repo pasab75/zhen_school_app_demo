@@ -195,18 +195,6 @@ class User:
     def set_user_role(self, role):
         self._user_role = role
 
-    def get_current_quest_index(self):
-        return self._quest_index
-
-    def set_current_quest_index(self, quest_index):
-        self._quest_index = quest_index
-
-    def get_current_quest_level(self):
-        return self._current_lvl
-
-    def set_current_quest_level(self, lvl):
-        self._current_lvl = lvl
-
     def get_current_points(self):
         return self._current_points
 
@@ -300,3 +288,13 @@ class User:
     def update_current_user(self):
         user_db = User_db.UserTableAccess()
         user_db.update_user(self.get_database_format())
+
+        # only call this if you're sure this doesn't exist in the db already
+    def save_new(self):
+        try:
+            db_user = User_db.UserTableAccess()
+            db_user.save_user_new(self.get_database_format())
+            return True
+        except Exception as e:
+            print("Could not delete question: " + str(e))
+            raise e

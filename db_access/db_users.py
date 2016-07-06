@@ -184,9 +184,9 @@ class UserTableAccess(GeneralDatabaseConnection):
     # WRITE methods
     # -------------------------------------------------------------
 
-    def add_user_new(self, user):
+    def save_user_new(self, user):
         try:
-            self.save_new_row_in_table(user.get_database_format(), 'users')
+            self.save_new_row_in_table(user, 'users')
         except Exception as ex:
             print("Unable to add new user: " + str(ex))
 
