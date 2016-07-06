@@ -92,6 +92,25 @@ class GeneralDatabaseConnection:
             print("Error connecting: " + str(e))
             return False
 
+    def get_row_random_with_limits(self, table, key, lower, upper, number=1):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT * FROM {} WHERE {} >= {} AND {} <= {} ORDER BY RAND() LIMIT {}".format(table,
+                                                                                                         key,
+                                                                                                         lower,
+                                                                                                         key,
+                                                                                                         upper,
+                                                                                                         number)
+                    cursor.execute(sql)
+                    return cursor.fetchall()
+
+            except Exception as ex:
+                print("error adding row to table :" + str(ex))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+            return False
+
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------

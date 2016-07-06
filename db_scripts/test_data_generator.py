@@ -2,7 +2,7 @@ import business_objects.Word as Word
 import business_objects.Definition as Definition
 from random import randint
 
-#load chapter_index database
+#load chapter_database
 for i in range(25):
     i = 10
 

@@ -95,20 +95,20 @@ class WordTableAccess(GeneralDatabaseConnection):
     # WRITE methods
     # -------------------------------------------------------------
 
-    # updates a question already in the database by using the question's question_id field
+    # updates a word already in the database by using the word question_id field
     def update_word_by_index(self, word, index):
         try:
             self.update_row_in_table(word.get_database_format(), table_name, index)
         except Exception as e:
-            print("Could not update function: " + str(e))
+            print("Could not update word: " + str(e))
             return False
 
-    # deletes a question from the database using its index
+    # deletes a word from the database using its index
     def delete_word_by_index(self, index):
         try:
             self.delete_row_in_table_with_attribute(table_name, 'index', index)
         except Exception as e:
-            print("Could not delete question: " + str(e))
+            print("Could not delete word: " + str(e))
 
     # saves a new question into the questions database
     # function takes a question object

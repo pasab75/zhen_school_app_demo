@@ -1,4 +1,3 @@
-# make sure to have a function that formats the quest to send to client
 from flask import jsonify
 import db_access.db_words as db_wordzors
 
