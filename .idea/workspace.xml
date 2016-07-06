@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_access/deprecated/db_quest_archetype.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_quest_archetype.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/business_objects/AbstractQuestion.py" afterPath="$PROJECT_DIR$/business_objects/deprecated/AbstractQuestion.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/business_objects/TopicChapter.py" afterPath="$PROJECT_DIR$/business_objects/deprecated/TopicChapter.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/business_objects/quest.py" afterPath="$PROJECT_DIR$/business_objects/deprecated/quest.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/db_access/db_quests.py" afterPath="$PROJECT_DIR$/db_access/deprecated/db_quests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_general.py" afterPath="$PROJECT_DIR$/db_access/db_general.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_words.py" afterPath="$PROJECT_DIR$/db_access/db_words.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/test_data_generator.py" afterPath="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deprecated_files/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/deprecated_files/DefinitionQuestion.py" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,15 +48,13 @@
     <splitter split-orientation="horizontal" split-proportion="0.45427197">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="425">
+                  <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#36#0" expanded="true" />
-                    <marker date="1467830573887" expanded="true" signature="1309:2332" ph="..." />
-                    <marker date="1467830573887" expanded="true" signature="2298:2332" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -84,18 +92,18 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
+          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="673">
-                  <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+                <state relative-caret-position="384">
+                  <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="TopicChapter.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/business_objects/TopicChapter.py">
+            <entry file="file://$PROJECT_DIR$/business_objects/deprecated/TopicChapter.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="204">
                   <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
@@ -123,6 +131,18 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="db_quest_archetype.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/db_access/deprecated/db_quest_archetype.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="506">
+                  <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -130,14 +150,14 @@
           <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/rest_manager.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="673">
-                  <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+                <state relative-caret-position="226">
+                  <caret line="34" column="10" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="rest_test_curl_scripts.txt" pinned="false" current-in-tab="true">
+          <file leaf-file-name="rest_test_curl_scripts.txt" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/rest_test_curl_scripts.txt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
@@ -150,36 +170,18 @@
           <file leaf-file-name="db_words.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="482">
-                  <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-                  <folding>
-                    <marker date="1467830573881" expanded="true" signature="0:72" ph="import ..." />
-                    <marker date="1467830573881" expanded="true" signature="152:307" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="332:381" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="422:734" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="435:654" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="452:559" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="766:1058" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="779:978" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="796:884" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="1127:1487" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="1140:1407" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="1157:1312" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="1581:1841" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="1598:1746" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="1926:2159" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="2336:2415" ph="..." />
-                    <marker date="1467830573881" expanded="true" signature="2698:2837" ph="..." />
-                  </folding>
+                <state relative-caret-position="289">
+                  <caret line="18" column="68" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="68" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="db_quests.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/db_access/db_quests.py">
+            <entry file="file://$PROJECT_DIR$/db_access/deprecated/db_quests.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2159">
-                  <caret line="130" column="46" selection-start-line="130" selection-start-column="46" selection-end-line="130" selection-end-column="46" />
+                <state relative-caret-position="442">
+                  <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
                   <folding>
                     <marker date="1467830573878" expanded="true" signature="2152:2195" ph="SELECT * FRO... quests" />
                     <marker date="1467830573878" expanded="true" signature="2674:2738" ph="SELECT COUNT... quests" />
@@ -208,16 +210,16 @@
           <file leaf-file-name="db_users.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+                <state relative-caret-position="102">
+                  <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
                   <folding>
-                    <marker date="1467830573880" expanded="true" signature="1641:1744" ph="..." />
-                    <marker date="1467830573880" expanded="true" signature="1641:1847" ph="..." />
-                    <marker date="1467830573880" expanded="true" signature="1775:1847" ph="..." />
-                    <marker date="1467830573880" expanded="true" signature="6231:6291" ph="UPDATE users... " />
-                    <marker date="1467830573880" expanded="true" signature="6804:6876" ph="UPDATE users... " />
-                    <marker date="1467830573880" expanded="true" signature="7394:7470" ph="UPDATE users... " />
-                    <marker date="1467830573880" expanded="true" signature="7986:8057" ph="UPDATE users... " />
+                    <marker date="1467832878426" expanded="true" signature="1144:1247" ph="..." />
+                    <marker date="1467832878426" expanded="true" signature="1144:1350" ph="..." />
+                    <marker date="1467832878426" expanded="true" signature="1278:1350" ph="..." />
+                    <marker date="1467832878426" expanded="true" signature="5734:5794" ph="UPDATE users... " />
+                    <marker date="1467832878426" expanded="true" signature="6307:6379" ph="UPDATE users... " />
+                    <marker date="1467832878426" expanded="true" signature="6897:6973" ph="UPDATE users... " />
+                    <marker date="1467832878426" expanded="true" signature="7489:7560" ph="UPDATE users... " />
                   </folding>
                 </state>
               </provider>
@@ -233,22 +235,23 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="db_general.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="db_general.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="211">
-                  <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
+                <state relative-caret-position="384">
+                  <caret line="117" column="77" selection-start-line="117" selection-start-column="77" selection-end-line="117" selection-end-column="77" />
                   <folding>
-                    <marker date="1467764227969" expanded="true" signature="1745:1773" ph="SELECT * FRO... missing_value" />
-                    <marker date="1467764227969" expanded="true" signature="2266:2294" ph="SELECT * FRO... missing_value" />
-                    <marker date="1467764227969" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
-                    <marker date="1467764227969" expanded="true" signature="3328:3381" ph="SELECT * FRO... missing_value" />
-                    <marker date="1467764227969" expanded="true" signature="3916:3983" ph="SELECT * FRO... missing_value" />
-                    <marker date="1467764227969" expanded="true" signature="5554:5589" ph="INSERT INTO missing_value... " />
-                    <marker date="1467764227969" expanded="true" signature="6737:6763" ph="UPDATE missi... " />
-                    <marker date="1467764227969" expanded="true" signature="7530:7558" ph="DELETE FROM " />
-                    <marker date="1467764227969" expanded="true" signature="8490:8502" ph="DELETE FROM " />
-                    <marker date="1467764227969" expanded="true" signature="8961:8984" ph="SELECT COUNT... " />
+                    <marker date="1467834974163" expanded="true" signature="1744:1772" ph="SELECT * FRO... missing_value" />
+                    <marker date="1467834974163" expanded="true" signature="2265:2293" ph="SELECT * FRO... missing_value" />
+                    <marker date="1467834974163" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
+                    <marker date="1467834974163" expanded="true" signature="3328:3381" ph="SELECT * FRO... missing_value" />
+                    <marker date="1467834974163" expanded="true" signature="4007:4074" ph="SELECT * FRO... missing_value" />
+                    <marker date="1467834974163" expanded="true" signature="4900:4918" ph="UPDATE missi... " />
+                    <marker date="1467834974163" expanded="true" signature="5994:6029" ph="INSERT INTO missing_value... " />
+                    <marker date="1467834974163" expanded="true" signature="7181:7207" ph="UPDATE missi... " />
+                    <marker date="1467834974163" expanded="true" signature="7775:7803" ph="DELETE FROM " />
+                    <marker date="1467834974163" expanded="true" signature="8739:8751" ph="DELETE FROM " />
+                    <marker date="1467834974163" expanded="true" signature="9214:9237" ph="SELECT COUNT... " />
                   </folding>
                 </state>
               </provider>
@@ -277,8 +280,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/frontend/js/backend.js" />
-        <option value="$PROJECT_DIR$/business_objects/response_package.py" />
         <option value="$PROJECT_DIR$/business_objects/ResponsePackage.py" />
         <option value="$PROJECT_DIR$/business_objects/responsepackage.py" />
         <option value="$PROJECT_DIR$/frontend/js/clickEvents.js" />
@@ -314,19 +315,21 @@
         <option value="$PROJECT_DIR$/db_access/db_multiple_choice.py" />
         <option value="$PROJECT_DIR$/business_objects/MultipleChoiceQuestion.py" />
         <option value="$PROJECT_DIR$/business_objects/User.py" />
-        <option value="$PROJECT_DIR$/rest_manager.py" />
         <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
         <option value="$PROJECT_DIR$/business_objects/TopicChapter.py" />
         <option value="$PROJECT_DIR$/db_access/chapters.py" />
-        <option value="$PROJECT_DIR$/db_access/db_general.py" />
         <option value="$PROJECT_DIR$/db_access/db_chapters.py" />
         <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/Quest.py" />
         <option value="$PROJECT_DIR$/business_objects/Word.py" />
-        <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
-        <option value="$PROJECT_DIR$/db_access/db_words.py" />
         <option value="$PROJECT_DIR$/business_objects/Definition.py" />
         <option value="$PROJECT_DIR$/db_access/db_definitions.py" />
+        <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
+        <option value="$PROJECT_DIR$/db_access/db_quest_arch.py" />
+        <option value="$PROJECT_DIR$/rest_manager.py" />
+        <option value="$PROJECT_DIR$/db_access/db_words.py" />
+        <option value="$PROJECT_DIR$/db_access/db_quest_archetype.py" />
+        <option value="$PROJECT_DIR$/db_access/db_general.py" />
         <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
       </list>
     </option>
@@ -468,21 +471,21 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\db_access" />
       <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\db_access\deprecated" />
       <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\business_objects\deprecated" />
+      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\db_access" />
       <recent name="$PROJECT_DIR$/db_access/unit_testing" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -499,9 +502,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/Chapter.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/Word.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_chapters.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_users.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/rest_manager.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -509,6 +511,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_quest_archetype.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -907,13 +910,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00014" summary="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint">
-      <created>1458352287457</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1458352287457</updated>
-    </task>
     <task id="LOCAL-00015" summary="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint">
       <created>1458353359006</created>
       <option name="number" value="00015" />
@@ -1250,7 +1246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467831144608</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="updated database-generator script">
+      <created>1467831734755</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1467831734755</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1264,7 +1267,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.114072494" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1332,7 +1335,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/rest_manager.py</url>
-          <line>122</line>
+          <line>115</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
       </breakpoints>
@@ -1346,9 +1349,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/js/google_auth.js" />
-    <entry file="file://$PROJECT_DIR$/frontend/js/main.js" />
-    <entry file="file://$PROJECT_DIR$/frontend/index.html" />
     <entry file="file://C:/Python34/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1500,7 +1500,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/TopicChapter.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/deprecated/TopicChapter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
@@ -1510,7 +1510,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/AbstractQuestion.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/deprecated/AbstractQuestion.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
@@ -1548,7 +1548,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/quest.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/deprecated/quest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
@@ -1556,91 +1556,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
-          <folding>
-            <marker date="1467830573881" expanded="true" signature="0:72" ph="import ..." />
-            <marker date="1467830573881" expanded="true" signature="152:307" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="332:381" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="422:734" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="435:654" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="452:559" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="766:1058" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="779:978" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="796:884" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="1127:1487" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="1140:1407" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="1157:1312" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="1581:1841" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="1598:1746" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="1926:2159" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="2336:2415" ph="..." />
-            <marker date="1467830573881" expanded="true" signature="2698:2837" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_quests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2159">
-          <caret line="130" column="46" selection-start-line="130" selection-start-column="46" selection-end-line="130" selection-end-column="46" />
-          <folding>
-            <marker date="1467830573878" expanded="true" signature="2152:2195" ph="SELECT * FRO... quests" />
-            <marker date="1467830573878" expanded="true" signature="2674:2738" ph="SELECT COUNT... quests" />
-            <marker date="1467830573878" expanded="true" signature="3228:3297" ph="SELECT * FRO... quests" />
-            <marker date="1467830573878" expanded="true" signature="3779:3846" ph="SELECT * FRO... quests" />
-            <marker date="1467830573878" expanded="true" signature="4479:4546" ph="SELECT * FRO... quests" />
-            <marker date="1467830573878" expanded="true" signature="5030:5115" ph="SELECT * FRO... quests" />
-            <marker date="1467830573878" expanded="true" signature="5593:5654" ph="SELECT * FRO... quests" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+        <state relative-caret-position="102">
+          <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
           <folding>
-            <marker date="1467830573880" expanded="true" signature="1641:1744" ph="..." />
-            <marker date="1467830573880" expanded="true" signature="1641:1847" ph="..." />
-            <marker date="1467830573880" expanded="true" signature="1775:1847" ph="..." />
-            <marker date="1467830573880" expanded="true" signature="6231:6291" ph="UPDATE users... " />
-            <marker date="1467830573880" expanded="true" signature="6804:6876" ph="UPDATE users... " />
-            <marker date="1467830573880" expanded="true" signature="7394:7470" ph="UPDATE users... " />
-            <marker date="1467830573880" expanded="true" signature="7986:8057" ph="UPDATE users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
-          <folding>
-            <marker date="1467764227969" expanded="true" signature="1745:1773" ph="SELECT * FRO... missing_value" />
-            <marker date="1467764227969" expanded="true" signature="2266:2294" ph="SELECT * FRO... missing_value" />
-            <marker date="1467764227969" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
-            <marker date="1467764227969" expanded="true" signature="3328:3381" ph="SELECT * FRO... missing_value" />
-            <marker date="1467764227969" expanded="true" signature="3916:3983" ph="SELECT * FRO... missing_value" />
-            <marker date="1467764227969" expanded="true" signature="5554:5589" ph="INSERT INTO missing_value... " />
-            <marker date="1467764227969" expanded="true" signature="6737:6763" ph="UPDATE missi... " />
-            <marker date="1467764227969" expanded="true" signature="7530:7558" ph="DELETE FROM " />
-            <marker date="1467764227969" expanded="true" signature="8490:8502" ph="DELETE FROM " />
-            <marker date="1467764227969" expanded="true" signature="8961:8984" ph="SELECT COUNT... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-            <marker date="1467830573887" expanded="true" signature="1309:2332" ph="..." />
-            <marker date="1467830573887" expanded="true" signature="2298:2332" ph="..." />
+            <marker date="1467832878426" expanded="true" signature="1144:1247" ph="..." />
+            <marker date="1467832878426" expanded="true" signature="1144:1350" ph="..." />
+            <marker date="1467832878426" expanded="true" signature="1278:1350" ph="..." />
+            <marker date="1467832878426" expanded="true" signature="5734:5794" ph="UPDATE users... " />
+            <marker date="1467832878426" expanded="true" signature="6307:6379" ph="UPDATE users... " />
+            <marker date="1467832878426" expanded="true" signature="6897:6973" ph="UPDATE users... " />
+            <marker date="1467832878426" expanded="true" signature="7489:7560" ph="UPDATE users... " />
           </folding>
         </state>
       </provider>
@@ -1663,11 +1590,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1679,21 +1608,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
+    <entry file="file://$PROJECT_DIR$/db_access/db_quest_archetyp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/db_quest_archetyp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="34" column="10" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/deprecated/db_quests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <marker date="1467830573878" expanded="true" signature="2152:2195" ph="SELECT * FRO... quests" />
+            <marker date="1467830573878" expanded="true" signature="2674:2738" ph="SELECT COUNT... quests" />
+            <marker date="1467830573878" expanded="true" signature="3228:3297" ph="SELECT * FRO... quests" />
+            <marker date="1467830573878" expanded="true" signature="3779:3846" ph="SELECT * FRO... quests" />
+            <marker date="1467830573878" expanded="true" signature="4479:4546" ph="SELECT * FRO... quests" />
+            <marker date="1467830573878" expanded="true" signature="5030:5115" ph="SELECT * FRO... quests" />
+            <marker date="1467830573878" expanded="true" signature="5593:5654" ph="SELECT * FRO... quests" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="68" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="117" column="77" selection-start-line="117" selection-start-column="77" selection-end-line="117" selection-end-column="77" />
+          <folding>
+            <marker date="1467834974163" expanded="true" signature="1744:1772" ph="SELECT * FRO... missing_value" />
+            <marker date="1467834974163" expanded="true" signature="2265:2293" ph="SELECT * FRO... missing_value" />
+            <marker date="1467834974163" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
+            <marker date="1467834974163" expanded="true" signature="3328:3381" ph="SELECT * FRO... missing_value" />
+            <marker date="1467834974163" expanded="true" signature="4007:4074" ph="SELECT * FRO... missing_value" />
+            <marker date="1467834974163" expanded="true" signature="4900:4918" ph="UPDATE missi... " />
+            <marker date="1467834974163" expanded="true" signature="5994:6029" ph="INSERT INTO missing_value... " />
+            <marker date="1467834974163" expanded="true" signature="7181:7207" ph="UPDATE missi... " />
+            <marker date="1467834974163" expanded="true" signature="7775:7803" ph="DELETE FROM " />
+            <marker date="1467834974163" expanded="true" signature="8739:8751" ph="DELETE FROM " />
+            <marker date="1467834974163" expanded="true" signature="9214:9237" ph="SELECT COUNT... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_access/deprecated/db_quest_archetype.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+        <state relative-caret-position="384">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

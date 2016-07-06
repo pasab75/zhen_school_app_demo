@@ -16,7 +16,7 @@ class WordTableAccess(GeneralDatabaseConnection):
     def get_word_by_index(self, index):
         try:
             try:
-                db_obj = self.get_row_by_key_value(table_name,"index",index)
+                db_obj = self.get_row_by_key_value(table_name,"word_index",index)
                 return db_obj
 
             except Exception as e:

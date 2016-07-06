@@ -1,5 +1,6 @@
-from business_objects.AbstractQuestion import AbstractQuestion
 from random import randint
+
+from business_objects.deprecated.AbstractQuestion import AbstractQuestion
 from flask import jsonify
 
 

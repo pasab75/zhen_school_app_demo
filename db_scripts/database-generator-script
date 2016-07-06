@@ -102,60 +102,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`quest_archetype`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`quest_archetype` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`quest_archetype` (
-  `quest_archetype_index` INT(11) NOT NULL,
-  `chapter_index` INT(11) NOT NULL,
-  `cumulative` INT(1) NOT NULL DEFAULT '0',
-  `number_of_questions` INT(11) NOT NULL,
-  `completion_points` INT(11) NOT NULL,
-  `seconds_per_question` INT(11) NOT NULL DEFAULT '100000000',
-  `points_per_question` INT(11) NOT NULL,
-  `words_only` INT(1) NOT NULL DEFAULT '0',
-  `definitions_only` INT(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`quest_archetype_index`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`topic_chapter`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`topic_chapter` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`topic_chapter` (
-  `chapter` INT(11) NULL DEFAULT '0',
-  `chapter_name` VARCHAR(45) NULL DEFAULT NULL,
-  `topic_name` VARCHAR(45) NOT NULL,
-  `topic_index` INT(11) NOT NULL,
-  PRIMARY KEY (`topic_name`, `topic_index`),
-  UNIQUE INDEX `topic_UNIQUE` (`topic_name` ASC),
-  UNIQUE INDEX `topic_index_UNIQUE` (`topic_index` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`user_quest`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`user_quest` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`user_quest` (
-  `user_id` INT(11) NOT NULL,
-  `date_quest_started` DATE NOT NULL,
-  `current_word_index` INT(11) NULL DEFAULT NULL,
-  `current_progress` INT(11) NULL DEFAULT NULL,
-  `number_correct` INT(11) NULL DEFAULT NULL,
-  `current_multiplier` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `testdb`.`users`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `testdb`.`users` ;
@@ -169,8 +115,18 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `e_mail` VARCHAR(50) NOT NULL,
   `current_lvl` INT(11) NOT NULL DEFAULT '1',
   `current_points` INT(11) NOT NULL DEFAULT '0',
+  `current_multiplier` INT(11) NULL DEFAULT NULL,
+  `chapter_index` INT(11) NOT NULL,
+  `cumulative` INT(1) NOT NULL DEFAULT '0',
+  `number_of_questions` INT(11) NOT NULL,
+  `points_per_question` INT(11) NOT NULL,
+  `seconds_per_question` INT(11) NOT NULL DEFAULT '100000000',
+  `completion_points` INT(11) NOT NULL,
+  `date_quest_started` DATE NOT NULL,
+  `current_word_index` INT(11) NULL DEFAULT NULL,
+  `current_progress` INT(11) NULL DEFAULT NULL,
+  `number_correct` INT(11) NULL DEFAULT NULL,
   `paid_through` DATETIME NULL DEFAULT NULL,
-  `quest_index` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
 ENGINE = InnoDB

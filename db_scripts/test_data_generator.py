@@ -14,7 +14,7 @@ if random:
 
     for i in range(1, num_chapters+1):
         chapter_name = "This is Chapter " + i
-        new_chapter = Chapter.Chapter(index=i,chapter_name=chapter_name)
+        new_chapter = Chapter.Chapter(index=i, chapter_name=chapter_name)
 
     for i in range(1, num_words+1):
         chapter_index = randint(1, num_chapters+1)
@@ -34,15 +34,15 @@ else:
     num_words_per_chapter = 100
     num_definitions_per_word = 5
 
-    for i in range(1,num_chapters+1):
+    for i in range(1, num_chapters+1):
         chapter_name = "This is Chapter " + str(i)
-        new_chapter = Chapter.Chapter(chapter_index=i,chapter_name=chapter_name)
+        new_chapter = Chapter.Chapter(chapter_index=i, chapter_name=chapter_name)
         result = new_chapter.save_new()
         if not result:
             raise Exception("Hey this didn't work, nothing else will work either")
         for j in range(1, num_words_per_chapter+1):
             word_string = "word " + str(j) + " chapter " + str(i)
-            new_word = Word.Word(word=word_string,chapter_index=i)
+            new_word = Word.Word(word=word_string, chapter_index=i)
             new_word.save_new()
 
             for k in range(1, num_definitions_per_word+1):
