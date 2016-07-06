@@ -1,6 +1,7 @@
 from db_access.db_general import GeneralDatabaseConnection
 import datetime
 
+table_name = "users"
 
 class UserTableAccess(GeneralDatabaseConnection):
 
@@ -61,13 +62,6 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
-    def get_password_by_user_id(self, user_id):
-        try:
-            user_info = self.get_row_by_key_value('users', 'user_id', user_id)
-            return user_info['password']
-        except Exception as ex:
-            print("Unable to retrieve password: " + str(ex))
-
     def get_name_by_user_id(self, user_id):
         try:
             user_info = self.get_row_by_key_value('users', 'user_id', user_id)
@@ -103,17 +97,86 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
-    def get_user_quest_by_user_id(self, user_id):
+    def get_multiplier_by_user_id(self, user_id):
         try:
-            user_info = self.get_row_by_key_value('users', 'user_id', user_id)
-            return user_info['quest_index']
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['current_multiplier']
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
-    def get_user_current_question_id_by_user_id(self, user_id):
+    def get_chapter_index_by_user_id(self, user_id):
         try:
-            user_info = self.get_row_by_key_value('users', 'user_id', user_id)
-            return user_info['current_question_id']
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['chapter_index']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_number_of_questions_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['number_of_questions']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_points_per_question_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['points_per_question']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_completion_points_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['completion_points']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_date_quest_started_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['date_quest_started']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_current_word_index_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['current_word_index']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_current_quest_progress_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['current_progress']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_number_correct_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['number_correct']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_point_information_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            user_point_info = {
+
+            }
+            return user_point_info
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_quest_information_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            user_quest_info = {
+
+            }
+            return user_quest_info
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
@@ -133,14 +196,10 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to update user: " + str(ex))
 
-    def set_user_quest_by_user_id(self, user_id, quest_index):
+    def set_user_quest_by_user_id(self, user_id, quest_information):
         try:
-            user_info = {'user_id': user_id,
-                         'quest_index': quest_index,
-                         'quest_progress': '0',
-                         'date_quest_started': datetime.datetime.now()
-                         }
-            self.update_row_in_table(user_info, 'users', 'user_id')
+            quest_information['user_id'] = user_id
+            self.update_row_in_table(quest_information, 'users', 'user_id')
         except Exception as ex:
             print("Unable to update user: " + str(ex))
 
