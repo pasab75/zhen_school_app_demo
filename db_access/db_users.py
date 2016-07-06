@@ -3,7 +3,6 @@ import datetime
 
 table_name = "users"
 
-
 class UserTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
@@ -272,6 +271,26 @@ class UserTableAccess(GeneralDatabaseConnection):
 
             except Exception as ex:
                 print("Error updating quest progress :" + str(ex))
+        except Exception as e:
+            print("Error connecting: "+str(e))
+            return False
+
+    def null_user_quest(self, user_id):
+        try:
+            user_info = {'user_id': user_id,
+                         'chapter_index': None,
+                         'current_progress': None,
+                         'date_quest_started': None,
+                         'current_word_index': None,
+                         'number_correct': None,
+                         'completion_points': None,
+                         'seconds_per_question': None,
+                         'points_per_question': None,
+                         'number_of_questions': None,
+                         'cumulative': None
+                         }
+            self.update_row_in_table(user_info, 'users', 'user_id')
+            return True
         except Exception as e:
             print("Error connecting: "+str(e))
             return False
