@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, abort, json, g
 import datetime
 
 import business_objects.User as User
+import business_objects.quest as Quest
 import requests
 import random
 
@@ -15,9 +16,6 @@ local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
 
 app = Flask(__name__)
-
-#
-
 
 @app.before_request
 def before_request():
@@ -55,13 +53,13 @@ def authenticate_user(client_request):
         user_id = str(r.json()['sub'])
         print(user_id)
         user = User.user.generate_from_id(user_id)
-        if user:
-            is_paid = g.dbconnect_user.check_if_user_paid(user_id)
-            return {'is_paid': is_paid, 'user_id': user_id}
+        if user and user.isPaid():
+            return user
         else:
             return False
     except Exception as ex:
         print(ex)
+        raise Exception("Failed to authenticate user")
 
 # -------------------------------------------------------------
 # Routes
@@ -73,12 +71,10 @@ def index():
     return 'Hello, World!'
 
 @app.route('/api/v1/get/user', methods=['POST'])
-def get_user_state():
+def get_user():
     try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            print(authentication_response['user_id'])
-            user = User.user.generate_from_id(authentication_response['user_id'])
+        user = authenticate_user(request)
+        if user:
             print(user)
             return user.jsonify()
         else:
@@ -91,12 +87,11 @@ def get_user_state():
 @app.route('/api/v1/quests/getdaily', methods=['POST'])
 def get_quests_daily():
     try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            current_dailies = dbconnect.get_quests_daily(6)
-            dbconnect.close_connection()
-            print(current_dailies)
+        user = authenticate_user(request)
+        if user:
+            print(user)
+            #TODO figure out quest logic
+
             return json.dumps(current_dailies)
         else:
             abort(403, "Unable to authenticate user")
@@ -116,13 +111,8 @@ def start_quest():
         print(incoming_request)
 
         # check authentication
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            user_id = authentication_response['user_id']
-
-            # get rid of whatever they have already just in case they have a quest
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.null_user_quest(user_id)
+        user = authenticate_user(request)
+        if user:
 
             user_input_quest = request.json['quest_index']
             dbconnect.set_user_quest_by_user_id(user_id, user_input_quest)
@@ -160,15 +150,11 @@ def drop_quest():
         print(incoming_request)
 
         # check authentication
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            user_id = authentication_response['user_id']
+        user = authenticate_user(request)
+        if user:
+            #TODO: drop the current quest
 
-            # initiate connection to user table
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.null_user_quest(user_id)
-            dbconnect.close_connection()
-
+            #TODO: get a new quest
             dbconnect = quest_table_access_layer.QuestTableAccess()
             current_dailies = dbconnect.get_daily_quests_by_chapter(3)
             dbconnect.close_connection()
@@ -193,24 +179,12 @@ def resume_quest():
         print(incoming_request)
 
         # check authentication
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            user_id = authentication_response['user_id']
-            print(type(user_id))
-
-            # initiate connection to user table
-            dbconnect = users_table_access_layer.UserTableAccess()
-
-            # get current user from table
-            user = dbconnect.get_user_by_user_id(user_id)
-            dbconnect.close_connection()
-
+        user = authenticate_user(request)
+        if user:
             daily_reset = datetime.datetime.today().replace(hour=4, second=0, minute=0, microsecond=0)
             # check if that quest is valid
             if user['date_quest_started'] > daily_reset:
-                dbconnect = questions_table_access_layer.QuestionTableAccess()
-                question = dbconnect.get_question_by_question_id(user['current_question_id'])
-                dbconnect.close_connection()
+                #TODO: figure out quest logic
 
                 return jsonify(question)
             else:
@@ -231,19 +205,14 @@ def resume_quest():
 @app.route('/api/v1/question/validation', methods=['POST'])
 def get_validation():
     try:
-        authentication_response = authenticate_user(request)
-        if authentication_response['is_paid']:
-            user_id = authentication_response['user_id']
-            incoming_request = request
-            print(incoming_request)
-
+        user = authenticate_user(request)
+        if user:
             user_answer = (request.json['user_answer'])
             print(request.json)
+
             # get question index of current question
-            dbconnect = users_table_access_layer.UserTableAccess()
-            user = dbconnect.get_user_by_user_id(user_id)
-            question_id = user['current_question_id']
-            dbconnect.close_connection()
+            quest = Quest.Quest.get_
+            question_id = user.
 
             # get question with current question index
             dbconnect = questions_table_access_layer.QuestionTableAccess()
