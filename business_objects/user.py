@@ -2,6 +2,7 @@ import db_access.db_users as User_db
 import flask.jsonify as jsonify
 import datetime
 
+
 class User:
     _user_id = None
     _first_name = None
@@ -114,6 +115,10 @@ class User:
             paid_through=self._paid_through
         )
 
+    def validate_user_answer(self, answer):
+        if self.get_current_word_index() == answer:
+            
+
     def set_from_database(self, user):
         self._user_id = user['user_id']
         self._first_name = user['first_name']
@@ -156,15 +161,15 @@ class User:
         self.add_current_points(points*self.get_current_multiplier())
 
     def generate_from_id(self, id):
-        dbconnect = User_db.UserTableAccess()
-        current_user = dbconnect.get_user_by_user_id(id)
+        db = User_db.UserTableAccess()
+        current_user = db.get_user_by_user_id(id)
         self.set_from_database(current_user)
-        dbconnect.close_connection()
+        db.close_connection()
 
-    def isPaid(self):
-        currentTime = datetime.datetime.now()
+    def is_paid(self):
+        current_time = datetime.datetime.now()
         if self._paid_through is not None:
-            if self._paid_through > currentTime:
+            if self._paid_through > current_time:
                 return True
         return False
 
@@ -195,16 +200,10 @@ class User:
     def set_user_role(self, role):
         self._user_role = role
 
-    def get_current_quest_index(self):
-        return self._quest_index
-
-    def set_current_quest_index(self, quest_index):
-        self._quest_index = quest_index
-
-    def get_current_quest_level(self):
+    def get_current_level(self):
         return self._current_lvl
 
-    def set_current_quest_level(self, lvl):
+    def set_current_level(self, lvl):
         self._current_lvl = lvl
 
     def get_current_points(self):
@@ -235,7 +234,7 @@ class User:
         return self._current_multiplier
 
     def set_current_multiplier(self, value):
-        _current_multiplier = value
+        self._current_multiplier = value
 
     def get_chapter_index(self):
         return self._chapter_index
@@ -300,3 +299,5 @@ class User:
     def update_current_user(self):
         user_db = User_db.UserTableAccess()
         user_db.update_user(self.get_database_format())
+
+
