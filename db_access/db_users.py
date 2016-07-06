@@ -23,24 +23,8 @@ class UserTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-
-                    # check database for user
-
-                    # if user exists
-                        # check if user is validated (paid for the service)
-                            # if user is validated
-                                # return true
-                            # else
-                                # return false
-
-                    # else
-                        # create user in database
-                        # return false
-
-                    # add the key thing later
-
-                    sql = "SELECT COUNT(*) FROM `users` WHERE `user_id` = %s"
-                    cursor.execute(sql, user_id)
+                    sql = "SELECT COUNT(*) FROM `users` WHERE `user_id` = {}}".format(user_id)
+                    cursor.execute(sql)
                     exists = cursor.fetchone()['COUNT(*)']
                     if exists == 1:
                         return True

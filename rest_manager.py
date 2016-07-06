@@ -38,10 +38,8 @@ def after_request(response):
 
 def check_access_token(client_request):
     try:
-        g.dbconnect_user = users_table_access_layer.UserTableAccess()
         token = client_request.json['user_identifier']
         r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
-
         if str(r.json()['sub']):
             return r
         else:
@@ -53,13 +51,11 @@ def check_access_token(client_request):
 
 def authenticate_user(client_request):
     try:
-        g.dbconnect_user = users_table_access_layer.UserTableAccess()
-        token = client_request.json['user_identifier']
-        r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
+        r = check_access_token(client_request)
         user_id = str(r.json()['sub'])
         print(user_id)
-        exists = g.dbconnect_user.check_if_user_valid(user_id)
-        if exists:
+        user = User.user.generate_from_id(user_id)
+        if user:
             is_paid = g.dbconnect_user.check_if_user_paid(user_id)
             return {'is_paid': is_paid, 'user_id': user_id}
         else:
@@ -81,11 +77,9 @@ def get_user_state():
     try:
         authentication_response = authenticate_user(request)
         if authentication_response['is_paid']:
-
             print(authentication_response['user_id'])
             user = User.user.generate_from_id(authentication_response['user_id'])
             print(user)
-
             return user.jsonify()
         else:
             abort(403, "Unable to authenticate user")
@@ -100,7 +94,6 @@ def get_quests_daily():
         authentication_response = authenticate_user(request)
         if authentication_response['is_paid']:
             dbconnect = quest_table_access_layer.QuestTableAccess()
-
             current_dailies = dbconnect.get_quests_daily(6)
             dbconnect.close_connection()
             print(current_dailies)
