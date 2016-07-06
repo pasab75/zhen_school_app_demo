@@ -1,6 +1,5 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
-import db_access.db_chapters as database
 
 
 class Chapter:
@@ -20,3 +19,21 @@ class Chapter:
             'index': self._index,
             'chapter_index': self._chapter_name,
         }
+
+    def get_chapter_name(self):
+        return self._chapter_name
+
+    def get_index(self):
+        return self._index
+
+    def set_chapter_name(self, name):
+        self._chapter_name = name
+
+    def set_index(self, index):
+        self._index = index
+
+    def get_jsonified(self):
+        return jsonify(
+            index=self._index,
+            chapter_name=self._chapter_name
+        )

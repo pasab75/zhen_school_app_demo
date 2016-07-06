@@ -5,7 +5,7 @@ import db_access.db_words as db_wordzors
 class Word:
     _index = None
     _word = None
-    _topic_index = None
+    _chapter_index = None
     _instructor_difficulty = False
     _calculated_difficulty = None
     _avg_answer_time = None
@@ -13,14 +13,14 @@ class Word:
     def __init__(self,
                  index=None,
                  word=None,
-                 topic_index=None,
+                 chapter_index=None,
                  instructor_difficulty=None,
                  calculate_difficulty=None,
                  avg_answer_time=None):
 
         self._index = index
         self._word = word
-        self._topic_index = topic_index
+        self._chapter_index = chapter_index
         self._instructor_difficulty = instructor_difficulty
         self._calculated_difficulty = calculate_difficulty
         self._avg_answer_time = avg_answer_time
@@ -29,7 +29,7 @@ class Word:
         return jsonify(
             index = self._index,
             word = self._word,
-            topic_index = self._topic_index,
+            chapter_index = self._chapter_index,
             instructor_difficulty = self._instructor_difficulty,
             calculated_difficulty = self._calculated_difficulty,
             avg_answer_time = self._avg_answer_time
@@ -39,7 +39,7 @@ class Word:
         return {
             'index': self._index,
             'word': self._word,
-            'topic_index': self._topic_index,
+            'chapter_index': self._chapter_index,
             'instructor_difficulty': self._instructor_difficulty,
             'calculated_difficulty': self._calculated_difficulty,
             'avg_answer_time': self._avg_answer_time
@@ -49,7 +49,7 @@ class Word:
     def set_from_database(self, word):
         self._index = word['index']
         self._word = word['word']
-        self._topic_index = word['topic_index']
+        self._chapter_index = word['chapter_index']
         self._instructor_difficulty = word['instructor_difficulty']
         self._calculated_difficulty = word['calculated_difficulty']
         self._avg_answer_time = word['avg_answer_time']
@@ -63,11 +63,11 @@ class Word:
     def set_index(self, index):
         self._index = index
 
-    def get_topic_index(self):
-        return self._topic_index
+    def get_chapter_index(self):
+        return self._chapter_index
 
-    def set_topic_index(self, index):
-        self._topic_index = index
+    def set_chapter_index(self, index):
+        self._chapter_index = index
 
     #only call this if you're sure this doesn't exist in the db already
     def save_new(self):
