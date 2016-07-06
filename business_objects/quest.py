@@ -45,46 +45,6 @@ class Quest:
         self._definition_allowed = definition_allowed
         self._daily = daily
 
-    # returns a random allowed topic index
-    def get_topic_random(self):
-        if self._topic_index:
-            return self._topic_index
-        else:
-            if self._cumulative:
-                chapter = randint(0, self._chapter_index)
-            else:
-                chapter = self._chapter_index
-
-            database = topic_chapter_access_layer.TopicChapterTableAccess()
-            topic = database.get_topic_random_by_chapter(chapter)
-            database.close_connection()
-            return topic
-
-    # returns a randomly allowed question
-    def get_question(self):
-        try:
-            if self._multiple_choice_allowed and self._definition_allowed:
-                coinflip = randint(0, 1)
-                if coinflip == 0:
-                    question = MultipleChoice.MultipleChoiceQuestion()
-
-                    # make a multiple choice question with current quest
-                    # return multiple choice question
-                else:
-                    question = MultipleChoice.MultipleChoiceQuestion()
-
-                    # make a definition question with current quest
-                    # return definition question
-            elif self._multiple_choice_allowed:
-                return True
-                # make multiple choice and return it
-            else:
-                return True
-                # make definition and return it
-
-        except Exception as ex:
-            print(ex)
-
     def get_quest_id(self):
         return self._quest_id
 

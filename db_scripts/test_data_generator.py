@@ -6,8 +6,8 @@ from random import randint
 # choose random entries or looped entries
 random = False
 
+# loads random numbers of chapters/words/definitions
 if random:
-
     num_chapters = randint(10, 40)
     num_words = randint(10, 200)*num_chapters
     num_definitions_per_word = randint(2, 10)
@@ -17,33 +17,36 @@ if random:
         new_chapter = Chapter.Chapter(index=i,chapter_name=chapter_name)
 
     for i in range(1, num_words+1):
-        chapter_index = randint(1,num_chapters+1)
+        chapter_index = randint(1, num_chapters+1)
         word_string = "word " + i
         new_word = Word.Word(word=word_string, chapter_index=chapter_index)
         new_word.save_new()
         for k in range(1, num_definitions_per_word+1):
             definition_string = "I am definition number " \
                                 + k + \
-                                " for word number " + j + \
-                                " in chapter number " + i + "."
+                                " for word number " + i + "."
             new_definition = Definition.Definition(definition=definition_string)
             new_definition.save_new()
 
+# loads set numbers of chapters/words/definitions
 else:
-    # load chapter_database
-    for i in range(1,26):
+    num_chapters = 25
+    num_words_per_chapter = 100
+    num_definitions_per_word = 5
+
+    for i in range(1,num_chapters+1):
         chapter_name = "This is Chapter " + i
         new_chapter = Chapter.Chapter(index=i,chapter_name=chapter_name)
 
-        for j in range(1,101):
+        for j in range(1, num_words_per_chapter+1):
             word_string = "word " + j + " chapter " + i
             new_word = Word.Word(word=word_string,chapter_index=i)
             new_word.save_new()
 
-            for k in range(1,5):
+            for k in range(1, num_definitions_per_word+1):
                 definition_string = "I am definition number "\
                                     + k + \
                                     " for word number " + j + \
-                                    " in chapter number " + i +"."
+                                    " in chapter number " + i + "."
                 new_definition = Definition.Definition(definition=definition_string)
                 new_definition.save_new()
