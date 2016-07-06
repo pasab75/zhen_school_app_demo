@@ -6,7 +6,6 @@ import business_objects.quest as Quest
 import requests
 import random
 
-
 ###DEBUG IMPORTS###
 
 
@@ -16,6 +15,7 @@ local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
 
 app = Flask(__name__)
+
 
 @app.before_request
 def before_request():
@@ -28,6 +28,7 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
+
 
 # -------------------------------------------------------------
 # Functions
@@ -61,6 +62,7 @@ def authenticate_user(client_request):
         print(ex)
         raise Exception("Failed to authenticate user")
 
+
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
@@ -70,6 +72,7 @@ def authenticate_user(client_request):
 def index():
     return 'Hello, World!'
 
+
 @app.route('/api/v1/get/user', methods=['POST'])
 def get_user():
     try:
@@ -77,22 +80,6 @@ def get_user():
         if user:
             print(user)
             return user.jsonify()
-        else:
-            abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print(ex)
-        print("Unable to retrieve user.")
-
-
-@app.route('/api/v1/quests/getdaily', methods=['POST'])
-def get_quests_daily():
-    try:
-        user = authenticate_user(request)
-        if user:
-            print(user)
-            #TODO figure out quest logic
-
-            return json.dumps(current_dailies)
         else:
             abort(403, "Unable to authenticate user")
     except Exception as ex:
@@ -152,9 +139,9 @@ def drop_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            #TODO: drop the current quest
+            # TODO: drop the current quest
 
-            #TODO: get a new quest
+            # TODO: get a new quest
             dbconnect = quest_table_access_layer.QuestTableAccess()
             current_dailies = dbconnect.get_daily_quests_by_chapter(3)
             dbconnect.close_connection()
@@ -184,7 +171,7 @@ def resume_quest():
             daily_reset = datetime.datetime.today().replace(hour=4, second=0, minute=0, microsecond=0)
             # check if that quest is valid
             if user['date_quest_started'] > daily_reset:
-                #TODO: figure out quest logic
+                # TODO: figure out quest logic
 
                 return jsonify(question)
             else:
@@ -210,10 +197,6 @@ def get_validation():
             user_answer = (request.json['user_answer'])
             print(request.json)
 
-            # get question index of current question
-            quest = Quest.Quest.get_
-            question_id = user.
-
             # get question with current question index
             dbconnect = questions_table_access_layer.QuestionTableAccess()
             question = dbconnect.get_question_by_question_id(question_id)
@@ -232,7 +215,7 @@ def get_validation():
             if user_answer == correct_answer:
                 print('user is correct')
                 # update points
-                dbconnect.update_user_points(user_id, 10*int(user['point_multiplier']))
+                dbconnect.update_user_points(user_id, 10 * int(user['point_multiplier']))
                 # increase multiplier
                 if user['point_multiplier'] < 10:
                     dbconnect.update_user_multiplier(user_id, 1)
@@ -288,29 +271,25 @@ def create_account():
         user_email = str(r.json()['email'])
         print(user_id)
 
-        dbconnect = users_table_access_layer.UserTableAccess()
-        exists = dbconnect.check_if_user_valid(str(user_id))
-
-        if exists:
-            dbconnect.close_connection()
-            print('user already exists')
-            return jsonify(user_exists='true')
+        user = User.user.generate_from_id(user_id)
+        if user:
+            return jsonify(user_exists='true', created="false")
         else:
             print('user does not exist')
-            new_user = user_obj_generator.user(user_id=user_id,
-                                               first_name='derpington',
-                                               last_name='derpserson',
-                                               e_mail=user_email,
-                                               paid_through=datetime.datetime.today() + datetime.timedelta(days=365)
-                                               )
-
-            dbconnect.add_user_new(new_user)
-            dbconnect.close_connection()
-            return jsonify(user_exists='false')
-
+            user = User.user(user_id=user_id,
+                                 first_name='derpington',
+                                 last_name='derpserson',
+                                 e_mail=user_email,
+                                 paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
+            success = user.save_new()
+            if success:
+                return jsonify(user_exists='false', created="true")
+            else:
+                return jsonify(user_exists='false', created="false", error="swallowed, contact an admin, my bad")
     except Exception as ex:
         print(ex)
         print('Invalid token')
+        abort(500, "Error: " + str(ex))
 
 
 @app.route('/api/v1/paidsignin', methods=['POST'])
@@ -323,6 +302,7 @@ def paid_sign_in():
         print(ex)
         print('Invalid token')
         abort(500, "Unable to retrieve random question")
+
 
 # -------------------------------------------------------------
 # Student client routes

@@ -2,7 +2,6 @@ import db_access.db_users as User_db
 import flask.jsonify as jsonify
 import datetime
 
-
 class User:
     _user_id = None
     _first_name = None
@@ -115,10 +114,6 @@ class User:
             paid_through=self._paid_through
         )
 
-    def validate_user_answer(self, answer):
-        if self.get_current_word_index() == answer:
-            
-
     def set_from_database(self, user):
         self._user_id = user['user_id']
         self._first_name = user['first_name']
@@ -161,15 +156,15 @@ class User:
         self.add_current_points(points*self.get_current_multiplier())
 
     def generate_from_id(self, id):
-        db = User_db.UserTableAccess()
-        current_user = db.get_user_by_user_id(id)
+        dbconnect = User_db.UserTableAccess()
+        current_user = dbconnect.get_user_by_user_id(id)
         self.set_from_database(current_user)
-        db.close_connection()
+        dbconnect.close_connection()
 
-    def is_paid(self):
-        current_time = datetime.datetime.now()
+    def isPaid(self):
+        currentTime = datetime.datetime.now()
         if self._paid_through is not None:
-            if self._paid_through > current_time:
+            if self._paid_through > currentTime:
                 return True
         return False
 
@@ -200,12 +195,6 @@ class User:
     def set_user_role(self, role):
         self._user_role = role
 
-    def get_current_level(self):
-        return self._current_lvl
-
-    def set_current_level(self, lvl):
-        self._current_lvl = lvl
-
     def get_current_points(self):
         return self._current_points
 
@@ -234,7 +223,7 @@ class User:
         return self._current_multiplier
 
     def set_current_multiplier(self, value):
-        self._current_multiplier = value
+        _current_multiplier = value
 
     def get_chapter_index(self):
         return self._chapter_index
@@ -300,4 +289,12 @@ class User:
         user_db = User_db.UserTableAccess()
         user_db.update_user(self.get_database_format())
 
-
+        # only call this if you're sure this doesn't exist in the db already
+    def save_new(self):
+        try:
+            db_user = User_db.UserTableAccess()
+            db_user.save_user_new(self.get_database_format())
+            return True
+        except Exception as e:
+            print("Could not delete question: " + str(e))
+            raise e
