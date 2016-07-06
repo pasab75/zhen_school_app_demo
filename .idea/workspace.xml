@@ -222,15 +222,16 @@
           <file leaf-file-name="db_users.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="201" column="39" selection-start-line="201" selection-start-column="39" selection-end-line="201" selection-end-column="39" />
+                <state relative-caret-position="588">
+                  <caret line="331" column="24" selection-start-line="331" selection-start-column="24" selection-end-line="331" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#58#0" expanded="true" />
-                    <marker date="1467837591220" expanded="true" signature="863:910" ph="SELECT COUNT... users" />
-                    <marker date="1467837591220" expanded="true" signature="7999:8059" ph="UPDATE users... " />
-                    <marker date="1467837591220" expanded="true" signature="8572:8644" ph="UPDATE users... " />
-                    <marker date="1467837591220" expanded="true" signature="9162:9238" ph="UPDATE users... " />
-                    <marker date="1467837591220" expanded="true" signature="9754:9825" ph="UPDATE users... " />
+                    <marker date="1467838763586" expanded="true" signature="863:910" ph="SELECT COUNT... users" />
+                    <marker date="1467838763586" expanded="true" signature="7697:7756" ph="UPDATE users... " />
+                    <marker date="1467838763586" expanded="true" signature="8268:8340" ph="UPDATE users... " />
+                    <marker date="1467838763586" expanded="true" signature="8858:8934" ph="UPDATE users... " />
+                    <marker date="1467838763586" expanded="true" signature="9455:9512" ph="UPDATE users... " />
+                    <marker date="1467838763586" expanded="true" signature="10021:10096" ph="UPDATE users... " />
                   </folding>
                 </state>
               </provider>
@@ -901,13 +902,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00016" summary="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint">
-      <created>1458426223649</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1458426223649</updated>
-    </task>
     <task id="LOCAL-00017" summary="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint">
       <created>1458426493247</created>
       <option name="number" value="00017" />
@@ -1244,7 +1238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467836185874</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="updating user db access layer and business object">
+      <created>1467837696846</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1467837696846</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1294,7 +1295,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="commit the business object question, updated the db_access objects to have different types, starting with db_question.  In addition, wrote first INCOMPLETE but working unit test for db_question." />
     <MESSAGE value="commit the changes to the DB, changes to the test_db_question unit tests, changes to the DB access list, new access methods to the DB access layer for questions" />
     <MESSAGE value="adding db_update_script" />
     <MESSAGE value="adding db_update_script, and changed route to be a POST instead of a git.  Expects input to be a request, for request.json['id'] to exist" />
@@ -1319,7 +1319,8 @@
     <MESSAGE value="changed db_words to use chapters instead of topics" />
     <MESSAGE value="updated database-generator script" />
     <MESSAGE value="nuked a bunch of tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="nuked a bunch of tables" />
+    <MESSAGE value="updating user db access layer and business object" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating user db access layer and business object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1683,15 +1684,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="201" column="39" selection-start-line="201" selection-start-column="39" selection-end-line="201" selection-end-column="39" />
+        <state relative-caret-position="588">
+          <caret line="331" column="24" selection-start-line="331" selection-start-column="24" selection-end-line="331" selection-end-column="24" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
-            <marker date="1467837591220" expanded="true" signature="863:910" ph="SELECT COUNT... users" />
-            <marker date="1467837591220" expanded="true" signature="7999:8059" ph="UPDATE users... " />
-            <marker date="1467837591220" expanded="true" signature="8572:8644" ph="UPDATE users... " />
-            <marker date="1467837591220" expanded="true" signature="9162:9238" ph="UPDATE users... " />
-            <marker date="1467837591220" expanded="true" signature="9754:9825" ph="UPDATE users... " />
+            <marker date="1467838763586" expanded="true" signature="863:910" ph="SELECT COUNT... users" />
+            <marker date="1467838763586" expanded="true" signature="7697:7756" ph="UPDATE users... " />
+            <marker date="1467838763586" expanded="true" signature="8268:8340" ph="UPDATE users... " />
+            <marker date="1467838763586" expanded="true" signature="8858:8934" ph="UPDATE users... " />
+            <marker date="1467838763586" expanded="true" signature="9455:9512" ph="UPDATE users... " />
+            <marker date="1467838763586" expanded="true" signature="10021:10096" ph="UPDATE users... " />
           </folding>
         </state>
       </provider>
