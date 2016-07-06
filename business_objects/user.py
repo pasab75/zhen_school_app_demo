@@ -1,3 +1,4 @@
+import db_access.db_users as users_table_access_layer
 
 class User:
     def __init__(self, user_id=None,

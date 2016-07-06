@@ -54,6 +54,19 @@ class Word:
         self._calculated_difficulty = word['calculated_difficulty']
         self._avg_answer_time = word['avg_answer_time']
 
+    def generate_word_randomly(self, chapter=None):
+        db_word = db_wordzors.WordTableAccess()
+        if chapter:
+            self.set_from_database(db_word.get_word_random_by_chapter(chapter))
+        else:
+            self.set_from_database(db_word.get_word_random())
+        db_word.close_connection()
+
+    def generate_word_randomly_chapter_index(self, index):
+        db_word = db_wordzors.WordTableAccess()
+        self.set_from_database(db_word.get_word_random_by_chapter_index(index))
+        db_word.close_connection()
+
     def get_word(self):
         return self._word
 

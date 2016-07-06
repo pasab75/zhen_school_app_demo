@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request, abort, json, g
 import datetime
-import db_access.db_question as questions_table_access_layer
 import db_access.db_definitions as definition_access_layer
 import db_access.db_users as users_table_access_layer
 import db_access.db_quests as quest_table_access_layer
