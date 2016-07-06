@@ -57,13 +57,13 @@ class DefinitionQuestion():
             self._words.append(word)
             for x in range(num_wanted):
                 new_word = Word.word.generate_word_randomly_chapter_index(chapter_index)
-                self._words.append(new_word)
+                self._words.append(new_word[0])
 
         if type == 1:
             self._definitions.append(definition)
             for x in range(num_wanted):
                 filler_def = Definition.Definition.generate_random_from_chapter_index(word)
-                self._definitions.append(filler_def)
+                self._definitions.append(filler_def[0])
 
     def make_from_chapter(self, chapter, num_wanted, type):
         self.make_from_chapter_index(chapter.get_index(), num_wanted, type)

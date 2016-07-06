@@ -38,7 +38,7 @@ class WordTableAccess(GeneralDatabaseConnection):
     def get_word_random_by_chapter(self, chapter, number_wanted=1):
         try:
             try:
-                db_obj = self.get_row_random_by_key(table_name, "chapter", chapter, number=number_wanted)
+                db_obj = self.get_row_random_by_key(table_name, "chapter", chapter.get_chapter_name(), number=number_wanted)
                 return db_obj
 
             except Exception as e:
