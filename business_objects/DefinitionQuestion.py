@@ -1,12 +1,14 @@
 from flask import jsonify
-
-import business_objects.Word as Word
-import business_objects.Definition as Definition
 import random
 from enum import Enum
 
+import business_objects.Word as Word
+import business_objects.Definition as Definition
 
-class DefinitionQuestion():
+
+
+
+class DefinitionQuestion:
     _word_index = None
     _word = None
     _definition = None

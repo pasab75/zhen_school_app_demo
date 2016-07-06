@@ -1,10 +1,7 @@
 from flask import Flask, jsonify, request, abort, json, g
 import datetime
-import db_access.db_definitions as definition_access_layer
-import db_access.db_users as users_table_access_layer
-import db_access.db_quests as quest_table_access_layer
-import db_access.db_topic_chapter as topic_chapter_table_access_layer
-import business_objects.User as user_obj_generator
+
+import business_objects.User as User
 import requests
 import random
 
@@ -79,53 +76,17 @@ def authenticate_user(client_request):
 def index():
     return 'Hello, World!'
 
-
-@app.route('/api/v1/database/initialize', methods=['POST'])
-def database_init():
-    try:
-        print(request)
-        dbconnect = topic_chapter_table_access_layer.TopicChapterTableAccess()
-        dbconnect.empty_table('topic_chapter')
-        dbconnect.add_dummy_topics(100)
-        dbconnect.close_connection()
-
-        dbconnect = quest_table_access_layer.QuestTableAccess()
-        dbconnect.empty_table('quests')
-        dbconnect.add_dummy_quests(10)
-        dbconnect.close_connection()
-
-        dbconnect = definition_access_layer.DefinitionTableAccess()
-        dbconnect.empty_table('definition_questions')
-        dbconnect.initialize_definition_questions(5000)
-        dbconnect.close_connection()
-
-        response_text = {'response': 'all good'}
-        print('all good')
-        return jsonify(response_text)
-
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to add questions to DB")
-
-
 @app.route('/api/v1/get/user', methods=['POST'])
 def get_user_state():
     try:
         authentication_response = authenticate_user(request)
         if authentication_response['is_paid']:
-            dbconnect = users_table_access_layer.UserTableAccess()
 
             print(authentication_response['user_id'])
+            user = User.user.generate_from_id(authentication_response['user_id'])
+            print(user)
 
-            current_user = dbconnect.get_user_by_user_id(authentication_response['user_id'])
-            dbconnect.close_connection()
-
-            current_user.pop('user_id')
-            current_user.pop('paid_through')
-
-            print(current_user)
-
-            return json.dumps(current_user)
+            return user.jsonify()
         else:
             abort(403, "Unable to authenticate user")
     except Exception as ex:
@@ -133,7 +94,7 @@ def get_user_state():
         print("Unable to retrieve user.")
 
 
-@app.route('/api/v1/get/quests/daily', methods=['POST'])
+@app.route('/api/v1/quests/getdaily', methods=['POST'])
 def get_quests_daily():
     try:
         authentication_response = authenticate_user(request)
@@ -155,7 +116,7 @@ def get_quests_daily():
 # this route requires a json object with the following fields:
 # quest_index = index of the quest user is requesting to start
 # user_identifier = user's access token
-@app.route('/api/v1/start/quest', methods=['POST'])
+@app.route('/api/v1/quest/start', methods=['POST'])
 def start_quest():
     try:
         incoming_request = request
@@ -199,8 +160,8 @@ def start_quest():
 # clears current quest data for a user in case they want to start something new
 # request requires only
 # user_identifier = user's access token
-@app.route('/api/v1/stop/quest', methods=['POST'])
-def stop_quest():
+@app.route('/api/v1/quest/drop', methods=['POST'])
+def drop_quest():
     try:
         incoming_request = request
         print(incoming_request)
@@ -232,7 +193,7 @@ def stop_quest():
 # returns the last question the user worked on by looking it up from user table
 # request requires only
 # user_identifier = user's access token
-@app.route('/api/v1/resume/quest', methods=['POST'])
+@app.route('/api/v1/quest/resume', methods=['POST'])
 def resume_quest():
     try:
         incoming_request = request
@@ -274,7 +235,7 @@ def resume_quest():
 # request requires
 # user_identifier = user's access token
 # user_answer = either the index or the value of the user's answer
-@app.route('/api/v1/get/validation', methods=['POST'])
+@app.route('/api/v1/question/validation', methods=['POST'])
 def get_validation():
     try:
         authentication_response = authenticate_user(request)
@@ -401,25 +362,6 @@ def paid_sign_in():
         print('Invalid token')
         abort(500, "Unable to retrieve random question")
 
-
-#TODO: does not belong in question object, kill before prod
-@app.route('/api/v1/add/dummy/questions', methods=['POST'])
-def add_random():
-    try:
-        incoming_request = request
-        print(incoming_request)
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
-        dbconnect.empty_table('questions')
-        dbconnect.load_questions_testing(10000)
-
-        dbconnect.close_connection()
-        return "false"
-
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to add questions to DB")
-
-
 # -------------------------------------------------------------
 # Student client routes
 # -------------------------------------------------------------
@@ -432,23 +374,6 @@ def add_random():
 # gets a multiple choice question by question ID
 # takes the question ID (qID) as data from the client
 # returns JSON that includes question text and answer text
-
-
-@app.route('/api/v1/get/question/<question>', methods=['POST'])
-def get_question_by_question_id():
-    try:
-        incoming_request = request
-        print(incoming_request)
-        task_id = (request.json['id'])
-        result = None
-        dbconnect = questions_table_access_layer.QuestionTableAccess()
-        result = dbconnect.get_question_by_question_id(task_id)
-
-        dbconnect.close_connection()
-        return result.get_jsonified()
-    except Exception as ex:
-        print(ex)
-        abort(500, "Unable to find id or no id given")
 
 # TODO: check to see if this CORS implementation is safe
 

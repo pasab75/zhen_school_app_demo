@@ -1,5 +1,4 @@
 from flask import jsonify
-import db_access.db_topic_chapter as database
 
 
 class TopicChapter:

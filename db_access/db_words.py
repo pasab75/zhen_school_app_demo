@@ -80,7 +80,7 @@ class WordTableAccess(GeneralDatabaseConnection):
     # code will null answers that aren't provided
     def save_new_word_from_object(self, word):
         try:
-            self.save_new_row_in_table(word.get_database_format(), table_name)
+            self.save_new_row_in_table(word, table_name)
 
         except Exception as e:
             print("Could not save question: " + str(e))

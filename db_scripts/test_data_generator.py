@@ -35,18 +35,22 @@ else:
     num_definitions_per_word = 5
 
     for i in range(1,num_chapters+1):
-        chapter_name = "This is Chapter " + i
+        chapter_name = "This is Chapter " + str(i)
         new_chapter = Chapter.Chapter(index=i,chapter_name=chapter_name)
-
-        for j in range(1, num_words_per_chapter+1):
-            word_string = "word " + j + " chapter " + i
-            new_word = Word.Word(word=word_string,chapter_index=i)
-            new_word.save_new()
-
-            for k in range(1, num_definitions_per_word+1):
-                definition_string = "I am definition number "\
-                                    + k + \
-                                    " for word number " + j + \
-                                    " in chapter number " + i + "."
-                new_definition = Definition.Definition(definition=definition_string)
-                new_definition.save_new()
+        result = new_chapter.save_new()
+        # if not result:
+        #     raise Exception("Hey this didn't work, nothing else will work either")
+        # for j in range(1, num_words_per_chapter+1):
+        #     j = str(j)
+        #     word_string = "word " + j + " chapter " + i
+        #     new_word = Word.Word(word=word_string,chapter_index=i)
+        #     new_word.save_new()
+        #
+        #     for k in range(1, num_definitions_per_word+1):
+        #         k = str(k)
+        #         definition_string = "I am definition number "\
+        #                             + k + \
+        #                             " for word number " + j + \
+        #                             " in chapter number " + i + "."
+        #         new_definition = Definition.Definition(word_index=j, definition=definition_string, chapter_index=i)
+        #         new_definition.save_new()

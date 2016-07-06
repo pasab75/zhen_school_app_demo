@@ -1,10 +1,5 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
-import business_objects.CalculationQuestion as Calculation
-import business_objects.MultipleChoiceQuestion as MultipleChoice
-import business_objects.Definition as Definition
-import db_access.db_topic_chapter as topic_chapter_access_layer
-from random import randint
 
 
 class Quest:

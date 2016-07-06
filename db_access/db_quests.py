@@ -1,6 +1,7 @@
+from random import randint
+
 from db_access.db_general import GeneralDatabaseConnection
-from db_access.db_topic_chapter import TopicChapterTableAccess
-from random import randint, shuffle
+from db_access.deprecated.db_topic_chapter import TopicChapterTableAccess
 
 
 class QuestTableAccess(GeneralDatabaseConnection):

@@ -1,6 +1,6 @@
 # make sure to have a function that formats the quest to send to client
 from flask import jsonify
-
+import db_access.db_chapters as db_chapters
 
 class Chapter:
     _index = None
@@ -17,7 +17,7 @@ class Chapter:
     def get_database_format(self):
         return {
             'index': self._index,
-            'chapter_index': self._chapter_name,
+            'chapter_name': self._chapter_name,
         }
 
     def get_chapter_name(self):
@@ -37,3 +37,12 @@ class Chapter:
             index=self._index,
             chapter_name=self._chapter_name
         )
+
+    def save_new(self):
+        try:
+            db_c = db_chapters.ChapterTableAccess()
+            db_c.save_new_chapter_from_object(self)
+            return True
+        except Exception as e:
+            print("Could not delete question: " + str(e))
+            return False
