@@ -3,6 +3,7 @@ import datetime
 
 import business_objects.User as User
 import business_objects.quest as Quest
+import business_objects.DefinitionQuestion as DefQuestion
 import requests
 import random
 
@@ -63,6 +64,48 @@ def authenticate_user(client_request):
         raise Exception("Failed to authenticate user")
 
 
+def drop_user_quest(user):
+    user.update_user_quest()
+    user.update_current_user()
+    return user.jsonify()
+
+
+def update_user_quest(user, chapter_index=None,
+                      seconds_per_question=None, number_of_questions=None,
+                      cumulative=False):
+    try:
+        date_quest_started = datetime.datetime.now()
+        number_correct = 0
+        current_progress = 0
+        # TODO: make method to calculate this
+        completion_points = 100
+
+        # TODO: make method to calculate this
+        points_per_question = 1
+
+        # TODO: validate number of questions, seconds per question, cumulative as a boolean
+
+
+        # TODO: GO Get a word/definition question
+        new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(chapter_index)
+
+        user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
+                               date_quest_started=date_quest_started,
+                               current_word_index=new_question.get_word_index(), number_correct=number_correct,
+                               completion_points=completion_points,
+                               seconds_per_question=seconds_per_question, points_per_question=points_per_question,
+                               number_of_questions=number_of_questions,
+                               cumulative=cumulative)
+
+        user.update_current_user()
+        return new_question.jsonify()
+
+    except Exception as ex:
+        # TODO: change prints to logger
+        print("Error: " + str(ex))
+        raise ex
+
+
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
@@ -101,24 +144,19 @@ def start_quest():
         user = authenticate_user(request)
         if user:
 
-            user_input_quest = request.json['quest_index']
-            dbconnect.set_user_quest_by_user_id(user_id, user_input_quest)
-            dbconnect.close_connection()
+            request_chapter_index = request.json['chapter_index']
+            request_seconds_per_question = request.json['seconds_per_question']
+            request_number_of_questions = request.json['number_of_questions']
+            request_cumulative = request.json['cumulative']
 
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            quest = dbconnect.get_quest_by_quest_index(user_input_quest)
-            dbconnect.close_connection()
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-            question = dbconnect.get_question_by_quest(quest)
-            dbconnect.close_connection()
-
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.update_user_current_question(user_id, question['question_id'])
-            dbconnect.close_connection()
-
-            return jsonify(question)
-
+            response = user.update_user_quest(user, chapter_index=request_chapter_index,
+                                              seconds_per_question=request_seconds_per_question,
+                                              number_of_questions=request_number_of_questions,
+                                              cumulative=request_cumulative)
+            return jsonify({
+                    "question": response,
+                    "user": user.jsonify()
+                })
         else:
             abort(403, "Unable to authenticate user")
 
@@ -135,18 +173,12 @@ def drop_quest():
     try:
         incoming_request = request
         print(incoming_request)
-
         # check authentication
         user = authenticate_user(request)
         if user:
-            # TODO: drop the current quest
-
-            # TODO: get a new quest
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            current_dailies = dbconnect.get_daily_quests_by_chapter(3)
-            dbconnect.close_connection()
-
-            return json.dumps(current_dailies)
+            # drop the current quest, note that update with no flags does this, check its default args for details
+            user = drop_user_quest(user)
+            return user.jsonify()
 
         else:
             abort(403, "Unable to authenticate user")
@@ -277,10 +309,10 @@ def create_account():
         else:
             print('user does not exist')
             user = User.user(user_id=user_id,
-                                 first_name='derpington',
-                                 last_name='derpserson',
-                                 e_mail=user_email,
-                                 paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
+                             first_name='derpington',
+                             last_name='derpserson',
+                             e_mail=user_email,
+                             paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
             success = user.save_new()
             if success:
                 return jsonify(user_exists='false', created="true")

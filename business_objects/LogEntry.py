@@ -12,7 +12,6 @@ class LogEntry:
     _activity = None
     _question_id = None
 
-    #TODO: add sanitization methods
     def __init__(self, user_id, question_id, time, date, correct, latitude=None,
                  longitude=None, quest_progress=None, activity=None):
         self._user_id = user_id

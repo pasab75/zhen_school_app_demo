@@ -289,7 +289,7 @@ class User:
         user_db = User_db.UserTableAccess()
         user_db.update_user(self.get_database_format())
 
-        # only call this if you're sure this doesn't exist in the db already
+    # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
             db_user = User_db.UserTableAccess()
