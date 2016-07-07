@@ -57,6 +57,7 @@ class Definition:
         try:
             db_def = db_definition.DefinitionTableAccess()
             db_def.save_new_definition_from_object(self.get_database_format())
+            db_def.close_connection()
             return True
         except Exception as e:
             print("Could not delete question: " + str(e))

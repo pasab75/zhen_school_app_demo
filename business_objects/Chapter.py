@@ -41,6 +41,7 @@ class Chapter:
         try:
             db_c = db_chapters.ChapterTableAccess()
             db_c.save_new_chapter_from_object(self.get_database_format())
+            db_c.close_connection()
             return True
         except Exception as e:
             print("Could not delete question: " + str(e))

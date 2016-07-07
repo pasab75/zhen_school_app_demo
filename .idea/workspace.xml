@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/user.py" afterPath="$PROJECT_DIR$/business_objects/user.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Chapter.py" afterPath="$PROJECT_DIR$/business_objects/Chapter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Definition.py" afterPath="$PROJECT_DIR$/business_objects/Definition.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Word.py" afterPath="$PROJECT_DIR$/business_objects/Word.py" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +53,7 @@
       <file leaf-file-name="LogEntry.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/LogEntry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
+            <state relative-caret-position="18">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
@@ -71,49 +73,9 @@
       <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
+            <state relative-caret-position="43">
               <caret line="48" column="31" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="31" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_words.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_quests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_access/deprecated/db_quests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-              <folding>
-                <marker date="1467836197004" expanded="true" signature="2152:2195" ph="SELECT * FRO... quests" />
-                <marker date="1467836197004" expanded="true" signature="2674:2738" ph="SELECT COUNT... quests" />
-                <marker date="1467836197004" expanded="true" signature="3228:3297" ph="SELECT * FRO... quests" />
-                <marker date="1467836197004" expanded="true" signature="3779:3846" ph="SELECT * FRO... quests" />
-                <marker date="1467836197004" expanded="true" signature="4479:4546" ph="SELECT * FRO... quests" />
-                <marker date="1467836197004" expanded="true" signature="5030:5115" ph="SELECT * FRO... quests" />
-                <marker date="1467836197004" expanded="true" signature="5593:5654" ph="SELECT * FRO... quests" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_definitions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_access/db_definitions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1116">
-              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -130,12 +92,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="-1929">
               <caret line="179" column="38" selection-start-line="179" selection-start-column="20" selection-end-line="179" selection-end-column="38" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Word.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="57" column="47" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Chapter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="709">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Definition.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,10 +199,7 @@
         <option value="$PROJECT_DIR$/business_objects/TopicChapter.py" />
         <option value="$PROJECT_DIR$/db_access/chapters.py" />
         <option value="$PROJECT_DIR$/db_access/db_chapters.py" />
-        <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/Quest.py" />
-        <option value="$PROJECT_DIR$/business_objects/Word.py" />
-        <option value="$PROJECT_DIR$/business_objects/Definition.py" />
         <option value="$PROJECT_DIR$/db_access/db_definitions.py" />
         <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
         <option value="$PROJECT_DIR$/db_access/db_quest_arch.py" />
@@ -222,6 +213,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/rest_manager.py" />
         <option value="$PROJECT_DIR$/business_objects/user.py" />
+        <option value="$PROJECT_DIR$/business_objects/Word.py" />
+        <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
+        <option value="$PROJECT_DIR$/business_objects/Definition.py" />
       </list>
     </option>
   </component>
@@ -798,13 +792,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00021" summary="Re-writing the frontend in angular. Backend shouldn't be changed">
-      <created>1458610524557</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1458610524557</updated>
-    </task>
     <task id="LOCAL-00022" summary="Re-writing the frontend in angular. Backend shouldn't be changed">
       <created>1458613567427</created>
       <option name="number" value="00022" />
@@ -1141,7 +1128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467854069482</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="actually close DB calls">
+      <created>1467854255973</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1467854255973</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1191,7 +1185,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="route order fixed" />
     <MESSAGE value="fixed to use remote database, changed routes to be appropriate" />
     <MESSAGE value="adding in none args to constructor of question" />
     <MESSAGE value="fixed client id, need to store in app.googleusercontent.com" />
@@ -1216,7 +1209,8 @@
     <MESSAGE value="adding generic gitignore since most contributors have pycharm ide" />
     <MESSAGE value="commiting update of rest manager and updated todo's and unit testing" />
     <MESSAGE value="updated rest manager with v.01 version of &quot;stable&quot; unless managers vision isnt good then f it.  Will test with frontend tomorrow, yay tomorrow its only a day away" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated rest manager with v.01 version of &quot;stable&quot; unless managers vision isnt good then f it.  Will test with frontend tomorrow, yay tomorrow its only a day away" />
+    <MESSAGE value="actually close DB calls" />
+    <option name="LAST_COMMIT_MESSAGE" value="actually close DB calls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1376,14 +1370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="854">
-          <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/deprecated/TopicChapter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1402,20 +1388,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="30" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1450,14 +1423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/LogEntry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/unit_testing/unit_testing_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -1470,14 +1435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1502,10 +1459,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/LogEntry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="-1929">
           <caret line="179" column="38" selection-start-line="179" selection-start-column="20" selection-end-line="179" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="57" column="47" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="47" />
           <folding />
         </state>
       </provider>

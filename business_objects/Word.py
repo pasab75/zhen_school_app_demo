@@ -87,6 +87,7 @@ class Word:
         try:
             db_word = db_wordzors.WordTableAccess()
             db_word.save_new_word_from_object(self.get_database_format())
+            db_word.close_connection()
             return True
         except Exception as e:
             print("Could not delete question: " + str(e))
