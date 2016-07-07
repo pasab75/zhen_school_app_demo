@@ -2,6 +2,7 @@
 from flask import jsonify
 import db_access.db_chapters as db_chapters
 
+
 class Chapter:
     _chapter_index = None
     _chapter_name = None
