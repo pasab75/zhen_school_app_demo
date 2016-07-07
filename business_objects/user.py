@@ -2,6 +2,7 @@ import db_access.db_users as User_db
 import flask.jsonify as jsonify
 import datetime
 
+
 class User:
     _user_id = None
     _first_name = None
