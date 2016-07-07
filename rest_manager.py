@@ -1,16 +1,17 @@
-from flask import Flask, jsonify, request, abort, json, g
+from flask import Flask, jsonify, request, abort
 import datetime
 
 import business_objects.User as User
-import business_objects.quest as Quest
 import business_objects.DefinitionQuestion as DefQuestion
 import requests
-import random
 
 ###DEBUG IMPORTS###
 
 
-###END DEBUG I
+###END DEBUG IMPORTS###
+
+#TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
+#TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
@@ -106,6 +107,7 @@ def update_user_quest(user, chapter_index=None,
         raise ex
 
 
+
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
@@ -153,10 +155,11 @@ def start_quest():
                                               seconds_per_question=request_seconds_per_question,
                                               number_of_questions=request_number_of_questions,
                                               cumulative=request_cumulative)
+            user.update_current_user()
             return jsonify({
-                    "question": response,
-                    "user": user.jsonify()
-                })
+                "question": response,
+                "user": user.jsonify()
+            })
         else:
             abort(403, "Unable to authenticate user")
 
@@ -178,6 +181,7 @@ def drop_quest():
         if user:
             # drop the current quest, note that update with no flags does this, check its default args for details
             user = drop_user_quest(user)
+            user.update_current_user()
             return user.jsonify()
 
         else:
@@ -200,15 +204,14 @@ def resume_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            daily_reset = datetime.datetime.today().replace(hour=4, second=0, minute=0, microsecond=0)
-            # check if that quest is valid
-            if user['date_quest_started'] > daily_reset:
-                # TODO: figure out quest logic
-
-                return jsonify(question)
-            else:
-                print('quest is outdated, please start a new quest')
-
+            new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
+            response = new_question.jsonify()
+            user.set_datetime_question_started(datetime.datetime.now())
+            user.update_current_user()
+            return jsonify({
+                "question": response,
+                "user": user.jsonify()
+            })
         else:
             abort(403, "Unable to authenticate user")
 
@@ -221,68 +224,31 @@ def resume_quest():
 # request requires
 # user_identifier = user's access token
 # user_answer = either the index or the value of the user's answer
-@app.route('/api/v1/question/validation', methods=['POST'])
-def get_validation():
+@app.route('/api/v1/question/submit', methods=['POST'])
+def submit_question():
     try:
+        # TODO:  the user has the word indexs of all possibilities, just return the
+        # TODO CONTINUED: a new question for them and update the user object
+        print(request.json)
+
         user = authenticate_user(request)
         if user:
             user_answer = (request.json['user_answer'])
-            print(request.json)
-
-            # get question with current question index
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-            question = dbconnect.get_question_by_question_id(question_id)
-            dbconnect.close_connection()
-
-            correct_answer = str(question['correct_answer'])
-
-            # check if this is the last question of the set
-
-            dbconnect = users_table_access_layer.UserTableAccess()
-            print(type(user_answer))
-            print(type(correct_answer))
-            print('user answer is ' + user_answer)
-            print('correct answer is ' + correct_answer)
-
-            if user_answer == correct_answer:
-                print('user is correct')
-                # update points
-                dbconnect.update_user_points(user_id, 10 * int(user['point_multiplier']))
-                # increase multiplier
-                if user['point_multiplier'] < 10:
-                    dbconnect.update_user_multiplier(user_id, 1)
+            correct = user.check_answer(user_answer)
+            answer_index = user.get_current_word_index()
+            quest_complete = user.is_quest_complete()
+            if not quest_complete:
+                question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index()).jsonify()
             else:
-                print('user is incorrect')
-                # decrease multiplier
-                if user['point_multiplier'] > 1:
-                    dbconnect.update_user_multiplier(user_id, -1)
-
-            dbconnect.update_user_quest_progress(user_id)
-            user = dbconnect.get_user_by_user_id(user_id)
-            dbconnect.close_connection()
-
-            dbconnect = quest_table_access_layer.QuestTableAccess()
-            quest = dbconnect.get_quest_by_quest_index(user['quest_index'])
-            dbconnect.close_connection()
-
-            dbconnect = questions_table_access_layer.QuestionTableAccess()
-            new_question = dbconnect.get_question_by_quest(quest)
-            dbconnect.close_connection()
-
-            dbconnect = users_table_access_layer.UserTableAccess()
-            dbconnect.update_user_current_question(user_id, new_question['question_id'])
-            dbconnect.close_connection()
-
-            validation_package = {'correct_answer': correct_answer,
-                                  'multiplier': user['point_multiplier'],
-                                  'points': user['current_points'],
-                                  'lvl': user['current_lvl']
-                                  }
-
-            # get a new question id for the user
-            # put it in the user table so the user can get the question when they resume the quest
-
-            return jsonify(validation_package)
+                question = None
+            user.update_current_user()
+            return jsonify({
+                "user": user.jsonify(),
+                "correct": correct,
+                "answer_index": answer_index,
+                "question": question,
+                "quest_complete": quest_complete
+            })
         else:
             abort(403, "Unable to authenticate user")
 
