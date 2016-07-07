@@ -10,8 +10,8 @@ import requests
 
 ###END DEBUG IMPORTS###
 
-#TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
-#TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
+# TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
+# TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
 local = True
 # set this variable to determine whether you are running a test server locally or on the VPS
@@ -86,7 +86,6 @@ def update_user_quest(user, chapter_index=None,
 
         # TODO: validate number of questions, seconds per question, cumulative as a boolean
 
-
         # TODO: GO Get a word/definition question
         new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(chapter_index)
 
@@ -105,8 +104,6 @@ def update_user_quest(user, chapter_index=None,
         # TODO: change prints to logger
         print("Error: " + str(ex))
         raise ex
-
-
 
 # -------------------------------------------------------------
 # Routes

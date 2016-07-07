@@ -82,7 +82,7 @@ class Word:
     def set_chapter_index(self, index):
         self._chapter_index = index
 
-    #only call this if you're sure this doesn't exist in the db already
+    # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
             db_word = db_wordzors.WordTableAccess()
