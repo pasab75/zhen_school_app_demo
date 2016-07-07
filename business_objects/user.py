@@ -18,6 +18,7 @@ class User:
     _seconds_per_question = None
     _completion_points = None
     _date_quest_started = None
+    _datetime_question_started = None
     _current_word_index = None
     _current_progress = None
     _number_correct = 0
@@ -39,6 +40,7 @@ class User:
                  seconds_per_question=None,
                  completion_points=None,
                  date_quest_started=None,
+                 datetime_question_started=None,
                  current_word_index=None,
                  current_progress=None,
                  number_correct=0,
@@ -60,11 +62,31 @@ class User:
         self._seconds_per_question = seconds_per_question
         self._completion_points = completion_points
         self._date_quest_started = date_quest_started
+        self._datetime_question_started = datetime_question_started
         self._current_word_index = current_word_index
         self._current_progress = current_progress
         self._number_correct = number_correct
         self._last_active = last_active
         self._paid_through = paid_through
+
+    def check_answer(self, answer):
+        if self.get_current_word_index() == answer:
+            self.add_current_points(self.get_points_per_question()*self.get_current_multiplier())
+            self.set_current_multiplier(self.get_current_multiplier()+1)
+            self.update_quest_progress()
+            return True
+        else:
+            self.set_current_multiplier(1)
+            return False
+
+    def update_quest_progress(self):
+        self.set_current_progress(self.get_current_progress()+1)
+
+    def is_quest_complete(self):
+        if self.get_current_progress() == self.get_number_of_questions():
+            return True
+        else:
+            return False
 
     def get_database_format(self):
         return {
@@ -130,6 +152,7 @@ class User:
         self._seconds_per_question = user['seconds_per_question']
         self._completion_points = user['completion_points']
         self._date_quest_started = user['date_quest_started']
+        self._datetime_question_started = user['datetime_question_started']
         self._current_word_index = user['current_word_index']
         self._current_progress = user['current_progress']
         self._number_correct = user['number_correct']
@@ -139,7 +162,7 @@ class User:
     def update_user_quest(self, chapter_index=None, current_progress=None, date_quest_started=None,
                           current_word_index=None, number_correct=None, completion_points=None,
                           seconds_per_question=None, points_per_question=None, number_of_questions=None,
-                          cumulative=None):
+                          cumulative=None, datetime_question_started=None):
         self._chapter_index = chapter_index
         self._cumulative = cumulative
         self._number_of_questions = number_of_questions
@@ -147,24 +170,21 @@ class User:
         self._seconds_per_question = seconds_per_question
         self._completion_points = completion_points
         self._date_quest_started = date_quest_started
+        self._datetime_question_started = datetime_question_started
         self._current_word_index = current_word_index
         self._current_progress = current_progress
         self._number_correct = number_correct
 
-    def update_user_rewards(self, points, current_multiplier_increment=.1):
-        self.set_current_multiplier(self.get_current_multiplier()+current_multiplier_increment)
-        self.add_current_points(points*self.get_current_multiplier())
-
-    def generate_from_id(self, id):
-        dbconnect = User_db.UserTableAccess()
-        current_user = dbconnect.get_user_by_user_id(id)
+    def generate_from_id(self, identification):
+        db = User_db.UserTableAccess()
+        current_user = db.get_user_by_user_id(identification)
         self.set_from_database(current_user)
-        dbconnect.close_connection()
+        db.close_connection()
 
     def isPaid(self):
-        currentTime = datetime.datetime.now()
+        current_time = datetime.datetime.now()
         if self._paid_through is not None:
-            if self._paid_through > currentTime:
+            if self._paid_through > current_time:
                 return True
         return False
 
@@ -188,6 +208,12 @@ class User:
 
     def set_email_address(self, email_addr):
         self._e_mail = email_addr
+
+    def set_datetime_question_started(self):
+        self._datetime_question_started = datetime.datetime.now
+
+    def get_datetime_question_started(self):
+        return self._datetime_question_started
 
     def get_user_role(self):
         return self._user_role
@@ -223,7 +249,7 @@ class User:
         return self._current_multiplier
 
     def set_current_multiplier(self, value):
-        _current_multiplier = value
+        self._current_multiplier = value
 
     def get_chapter_index(self):
         return self._chapter_index
