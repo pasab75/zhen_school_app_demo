@@ -315,12 +315,14 @@ class User:
     def update_current_user(self):
         user_db = User_db.UserTableAccess()
         user_db.update_user(self.get_database_format())
+        user_db.close_connection()
 
     # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
             db_user = User_db.UserTableAccess()
             db_user.save_user_new(self.get_database_format())
+            db_user.close_connection()
             return True
         except Exception as e:
             print("Could not delete question: " + str(e))
