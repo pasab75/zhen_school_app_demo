@@ -3,6 +3,7 @@ import datetime
 
 import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
+import business_objects.QuestLogEntry as QuestLogEntry
 import requests
 
 ###DEBUG IMPORTS###
@@ -408,6 +409,11 @@ def submit_question():
                 question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index()).jsonify()
             else:
                 question = None
+                try:
+                    #TODO: add Lat and Lon
+                    QuestLogEntry.QuestLogEntry().generate_from_user(user)
+                except:
+                    print("failed too make log entry, not the end of the world, but no log entry made")
             user.update_current_user()
             return jsonify({
                 "user": user.jsonify(),
