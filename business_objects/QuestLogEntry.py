@@ -1,6 +1,6 @@
 import db_access.db_quest_log as db_quest_log
 import business_objects.User as User
-import flask.jsonify as jsonify
+from flask import Flask, jsonify
 import datetime
 
 class QuestLogEntry:

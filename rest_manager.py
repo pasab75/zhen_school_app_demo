@@ -14,7 +14,7 @@ import requests
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
-local = True
+local = False
 # set this variable to determine whether you are running a test server locally or on the VPS
 
 app = Flask(__name__)
@@ -228,6 +228,7 @@ def update_user_quest(user,
 #########################################################################################
 
 
+
 @app.route('/api/v1/get/user', methods=['POST'])
 def get_user():
     try:
@@ -241,7 +242,14 @@ def get_user():
         print(ex)
         print("Unable to retrieve user.")
 
-
+@app.route('/', methods=['GET'])
+def helloworld():
+    try:
+        print(request)
+        return "Hello World"
+    except Exception as ex:
+        print(ex)
+        print("Unable to retrieve user.")
 #########################################################################################
 # DESCRIPTION
 # When the user requests, authenticate them and then serves up a new question
@@ -447,7 +455,7 @@ def submit_question():
 #########################################################################################
 
 
-@app.route('/api/v1/create/account', methods=['POST'])
+@app.route('/api/v1/account/create', methods=['POST'])
 def create_account():
     try:
         incoming_request = request
@@ -517,9 +525,9 @@ def paid_sign_in():
 if __name__ == '__main__':
 
     if local:
+        app.run(host='0.0.0.0', port=5000)
         app.debug = True
-        # be careful with this apparently it's a security hazard
-        app.run()
+
     else:
-        app.run(host='0.0.0.0')
+        app.run(host='0.0.0.0', port=5000)
         # this allows the API to use the public IP
