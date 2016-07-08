@@ -1,5 +1,5 @@
 import db_access.db_users as User_db
-import flask.jsonify as jsonify
+from flask import jsonify
 import datetime
 
 

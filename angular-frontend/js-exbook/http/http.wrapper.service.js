@@ -11,7 +11,7 @@
     function httpwrapper($http) {
       var vm = this;
 
-      vm.hostroot = 'http://127.0.0.1';
+      vm.hostroot = 'http://192.168.0.111';
       vm.portnumber = '5000';
       vm.apiversion = 'v1';
 
