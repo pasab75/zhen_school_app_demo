@@ -186,13 +186,13 @@ class UserTableAccess(GeneralDatabaseConnection):
 
     def save_user_new(self, user):
         try:
-            self.save_new_row_in_table(user, 'users')
+            self.save_new_row_in_table(user, table_name)
         except Exception as ex:
             print("Unable to add new user: " + str(ex))
 
     def update_user(self, user_info):
         try:
-            self.update_row_in_table(user_info, 'users', 'user_id')
+            self.update_row_in_table(user_info, table_name, 'user_id')
         except Exception as ex:
             print("Unable to update user: " + str(ex))
 
