@@ -222,6 +222,7 @@ def update_user_quest(user,
 #
 # RETURNS
 # user json
+#
 #########################################################################################
 
 
@@ -241,15 +242,20 @@ def get_user():
 
 #########################################################################################
 # DESCRIPTION
-#
+# When the user requests, authenticate them and then serves up a new question
+# for the start of the quest
 #
 # RETURN CASES
-#
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success: Returns the user object and a new question in json format
 #
 # TAKES
-#
+# user authentication token string, chapter_index int, number_of_questions int,
+# seconds_per_question int, cumulative boolean
 #
 # RETURNS
+# updated user object, new question, and 200 code
 #
 #########################################################################################
 
@@ -263,7 +269,6 @@ def start_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-
             request_chapter_index = request.json['chapter_index']
             request_seconds_per_question = request.json['seconds_per_question']
             request_number_of_questions = request.json['number_of_questions']
@@ -278,25 +283,29 @@ def start_quest():
                 "question": response,
                 "user": user.jsonify()
             })
+
         else:
             abort(403, "Unable to authenticate user")
 
     except Exception as ex:
         print(ex)
-        abort(500, "Unable to retrieve random question")
+        abort(500, "Unable to retrieve random question, error: "+str(ex))
 
 
 #########################################################################################
 # DESCRIPTION
-#
+# Drops the users current quest, presumably used before start new quest if user is frustrated
 #
 # RETURN CASES
-#
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success: Returns the user object and a new question in json format
 #
 # TAKES
-#
+# user authentication token string
 #
 # RETURNS
+# updated user object, and 200 code
 #
 #########################################################################################
 
@@ -320,19 +329,23 @@ def drop_quest():
     except Exception as ex:
         print(ex)
         abort(500, "Unable to retrieve random question")
-
+#
 
 #########################################################################################
 # DESCRIPTION
-#
+# Assumed use: on user phone reboot or other session clear, the user will request a new
+# question.  This could be used to avoid particularly hard questions, watch logs for abuse
 #
 # RETURN CASES
-#
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success: Returns the user object and a new question in json format
 #
 # TAKES
-#
+# user authentication token string
 #
 # RETURNS
+# updated user object, new question, and 200 code
 #
 #########################################################################################
 
@@ -364,24 +377,25 @@ def resume_quest():
 
 #########################################################################################
 # DESCRIPTION
-#
+# User is submitting answer for a question they were presented
 #
 # RETURN CASES
-#
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success: returns updated user object, if they got the answer correct (boolean), the index of the correct answer,
+# quest_complete boolean flag, and a new question for them to answer if they are still in an active quest
 #
 # TAKES
-#
-#
+# user authentication token string, user_answer
+# TODO: geo location data
 # RETURNS
-#
+# user object, answer_index (int), correct (boolean), question object, quest_complete (boolean)
 #########################################################################################
 
 
 @app.route('/api/v1/question/submit', methods=['POST'])
 def submit_question():
     try:
-        # TODO:  the user has the word indexs of all possibilities, just return the
-        # TODO CONTINUED: a new question for them and update the user object
         print(request.json)
 
         user = authenticate_user(request)
@@ -411,16 +425,18 @@ def submit_question():
 
 #########################################################################################
 # DESCRIPTION
-#
+# new user is submitting for an account
 #
 # RETURN CASES
-#
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success:
 #
 # TAKES
-#
+# user_identifier, sub, email, first name, last name
 #
 # RETURNS
-#
+# user_exists (boolean), created (boolean), error flag if we think an error occured but couldnt find it
 #########################################################################################
 
 
@@ -458,24 +474,26 @@ def create_account():
 
 #########################################################################################
 # DESCRIPTION
-#
+# Checks if this is a paying user, returns false if not
 #
 # RETURN CASES
-#
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success:
 #
 # TAKES
-#
+# user_id
 #
 # RETURNS
-#
+# user object or false
 #########################################################################################
 
 
 @app.route('/api/v1/paidsignin', methods=['POST'])
 def paid_sign_in():
     try:
-        auth = authenticate_user(request)
-        return jsonify(user_paid=auth)
+        user = authenticate_user(request)
+        return jsonify(user.jsonify())
 
     except Exception as ex:
         print(ex)
