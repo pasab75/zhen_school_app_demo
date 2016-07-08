@@ -46,10 +46,10 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
     # WRITE methods
     # -------------------------------------------------------------
 
-    def save_new_quest_complete_for_user_id(self, activity):
+    def save_new_activity(self, activity):
         try:
             try:
-                db_obj = self.save_new_row_in_table(activity.get_database_format())
+                db_obj = self.save_new_row_in_table(activity.get_database_format(), table_name)
                 return db_obj
 
             except Exception as e:

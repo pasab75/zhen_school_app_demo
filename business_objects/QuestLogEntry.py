@@ -83,7 +83,7 @@ class QuestLogEntry:
     def save_new(self):
         try:
             db_quest = db_quest_log.ActivityLogTableAccess()
-            db_quest.save_new_quest_complete_for_user_id(self.get_database_format())
+            db_quest.save_new_quest(self.get_database_format())
             db_quest.close_connection()
             return True
         except Exception as e:

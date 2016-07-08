@@ -1,6 +1,6 @@
 from flask import jsonify
 import datetime
-
+import db_access.db_activity_log as db_activity_log
 
 class ActivityLogEntry:
     _user_id = None
@@ -64,6 +64,17 @@ class ActivityLogEntry:
             "current_word_index":self._current_word_index,
             "datetime_question_started":self._datetime_question_started
         }
+
+    # only call this if you're sure this doesn't exist in the db already
+    def save_new(self):
+        try:
+            db_activity = db_activity_log.ActivityLogTableAccess()
+            db_activity.save_new_activity(self.get_database_format())
+            db_activity.close_connection()
+            return True
+        except Exception as e:
+            print("Could not delete question: " + str(e))
+            raise e
 
     def get_user_id(self):
         return self._user_id
