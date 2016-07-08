@@ -1,5 +1,4 @@
 from db_access.db_general import GeneralDatabaseConnection
-import random
 
 table_name = "words"
 

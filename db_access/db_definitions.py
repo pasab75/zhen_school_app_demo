@@ -1,6 +1,5 @@
 from db_access.db_general import GeneralDatabaseConnection
-import random
-# provides interface to the definition question table
+
 table_name = "definitions"
 
 

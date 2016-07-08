@@ -1,7 +1,7 @@
-import pymysql.cursors
 from db_access.db_general import GeneralDatabaseConnection
-from random import randint, shuffle
+import datetime
 
+table_name = 'quest_log'
 
 class ActivityLogTableAccess(GeneralDatabaseConnection):
 
@@ -23,7 +23,7 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
     def get_quests_by_user_id(self, user_id):
         try:
             try:
-                db_obj = self.get_all_by_key_value(quest_log, 'user_id', user_id)
+                db_obj = self.get_all_by_key_value(table_name, 'user_id', user_id)
                 return db_obj
 
             except Exception as e:
@@ -31,10 +31,10 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    def get_quests_completed_today_by_user_id(self):
+    def get_quests_completed_between_dates_by_user_id(self, user_id, date1, date2):
         try:
             try:
-                # TODO: make this only get the quests completed today
+                # TODO: make this only get the quests completed between certain dates
                 db_obj = self.get_all_by_key_value()
                 return db_obj
 
@@ -42,6 +42,18 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
                 print("Error fetching results: " + str(e))
         except Exception as e:
             print("Error connecting: " + str(e))
+
+    def get_quests_completed_today_by_user_id(self, user_id):
+        try:
+            try:
+                db_obj = self.get_quests_completed_between_dates_by_user_id(user_id, datetime.datetime.today()-datetime.timedelta(1))
+                return db_obj
+
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------
