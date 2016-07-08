@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/python_rest.iml" afterPath="$PROJECT_DIR$/.idea/python_rest.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_activity_log.py" afterPath="$PROJECT_DIR$/db_access/db_activity_log.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_quest_log.py" afterPath="$PROJECT_DIR$/db_access/db_quest_log.py" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -129,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/db_access/db_activity_log.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="558">
-              <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+              <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -139,18 +133,18 @@
         <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="314">
-              <caret line="117" column="8" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="8" />
+              <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
               <folding>
-                <marker date="1467940343498" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
-                <marker date="1467940343498" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
-                <marker date="1467940343498" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
-                <marker date="1467940343498" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
-                <marker date="1467940343498" expanded="true" signature="4009:4076" ph="SELECT * FRO... missing_value" />
-                <marker date="1467940343498" expanded="true" signature="5332:5367" ph="INSERT INTO missing_value... " />
-                <marker date="1467940343498" expanded="true" signature="6519:6545" ph="UPDATE missi... " />
-                <marker date="1467940343498" expanded="true" signature="7113:7141" ph="DELETE FROM " />
-                <marker date="1467940343498" expanded="true" signature="8077:8089" ph="DELETE FROM " />
-                <marker date="1467940343498" expanded="true" signature="8552:8575" ph="SELECT COUNT... " />
+                <marker date="1468010047620" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
+                <marker date="1468010047620" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
+                <marker date="1468010047620" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
+                <marker date="1468010047620" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
+                <marker date="1468010047620" expanded="true" signature="5773:5840" ph="SELECT * FRO... missing_value" />
+                <marker date="1468010047620" expanded="true" signature="7096:7131" ph="INSERT INTO missing_value... " />
+                <marker date="1468010047620" expanded="true" signature="8283:8309" ph="UPDATE missi... " />
+                <marker date="1468010047620" expanded="true" signature="8877:8905" ph="DELETE FROM " />
+                <marker date="1468010047620" expanded="true" signature="9841:9853" ph="DELETE FROM " />
+                <marker date="1468010047620" expanded="true" signature="10316:10339" ph="SELECT COUNT... " />
               </folding>
             </state>
           </provider>
@@ -160,7 +154,7 @@
         <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="386">
-              <caret line="128" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+              <caret line="129" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -202,7 +196,7 @@
         <entry file="file://$PROJECT_DIR$/db_access/db_quest_log.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1134">
-              <caret line="63" column="91" selection-start-line="63" selection-start-column="91" selection-end-line="63" selection-end-column="91" />
+              <caret line="65" column="91" selection-start-line="65" selection-start-column="91" selection-end-line="65" selection-end-column="91" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -439,13 +433,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/python_rest.iml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_activity_log.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_definitions.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_general.py</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_quest_log.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_users.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_words.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_scripts/database-generator-script</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -851,13 +842,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00028" summary="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go.">
-      <created>1458694734879</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1458694734879</updated>
-    </task>
     <task id="LOCAL-00029" summary="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go.">
       <created>1458695588535</created>
       <option name="number" value="00029" />
@@ -1194,7 +1178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468009761991</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="updated some method names, fixed some bugs in the DB layer">
+      <created>1468010035467</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1468010035467</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1211,9 +1202,9 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32794458" sideWeight="0.5031771" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25404158" sideWeight="0.50833994" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25404158" sideWeight="0.4932486" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25404158" sideWeight="0.49166006" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948422" sideWeight="0.49841145" order="-1" side_tool="false" content_ui="tabs" />
@@ -1245,7 +1236,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="added in authentication on all routes, changed from end to pass from local storage the ID for all google authenticated users.  Change if not desired behavior" />
     <MESSAGE value="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint" />
     <MESSAGE value="Re-writing the frontend in angular. Backend shouldn't be changed" />
     <MESSAGE value="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around." />
@@ -1270,7 +1260,8 @@
     <MESSAGE value="actually close DB calls part 2, close-agedon" />
     <MESSAGE value="finished commenting rest front end commenting" />
     <MESSAGE value="update logentry to activitylogentry and made questlogentry business object" />
-    <option name="LAST_COMMIT_MESSAGE" value="update logentry to activitylogentry and made questlogentry business object" />
+    <MESSAGE value="updated some method names, fixed some bugs in the DB layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated some method names, fixed some bugs in the DB layer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1505,7 +1496,7 @@
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
-          <caret line="128" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <caret line="129" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1521,7 +1512,7 @@
     <entry file="file://$PROJECT_DIR$/db_access/db_activity_log.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -1539,18 +1530,18 @@
     <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
-          <caret line="117" column="8" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="8" />
+          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
           <folding>
-            <marker date="1467940343498" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
-            <marker date="1467940343498" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
-            <marker date="1467940343498" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
-            <marker date="1467940343498" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
-            <marker date="1467940343498" expanded="true" signature="4009:4076" ph="SELECT * FRO... missing_value" />
-            <marker date="1467940343498" expanded="true" signature="5332:5367" ph="INSERT INTO missing_value... " />
-            <marker date="1467940343498" expanded="true" signature="6519:6545" ph="UPDATE missi... " />
-            <marker date="1467940343498" expanded="true" signature="7113:7141" ph="DELETE FROM " />
-            <marker date="1467940343498" expanded="true" signature="8077:8089" ph="DELETE FROM " />
-            <marker date="1467940343498" expanded="true" signature="8552:8575" ph="SELECT COUNT... " />
+            <marker date="1468010047620" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
+            <marker date="1468010047620" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
+            <marker date="1468010047620" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
+            <marker date="1468010047620" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
+            <marker date="1468010047620" expanded="true" signature="5773:5840" ph="SELECT * FRO... missing_value" />
+            <marker date="1468010047620" expanded="true" signature="7096:7131" ph="INSERT INTO missing_value... " />
+            <marker date="1468010047620" expanded="true" signature="8283:8309" ph="UPDATE missi... " />
+            <marker date="1468010047620" expanded="true" signature="8877:8905" ph="DELETE FROM " />
+            <marker date="1468010047620" expanded="true" signature="9841:9853" ph="DELETE FROM " />
+            <marker date="1468010047620" expanded="true" signature="10316:10339" ph="SELECT COUNT... " />
           </folding>
         </state>
       </provider>
@@ -1568,7 +1559,7 @@
     <entry file="file://$PROJECT_DIR$/db_access/db_quest_log.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
-          <caret line="63" column="91" selection-start-line="63" selection-start-column="91" selection-end-line="63" selection-end-column="91" />
+          <caret line="65" column="91" selection-start-line="65" selection-start-column="91" selection-end-line="65" selection-end-column="91" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
