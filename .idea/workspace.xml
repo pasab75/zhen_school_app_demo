@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_access/db_quest_log.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,9 +39,27 @@
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
-              <caret line="197" column="37" selection-start-line="197" selection-start-column="37" selection-end-line="197" selection-end-column="37" />
+              <caret line="213" column="13" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="13" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
+                <marker date="1468006641648" expanded="true" signature="178:431" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="685:933" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="936:1771" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="1813:2114" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="1822:2067" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="2115:2845" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="2886:3255" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="2895:3154" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="3257:3605" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="3634:3720" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="3722:4432" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="4651:6752" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="5458:5551" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="5591:5684" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="5723:5816" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="5840:5947" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="6781:6873" ph="..." />
+                <marker date="1468006641648" expanded="true" signature="6875:7451" ph="..." />
               </folding>
             </state>
           </provider>
@@ -695,13 +711,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00026" summary="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around.">
-      <created>1458684389194</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1458684389194</updated>
-    </task>
     <task id="LOCAL-00027" summary="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go.">
       <created>1458688496956</created>
       <option name="number" value="00027" />
@@ -1038,7 +1047,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467940266596</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="started db_quest_log and db_activity_log">
+      <created>1468006630501</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1468006630501</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1088,7 +1104,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="added in authentication on all routes, changed from end to pass from local storage the ID for all google authenticated users.  Change if not desired behavior" />
     <MESSAGE value="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint" />
     <MESSAGE value="Re-writing the frontend in angular. Backend shouldn't be changed" />
     <MESSAGE value="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around." />
@@ -1113,7 +1128,8 @@
     <MESSAGE value="actually close DB calls part 2, close-agedon" />
     <MESSAGE value="fixed huge issue with save function that paul fucked up!" />
     <MESSAGE value="added a bunch of comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a bunch of comments" />
+    <MESSAGE value="started db_quest_log and db_activity_log" />
+    <option name="LAST_COMMIT_MESSAGE" value="started db_quest_log and db_activity_log" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1344,9 +1360,27 @@
     <entry file="file://$PROJECT_DIR$/rest_manager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
-          <caret line="197" column="37" selection-start-line="197" selection-start-column="37" selection-end-line="197" selection-end-column="37" />
+          <caret line="213" column="13" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="13" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
+            <marker date="1468006641648" expanded="true" signature="178:431" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="685:933" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="936:1771" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="1813:2114" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="1822:2067" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="2115:2845" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="2886:3255" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="2895:3154" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="3257:3605" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="3634:3720" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="3722:4432" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="4651:6752" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="5458:5551" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="5591:5684" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="5723:5816" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="5840:5947" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="6781:6873" ph="..." />
+            <marker date="1468006641648" expanded="true" signature="6875:7451" ph="..." />
           </folding>
         </state>
       </provider>
