@@ -1,7 +1,7 @@
 from db_access.db_general import GeneralDatabaseConnection
-import datetime
 
 table_name = "users"
+
 
 class UserTableAccess(GeneralDatabaseConnection):
 
