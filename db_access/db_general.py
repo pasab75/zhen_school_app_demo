@@ -92,6 +92,40 @@ class GeneralDatabaseConnection:
             print("Error connecting: " + str(e))
             return False
 
+    def get_row_all_with_limits_and_primary_key(self, table, key, lower, upper, primary_key, primary_key_value):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT * FROM {} WHERE {} = {} AND WHERE {} >= {} AND {} <= {}".format(table,
+                                                                                                  primary_key,
+                                                                                                  primary_key_value,
+                                                                                                  key, lower,
+                                                                                                  key, upper)
+                    cursor.execute(sql)
+                    return cursor.fetchall()
+
+            except Exception as ex:
+                print("error adding row to table :" + str(ex))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+            return False
+
+    def get_row_all_with_limits(self, table, key, lower, upper):
+        try:
+            try:
+                with self.db_connection.cursor() as cursor:
+                    sql = "SELECT * FROM {} WHERE {} >= {} AND {} <= {}".format(table, key,
+                                                                                lower, key,
+                                                                                upper)
+                    cursor.execute(sql)
+                    return cursor.fetchall()
+
+            except Exception as ex:
+                print("error adding row to table :" + str(ex))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+            return False
+
     def get_row_random_with_limits(self, table, key, lower, upper, number=1):
         try:
             try:

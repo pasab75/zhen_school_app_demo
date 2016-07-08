@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `longitude` DOUBLE NULL DEFAULT NULL,
   `number_of_questions` INT(11) NULL DEFAULT NULL,
   `seconds_per_question` INT(11) NULL DEFAULT NULL,
-  `date_quest_started` DATETIME NULL DEFAULT NULL,
+  `datetime_quest_started` DATETIME NULL DEFAULT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
   `current_word_index` INT(11) NULL DEFAULT NULL)
 ENGINE = InnoDB
