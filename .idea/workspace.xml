@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/business_objects/LogEntry.py" afterPath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="python_rest.iws" />
@@ -86,6 +84,8 @@
               <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
+                <marker date="1468004040226" expanded="true" signature="10453:11021" ph="..." />
+                <marker date="1468004040226" expanded="true" signature="13367:14238" ph="..." />
                 <marker date="1468004040226" expanded="true" signature="17112:17170" ph="..." />
               </folding>
             </state>
@@ -192,7 +192,11 @@
             <state relative-caret-position="-56">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <marker date="1468009748669" expanded="true" signature="1965:2496" ph="..." />
+                <marker date="1468009748669" expanded="true" signature="1970:2121" ph="..." />
+                <marker date="1468009748669" expanded="true" signature="2180:2496" ph="..." />
+                <marker date="1468009748669" expanded="true" signature="2193:2416" ph="..." />
+                <marker date="1468009748669" expanded="true" signature="2210:2321" ph="..." />
               </folding>
             </state>
           </provider>
@@ -427,8 +431,13 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_scripts/database-generator-script</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/python_rest.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_activity_log.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_definitions.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_quest_log.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_users.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_words.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -436,7 +445,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_access/db_quest_log.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -835,13 +843,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00026" summary="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around.">
-      <created>1458684389194</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1458684389194</updated>
-    </task>
     <task id="LOCAL-00027" summary="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go.">
       <created>1458688496956</created>
       <option name="number" value="00027" />
@@ -1178,7 +1179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468004062937</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="update logentry to activitylogentry and made questlogentry business object">
+      <created>1468009735788</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1468009735788</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1194,13 +1202,13 @@
     <frame x="-1" y="25" width="2562" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32948422" sideWeight="0.49841145" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948422" sideWeight="0.49841145" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10683082" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32948422" sideWeight="0.5015886" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25404158" sideWeight="0.5067514" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25404158" sideWeight="0.49483716" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25404158" sideWeight="0.4932486" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
@@ -1229,7 +1237,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="fixed client id, need to store in app.googleusercontent.com" />
     <MESSAGE value="added in authentication on all routes, changed from end to pass from local storage the ID for all google authenticated users.  Change if not desired behavior" />
     <MESSAGE value="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint" />
     <MESSAGE value="Re-writing the frontend in angular. Backend shouldn't be changed" />
@@ -1254,7 +1261,8 @@
     <MESSAGE value="actually close DB calls" />
     <MESSAGE value="actually close DB calls part 2, close-agedon" />
     <MESSAGE value="finished commenting rest front end commenting" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished commenting rest front end commenting" />
+    <MESSAGE value="update logentry to activitylogentry and made questlogentry business object" />
+    <option name="LAST_COMMIT_MESSAGE" value="update logentry to activitylogentry and made questlogentry business object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1437,9 +1445,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1448,7 +1454,7 @@
         <state relative-caret-position="1116">
           <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
           <folding>
-            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#0#58#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1480,6 +1486,8 @@
           <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
+            <marker date="1468004040226" expanded="true" signature="10453:11021" ph="..." />
+            <marker date="1468004040226" expanded="true" signature="13367:14238" ph="..." />
             <marker date="1468004040226" expanded="true" signature="17112:17170" ph="..." />
           </folding>
         </state>
@@ -1511,7 +1519,11 @@
         <state relative-caret-position="-56">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <marker date="1468009748669" expanded="true" signature="1965:2496" ph="..." />
+            <marker date="1468009748669" expanded="true" signature="1970:2121" ph="..." />
+            <marker date="1468009748669" expanded="true" signature="2180:2496" ph="..." />
+            <marker date="1468009748669" expanded="true" signature="2193:2416" ph="..." />
+            <marker date="1468009748669" expanded="true" signature="2210:2321" ph="..." />
           </folding>
         </state>
       </provider>
