@@ -31,10 +31,20 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    def get_activities_by_user_id(self):
+    def get_activities_today_by_user_id(self, user_id):
         try:
             try:
-                # TODO: make this only get the quests completed today
+                db_obj = self.get_all_by_key_value()
+                return db_obj
+
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+
+    def get_activities_between_dates_by_user_id(self, user_id):
+        try:
+            try:
                 db_obj = self.get_all_by_key_value()
                 return db_obj
 
