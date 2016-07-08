@@ -22,9 +22,25 @@
           httpwrapper.genericApiCall('account/create', {user_identifier: $auth.getToken(), first_name: 'Zhen', last_name: 'Lu'}, success, failure);
         }
 
+        function success(){
+            return true;
+        };
+
+        function failure(){
+            return false;
+        };
+
         function submitQuestion(){
             httpwrapper.genericApiCall('question/submit', {user_identifier: $auth.getToken(), user_answer:0}, success, failure);
         }
+
+        function submitQuestionSuccess(){
+            return true;
+        };
+
+        function submitQuestionFailure(){
+            return false;
+        };
 
         function resumeQuest(){
             httpwrapper.genericApiCall('quest/resume', {user_identifier: $auth.getToken()}, success, failure);
@@ -42,12 +58,6 @@
             httpwrapper.genericApiCall('user/get', {user_identifier: $auth.getToken()}, success, failure);
         }
 
-        function success(){
-          return true;
-        };
 
-        function failure(){
-          return false;
-        };
     }
 })();

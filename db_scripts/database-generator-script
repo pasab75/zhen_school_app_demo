@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `current_progress` INT(11) NULL DEFAULT NULL,
   `number_correct` INT(11) NULL DEFAULT NULL,
   `paid_through` DATETIME NULL DEFAULT NULL,
+  `datetime_question_started` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
 ENGINE = InnoDB

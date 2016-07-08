@@ -4,9 +4,7 @@
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js" afterPath="$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/http/http.wrapper.service.js" afterPath="$PROJECT_DIR$/angular-frontend/js-exbook/http/http.wrapper.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.template.html" afterPath="$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
     </list>
     <ignored path="python_rest.iws" />
@@ -43,8 +41,8 @@
       <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="434" column="0" selection-start-line="434" selection-start-column="0" selection-end-line="434" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="795">
-              <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -813,13 +811,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00032" summary="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go.">
-      <created>1458705712322</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1458705712322</updated>
-    </task>
     <task id="LOCAL-00033" summary="added route to initialize database with a bunch of dummy topics in chapters, quests, and questions.">
       <created>1458764146125</created>
       <option name="number" value="00033" />
@@ -1156,7 +1147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468011049603</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="updated database NULLs in user table">
+      <created>1468017678291</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1468017678291</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1206,7 +1204,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Re-writing the frontend in angular. Backend shouldn't be changed" />
     <MESSAGE value="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around." />
     <MESSAGE value="Started writing 4 new server routes. These should be enough to serve the client for the first feature. We need to flesh out the routes more. I have some psuedo code in there, but I think we need more CRUD methods to use. I've been adding them as I go." />
     <MESSAGE value="added route to initialize database with a bunch of dummy topics in chapters, quests, and questions." />
@@ -1231,7 +1228,8 @@
     <MESSAGE value="added a bunch of comments" />
     <MESSAGE value="started db_quest_log and db_activity_log" />
     <MESSAGE value="finished activity log and quest log db access &#10;fixed bug in import in User.py&#10;added utility methods to db_general" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished activity log and quest log db access &#10;fixed bug in import in User.py&#10;added utility methods to db_general" />
+    <MESSAGE value="updated database NULLs in user table" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated database NULLs in user table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1525,8 +1523,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
+        <state relative-caret-position="153">
+          <caret line="434" column="0" selection-start-line="434" selection-start-column="0" selection-end-line="434" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1550,7 +1548,7 @@
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="795">
-          <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding />
         </state>
       </provider>
