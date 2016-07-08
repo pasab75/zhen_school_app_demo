@@ -1,5 +1,5 @@
 import db_access.db_quest_log as db_quest_log
-import business_objects.user as User
+import business_objects.User as User
 import flask.jsonify as jsonify
 import datetime
 

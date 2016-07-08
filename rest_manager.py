@@ -84,17 +84,18 @@ def check_access_token(client_request):
 # User business object
 # False bool
 #########################################################################################
-# TODO account for the possibility that check_access_token method returns false!
-
 
 def authenticate_user(client_request):
     try:
         r = check_access_token(client_request)
-        user_id = str(r.json()['sub'])
-        print(user_id)
-        user = User.user.generate_from_id(user_id)
-        if user and user.is_paid():
-            return user
+        if r:
+            user_id = str(r.json()['sub'])
+            print(user_id)
+            user = User.user.generate_from_id(user_id)
+            if user and user.is_paid():
+                return user
+            else:
+                return False
         else:
             return False
     except Exception as ex:
