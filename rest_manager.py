@@ -36,6 +36,24 @@ def after_request(response):
 # Functions
 # -------------------------------------------------------------
 
+#########################################################################################
+# DESCRIPTION
+# checks the access token that is passed from the client against google database
+# the access token is passed under the "user_identifier" label
+# the google database should return information about the user including a user ID number
+#
+# RETURN CASES
+# if the user id is returned, then we return all user information
+# if the user is not a valid google user, then we return false
+#
+# TAKES
+# "client_request" JSON that includes "user_identifier" field
+#
+# RETURNS
+# user information json
+# False bool
+#########################################################################################
+
 
 def check_access_token(client_request):
     try:
@@ -48,6 +66,24 @@ def check_access_token(client_request):
 
     except Exception as ex:
         print(ex)
+#########################################################################################
+# DESCRIPTION
+# sends access token to google server to authenticate
+#
+# RETURN CASES
+# if the user exists in our database, then return the user object
+# if the user does not exist in our database, then make a new user object and return it
+# returns user object in all foreseeable cases
+# if this method returns false, then something bad has happened
+#
+# TAKES
+# "client_request" JSON that includes "user_identifier" field
+#
+# RETURNS
+# User business object
+# False bool
+#########################################################################################
+# TODO account for the possibility that check_access_token method returns false!
 
 
 def authenticate_user(client_request):
@@ -64,27 +100,88 @@ def authenticate_user(client_request):
         print(ex)
         raise Exception("Failed to authenticate user")
 
+#########################################################################################
+# DESCRIPTION
+# clears the current user's quest
+#
+# RETURN CASES
+# always returns User's json object
+#
+# TAKES
+# user object
+#
+# RETURNS
+# json object from user.jsonify
+#########################################################################################
+
 
 def drop_user_quest(user):
     user.update_user_quest()
     user.update_current_user()
     return user.jsonify()
 
+#########################################################################################
+# DESCRIPTION
+# updates the user's quest information when they have chosen a quest to start
+#
+# RETURN CASES
+# should always return a new question json
+#
+# TAKES
+# user object
+# chapter index (integer)
+# seconds per question (integer) - if this is zero, we should give unlimited time
+# number of questions (integer) - this should take specific values
+# TODO make this validate to only take specific values
+# cumulative (boolean) - whether or not you should include chapters before the given chapter index
+# RETURNS
+# question json
+#########################################################################################
 
-def update_user_quest(user, chapter_index=None,
-                      seconds_per_question=None, number_of_questions=None,
+
+def update_user_quest(user,
+                      chapter_index=None,
+                      seconds_per_question=None,
+                      number_of_questions=None,
                       cumulative=False):
     try:
         date_quest_started = datetime.datetime.now()
         number_correct = 0
         current_progress = 0
-        # TODO: make method to calculate this
-        completion_points = 100
+        points_per_question = 20
+        question_multiplier = 5
 
-        # TODO: make method to calculate this
-        points_per_question = 1
+        completion_points = 50*number_of_questions
 
-        # TODO: validate number of questions, seconds per question, cumulative as a boolean
+        valid_num_questions = [10, 25, 50]
+        valid_secs_per_question = [30, 10, 5, 0]
+        valid_bool = [True, False]
+
+        # TODO: Make this return something that will display an error on the client side
+        if number_of_questions not in valid_num_questions or seconds_per_question not in valid_secs_per_question or cumulative not in valid_bool:
+            return False
+
+        if number_of_questions == 25:
+            question_multiplier = 15
+
+        if number_of_questions == 50:
+            question_multiplier = 40
+
+        if seconds_per_question <= 30:
+            points_per_question += 1
+            completion_points += 10*question_multiplier
+
+        if seconds_per_question <= 10:
+            points_per_question += 2
+            completion_points += 10*question_multiplier
+
+        if seconds_per_question <= 5:
+            points_per_question += 3
+            completion_points += 20*question_multiplier
+
+        if cumulative:
+            points_per_question += 1*chapter_index
+            completion_points += 10*question_multiplier
 
         # TODO: GO Get a word/definition question
         new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(chapter_index)
@@ -109,10 +206,23 @@ def update_user_quest(user, chapter_index=None,
 # Routes
 # -------------------------------------------------------------
 
+# -------------------------------------------------------------
+# Student client routes
+# -------------------------------------------------------------
 
-@app.route('/')
-def index():
-    return 'Hello, World!'
+#########################################################################################
+# DESCRIPTION
+# returns the user's information to the client after authenticating
+#
+# RETURN CASES
+# should always return user json
+#
+# TAKES
+# user authentication token
+#
+# RETURNS
+# user json
+#########################################################################################
 
 
 @app.route('/api/v1/get/user', methods=['POST'])
@@ -129,10 +239,21 @@ def get_user():
         print("Unable to retrieve user.")
 
 
-# starts a quest of the user's selection
-# this route requires a json object with the following fields:
-# quest_index = index of the quest user is requesting to start
-# user_identifier = user's access token
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
 @app.route('/api/v1/quest/start', methods=['POST'])
 def start_quest():
     try:
@@ -165,9 +286,21 @@ def start_quest():
         abort(500, "Unable to retrieve random question")
 
 
-# clears current quest data for a user in case they want to start something new
-# request requires only
-# user_identifier = user's access token
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
 @app.route('/api/v1/quest/drop', methods=['POST'])
 def drop_quest():
     try:
@@ -189,9 +322,21 @@ def drop_quest():
         abort(500, "Unable to retrieve random question")
 
 
-# returns the last question the user worked on by looking it up from user table
-# request requires only
-# user_identifier = user's access token
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
 @app.route('/api/v1/quest/resume', methods=['POST'])
 def resume_quest():
     try:
@@ -217,10 +362,21 @@ def resume_quest():
         abort(500, "Unable to retrieve random question")
 
 
-# returns the correct answer for the user's current question
-# request requires
-# user_identifier = user's access token
-# user_answer = either the index or the value of the user's answer
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
 @app.route('/api/v1/question/submit', methods=['POST'])
 def submit_question():
     try:
@@ -252,6 +408,20 @@ def submit_question():
     except Exception as ex:
         print(ex)
         abort(500, "Unable to retrieve random question")
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
 
 
 @app.route('/api/v1/create/account', methods=['POST'])
@@ -286,6 +456,20 @@ def create_account():
         print('Invalid token')
         abort(500, "Error: " + str(ex))
 
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
 
 @app.route('/api/v1/paidsignin', methods=['POST'])
 def paid_sign_in():
@@ -298,19 +482,10 @@ def paid_sign_in():
         print('Invalid token')
         abort(500, "Unable to retrieve random question")
 
-
-# -------------------------------------------------------------
-# Student client routes
-# -------------------------------------------------------------
-
 # -------------------------------------------------------------
 # Professor client routes
 # -------------------------------------------------------------
 # TODO: add professor routes for changing the question database etc
-
-# gets a multiple choice question by question ID
-# takes the question ID (qID) as data from the client
-# returns JSON that includes question text and answer text
 
 # TODO: check to see if this CORS implementation is safe
 

@@ -13,7 +13,7 @@ class GeneralDatabaseConnection:
     # -------------------------------------------------------------
 
     def __init__(self):
-        print("connected")
+        # print("connected")
         self.db_connection = pymysql.connect(host='localhost',
                                              user='appuser',
                                              password='carhorsebatterysuccess',

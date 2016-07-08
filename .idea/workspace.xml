@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/python_rest.iml" afterPath="$PROJECT_DIR$/.idea/python_rest.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Word.py" afterPath="$PROJECT_DIR$/business_objects/Word.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_general.py" afterPath="$PROJECT_DIR$/db_access/db_general.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
     </list>
@@ -40,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
+            <state relative-caret-position="381">
+              <caret line="259" column="34" selection-start-line="259" selection-start-column="34" selection-end-line="259" selection-end-column="34" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -55,8 +52,8 @@
       <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+            <state relative-caret-position="243">
+              <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -96,22 +93,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db_general.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="db_general.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+            <state relative-caret-position="214">
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
               <folding>
-                <marker date="1467931200830" expanded="true" signature="1744:1772" ph="SELECT * FRO... missing_value" />
-                <marker date="1467931200830" expanded="true" signature="2265:2293" ph="SELECT * FRO... missing_value" />
-                <marker date="1467931200830" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
-                <marker date="1467931200830" expanded="true" signature="3328:3381" ph="SELECT * FRO... missing_value" />
-                <marker date="1467931200830" expanded="true" signature="4007:4074" ph="SELECT * FRO... missing_value" />
-                <marker date="1467931200830" expanded="true" signature="5330:5365" ph="INSERT INTO missing_value... " />
-                <marker date="1467931200830" expanded="true" signature="6517:6543" ph="UPDATE missi... " />
-                <marker date="1467931200830" expanded="true" signature="7111:7139" ph="DELETE FROM " />
-                <marker date="1467931200830" expanded="true" signature="8075:8087" ph="DELETE FROM " />
-                <marker date="1467931200830" expanded="true" signature="8550:8573" ph="SELECT COUNT... " />
+                <marker date="1467931480796" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
+                <marker date="1467931480796" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
+                <marker date="1467931480796" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
+                <marker date="1467931480796" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
+                <marker date="1467931480796" expanded="true" signature="4009:4076" ph="SELECT * FRO... missing_value" />
+                <marker date="1467931480796" expanded="true" signature="5332:5367" ph="INSERT INTO missing_value... " />
+                <marker date="1467931480796" expanded="true" signature="6519:6545" ph="UPDATE missi... " />
+                <marker date="1467931480796" expanded="true" signature="7113:7141" ph="DELETE FROM " />
+                <marker date="1467931480796" expanded="true" signature="8077:8089" ph="DELETE FROM " />
+                <marker date="1467931480796" expanded="true" signature="8552:8575" ph="SELECT COUNT... " />
               </folding>
             </state>
           </provider>
@@ -130,8 +127,8 @@
       <file leaf-file-name="Word.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-739">
-              <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+            <state relative-caret-position="506">
+              <caret line="92" column="17" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -140,8 +137,8 @@
       <file leaf-file-name="db_words.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            <state relative-caret-position="353">
+              <caret line="75" column="17" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -229,8 +226,8 @@
         <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/Definition.py" />
         <option value="$PROJECT_DIR$/business_objects/Word.py" />
-        <option value="$PROJECT_DIR$/rest_manager.py" />
         <option value="$PROJECT_DIR$/db_access/db_general.py" />
+        <option value="$PROJECT_DIR$/rest_manager.py" />
       </list>
     </option>
   </component>
@@ -698,13 +695,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00024" summary="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around.">
-      <created>1458626566660</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1458626566660</updated>
-    </task>
     <task id="LOCAL-00025" summary="Put some debug buttons on the frontend. Frontend can now talk to backend, but not in any meaningful way. Backend now uses a simple get instead of using client import to verify the token. We now use access token instead of id_token to validate. We have lost the ability to get user profile information? Look into this. Everything else looks like it works so far. UPDATE YOUR DATABASE WITH THE NEW SCRIPT in db_access. I changed some columns around.">
       <created>1458634280500</created>
       <option name="number" value="00025" />
@@ -1041,7 +1031,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467854451998</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="fixed huge issue with save function that paul fucked up!">
+      <created>1467931416148</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1467931416148</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1063,7 +1060,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2940613" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10738255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1091,7 +1088,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="adding in none args to constructor of question" />
     <MESSAGE value="fixed client id, need to store in app.googleusercontent.com" />
     <MESSAGE value="added in authentication on all routes, changed from end to pass from local storage the ID for all google authenticated users.  Change if not desired behavior" />
     <MESSAGE value="added in route for front end to check if user is paid without bombing on a 403 error for another endpoint" />
@@ -1116,7 +1112,8 @@
     <MESSAGE value="updated rest manager with v.01 version of &quot;stable&quot; unless managers vision isnt good then f it.  Will test with frontend tomorrow, yay tomorrow its only a day away" />
     <MESSAGE value="actually close DB calls" />
     <MESSAGE value="actually close DB calls part 2, close-agedon" />
-    <option name="LAST_COMMIT_MESSAGE" value="actually close DB calls part 2, close-agedon" />
+    <MESSAGE value="fixed huge issue with save function that paul fucked up!" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed huge issue with save function that paul fucked up!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1351,55 +1348,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+        <state relative-caret-position="243">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-739">
-          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+        <state relative-caret-position="506">
+          <caret line="92" column="17" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        <state relative-caret-position="353">
+          <caret line="75" column="17" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+        <state relative-caret-position="214">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
           <folding>
-            <marker date="1467931200830" expanded="true" signature="1744:1772" ph="SELECT * FRO... missing_value" />
-            <marker date="1467931200830" expanded="true" signature="2265:2293" ph="SELECT * FRO... missing_value" />
-            <marker date="1467931200830" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
-            <marker date="1467931200830" expanded="true" signature="3328:3381" ph="SELECT * FRO... missing_value" />
-            <marker date="1467931200830" expanded="true" signature="4007:4074" ph="SELECT * FRO... missing_value" />
-            <marker date="1467931200830" expanded="true" signature="5330:5365" ph="INSERT INTO missing_value... " />
-            <marker date="1467931200830" expanded="true" signature="6517:6543" ph="UPDATE missi... " />
-            <marker date="1467931200830" expanded="true" signature="7111:7139" ph="DELETE FROM " />
-            <marker date="1467931200830" expanded="true" signature="8075:8087" ph="DELETE FROM " />
-            <marker date="1467931200830" expanded="true" signature="8550:8573" ph="SELECT COUNT... " />
+            <marker date="1467931480796" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
+            <marker date="1467931480796" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
+            <marker date="1467931480796" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
+            <marker date="1467931480796" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
+            <marker date="1467931480796" expanded="true" signature="4009:4076" ph="SELECT * FRO... missing_value" />
+            <marker date="1467931480796" expanded="true" signature="5332:5367" ph="INSERT INTO missing_value... " />
+            <marker date="1467931480796" expanded="true" signature="6519:6545" ph="UPDATE missi... " />
+            <marker date="1467931480796" expanded="true" signature="7113:7141" ph="DELETE FROM " />
+            <marker date="1467931480796" expanded="true" signature="8077:8089" ph="DELETE FROM " />
+            <marker date="1467931480796" expanded="true" signature="8552:8575" ph="SELECT COUNT... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="259" column="34" selection-start-line="259" selection-start-column="34" selection-end-line="259" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
