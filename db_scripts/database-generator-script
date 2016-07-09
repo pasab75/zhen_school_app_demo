@@ -71,10 +71,10 @@ CREATE TABLE IF NOT EXISTS `testdb`.`words` (
   CONSTRAINT `FK_words_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2501
+AUTO_INCREMENT = 3360
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -93,13 +93,13 @@ CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
   CONSTRAINT `FK_definitions_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FK_definitions_word_index`
     FOREIGN KEY (`word_index`)
     REFERENCES `testdb`.`words` (`word_index`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

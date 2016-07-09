@@ -30,9 +30,42 @@
             return false;
         };
 
+        function getUser(){
+            httpwrapper.genericApiCall('user/get', {user_identifier: $auth.getToken()}, getUserSuccess, getUserFailure);
+        }
+
+        function getUserSuccess(){
+            return true;
+        };
+
+        function getUserFailure(){
+            return false;
+        };
+
+        function startQuest(){
+            httpwrapper.genericApiCall('quest/start', {user_identifier: $auth.getToken(),
+                chapter_index: 5, number_of_questions: 10, cumulative: false, seconds_per_question: 0}, startQuestSuccess, startQuestFailure);
+        }
+
+        function startQuestSuccess(){
+            return true;
+        };
+
+        function startQuestFailure(){
+            return false;
+        };
+
         function submitQuestion(){
             httpwrapper.genericApiCall('question/submit', {user_identifier: $auth.getToken(), user_answer:0}, success, failure);
         }
+
+        function submitQuestionSuccess(){
+            return true;
+        };
+
+        function submitQuestionFailure(){
+            return false;
+        };
 
         function submitQuestionSuccess(){
             return true;
@@ -50,13 +83,7 @@
             httpwrapper.genericApiCall('quest/drop', {user_identifier: $auth.getToken()}, success, failure);
         }
 
-        function startQuest(){
-            httpwrapper.genericApiCall('quest/start', {user_identifier: $auth.getToken()}, success, failure);
-        }
 
-        function getUser(){
-            httpwrapper.genericApiCall('user/get', {user_identifier: $auth.getToken()}, success, failure);
-        }
 
 
     }
