@@ -39,18 +39,18 @@ class ActivityLogEntry:
         self._current_word_index = db_quest_log_entry['current_word_index']
         self._datetime_question_started = db_quest_log_entry['datetime_question_started']
 
-    def get_jsonified(self):
-        return jsonify(
-            user_id=self._user_id,
-            datetime=self._datetime,
-            correct=self._correct,
-            latitude=self._latitude,
-            longitude=self._longitude,
-            number_of_questions=self._number_of_questions,
-            datetime_quest_started=self._datetime_quest_started,
-            current_word_index=self._current_word_index,
-            datetime_question_started=self._datetime_question_started
-        )
+    def get_json(self):
+        return {
+            'user_id': self._user_id,
+            'datetime': self._datetime,
+            'correct': self._correct,
+            'latitude': self._latitude,
+            'longitude': self._longitude,
+            'number_of_questions': self._number_of_questions,
+            'datetime_quest_started': self._datetime_quest_started,
+            'current_word_index': self._current_word_index,
+            'datetime_question_started': self._datetime_question_started
+        }
 
     def get_database_format(self):
         return {

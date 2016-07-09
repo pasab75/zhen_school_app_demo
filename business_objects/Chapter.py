@@ -33,10 +33,10 @@ class Chapter:
     def set_index(self, index):
         self._chapter_index = index
 
-    def get_jsonified(self):
-        return jsonify(
-            chapter_name=self._chapter_name
-        )
+    def get_json(self):
+        return {
+            'chapter_name': self._chapter_name
+        }
 
     def save_new(self):
         try:

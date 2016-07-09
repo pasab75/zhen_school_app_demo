@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Definition.py" afterPath="$PROJECT_DIR$/business_objects/Definition.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Word.py" afterPath="$PROJECT_DIR$/business_objects/Word.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Chapter.py" afterPath="$PROJECT_DIR$/business_objects/Chapter.py" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,8 +18,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1468027743989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
-    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_manager Coverage Results" MODIFIED="1468028584489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1468025570872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
+    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_manager Coverage Results" MODIFIED="1468010959930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -34,66 +30,6 @@
     <option name="SORT_POSITIONED" value="false" />
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - @localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="testdb" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - @localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="testdb" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="users" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - @localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="testdb" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="activity_log" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - @localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -104,33 +40,80 @@
       <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="297" column="32" selection-start-line="297" selection-start-column="29" selection-end-line="297" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-                <marker date="1468028718388" expanded="true" signature="17220:17278" ph="..." />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Definition.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
+      <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="31" column="16" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="867">
+              <caret line="54" column="77" selection-start-line="54" selection-start-column="77" selection-end-line="54" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2567">
+              <caret line="151" column="45" selection-start-line="151" selection-start-column="45" selection-end-line="151" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="563">
+              <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular-frontend/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
+        <entry file="file://$PROJECT_DIR$/deprecated_files/DefinitionQuestion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="459">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Question.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deprecated_files/Question.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityLogEntry.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/business_objects/ActivityLogEntry.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -141,40 +124,8 @@
       <file leaf-file-name="Chapter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/business_objects/User.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="119" column="35" selection-start-line="119" selection-start-column="35" selection-end-line="119" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="1624" column="0" selection-start-line="1624" selection-start-column="0" selection-end-line="1624" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Word.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="578">
+              <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -183,28 +134,8 @@
       <file leaf-file-name="QuestLogEntry.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/QuestLogEntry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-396">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/json.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="local.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/werkzeug/local.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="342" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
+            <state relative-caret-position="476">
+              <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -231,6 +162,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/frontend/js/google_auth.js" />
         <option value="$PROJECT_DIR$/frontend/angular-frontend/angular-index.html" />
         <option value="$PROJECT_DIR$/frontend/index.html" />
         <option value="$PROJECT_DIR$/db_access/db_topic_chapter.py" />
@@ -255,33 +187,32 @@
         <option value="$PROJECT_DIR$/deprecated_files/db_question.py" />
         <option value="$PROJECT_DIR$/db_access/db_multiple_choice.py" />
         <option value="$PROJECT_DIR$/business_objects/MultipleChoiceQuestion.py" />
+        <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
         <option value="$PROJECT_DIR$/business_objects/TopicChapter.py" />
         <option value="$PROJECT_DIR$/db_access/chapters.py" />
         <option value="$PROJECT_DIR$/db_access/db_chapters.py" />
         <option value="$PROJECT_DIR$/business_objects/Quest.py" />
-        <option value="$PROJECT_DIR$/db_access/db_definitions.py" />
         <option value="$PROJECT_DIR$/db_access/db_quest_arch.py" />
-        <option value="$PROJECT_DIR$/db_access/db_words.py" />
         <option value="$PROJECT_DIR$/db_access/db_quest_archetype.py" />
-        <option value="$PROJECT_DIR$/db_access/db_general.py" />
         <option value="$PROJECT_DIR$/business_objects/LogEntry.py" />
         <option value="$PROJECT_DIR$/db_access/unit_testing/test_db_question.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/business_objects/user.py" />
+        <option value="$PROJECT_DIR$/business_objects/Definition.py" />
+        <option value="$PROJECT_DIR$/business_objects/Word.py" />
+        <option value="$PROJECT_DIR$/db_access/db_definitions.py" />
+        <option value="$PROJECT_DIR$/db_access/db_words.py" />
+        <option value="$PROJECT_DIR$/db_access/db_users.py" />
+        <option value="$PROJECT_DIR$/db_access/db_general.py" />
+        <option value="$PROJECT_DIR$/db_access/db_quest_log.py" />
+        <option value="$PROJECT_DIR$/db_access/db_activity_log.py" />
+        <option value="$PROJECT_DIR$/business_objects/User.py" />
+        <option value="$PROJECT_DIR$/rest_manager.py" />
+        <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
+        <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
+        <option value="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
         <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
-        <option value="$PROJECT_DIR$/db_access/db_quest_log.py" />
-        <option value="$PROJECT_DIR$/db_access/db_users.py" />
-        <option value="$PROJECT_DIR$/db_access/db_activity_log.py" />
-        <option value="$PROJECT_DIR$/business_objects/user.py" />
-        <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
-        <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/24973cd2-77c0-4acf-95f9-33fa046fd08a/console.sql" />
-        <option value="$PROJECT_DIR$/rest_manager.py" />
-        <option value="$PROJECT_DIR$/business_objects/Word.py" />
-        <option value="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
-        <option value="$PROJECT_DIR$/business_objects/Definition.py" />
-        <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
-        <option value="$PROJECT_DIR$/business_objects/User.py" />
       </list>
     </option>
   </component>
@@ -292,10 +223,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="25" />
-    <option name="width" value="2358" />
-    <option name="height" value="1237" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -341,7 +272,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -357,6 +287,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deprecated_files" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -405,6 +349,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -440,8 +385,12 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db_scripts/database-generator-script</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/Definition.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/DefinitionQuestion.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/QuestLogEntry.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/User.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/business_objects/Word.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/rest_manager.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -826,8 +775,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.rest_manager" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_data_generator" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_data_generator" />
+        <item index="1" class="java.lang.String" itemvalue="Python.rest_manager" />
         <item index="2" class="java.lang.String" itemvalue="Python.test_db_question" />
         <item index="3" class="java.lang.String" itemvalue="Python.db_question" />
       </list>
@@ -846,13 +795,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00035" summary="added route to initialize database with a bunch of dummy topics in chapters, quests, and questions.">
-      <created>1458867607138</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1458867607138</updated>
     </task>
     <task id="LOCAL-00036" summary="added route to initialize database with a bunch of dummy topics in chapters, quests, and questions.">
       <created>1458867649556</created>
@@ -1113,84 +1055,91 @@
       <option name="project" value="LOCAL" />
       <updated>1467854451998</updated>
     </task>
-    <task id="LOCAL-00073" summary="actually close DB calls part 2, close-agedon">
-      <created>1467854482471</created>
+    <task id="LOCAL-00073" summary="fixed huge issue with save function that paul fucked up!">
+      <created>1467931416148</created>
       <option name="number" value="00073" />
       <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1467854482471</updated>
+      <updated>1467931416148</updated>
     </task>
-    <task id="LOCAL-00074" summary="finished commenting rest front end commenting">
-      <created>1468004062937</created>
+    <task id="LOCAL-00074" summary="added a bunch of comments">
+      <created>1467940266596</created>
       <option name="number" value="00074" />
       <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
-      <updated>1468004062937</updated>
+      <updated>1467940266596</updated>
     </task>
-    <task id="LOCAL-00075" summary="update logentry to activitylogentry and made questlogentry business object">
-      <created>1468009735788</created>
+    <task id="LOCAL-00075" summary="started db_quest_log and db_activity_log">
+      <created>1468006630501</created>
       <option name="number" value="00075" />
       <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
-      <updated>1468009735788</updated>
+      <updated>1468006630501</updated>
     </task>
-    <task id="LOCAL-00076" summary="update logentry to activitylogentry and made questlogentry business object">
-      <created>1468009761990</created>
+    <task id="LOCAL-00076" summary="started db_quest_log and db_activity_log">
+      <created>1468006660872</created>
       <option name="number" value="00076" />
       <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
-      <updated>1468009761991</updated>
+      <updated>1468006660872</updated>
     </task>
-    <task id="LOCAL-00077" summary="updated some method names, fixed some bugs in the DB layer">
-      <created>1468010035467</created>
+    <task id="LOCAL-00077" summary="started db_quest_log and db_activity_log">
+      <created>1468007638930</created>
       <option name="number" value="00077" />
       <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1468010035467</updated>
+      <updated>1468007638930</updated>
     </task>
-    <task id="LOCAL-00078" summary="updated some method names, fixed some bugs in the DB layer">
-      <created>1468010054831</created>
+    <task id="LOCAL-00078" summary="started db_quest_log and db_activity_log">
+      <created>1468009796018</created>
       <option name="number" value="00078" />
       <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1468010054831</updated>
+      <updated>1468009796018</updated>
     </task>
-    <task id="LOCAL-00079" summary="fixed some bugs in the DB layer">
-      <created>1468010186465</created>
+    <task id="LOCAL-00079" summary="started db_quest_log and db_activity_log">
+      <created>1468010327679</created>
       <option name="number" value="00079" />
       <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
-      <updated>1468010186465</updated>
+      <updated>1468010327679</updated>
     </task>
-    <task id="LOCAL-00080" summary="made changes for quest log in rest api layer">
-      <created>1468011088021</created>
+    <task id="LOCAL-00080" summary="finished activity log and quest log db access &#10;fixed bug in import in User.py&#10;added utility methods to db_general">
+      <created>1468011049603</created>
       <option name="number" value="00080" />
       <option name="presentableId" value="LOCAL-00080" />
       <option name="project" value="LOCAL" />
-      <updated>1468011088021</updated>
+      <updated>1468011049603</updated>
     </task>
-    <task id="LOCAL-00081" summary="updating user to User and making minor rest API changes">
-      <created>1468011437783</created>
+    <task id="LOCAL-00081" summary="updated database NULLs in user table">
+      <created>1468017678291</created>
       <option name="number" value="00081" />
       <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
-      <updated>1468011437783</updated>
+      <updated>1468017678291</updated>
     </task>
-    <task id="LOCAL-00082" summary="changing route names etc.">
-      <created>1468012941396</created>
+    <task id="LOCAL-00082" summary="added datetime_question_started to user table">
+      <created>1468020604147</created>
       <option name="number" value="00082" />
       <option name="presentableId" value="LOCAL-00082" />
       <option name="project" value="LOCAL" />
-      <updated>1468012941396</updated>
+      <updated>1468020604147</updated>
     </task>
-    <task id="LOCAL-00083" summary="updated the user object, ton of fixes more than I can detail">
-      <created>1468027648709</created>
+    <task id="LOCAL-00083" summary="updated database generator script and test data generator script">
+      <created>1468025662915</created>
       <option name="number" value="00083" />
       <option name="presentableId" value="LOCAL-00083" />
       <option name="project" value="LOCAL" />
-      <updated>1468027648710</updated>
+      <updated>1468025662915</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="updated database generator script and test data generator script">
+      <created>1468027675278</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1468027675278</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1203,52 +1152,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="25" width="2358" height="1237" extended-state="6" />
-    <editor active="true" />
+    <frame x="1912" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25357142" sideWeight="0.5099395" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294643" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.4982714" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25357142" sideWeight="0.4900605" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32717475" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.49841145" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.117113225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35868627" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767856" sideWeight="0.49682286" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11886994" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.50394946" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17833173" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39464286" sideWeight="0.4736387" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980826" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27612656" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3413231" sideWeight="0.49605057" order="3" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25357142" sideWeight="0.5099395" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980826" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.4982714" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25357142" sideWeight="0.4900605" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948422" sideWeight="0.49682286" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32717475" sideWeight="0.4785544" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948422" sideWeight="0.49841145" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11624892" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35868627" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3955357" sideWeight="0.4736387" order="4" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1263,6 +1189,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
+    <MESSAGE value="added route to initialize database with a bunch of dummy topics in chapters, quests, and questions." />
     <MESSAGE value="testing out more tables" />
     <MESSAGE value="Created file to keep functions that sanitize outgoing data packets. These will trim the database dictionaries and instead create json objects that will be directly usable by the client." />
     <MESSAGE value="Writing skeleton for angular frontend" />
@@ -1280,33 +1207,26 @@
     <MESSAGE value="updated rest manager with v.01 version of &quot;stable&quot; unless managers vision isnt good then f it.  Will test with frontend tomorrow, yay tomorrow its only a day away" />
     <MESSAGE value="actually close DB calls" />
     <MESSAGE value="actually close DB calls part 2, close-agedon" />
-    <MESSAGE value="finished commenting rest front end commenting" />
-    <MESSAGE value="update logentry to activitylogentry and made questlogentry business object" />
-    <MESSAGE value="updated some method names, fixed some bugs in the DB layer" />
-    <MESSAGE value="fixed some bugs in the DB layer" />
-    <MESSAGE value="made changes for quest log in rest api layer" />
-    <MESSAGE value="updating user to User and making minor rest API changes" />
-    <MESSAGE value="changing route names etc." />
-    <MESSAGE value="updated the user object, ton of fixes more than I can detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the user object, ton of fixes more than I can detail" />
+    <MESSAGE value="fixed huge issue with save function that paul fucked up!" />
+    <MESSAGE value="added a bunch of comments" />
+    <MESSAGE value="started db_quest_log and db_activity_log" />
+    <MESSAGE value="finished activity log and quest log db access &#10;fixed bug in import in User.py&#10;added utility methods to db_general" />
+    <MESSAGE value="updated database NULLs in user table" />
+    <MESSAGE value="added datetime_question_started to user table" />
+    <MESSAGE value="updated database generator script and test data generator script" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated database generator script and test data generator script" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py</url>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/rest_manager.py</url>
-          <line>234</line>
-          <option name="timeStamp" value="131" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="149" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="150" />
+          <line>61</line>
+          <option name="timeStamp" value="124" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1314,11 +1234,17 @@
           <properties exception="BaseException" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="151" />
+      <option name="time" value="126" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python34/site-packages/flask/app.py" />
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python34/site-packages/werkzeug/debug/__init__.py" />
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python34/site-packages/werkzeug/serving.py" />
+    <entry file="file://C:/Python34/Lib/socketserver.py" />
+    <entry file="file://C:/Python34/Lib/http/server.py" />
+    <entry file="file://$PROJECT_DIR$/db_access/sanitize_outgoing.py" />
     <entry file="file://$PROJECT_DIR$/business_objects/responsepackage.py" />
     <entry file="file://$PROJECT_DIR$/db_access/db_question.py" />
     <entry file="file://$PROJECT_DIR$/db_access/db_definition_question.py" />
@@ -1330,13 +1256,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deprecated_files/Question.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1374,6 +1293,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_quest_archetyp.py" />
     <entry file="file://$PROJECT_DIR$/db_access/db_quest_archetyp.py" />
+    <entry file="file://$PROJECT_DIR$/rest_test_curl_scripts.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db_access/deprecated/db_quest_archetype.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="692">
@@ -1395,278 +1321,180 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/LogEntry.py" />
     <entry file="file://$PROJECT_DIR$/db_access/unit_testing/unit_testing_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
+        <state relative-caret-position="34">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/276d662b/24973cd2-77c0-4acf-95f9-33fa046fd08a/testdb.quest_log">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1644">
-          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
-          <folding>
-            <marker date="1468010047620" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="2267:2295" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="2780:2819" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="3330:3383" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="4044:4104" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="5043:5085" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="5773:5840" ph="SELECT * FRO... missing_value" />
-            <marker date="1468010047620" expanded="true" signature="7096:7131" ph="INSERT INTO missing_value... " />
-            <marker date="1468010047620" expanded="true" signature="8283:8309" ph="UPDATE missi... " />
-            <marker date="1468010047620" expanded="true" signature="8877:8905" ph="DELETE FROM " />
-            <marker date="1468010047620" expanded="true" signature="9841:9853" ph="DELETE FROM " />
-            <marker date="1468010047620" expanded="true" signature="10316:10339" ph="SELECT COUNT... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_quest_log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_activity_log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="58" column="41" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="41" />
-          <folding>
-            <marker date="1468010137460" expanded="true" signature="848:895" ph="SELECT COUNT... users" />
-            <marker date="1468010137460" expanded="true" signature="7667:7726" ph="UPDATE users... " />
-            <marker date="1468010137460" expanded="true" signature="8238:8310" ph="UPDATE users... " />
-            <marker date="1468010137460" expanded="true" signature="8828:8904" ph="UPDATE users... " />
-            <marker date="1468010137460" expanded="true" signature="9425:9482" ph="UPDATE users... " />
-            <marker date="1468010137460" expanded="true" signature="9991:10066" ph="UPDATE users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/276d662b/24973cd2-77c0-4acf-95f9-33fa046fd08a/testdb.activity_log">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_test_curl_scripts.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="61" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/pymysql/connections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="1298" column="0" selection-start-line="1298" selection-start-column="0" selection-end-line="1298" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_definitions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/pymysql/cursors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1783">
-          <caret line="317" column="0" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/ActivityLogEntry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/276d662b/24973cd2-77c0-4acf-95f9-33fa046fd08a/testdb.users">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_access/db_chapters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1093">
-          <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
-          <folding />
+        <state relative-caret-position="816">
+          <caret line="48" column="30" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+    <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="140" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/24973cd2-77c0-4acf-95f9-33fa046fd08a/console.sql">
+    <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="955">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="68">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+    <entry file="file://$PROJECT_DIR$/db_access/db_definitions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/werkzeug/local.py">
+    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="342" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="714">
+          <caret line="102" column="98" selection-start-line="102" selection-start-column="98" selection-end-line="102" selection-end-column="98" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/json.py">
+    <entry file="file://$PROJECT_DIR$/db_access/db_quest_log.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="522">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="50" selection-end-column="104" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
+    <entry file="file://$PROJECT_DIR$/db_access/db_activity_log.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="1624" column="0" selection-start-line="1624" selection-start-column="0" selection-end-line="1624" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="297" column="32" selection-start-line="297" selection-start-column="29" selection-end-line="297" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-            <marker date="1468028718388" expanded="true" signature="17220:17278" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="833">
+          <caret line="49" column="83" selection-start-line="49" selection-start-column="83" selection-end-line="49" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="118">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/QuestLogEntry.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="544">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="119" column="35" selection-start-line="119" selection-start-column="35" selection-end-line="119" selection-end-column="35" />
+        <state relative-caret-position="357">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
+            <marker date="1468028960930" expanded="true" signature="11123:11146" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1003">
+          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/DefinitionQuestion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/Question.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular-frontend/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="54" column="77" selection-start-line="54" selection-start-column="77" selection-end-line="54" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2567">
+          <caret line="151" column="45" selection-start-line="151" selection-start-column="45" selection-end-line="151" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/QuestLogEntry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/ActivityLogEntry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
