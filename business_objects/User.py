@@ -113,28 +113,29 @@ class User:
             "paid_through": self._paid_through
         }
 
-    def get_jsonified(self):
-        return jsonify(
-            user_id=self._user_id,
-            first_name=self._first_name,
-            last_name=self._last_name,
-            e_mail=self._e_mail,
-            user_role=self._user_role,
-            current_lvl=self._current_lvl,
-            current_points=self._current_points,
-            current_multiplier=self._current_multiplier,
-            chapter_index=self._chapter_index,
-            cumulative=self._cumulative,
-            number_of_questions=self._number_of_questions,
-            points_per_question=self._points_per_question,
-            seconds_per_question=self._seconds_per_question,
-            completion_points=self._completion_points,
-            datetime_quest_started=self._datetime_quest_started,
-            current_progress=self._current_progress,
-            number_correct=self._number_correct,
-            last_active=self._last_active,
-            paid_through=self._paid_through
-        )
+    #change to actual json like database object
+    def get_json(self):
+        return {
+            "user_id": self._user_id,
+            "first_name": self._first_name,
+            "last_name": self._last_name,
+            "e_mail": self._e_mail,
+            "user_role": self._user_role,
+            "current_lvl": self._current_lvl,
+            "current_points": self._current_points,
+            "current_multiplier": self._current_multiplier ,
+            "chapter_index": self._chapter_index,
+            "cumulative": self._cumulative,
+            "number_of_questions": self._number_of_questions,
+            "points_per_question": self._points_per_question,
+            "seconds_per_question": self._seconds_per_question,
+            "completion_points": self._completion_points,
+            "datetime_quest_started": self._datetime_quest_started,
+            "current_progress": self._current_progress,
+            "number_correct": self._number_correct,
+            "last_active": self._last_active,
+            "paid_through": self._paid_through
+        }
 
     def set_from_database(self, user):
         self._user_id = user['user_id']

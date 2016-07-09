@@ -120,7 +120,7 @@ def authenticate_user(client_request):
 def drop_user_quest(user):
     user.update_user_quest()
     user.update_current_user()
-    return user.get_jsonified()
+    return user.get_json()
 
 #########################################################################################
 # DESCRIPTION
@@ -147,7 +147,7 @@ def update_user_quest(user,
                       number_of_questions=None,
                       cumulative=False):
     try:
-        date_quest_started = datetime.datetime.now()
+        datetime_quest_started = datetime.datetime.now()
         number_correct = 0
         current_progress = 0
         points_per_question = 20
@@ -189,7 +189,7 @@ def update_user_quest(user,
         new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index, 6)
 
         user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
-                               date_quest_started=date_quest_started,
+                               datetime_quest_started=datetime_quest_started,
                                current_word_index=new_question.get_word_index(), number_correct=number_correct,
                                completion_points=completion_points,
                                seconds_per_question=seconds_per_question, points_per_question=points_per_question,
@@ -197,7 +197,7 @@ def update_user_quest(user,
                                cumulative=cumulative)
 
         user.update_current_user()
-        return new_question.get_jsonified()
+        return new_question.get_json()
 
     except Exception as ex:
         # TODO: change prints to logger
@@ -335,7 +335,7 @@ def drop_quest():
             # drop the current quest, note that update with no flags does this, check its default args for details
             user = drop_user_quest(user)
             user.update_current_user()
-            return user.get_jsonified()
+            return user.get_json()
 
         else:
             return abort(403, "Unable to authenticate user")
@@ -374,7 +374,7 @@ def resume_quest():
         user = authenticate_user(request)
         if user:
             new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
-            response = new_question.get_jsonified()
+            response = new_question.get_json()
             user.set_datetime_question_started(datetime.datetime.now())
             user.update_current_user()
             return jsonify({
@@ -419,7 +419,7 @@ def submit_question():
             answer_index = user.get_current_word_index()
             quest_complete = user.is_quest_complete()
             if not quest_complete:
-                question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index()).get_jsonified()
+                question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index()).get_json()
             else:
                 question = None
                 try:

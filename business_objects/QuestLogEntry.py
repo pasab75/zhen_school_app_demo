@@ -1,6 +1,5 @@
 import db_access.db_quest_log as db_quest_log
 import business_objects.User as User
-from flask import Flask, jsonify
 import datetime
 
 class QuestLogEntry:
@@ -39,19 +38,19 @@ class QuestLogEntry:
         self._lat = user_current_lat
         self._lon = user_current_lon
 
-    def get_jsonified(self):
-        return jsonify(
-            user_id=self._user_id,
-            number_correct=self._number_correct,
-            quest_start_datetime=self._quest_start_datetime,
-            quest_complete_datetime=self._quest_complete_datetime,
-            number_of_questions=self._number_of_questions,
-            lat=self._lat,
-            lon=self._lon,
-            chapter_index=self._chapter_index,
-            cumulative=self._cumulative,
-            seconds_per_question=self._seconds_per_question
-        )
+    def get_json(self):
+        return {
+            "user_id": self._user_id,
+            "number_correct": self._number_correct,
+            "quest_start_datetime": self._quest_start_datetime,
+            "quest_complete_datetime": self._quest_complete_datetime,
+            "number_of_questions": self._number_of_questions,
+            "latitude": self._lat,
+            "longitude": self._lon,
+            "chapter_index": self._chapter_index,
+            "cumulative": self._cumulative,
+            "seconds_per_question": self._seconds_per_question
+        }
 
     def set_from_database(self, db_quest_log_entry):
         self._user_id = db_quest_log_entry['user_id']

@@ -1,4 +1,3 @@
-from flask import jsonify
 import db_access.db_words as db_wordzors
 
 
@@ -25,15 +24,15 @@ class Word:
         self._calculated_difficulty = calculate_difficulty
         self._avg_answer_time = avg_answer_time
 
-    def get_jsonified(self):
-        return jsonify(
-            word_index = self._word_index,
-            word = self._word,
-            chapter_index = self._chapter_index,
-            instructor_difficulty = self._instructor_difficulty,
-            calculated_difficulty = self._calculated_difficulty,
-            avg_answer_time = self._avg_answer_time
-            )
+    def get_json(self):
+        return {
+            'word_index': self._word_index,
+            'word': self._word,
+            'chapter_index': self._chapter_index,
+            'instructor_difficulty': self._instructor_difficulty,
+            'calculated_difficulty': self._calculated_difficulty,
+            'avg_answer_time': self._avg_answer_time
+        }
 
     def get_database_format(self):
         return {

@@ -29,12 +29,12 @@ class Definition:
         self._definition = question['definition']
         self._chapter_index = question['chapter_index']
 
-    def get_jsonified(self):
-        return jsonify(
-            word_index=self._word_index,
-            definition=self._definition,
-            chapter_index=self._chapter_index
-        )
+    def get_json(self):
+        return {
+            'word_index': self._word_index,
+            'definition': self._definition,
+            'chapter_index': self._chapter_index
+        }
 
     def generate_random_from_chapter_index(self, index):
         db_def = db_definition.DefinitionTableAccess()
