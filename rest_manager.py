@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request, abort
+
+
+from flask import Flask, jsonify, request, abort, send_from_directory
 import datetime
 
 import business_objects.User as User
@@ -248,7 +250,8 @@ def get_user():
 def helloworld():
     try:
         print(request)
-        return jsonify("Hello World")
+        return send_from_directory("angular-frontend", "index.html")
+
     except Exception as ex:
         print(ex)
         print("Unable to retrieve user.")
