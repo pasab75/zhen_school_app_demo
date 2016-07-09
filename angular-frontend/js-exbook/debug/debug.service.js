@@ -35,10 +35,13 @@
         }
 
         function getUserSuccess(){
+          // store the user information in local storage
+          // display information like current level on the user's gui
             return true;
         };
 
         function getUserFailure(){
+          // display an error message popup
             return false;
         };
 
@@ -48,10 +51,12 @@
         }
 
         function startQuestSuccess(){
+          // display a question
             return true;
         };
 
         function startQuestFailure(){
+          // display an error message
             return false;
         };
 
@@ -60,6 +65,9 @@
         }
 
         function submitQuestionSuccess(){
+          // update the buttons on screen to reflect the correct answer
+          // update user points level etc
+          // 
             return true;
         };
 
