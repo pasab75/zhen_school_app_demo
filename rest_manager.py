@@ -91,7 +91,7 @@ def authenticate_user(client_request):
         if r:
             user_id = str(r.json()['sub'])
             print(user_id)
-            user = User.user.generate_from_id(user_id)
+            user = User.User().generate_from_id(user_id)
             if user and user.is_paid():
                 return user
             else:
@@ -120,7 +120,7 @@ def authenticate_user(client_request):
 def drop_user_quest(user):
     user.update_user_quest()
     user.update_current_user()
-    return user.jsonify()
+    return user.get_jsonified()
 
 #########################################################################################
 # DESCRIPTION
@@ -186,7 +186,7 @@ def update_user_quest(user,
             completion_points += 10*question_multiplier
 
         # TODO: GO Get a word/definition question
-        new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(chapter_index)
+        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index, 6)
 
         user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
                                date_quest_started=date_quest_started,
@@ -197,7 +197,7 @@ def update_user_quest(user,
                                cumulative=cumulative)
 
         user.update_current_user()
-        return new_question.jsonify()
+        return new_question.get_jsonified()
 
     except Exception as ex:
         # TODO: change prints to logger
@@ -229,18 +229,20 @@ def update_user_quest(user,
 
 
 
-@app.route('/api/v1/get/user', methods=['POST'])
+@app.route('/api/v1/user/get', methods=['POST'])
 def get_user():
     try:
+        print(request.json)
         user = authenticate_user(request)
         if user:
             print(user)
-            return user.jsonify()
+            return user.get_jsonified()
         else:
-            abort(403, "Unable to authenticate user")
+            return abort(403, "Unable to authenticate user")
     except Exception as ex:
         print(ex)
         print("Unable to retrieve user.")
+        return abort(500, "Unable to retrieve user. Error: "+str(ex))
 
 @app.route('/', methods=['GET'])
 def helloworld():
@@ -250,6 +252,7 @@ def helloworld():
     except Exception as ex:
         print(ex)
         print("Unable to retrieve user.")
+        return abort(500, "Unable to retrieve user. Error: " + str(ex))
 #########################################################################################
 # DESCRIPTION
 # When the user requests, authenticate them and then serves up a new question
@@ -275,31 +278,32 @@ def start_quest():
     try:
         incoming_request = request
         print(incoming_request)
-
+        json_obj = request.json
         # check authentication
         user = authenticate_user(request)
         if user:
-            request_chapter_index = request.json['chapter_index']
-            request_seconds_per_question = request.json['seconds_per_question']
-            request_number_of_questions = request.json['number_of_questions']
-            request_cumulative = request.json['cumulative']
+            request_chapter_index = json_obj['chapter_index']
+            request_seconds_per_question = json_obj['seconds_per_question']
+            request_number_of_questions = json_obj['number_of_questions']
+            request_cumulative = json_obj['cumulative']
 
-            response = user.update_user_quest(user, chapter_index=request_chapter_index,
-                                              seconds_per_question=request_seconds_per_question,
-                                              number_of_questions=request_number_of_questions,
-                                              cumulative=request_cumulative)
+            response = update_user_quest(user, chapter_index=request_chapter_index,
+                                         seconds_per_question=request_seconds_per_question,
+                                         number_of_questions=request_number_of_questions,
+                                         cumulative=request_cumulative)
+
             user.update_current_user()
             return jsonify({
                 "question": response,
-                "user": user.jsonify()
+                "user": user.get_jsonified()
             })
 
         else:
-            abort(403, "Unable to authenticate user")
+            return abort(403, "Unable to authenticate user")
 
     except Exception as ex:
         print(ex)
-        abort(500, "Unable to retrieve random question, error: "+str(ex))
+        return abort(500, "Unable to retrieve random question, error: "+str(ex))
 
 
 #########################################################################################
@@ -331,14 +335,14 @@ def drop_quest():
             # drop the current quest, note that update with no flags does this, check its default args for details
             user = drop_user_quest(user)
             user.update_current_user()
-            return user.jsonify()
+            return user.get_jsonified()
 
         else:
-            abort(403, "Unable to authenticate user")
+            return abort(403, "Unable to authenticate user")
 
     except Exception as ex:
         print(ex)
-        abort(500, "Unable to retrieve random question")
+        return abort(500, "Unable to retrieve random question")
 #
 
 #########################################################################################
@@ -370,19 +374,19 @@ def resume_quest():
         user = authenticate_user(request)
         if user:
             new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
-            response = new_question.jsonify()
+            response = new_question.get_jsonified()
             user.set_datetime_question_started(datetime.datetime.now())
             user.update_current_user()
             return jsonify({
                 "question": response,
-                "user": user.jsonify()
+                "user": user.get_jsonified()
             })
         else:
-            abort(403, "Unable to authenticate user")
+            return abort(403, "Unable to authenticate user")
 
     except Exception as ex:
         print(ex)
-        abort(500, "Unable to retrieve random question")
+        return abort(500, "Unable to retrieve random question")
 
 
 #########################################################################################
@@ -415,7 +419,7 @@ def submit_question():
             answer_index = user.get_current_word_index()
             quest_complete = user.is_quest_complete()
             if not quest_complete:
-                question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index()).jsonify()
+                question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index()).get_jsonified()
             else:
                 question = None
                 try:
@@ -425,18 +429,18 @@ def submit_question():
                     print("failed too make log entry, not the end of the world, but no log entry made")
             user.update_current_user()
             return jsonify({
-                "user": user.jsonify(),
+                "user": user.get_jsonified(),
                 "correct": correct,
                 "answer_index": answer_index,
                 "question": question,
                 "quest_complete": quest_complete
             })
         else:
-            abort(403, "Unable to authenticate user")
+            return abort(403, "Unable to authenticate user")
 
     except Exception as ex:
         print(ex)
-        abort(500, "Unable to retrieve random question")
+        return abort(500, "Unable to retrieve random question")
 
 #########################################################################################
 # DESCRIPTION
@@ -460,21 +464,22 @@ def create_account():
     try:
         incoming_request = request
         print(incoming_request)
-
-        token = request.json['user_identifier']
+        json = request.json
+        token = json['user_identifier']
         r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
         user_id = str(r.json()['sub'])
         user_email = str(r.json()['email'])
         print(user_id)
 
-        user = User.user.generate_from_id(user_id)
+        user = User.User().generate_from_id(user_id)
+
         if user:
             return jsonify(user_exists='true', created="false")
         else:
             print('user does not exist')
-            user = User.user(user_id=user_id,
-                             first_name='derpington',
-                             last_name='derpserson',
+            user = User.User(user_id=user_id,
+                             first_name=json['first_name'],
+                             last_name=json['last_name'],
                              e_mail=user_email,
                              paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
             success = user.save_new()
@@ -485,35 +490,7 @@ def create_account():
     except Exception as ex:
         print(ex)
         print('Invalid token')
-        abort(500, "Error: " + str(ex))
-
-#########################################################################################
-# DESCRIPTION
-# Checks if this is a paying user, returns false if not
-#
-# RETURN CASES
-# Error: if the user does not authenticate
-# Error: if the user causes an internal server error
-# On Success:
-#
-# TAKES
-# user_id
-#
-# RETURNS
-# user object or false
-#########################################################################################
-
-
-@app.route('/api/v1/paidsignin', methods=['POST'])
-def paid_sign_in():
-    try:
-        user = authenticate_user(request)
-        return jsonify(user.jsonify())
-
-    except Exception as ex:
-        print(ex)
-        print('Invalid token')
-        abort(500, "Unable to retrieve random question")
+        return abort(500, "Error: " + str(ex))
 
 # -------------------------------------------------------------
 # Professor client routes

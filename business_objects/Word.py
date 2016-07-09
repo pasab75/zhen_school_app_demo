@@ -62,10 +62,15 @@ class Word:
             self.set_from_database(db_word.get_word_random())
         db_word.close_connection()
 
+    def get_word_random_by_chapter_index(self, index):
+        self.generate_word_randomly_chapter_index(index)
+        return self
+
     def generate_word_randomly_chapter_index(self, index):
         db_word = db_wordzors.WordTableAccess()
-        self.set_from_database(db_word.get_word_random_by_chapter_index(index))
+        self.set_from_database(db_word.get_word_random_by_chapter_index(index)[0])
         db_word.close_connection()
+
 
     def get_word(self):
         return self._word

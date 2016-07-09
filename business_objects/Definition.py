@@ -40,11 +40,23 @@ class Definition:
         db_def = db_definition.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_random_by_chapter_index(index))
 
+    def get_definition_random_by_from_word(self, word):
+        self.generate_random_from_word(word)
+        return self
+
     def generate_random_from_word(self, word):
-        self.set_from_database(db_definition.get_definition_by_wordindex(word.get_index()))
+        db_def = db_definition.DefinitionTableAccess()
+        self.set_from_database(db_def.get_definition_by_word_index(word.get_index()))
+        db_def.close_connection()
+
+    def get_definition_random_from_word_index(self, word):
+        self.generate_random_from_word_index(word)
+        return self
 
     def generate_random_from_word_index(self, index):
-        self.set_from_database(db_definition.get_definition_by_wordindex(index))
+        db_def = db_definition.DefinitionTableAccess()
+        self.set_from_database(db_def.get_definition_by_word_index(index))
+        db_def.close_connection()
 
     def get_word_index(self):
         return self._word_index

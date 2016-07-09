@@ -18,7 +18,7 @@ class User:
     _points_per_question = None
     _seconds_per_question = None
     _completion_points = None
-    _date_quest_started = None
+    _datetime_quest_started = None
     _datetime_question_started = None
     _current_word_index = None
     _current_progress = None
@@ -33,14 +33,14 @@ class User:
                  user_role='0',
                  current_lvl='1',
                  current_points=0,
-                 current_multiplier=0,
+                 current_multiplier=1,
                  chapter_index=1,
                  cumulative=False,
                  number_of_questions=None,
                  points_per_question=None,
                  seconds_per_question=None,
                  completion_points=None,
-                 date_quest_started=None,
+                 datetime_quest_started=None,
                  datetime_question_started=None,
                  current_word_index=None,
                  current_progress=None,
@@ -62,7 +62,7 @@ class User:
         self._points_per_question = points_per_question
         self._seconds_per_question = seconds_per_question
         self._completion_points = completion_points
-        self._date_quest_started = date_quest_started
+        self._datetime_quest_started = datetime_quest_started
         self._datetime_question_started = datetime_question_started
         self._current_word_index = current_word_index
         self._current_progress = current_progress
@@ -105,7 +105,7 @@ class User:
             "points_per_question": self._points_per_question,
             "seconds_per_question": self._seconds_per_question,
             "completion_points": self._completion_points,
-            "date_quest_started": self._date_quest_started,
+            "datetime_quest_started": self._datetime_quest_started,
             "current_word_index": self._current_word_index,
             "current_progress": self._current_progress,
             "number_correct": self._number_correct,
@@ -113,7 +113,7 @@ class User:
             "paid_through": self._paid_through
         }
 
-    def jsonify(self):
+    def get_jsonified(self):
         return jsonify(
             user_id=self._user_id,
             first_name=self._first_name,
@@ -129,8 +129,7 @@ class User:
             points_per_question=self._points_per_question,
             seconds_per_question=self._seconds_per_question,
             completion_points=self._completion_points,
-            date_quest_started=self._date_quest_started,
-            current_word_index=self._current_word_index,
+            datetime_quest_started=self._datetime_quest_started,
             current_progress=self._current_progress,
             number_correct=self._number_correct,
             last_active=self._last_active,
@@ -152,7 +151,7 @@ class User:
         self._points_per_question = user['points_per_question']
         self._seconds_per_question = user['seconds_per_question']
         self._completion_points = user['completion_points']
-        self._date_quest_started = user['date_quest_started']
+        self._datetime_quest_started = user['datetime_quest_started']
         self._datetime_question_started = user['datetime_question_started']
         self._current_word_index = user['current_word_index']
         self._current_progress = user['current_progress']
@@ -160,7 +159,7 @@ class User:
         self._last_active = user['last_active']
         self._paid_through = user['paid_through']
 
-    def update_user_quest(self, chapter_index=None, current_progress=None, date_quest_started=None,
+    def update_user_quest(self, chapter_index=None, current_progress=None, datetime_quest_started=None,
                           current_word_index=None, number_correct=None, completion_points=None,
                           seconds_per_question=None, points_per_question=None, number_of_questions=None,
                           cumulative=None, datetime_question_started=None):
@@ -170,7 +169,7 @@ class User:
         self._points_per_question = points_per_question
         self._seconds_per_question = seconds_per_question
         self._completion_points = completion_points
-        self._date_quest_started = date_quest_started
+        self._datetime_quest_started = datetime_quest_started
         self._datetime_question_started = datetime_question_started
         self._current_word_index = current_word_index
         self._current_progress = current_progress
@@ -179,10 +178,16 @@ class User:
     def generate_from_id(self, identification):
         db = User_db.UserTableAccess()
         current_user = db.get_user_by_user_id(identification)
-        self.set_from_database(current_user)
-        db.close_connection()
+        if current_user:
+            self.set_from_database(current_user)
+            db.close_connection()
+            return self
+        return None
 
-    def isPaid(self):
+    def get_self(self):
+        return self
+
+    def is_paid(self):
         current_time = datetime.datetime.now()
         if self._paid_through is not None:
             if self._paid_through > current_time:
@@ -299,11 +304,11 @@ class User:
     def set_completion_points(self, value):
         self._completion_points = value
 
-    def get_date_quest_started(self):
-        return self._date_quest_started
+    def get_datetime_quest_started(self):
+        return self._datetime_quest_started
 
-    def set_date_quest_started(self, value):
-        self._date_quest_started = value
+    def set_datetime_quest_started(self, value):
+        self._datetime_quest_started = value
 
     def get_current_word_index(self):
         return self._current_word_index
