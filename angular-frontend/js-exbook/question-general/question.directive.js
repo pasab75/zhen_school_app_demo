@@ -9,7 +9,7 @@
     function exQuestion() {
         var directive = {
             restrict: 'EA',
-            templateUrl: 'js-exBook/question-general/question.template.html',
+            templateUrl: 'js-exbook/question-general/question.template.html',
             scope: {
             },
             controller: QuestionController,

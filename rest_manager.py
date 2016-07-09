@@ -17,10 +17,11 @@ import requests
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
 local = False
+
 # set this variable to determine whether you are running a test server locally or on the VPS
 
-app = Flask(__name__)
-
+app = Flask(__name__, static_url_path='/')
+STATIC_FOLDER = "angular-frontend"
 
 @app.before_request
 def before_request():
@@ -230,7 +231,6 @@ def update_user_quest(user,
 #########################################################################################
 
 
-
 @app.route('/api/v1/user/get', methods=['POST'])
 def get_user():
     try:
@@ -246,16 +246,21 @@ def get_user():
         print("Unable to retrieve user.")
         return abort(500, "Unable to retrieve user. Error: "+str(ex))
 
+
 @app.route('/', methods=['GET'])
 def helloworld():
     try:
         print(request)
-        return send_from_directory("angular-frontend", "index.html")
+        return send_from_directory(STATIC_FOLDER, "index.html")
 
     except Exception as ex:
         print(ex)
         print("Unable to retrieve user.")
         return abort(500, "Unable to retrieve user. Error: " + str(ex))
+
+@app.route('/<path:path>', methods=['GET'])
+def static_file(path):
+    return send_from_directory(STATIC_FOLDER, path)
 #########################################################################################
 # DESCRIPTION
 # When the user requests, authenticate them and then serves up a new question
@@ -503,11 +508,9 @@ def create_account():
 # TODO: check to see if this CORS implementation is safe
 
 if __name__ == '__main__':
-
     if local:
         app.run(host='0.0.0.0', port=5000)
         app.debug = True
-
     else:
         app.run(host='0.0.0.0', port=5000)
         # this allows the API to use the public IP
