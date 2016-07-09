@@ -36,9 +36,23 @@ class Definition:
             'chapter_index': self._chapter_index
         }
 
+    def get_definition_random_by_chapter_index(self, index):
+        self.generate_random_from_chapter_index(index)
+        return self
+
     def generate_random_from_chapter_index(self, index):
         db_def = db_definition.DefinitionTableAccess()
-        self.set_from_database(db_def.get_definition_random_by_chapter_index(index))
+        self.set_from_database(db_def.get_definition_random_by_chapter_index(index)[0])
+        db_def.close_connection()
+
+    def get_definition_random_by_chapter(self, chapter):
+        self.generate_random_from_chapter_index(chapter)
+        return self
+
+    def generate_random_from_chapter(self, chapter):
+        db_def = db_definition.DefinitionTableAccess()
+        self.set_from_database(db_def.get_definition_random_by_chapter(chapter)[0])
+        db_def.close_connection()
 
     def get_definition_random_by_from_word(self, word):
         self.generate_random_from_word(word)

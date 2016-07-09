@@ -236,7 +236,7 @@ def get_user():
         user = authenticate_user(request)
         if user:
             print(user)
-            return user.get_jsonified()
+            return jsonify(user.get_json())
         else:
             return abort(403, "Unable to authenticate user")
     except Exception as ex:
@@ -248,7 +248,7 @@ def get_user():
 def helloworld():
     try:
         print(request)
-        return "Hello World"
+        return jsonify("Hello World")
     except Exception as ex:
         print(ex)
         print("Unable to retrieve user.")
@@ -295,7 +295,7 @@ def start_quest():
             user.update_current_user()
             return jsonify({
                 "question": response,
-                "user": user.get_jsonified()
+                "user": user.get_json()
             })
 
         else:
@@ -335,7 +335,7 @@ def drop_quest():
             # drop the current quest, note that update with no flags does this, check its default args for details
             user = drop_user_quest(user)
             user.update_current_user()
-            return user.get_json()
+            return jsonify(user.get_json())
 
         else:
             return abort(403, "Unable to authenticate user")
@@ -379,7 +379,7 @@ def resume_quest():
             user.update_current_user()
             return jsonify({
                 "question": response,
-                "user": user.get_jsonified()
+                "user": user.get_json()
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -429,7 +429,7 @@ def submit_question():
                     print("failed too make log entry, not the end of the world, but no log entry made")
             user.update_current_user()
             return jsonify({
-                "user": user.get_jsonified(),
+                "user": user.get_json(),
                 "correct": correct,
                 "answer_index": answer_index,
                 "question": question,

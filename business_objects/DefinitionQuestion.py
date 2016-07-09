@@ -36,8 +36,8 @@ class DefinitionQuestion:
             for word in self._words:
                 words.append(word.get_json())
             return {
-                "question":self._definition.get_json(),
-                "topic_index":self._chapter_index,
+                "prompt":self._definition.get_json(),
+                "chapter_index":self._chapter_index,
                 "answers":words,
                 "question_type":0
             }
@@ -46,8 +46,8 @@ class DefinitionQuestion:
             for defin in self._definitions:
                 defins.append(defin.get_json())
             return {
-                "question":self._word.get_json(),
-                "topic_index":self._chapter_index,
+                "prompt":self._word.get_json(),
+                "chapter_index":self._chapter_index,
                 "answers":defins,
                 "question_type":1
             }
@@ -61,7 +61,7 @@ class DefinitionQuestion:
         self._definition = definition
         self._chapter_index = word.get_chapter_index()
 
-        #TODO Build this coin flip
+        #TODO remove duplication aka multiquery
         if not question_type:
             question_type = random.randint(0, 1)
             self._question_type = question_type
@@ -74,7 +74,7 @@ class DefinitionQuestion:
         if question_type == 1:
             self._definitions.append(definition)
             for x in range(num_wanted):
-                filler_def = Definition.Definition().get_definition_random_by_from_word(word)
+                filler_def = Definition.Definition().get_definition_random_by_chapter_index(word.get_chapter_index())
                 self._definitions.append(filler_def)
 
         return self
