@@ -1,65 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular-frontend/exBook" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/404.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/apple-touch-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/browserconfig.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/css/animate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/css/normalize.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/css/normalize.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/humans.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_disabled_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_disabled_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_focus_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_focus_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_normal_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_normal_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_pressed_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_pressed_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_disabled_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_disabled_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_focus_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_focus_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_normal_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_normal_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_pressed_ios.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_pressed_ios.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/core/app.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/http/http.wrapper.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/login/login.config.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/login/login.directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/login/login.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/login/login.template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/quest-select/quest.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/view/view.controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-exbook/view/view.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/angular-animate.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/angular-touch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/angular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/angular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/modernizr-2.8.3-respond-1.4.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/satellizer.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/js-vendor/ui-bootstrap-tpls-1.2.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/robots.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/tile-wide.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/angular-frontend/tile.png" afterPath="" />
+    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="switched frontend code to angular2/typescript">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular-frontend/exBook" afterPath="$PROJECT_DIR$/angular-frontend/exBook" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,8 +40,8 @@
       <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="444" column="14" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
+            <state relative-caret-position="342">
+              <caret line="462" column="52" selection-start-line="462" selection-start-column="52" selection-end-line="462" selection-end-column="52" />
               <folding>
                 <element signature="e#2#71#0" expanded="true" />
               </folding>
@@ -302,6 +248,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="business_objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -636,13 +596,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Created file to keep functions that sanitize outgoing data packets. These will trim the database dictionaries and instead create json objects that will be directly usable by the client.">
-      <created>1458999531167</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1458999531167</updated>
     </task>
     <task id="LOCAL-00040" summary="Created file to keep functions that sanitize outgoing data packets. These will trim the database dictionaries and instead create json objects that will be directly usable by the client.">
       <created>1459043599347</created>
@@ -980,7 +933,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469216835206</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="switched frontend code to angular2/typescript">
+      <created>1469217538445</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1469217538449</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1002,20 +962,20 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35868627" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25249773" sideWeight="0.4900605" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798573" sideWeight="0.4982714" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32709447" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3941871" sideWeight="0.4736387" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980826" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.49841145" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32697546" sideWeight="0.49682286" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3941871" sideWeight="0.4736387" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="6" side_tool="false" content_ui="tabs" />
@@ -1053,7 +1013,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="New database generation script in db_scripts" />
     <MESSAGE value="Refactored some names&#10;Created database dummy loading script&#10;TODO: make chapter index business object" />
     <MESSAGE value="created chapter business object and db access layer&#10;needs more convenience methods added" />
     <MESSAGE value="changed word to use chapters instead of topic" />
@@ -1078,7 +1037,8 @@
     <MESSAGE value="small fixes too submit question and index.html" />
     <MESSAGE value="serving up index.html from the root of the website now" />
     <MESSAGE value="debugging question/submit endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging question/submit endpoint" />
+    <MESSAGE value="switched frontend code to angular2/typescript" />
+    <option name="LAST_COMMIT_MESSAGE" value="switched frontend code to angular2/typescript" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1352,8 +1312,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="444" column="14" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
+        <state relative-caret-position="342">
+          <caret line="462" column="52" selection-start-line="462" selection-start-column="52" selection-end-line="462" selection-end-column="52" />
           <folding>
             <element signature="e#2#71#0" expanded="true" />
           </folding>
