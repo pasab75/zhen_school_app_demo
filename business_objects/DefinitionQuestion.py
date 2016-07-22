@@ -52,7 +52,7 @@ class DefinitionQuestion:
                 "question_type":1
             }
 
-    def make_from_chapter_index(self, chapter_index, num_wanted, question_type=None):
+    def make_from_chapter_index(self, chapter_index, num_wanted=5, question_type=None):
         word = Word.Word().get_word_random_by_chapter_index(chapter_index)
         definition = Definition.Definition().get_definition_random_by_from_word(word)
         self._word = word
