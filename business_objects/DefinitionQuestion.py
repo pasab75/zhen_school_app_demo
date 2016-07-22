@@ -35,7 +35,7 @@ class DefinitionQuestion:
             words = []
             for word in self._words:
                 temp_word = word.get_json()
-                temp_word['text'] = word['word']
+                temp_word['text'] = word.get_word()
                 words.append(temp_word)
             return {
                 "prompt":self._definition.get_json(),
@@ -47,7 +47,7 @@ class DefinitionQuestion:
             defins = []
             for defin in self._definitions:
                 temp_word = defin.get_json()
-                temp_word['text'] = defin['definition']
+                temp_word['text'] = defin.get_definition()
                 defins.append(temp_word)
             return {
                 "prompt":self._word.get_json(),
