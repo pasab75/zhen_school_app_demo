@@ -34,7 +34,9 @@ class DefinitionQuestion:
         if self._question_type == 0:
             words = []
             for word in self._words:
-                words.append(word.get_json())
+                temp_word = word.get_json()
+                temp_word['text'] = word['word']
+                words.append(temp_word)
             return {
                 "prompt":self._definition.get_json(),
                 "chapter_index":self._chapter_index,
