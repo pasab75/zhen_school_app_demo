@@ -62,6 +62,8 @@ class DefinitionQuestion:
         self._word_index = word.get_index()
         self._definition = definition
         self._chapter_index = word.get_chapter_index()
+        self._words = []
+        self._definitions = []
 
         #TODO remove duplication aka multiquery
         if not question_type:
