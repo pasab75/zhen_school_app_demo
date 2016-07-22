@@ -46,7 +46,9 @@ class DefinitionQuestion:
         else:
             defins = []
             for defin in self._definitions:
-                defins.append(defin.get_json())
+                temp_word = defin.get_json()
+                temp_word['text'] = defin['definition']
+                defins.append(temp_word)
             return {
                 "prompt":self._word.get_json(),
                 "chapter_index":self._chapter_index,
