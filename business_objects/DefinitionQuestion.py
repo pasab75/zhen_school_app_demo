@@ -38,7 +38,7 @@ class DefinitionQuestion:
                 temp_word['text'] = word.get_word()
                 words.append(temp_word)
             return {
-                "prompt":self._definition.get_json(),
+                "prompt":self._definition.get_word(),
                 "chapter_index":self._chapter_index,
                 "answers":words,
                 "question_type":0
@@ -50,7 +50,7 @@ class DefinitionQuestion:
                 temp_word['text'] = defin.get_definition()
                 defins.append(temp_word)
             return {
-                "prompt":self._word.get_json(),
+                "prompt":self._word.get_definition(),
                 "chapter_index":self._chapter_index,
                 "answers":defins,
                 "question_type":1
