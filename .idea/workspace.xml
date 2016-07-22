@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
     </list>
     <ignored path="python_rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,7 +17,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1468027743989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
-    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_manager Coverage Results" MODIFIED="1469219881724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_manager Coverage Results" MODIFIED="1469221712656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -51,7 +50,7 @@
       <file leaf-file-name="rest_manager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4224">
+            <state relative-caret-position="8838">
               <caret line="491" column="34" selection-start-line="491" selection-start-column="34" selection-end-line="491" selection-end-column="34" />
               <folding>
                 <element signature="e#2#71#0" expanded="true" />
@@ -63,7 +62,7 @@
       <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
+            <state relative-caret-position="2916">
               <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
               <folding />
             </state>
@@ -73,8 +72,8 @@
       <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="36" column="22" selection-start-line="35" selection-start-column="12" selection-end-line="38" selection-end-column="39" />
+            <state relative-caret-position="450">
+              <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -83,7 +82,7 @@
       <file leaf-file-name="Word.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
+            <state relative-caret-position="1098">
               <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
               <folding />
             </state>
@@ -93,7 +92,7 @@
       <file leaf-file-name="Definition.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1062">
+            <state relative-caret-position="1116">
               <caret line="62" column="84" selection-start-line="62" selection-start-column="84" selection-end-line="62" selection-end-column="84" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
@@ -233,7 +232,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -310,6 +308,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,173 +328,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/exBook</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/404.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/apple-touch-icon.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/browserconfig.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/css/animate.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/css/bootstrap.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/css/bootstrap.min.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/css/main.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/css/normalize.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/css/normalize.min.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/favicon.ico</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/humans.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_disabled_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_disabled_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_focus_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_focus_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_normal_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_normal_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_pressed_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_dark_pressed_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_disabled_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_disabled_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_focus_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_focus_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_normal_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_normal_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_pressed_ios.eps</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/img/google/btn_google_light_pressed_ios.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/index.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/core/app.module.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/http/http.wrapper.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/login/login.config.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/login/login.directive.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/login/login.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/login/login.template.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.directive.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.template.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/quest-select/quest.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.directive.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.template.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.directive.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.template.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/view/view.controller.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-exbook/view/view.service.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/angular-animate.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/angular-touch.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/angular.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/angular.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/modernizr-2.8.3-respond-1.4.2.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/satellizer.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/js-vendor/ui-bootstrap-tpls-1.2.4.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/robots.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/tile-wide.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/angular-frontend/tile.png</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Python.rest_manager">
     <configuration default="false" name="rest_manager" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -1164,17 +996,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1919" y="0" width="2562" height="1415" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08313445" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08353222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32895753" sideWeight="0.50477326" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35868627" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798573" sideWeight="0.4982714" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21081081" sideWeight="0.4884646" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32895753" sideWeight="0.49522674" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32895753" sideWeight="0.49522674" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32685184" sideWeight="0.4765208" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32664093" sideWeight="0.4765208" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39444444" sideWeight="0.47171825" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1420,107 +1252,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/login/login.directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/view/view.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/view/view.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/core/app.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/http/http.wrapper.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.template.html" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/404.html" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/index.html" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.directive.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/question-general/question.service.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/login/login.directive.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/view/view.service.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/view/view.controller.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/core/app.module.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/quest/quest.directive.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/nav/nav.directive.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/debug/debug.service.js" />
+    <entry file="file://$PROJECT_DIR$/angular-frontend/js-exbook/http/http.wrapper.service.js" />
     <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1044">
@@ -1533,7 +1277,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
+        <state relative-caret-position="2916">
           <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
           <folding />
         </state>
@@ -1541,7 +1285,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4224">
+        <state relative-caret-position="8838">
           <caret line="491" column="34" selection-start-line="491" selection-start-column="34" selection-end-line="491" selection-end-column="34" />
           <folding>
             <element signature="e#2#71#0" expanded="true" />
@@ -1551,7 +1295,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
+        <state relative-caret-position="1098">
           <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
           <folding />
         </state>
@@ -1559,7 +1303,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1062">
+        <state relative-caret-position="1116">
           <caret line="62" column="84" selection-start-line="62" selection-start-column="84" selection-end-line="62" selection-end-column="84" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
@@ -1569,8 +1313,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="36" column="22" selection-start-line="35" selection-start-column="12" selection-end-line="38" selection-end-column="39" />
+        <state relative-caret-position="450">
+          <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
           <folding />
         </state>
       </provider>
