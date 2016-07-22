@@ -427,7 +427,7 @@ def submit_question():
             answer_index = user.get_current_word_index()
             quest_complete = user.is_quest_complete()
             if not quest_complete:
-                question = DefQuestion.DefinitionQuestion().make_from_chapter_index(user.get_chapter_index(), 6).get_json()
+                question = DefQuestion.DefinitionQuestion().make_from_chapter_index(user.get_chapter_index(), 5).get_json()
             else:
                 question = None
                 try:
