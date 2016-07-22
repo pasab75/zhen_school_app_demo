@@ -36,6 +36,12 @@ class Definition:
             'chapter_index': self._chapter_index
         }
 
+    def get_json_min(self):
+        return {
+            'index': self._word_index,
+            'text': self._definition,
+        }
+
     def get_definition_random_by_chapter_index(self, index):
         self.generate_random_from_chapter_index(index)
         return self

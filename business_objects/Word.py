@@ -34,6 +34,12 @@ class Word:
             'avg_answer_time': self._avg_answer_time
         }
 
+    def get_json_min(self):
+        return {
+            'text': self._word_index,
+            'index': self._word,
+        }
+
     def get_database_format(self):
         return {
             'word_index': self._word_index,

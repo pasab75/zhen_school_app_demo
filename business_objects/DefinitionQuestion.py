@@ -34,26 +34,24 @@ class DefinitionQuestion:
         if self._question_type == 0:
             words = []
             for word in self._words:
-                temp_word = word.get_json()
-                temp_word['text'] = word.get_word()
+                temp_word = word.get_json_min()
                 words.append(temp_word)
             return {
-                "prompt":self._definition.get_definition(),
-                "chapter_index":self._chapter_index,
-                "answers":words,
-                "question_type":0
+                "prompt": self._definition.get_definition(),
+                "chapter_index": self._chapter_index,
+                "answers": words,
+                "question_type": 0
             }
         else:
             defins = []
             for defin in self._definitions:
-                temp_word = defin.get_json()
-                temp_word['text'] = defin.get_definition()
+                temp_word = defin.get_json_min()
                 defins.append(temp_word)
             return {
-                "prompt":self._word.get_word(),
-                "chapter_index":self._chapter_index,
-                "answers":defins,
-                "question_type":1
+                "prompt": self._word.get_word(),
+                "chapter_index": self._chapter_index,
+                "answers": defins,
+                "question_type": 1
             }
 
     def make_from_chapter_index(self, chapter_index, num_wanted=5, question_type=None):
