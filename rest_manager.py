@@ -423,11 +423,14 @@ def submit_question():
         user = authenticate_user(request)
         if user:
             user_answer = (request.json['user_answer'])
-            correct = user.check_answer(user_answer)
             answer_index = user.get_current_word_index()
+            correct = user.check_answer(user_answer)
             quest_complete = user.is_quest_complete()
             if not quest_complete:
-                question = DefQuestion.DefinitionQuestion().make_from_chapter_index(user.get_chapter_index(), 5).get_json()
+                current_chapter = user.get_chapter_index()
+                question = DefQuestion.DefinitionQuestion().make_from_chapter_index(current_chapter)
+                user.set_current_word_index(question.get_index())
+                question_json = question.get_json()
             else:
                 question = None
                 try:
@@ -440,7 +443,7 @@ def submit_question():
                 "user": user.get_json(),
                 "correct": correct,
                 "answer_index": answer_index,
-                "question": question,
+                "question": question_json,
                 "quest_complete": quest_complete
             })
         else:

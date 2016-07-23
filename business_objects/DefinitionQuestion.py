@@ -1,4 +1,3 @@
-from flask import jsonify
 import random
 from enum import Enum
 
@@ -29,6 +28,9 @@ class DefinitionQuestion:
         self._chapter_index = chapter_index
         self._question_type = type
 
+    def get_index(self):
+        return self._word_index
+
     def get_json(self):
         random.shuffle(self._words)
         random.shuffle(self._definitions)
@@ -56,13 +58,11 @@ class DefinitionQuestion:
                 "question_type": 1
             }
 
-    def make_from_chapter_index(self, chapter_index, num_wanted=6, question_type=None):
+    def make_from_chapter_index(self, chapter_index, question_type=None):
         self._question_type = question_type
         self._chapter_index = chapter_index
         self._words = []
         self._definitions = []
-
-        print(type(chapter_index))
 
         if not question_type:
             question_type = random.randint(0, 1)
@@ -88,6 +88,7 @@ class DefinitionQuestion:
             self._definition = self._definitions[0]
             self._word = Word.Word().get_word_from_definition(self._definition)
 
+        self._word_index = self._word.get_index()
         return self
 
     def make_from_chapter(self, chapter, num_wanted, type):

@@ -74,6 +74,7 @@ class User:
         if self.get_current_word_index() == answer:
             self.add_current_points(self.get_points_per_question()*self.get_current_multiplier())
             self.set_current_multiplier(self.get_current_multiplier()+1)
+            self.set_number_correct(self.get_number_correct()+1)
             self.update_quest_progress()
             return True
         else:
