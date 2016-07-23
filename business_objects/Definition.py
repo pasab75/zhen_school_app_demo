@@ -24,10 +24,10 @@ class Definition:
             'chapter_index': self._chapter_index
         }
 
-    def set_from_database(self, question):
-        self._word_index = question['word_index']
-        self._definition = question['definition']
-        self._chapter_index = question['chapter_index']
+    def set_from_database(self, database_definition):
+        self._word_index = database_definition['word_index']
+        self._definition = database_definition['definition']
+        self._chapter_index = database_definition['chapter_index']
 
     def get_json(self):
         return {
@@ -43,24 +43,33 @@ class Definition:
         }
 
     def get_definition_random_by_chapter_index(self, index):
-        self.generate_random_from_chapter_index(index)
+        self.generate_definition_random_from_chapter_index(index)
         return self
 
-    def generate_random_from_chapter_index(self, index):
+    def get_definition_list_random_by_chapter_index(self, index, number_of_questions=6):
+        self.generate_definition_list_random_from_chapter_index(index, number_of_questions)
+        return self
+
+    def generate_definition_random_from_chapter_index(self, index):
         db_def = db_definition.DefinitionTableAccess()
-        self.set_from_database(db_def.get_definition_random_by_chapter_index(index)[0])
+        self.set_from_database(db_def.get_definition_random_by_chapter_index(index))
+        db_def.close_connection()
+
+    def generate_definition_list_random_from_chapter_index(self, index, number_of_questions):
+        db_def = db_definition.DefinitionTableAccess()
+        self.set_from_database(db_def.get_definition_list_random_by_chapter_index(index, number_of_questions))
         db_def.close_connection()
 
     def get_definition_random_by_chapter(self, chapter):
-        self.generate_random_from_chapter_index(chapter)
+        self.generate_definition_random_from_chapter_index(chapter)
         return self
 
     def generate_random_from_chapter(self, chapter):
         db_def = db_definition.DefinitionTableAccess()
-        self.set_from_database(db_def.get_definition_random_by_chapter(chapter)[0])
+        self.set_from_database(db_def.get_definition_random_by_chapter(chapter))
         db_def.close_connection()
 
-    def get_definition_random_by_from_word(self, word):
+    def get_definition_random_from_word(self, word):
         self.generate_random_from_word(word)
         return self
 

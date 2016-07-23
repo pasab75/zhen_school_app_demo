@@ -4,6 +4,7 @@ import db_access.db_words as db_wordzors
 class Word:
     _word_index = None
     _word = None
+    _word_list = None
     _chapter_index = None
     _instructor_difficulty = False
     _calculated_difficulty = None
@@ -50,7 +51,6 @@ class Word:
             'avg_answer_time': self._avg_answer_time
         }
 
-
     def set_from_database(self, word):
         self._word_index = word['word_index']
         self._word = word['word']
@@ -59,23 +59,41 @@ class Word:
         self._calculated_difficulty = word['calculated_difficulty']
         self._avg_answer_time = word['avg_answer_time']
 
-    def generate_word_randomly(self, chapter=None):
+    def generate_word_random(self, chapter=None):
         db_word = db_wordzors.WordTableAccess()
         if chapter:
-            self.set_from_database(db_word.get_word_random_by_chapter(chapter)[0])
+            self.set_from_database(db_word.get_word_random_by_chapter(chapter))
         else:
             self.set_from_database(db_word.get_word_random())
         db_word.close_connection()
 
     def get_word_random_by_chapter_index(self, index):
-        self.generate_word_randomly_chapter_index(index)
+        self.generate_word_random_by_chapter_index(index)
         return self
 
-    def generate_word_randomly_chapter_index(self, index):
+    def get_word_list_random_by_chapter_index(self, index, number_of_words=6):
+        self.generate_word_list_random_by_chapter_index(index, number_of_words)
+        return self
+
+    def get_word_by_word_index(self, index):
         db_word = db_wordzors.WordTableAccess()
-        self.set_from_database(db_word.get_word_random_by_chapter_index(index)[0])
+        self.set_from_database(db_word.get_word_by_index(index))
         db_word.close_connection()
 
+    def get_word_from_definition(self, definition):
+        index = definition.get_word_index()
+        self.get_word_by_word_index(index)
+        return self
+
+    def generate_word_random_by_chapter_index(self, index):
+        db_word = db_wordzors.WordTableAccess()
+        self.set_from_database(db_word.get_word_random_by_chapter_index(index))
+        db_word.close_connection()
+
+    def generate_word_list_random_by_chapter_index(self, index, number_of_words):
+        db_word = db_wordzors.WordTableAccess()
+        self.set_from_database(db_word.get_word_list_random_by_chapter_index(index, number_of_words))
+        db_word.close_connection()
 
     def get_word(self):
         return self._word

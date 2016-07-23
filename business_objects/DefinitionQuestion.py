@@ -4,6 +4,8 @@ from enum import Enum
 
 import business_objects.Word as Word
 import business_objects.Definition as Definition
+import db_access.db_definitions as db_access_definitions
+import db_access.db_words as db_access_words
 
 
 
@@ -54,32 +56,37 @@ class DefinitionQuestion:
                 "question_type": 1
             }
 
-    def make_from_chapter_index(self, chapter_index, num_wanted=5, question_type=None):
-        word = Word.Word().get_word_random_by_chapter_index(chapter_index)
-        definition = Definition.Definition().get_definition_random_by_from_word(word)
-        self._word = word
+    def make_from_chapter_index(self, chapter_index, num_wanted=6, question_type=None):
         self._question_type = question_type
-        self._word_index = word.get_index()
-        self._definition = definition
-        self._chapter_index = word.get_chapter_index()
+        self._chapter_index = chapter_index
         self._words = []
         self._definitions = []
 
-        #TODO remove duplication aka multiquery
+        print(type(chapter_index))
+
         if not question_type:
             question_type = random.randint(0, 1)
             self._question_type = question_type
-        if question_type == 0:
-            self._words.append(word)
-            for x in range(num_wanted):
-                new_word = Word.Word().get_word_random_by_chapter_index(chapter_index)
-                self._words.append(new_word)
 
-        if question_type == 1:
-            self._definitions.append(definition)
-            for x in range(num_wanted):
-                filler_def = Definition.Definition().get_definition_random_by_chapter_index(word.get_chapter_index())
-                self._definitions.append(filler_def)
+        if question_type == 0:
+            db_word = db_access_words.WordTableAccess()
+            raw_list = db_word.get_word_list_random_by_chapter_index(chapter_index)
+            for database_word in raw_list:
+                new_word = Word.Word()
+                new_word.set_from_database(database_word)
+                self._words.append(new_word)
+            self._word = self._words[0]
+            self._definition = Definition.Definition().get_definition_random_from_word(self._word)
+
+        elif question_type == 1:
+            db_def = db_access_definitions.DefinitionTableAccess()
+            raw_list = db_def.get_definition_list_random_by_chapter_index(chapter_index)
+            for database_definition in raw_list:
+                new_definition = Definition.Definition()
+                new_definition.set_from_database(database_definition)
+                self._definitions.append(new_definition)
+            self._definition = self._definitions[0]
+            self._word = Word.Word().get_word_from_definition(self._definition)
 
         return self
 
