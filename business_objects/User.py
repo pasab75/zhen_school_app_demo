@@ -208,9 +208,9 @@ class User:
             db_user = User_db.UserTableAccess()
             db_user.save_user_new(self.get_database_format())
             db_user.close_connection()
-            return True
+            return self
         except Exception as e:
-            print("Could not delete question: " + str(e))
+            print("Could not save new user: " + str(e))
             raise e
 
     def set_current_level(self, level):

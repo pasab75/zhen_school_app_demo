@@ -1,6 +1,5 @@
-
-
 from flask import Flask, jsonify, request, abort, send_from_directory
+from oauth2client import client, crypt
 import datetime
 
 import business_objects.User as User
@@ -17,6 +16,10 @@ import requests
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
 local = False
+
+ANDROID_CLIENT_ID = 'derpderp'
+IOS_CLIENT_ID = 'derpderp'
+WEB_CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
 
 # set this variable to determine whether you are running a test server locally or on the VPS
 
@@ -62,13 +65,15 @@ def after_request(response):
 def check_access_token(client_request):
     try:
         token = client_request.json['user_identifier']
-        r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
-        if str(r.json()['sub']):
-            return r
-        else:
-            return False
+        idinfo = client.verify_id_token(token, WEB_CLIENT_ID)
+        # If multiple clients access the backend server:
+        if idinfo['aud'] not in [ANDROID_CLIENT_ID, IOS_CLIENT_ID, WEB_CLIENT_ID]:
+            raise crypt.AppIdentityError("Unrecognized client.")
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise crypt.AppIdentityError("Wrong issuer.")
+        return idinfo
 
-    except Exception as ex:
+    except crypt.AppIdentityError as ex:
         print(ex)
 #########################################################################################
 # DESCRIPTION
@@ -91,26 +96,30 @@ def check_access_token(client_request):
 
 def authenticate_user(client_request):
     try:
-        r = check_access_token(client_request)
-        if r:
-            user_information = r.json()
+        user_information = check_access_token(client_request)
+        if user_information:
             print(user_information)
             user_id = str(user_information['sub'])
-            print(user_id)
+            user_first_name = user_information['given_name']
+            user_last_name = user_information['family_name']
+            user_email = user_information['email']
             user = User.User().generate_from_id(user_id)
             if user:
                 return user
             else:
                 print('user does not exist in database, adding new user')
                 user = User.User(user_id=user_id,
-                                 first_name='UserName',
-                                 last_name='Derpington',
-                                 e_mail=user_information['email'],
+                                 first_name=user_first_name,
+                                 last_name=user_last_name,
+                                 e_mail=user_email,
                                  paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
                 new_user = user.save_new()
                 if new_user:
                     return new_user
+                else:
+                    print('something went wrong with returning user')
         else:
+            print('returning false')
             return False
 
     except Exception as ex:
