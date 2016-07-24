@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Word.py" afterPath="$PROJECT_DIR$/business_objects/Word.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_manager.py" afterPath="$PROJECT_DIR$/rest_manager.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -141,8 +137,8 @@
       <file leaf-file-name="User.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/business_objects/User.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="86" column="64" selection-start-line="86" selection-start-column="64" selection-end-line="86" selection-end-column="64" />
+            <state relative-caret-position="450">
+              <caret line="94" column="34" selection-start-line="94" selection-start-column="34" selection-end-line="94" selection-end-column="34" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -309,7 +305,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -373,6 +368,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -702,13 +698,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Writing skeleton for angular frontend">
-      <created>1459461386016</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1459461386016</updated>
     </task>
     <task id="LOCAL-00045" summary="Writing skeleton for angular frontend">
       <created>1459473339539</created>
@@ -1046,7 +1035,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469246065679</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="rest endpoint properly changes user progress as questions are submitted&#10;changed user get json method to return extra information">
+      <created>1469329040347</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1469329040347</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1060,7 +1056,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1176" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="6" side_tool="false" content_ui="tabs" />
@@ -1068,20 +1064,20 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35868627" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25249773" sideWeight="0.48802084" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798573" sideWeight="0.4982714" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32709447" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3941871" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980826" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.49841145" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32697546" sideWeight="0.49682286" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3941871" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1097,7 +1093,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="changed db_words to use chapters instead of topics" />
     <MESSAGE value="updated database-generator script" />
     <MESSAGE value="nuked a bunch of tables" />
     <MESSAGE value="updating user db access layer and business object" />
@@ -1122,7 +1117,8 @@
     <MESSAGE value="got rid of angular frontend" />
     <MESSAGE value="Fixed DefinitionQuestion business object so that it cannot get duplicate answers" />
     <MESSAGE value="question/submit endpoint now properly updates user information" />
-    <option name="LAST_COMMIT_MESSAGE" value="question/submit endpoint now properly updates user information" />
+    <MESSAGE value="rest endpoint properly changes user progress as questions are submitted&#10;changed user get json method to return extra information" />
+    <option name="LAST_COMMIT_MESSAGE" value="rest endpoint properly changes user progress as questions are submitted&#10;changed user get json method to return extra information" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1521,8 +1517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="86" column="64" selection-start-line="86" selection-start-column="64" selection-end-line="86" selection-end-column="64" />
+        <state relative-caret-position="450">
+          <caret line="94" column="34" selection-start-line="94" selection-start-column="34" selection-end-line="94" selection-end-column="34" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
