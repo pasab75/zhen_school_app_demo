@@ -88,19 +88,31 @@ def check_access_token(client_request):
 # False bool
 #########################################################################################
 
+
 def authenticate_user(client_request):
     try:
         r = check_access_token(client_request)
         if r:
-            user_id = str(r.json()['sub'])
+            user_information = r.json()
+            print(user_information)
+            user_id = str(user_information['sub'])
             print(user_id)
             user = User.User().generate_from_id(user_id)
-            if user and user.is_paid():
+            if user:
                 return user
             else:
-                return False
+                print('user does not exist in database, adding new user')
+                user = User.User(user_id=user_id,
+                                 first_name='UserName',
+                                 last_name='Derpington',
+                                 e_mail=user_information['email'],
+                                 paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
+                new_user = user.save_new()
+                if new_user:
+                    return new_user
         else:
             return False
+
     except Exception as ex:
         print(ex)
         raise Exception("Failed to authenticate user")
@@ -189,7 +201,7 @@ def update_user_quest(user,
             completion_points += 10*question_multiplier
 
         # TODO: GO Get a word/definition question
-        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index, 6)
+        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index)
 
         user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
                                datetime_quest_started=datetime_quest_started,
@@ -238,7 +250,9 @@ def get_user():
         user = authenticate_user(request)
         if user:
             print(user)
-            return jsonify(user.get_json())
+            return jsonify({
+                "user": user.get_json()
+            })
         else:
             return abort(403, "Unable to authenticate user")
     except Exception as ex:
@@ -422,6 +436,13 @@ def submit_question():
 
         user = authenticate_user(request)
         if user:
+            quest_complete = user.is_quest_complete()
+
+            if quest_complete:
+                return jsonify({
+                    "user": user.get_json(),
+                    "quest_complete": quest_complete
+               })
             user_answer = (request.json['user_answer'])
             answer_index = user.get_current_word_index()
             correct = user.check_answer(user_answer)
@@ -432,7 +453,7 @@ def submit_question():
                 user.set_current_word_index(question.get_index())
                 question_json = question.get_json()
             else:
-                question = None
+                question_json = None
                 try:
                     #TODO: add Lat and Lon
                     QuestLogEntry.QuestLogEntry().generate_from_user(user)
@@ -442,7 +463,8 @@ def submit_question():
             return jsonify({
                 "user": user.get_json(),
                 "correct": correct,
-                "answer_index": answer_index,
+                "correct_answer": answer_index,
+                "user_answer": user_answer,
                 "question": question_json,
                 "quest_complete": quest_complete
             })

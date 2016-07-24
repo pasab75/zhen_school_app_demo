@@ -37,8 +37,8 @@ class Word:
 
     def get_json_min(self):
         return {
-            'text': self._word_index,
-            'index': self._word,
+            'index': self._word_index,
+            'text': self._word,
         }
 
     def get_database_format(self):

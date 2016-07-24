@@ -14,7 +14,7 @@ class QuestLogEntry:
     _cumulative = None
     _seconds_per_question = None
 
-    def __init__(self, user_id, number_of_questions=10, number_correct=0, chapter_index=None, latitude=None,
+    def __init__(self, user_id=None, number_of_questions=10, number_correct=0, chapter_index=None, latitude=None,
                  longitude=None, cumulative=None, seconds_per_question=0):
         self._user_id = user_id
         self._number_correct = number_correct

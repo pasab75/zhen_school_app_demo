@@ -1,6 +1,7 @@
 import db_access.db_users as User_db
 from flask import Flask, jsonify
 import datetime
+import math
 
 
 class User:
@@ -30,8 +31,8 @@ class User:
                  first_name=None,
                  last_name=None,
                  e_mail=None,
-                 user_role='0',
-                 current_lvl='1',
+                 user_role=0,
+                 current_lvl=1,
                  current_points=0,
                  current_multiplier=1,
                  chapter_index=1,
@@ -71,11 +72,12 @@ class User:
         self._paid_through = paid_through
 
     def check_answer(self, answer):
+        self.update_quest_progress()
         if self.get_current_word_index() == answer:
             self.add_current_points(self.get_points_per_question()*self.get_current_multiplier())
+            self.set_current_level(math.floor(self.get_current_points()/1000))
             self.set_current_multiplier(self.get_current_multiplier()+1)
             self.set_number_correct(self.get_number_correct()+1)
-            self.update_quest_progress()
             return True
         else:
             self.set_current_multiplier(1)
@@ -85,7 +87,7 @@ class User:
         self.set_current_progress(self.get_current_progress()+1)
 
     def is_quest_complete(self):
-        if self.get_current_progress() == self.get_number_of_questions():
+        if self.get_current_progress() >= self.get_number_of_questions():
             return True
         else:
             return False
@@ -124,7 +126,7 @@ class User:
             "user_role": self._user_role,
             "current_lvl": self._current_lvl,
             "current_points": self._current_points,
-            "current_multiplier": self._current_multiplier ,
+            "current_multiplier": self._current_multiplier,
             "chapter_index": self._chapter_index,
             "cumulative": self._cumulative,
             "number_of_questions": self._number_of_questions,
@@ -135,8 +137,12 @@ class User:
             "current_progress": self._current_progress,
             "number_correct": self._number_correct,
             "last_active": self._last_active,
-            "paid_through": self._paid_through
+            "paid_through": self._paid_through,
+            "points_this_level": self.getExpForThisLvl()
         }
+
+    def getExpForThisLvl(self):
+        return self._current_points - (self._current_lvl-1)*1000
 
     def set_from_database(self, user):
         self._user_id = user['user_id']
@@ -206,6 +212,12 @@ class User:
         except Exception as e:
             print("Could not delete question: " + str(e))
             raise e
+
+    def set_current_level(self, level):
+        self._current_lvl = level
+
+    def get_current_level(self):
+        return self._current_lvl
 
     def get_user_id(self):
         return self._user_id
