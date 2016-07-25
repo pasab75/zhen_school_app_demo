@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`words` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 3360
+AUTO_INCREMENT = 2501
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -110,15 +110,15 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`quest_log` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
-  `user_id` INT(11) NOT NULL,
+  `user_id` CHAR(21) NOT NULL,
   `number_correct` INT(11) NOT NULL,
-  `datetime_quest_started` DATETIME NOT NULL,
-  `datetime_quest_completed` DATETIME NOT NULL,
+  `quest_start_datetime` DATETIME NOT NULL,
+  `quest_complete_datetime` DATETIME NOT NULL,
   `number_of_questions` INT(11) NOT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
-  `longitude` FLOAT NULL DEFAULT NULL,
+  `longitude` DOUBLE NULL DEFAULT NULL,
   `chapter_index` INT(11) NULL DEFAULT NULL,
-  `cumulative` INT(1) NULL DEFAULT NULL,
+  `cumulative` TINYINT(1) NOT NULL,
   `seconds_per_question` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB

@@ -61,8 +61,7 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
     def save_new_activity(self, activity):
         try:
             try:
-                db_obj = self.save_new_row_in_table(activity.get_database_format(), table_name)
-                return db_obj
+                self.save_new_row_in_table(activity, table_name)
 
             except Exception as e:
                 print("Error fetching results: " + str(e))

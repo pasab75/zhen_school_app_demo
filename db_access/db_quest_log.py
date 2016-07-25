@@ -3,7 +3,7 @@ import datetime
 
 table_name = 'quest_log'
 
-class ActivityLogTableAccess(GeneralDatabaseConnection):
+class QuestLogTableAccess(GeneralDatabaseConnection):
 
     # -------------------------------------------------------------
     # class variables
@@ -63,8 +63,7 @@ class ActivityLogTableAccess(GeneralDatabaseConnection):
     def save_new_quest(self, quest):
         try:
             try:
-                db_obj = self.save_new_row_in_table(quest.get_database_format(), table_name)
-                return db_obj
+                self.save_new_row_in_table(quest, table_name)
 
             except Exception as e:
                 print("Error fetching results: " + str(e))

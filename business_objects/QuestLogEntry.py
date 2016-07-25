@@ -1,5 +1,4 @@
 import db_access.db_quest_log as db_quest_log
-import business_objects.User as User
 import datetime
 
 class QuestLogEntry:
@@ -28,12 +27,11 @@ class QuestLogEntry:
     def generate_from_user(self, user, quest_end_time=datetime.datetime.now(), user_current_lat=None, user_current_lon=None):
         self._user_id = user.get_user_id()
         self._number_correct = user.get_number_correct()
-        self._quest_start_datetime = user.get_date_quest_started()
+        self._quest_start_datetime = user.get_datetime_quest_started()
         self._chapter_index = user.get_chapter_index()
         self._cumulative = user.get_cumulative()
         self._number_of_questions = user.get_number_of_questions()
         self._seconds_per_question = user.get_seconds_per_question()
-
         self._quest_complete_datetime = quest_end_time
         self._lat = user_current_lat
         self._lon = user_current_lon
@@ -82,12 +80,12 @@ class QuestLogEntry:
     # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
-            db_quest = db_quest_log.ActivityLogTableAccess()
+            db_quest = db_quest_log.QuestLogTableAccess()
             db_quest.save_new_quest(self.get_database_format())
             db_quest.close_connection()
             return True
         except Exception as e:
-            print("Could not delete question: " + str(e))
+            print("Could not log quest: " + str(e))
             raise e
 
     def get_user_id(self):

@@ -45,7 +45,7 @@ class ActivityLogEntry:
         self._correct = correct
         self._latitude = user_current_lat
         self._longitude = user_current_lon
-        self._number_of_questions = user.get_number_of_questions
+        self._number_of_questions = user.get_number_of_questions()
         self._datetime_quest_started = user.get_datetime_quest_started()
         self._current_word_index = user.get_current_word_index()
         self._datetime_question_started = user.get_datetime_question_started()
@@ -67,15 +67,15 @@ class ActivityLogEntry:
 
     def get_database_format(self):
         return {
-            "user_id":self._user_id,
-            "datetime":self._datetime,
-            "correct":self._correct,
-            "latitude":self._latitude,
-            "longitude":self._longitude,
-            "number_of_questions":self._number_of_questions,
-            "datetime_quest_started":self._datetime_quest_started,
-            "current_word_index":self._current_word_index,
-            "datetime_question_started":self._datetime_question_started
+            "user_id": self._user_id,
+            "datetime": self._datetime,
+            "correct": self._correct,
+            "latitude": self._latitude,
+            "longitude": self._longitude,
+            "number_of_questions": self._number_of_questions,
+            "datetime_quest_started": self._datetime_quest_started,
+            "current_word_index": self._current_word_index,
+            "datetime_question_started": self._datetime_question_started
         }
 
     def save_new(self):
@@ -85,7 +85,7 @@ class ActivityLogEntry:
             db_activity.close_connection()
             return True
         except Exception as e:
-            print("Could not delete question: " + str(e))
+            print("Could not log activity " + str(e))
             raise e
 
     def get_user_id(self):

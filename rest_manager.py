@@ -171,7 +171,6 @@ def update_user_quest(user,
                       number_of_questions=None,
                       cumulative=False):
     try:
-        datetime_quest_started = datetime.datetime.now()
         number_correct = 0
         current_progress = 0
         points_per_question = 20
@@ -213,7 +212,7 @@ def update_user_quest(user,
         new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index)
 
         user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
-                               datetime_quest_started=datetime_quest_started,
+                               datetime_quest_started=datetime.datetime.now(),
                                current_word_index=new_question.get_word_index(), number_correct=number_correct,
                                completion_points=completion_points,
                                seconds_per_question=seconds_per_question, points_per_question=points_per_question,
@@ -322,7 +321,8 @@ def start_quest():
             response = update_user_quest(user, chapter_index=request_chapter_index,
                                          seconds_per_question=request_seconds_per_question,
                                          number_of_questions=request_number_of_questions,
-                                         cumulative=request_cumulative)
+                                         cumulative=request_cumulative
+                                         )
 
             user.update_current_user()
             return jsonify({
@@ -459,7 +459,8 @@ def submit_question():
 
             correct = user.check_answer(user_answer)
 
-            ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct).save_new()
+            new_activity = ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct)
+            new_activity.save_new()
 
             user.update_quest_progress()
             user.update_multiplier(correct)
@@ -475,7 +476,8 @@ def submit_question():
                 user.set_current_multiplier(1)
                 try:
                     # TODO: add Lat and Lon
-                    QuestLogEntry.QuestLogEntry().generate_from_user(user).save_new()
+                    new_quest_entry = QuestLogEntry.QuestLogEntry().generate_from_user(user)
+                    new_quest_entry.save_new()
                 except Exception as ex:
                     print(ex)
                     print("failed too make log entry, not the end of the world, but no log entry made")
