@@ -72,16 +72,24 @@ class User:
         self._paid_through = paid_through
 
     def check_answer(self, answer):
-        self.update_quest_progress()
         if self.get_current_word_index() == answer:
-            self.add_current_points(self.get_points_per_question()*self.get_current_multiplier())
-            self.set_current_level(math.floor(self.get_current_points()/1000))
-            self.set_current_multiplier(self.get_current_multiplier()+1)
-            self.set_number_correct(self.get_number_correct()+1)
             return True
         else:
-            self.set_current_multiplier(1)
             return False
+
+    def update_multiplier(self, iscorrect):
+        if iscorrect:
+            self.set_current_multiplier(self.get_current_multiplier()+1)
+        else:
+            self.set_current_multiplier(1)
+
+    def give_question_rewards(self):
+        self.add_current_points(self.get_points_per_question() * self.get_current_multiplier())
+        self.set_current_level(math.floor(self.get_current_points() / 1000))
+        self.set_number_correct(self.get_number_correct() + 1)
+
+    def give_quest_rewards(self):
+        self.add_current_points(self._completion_points)
 
     def update_quest_progress(self):
         self.set_current_progress(self.get_current_progress()+1)
@@ -116,7 +124,7 @@ class User:
             "paid_through": self._paid_through
         }
 
-    #change to actual json like database object
+    # change to actual json like database object
     def get_json(self):
         return {
             "user_id": self._user_id,
@@ -138,11 +146,12 @@ class User:
             "number_correct": self._number_correct,
             "last_active": self._last_active,
             "paid_through": self._paid_through,
-            "points_this_level": self.getExpForThisLvl()
+            "points_this_level": self.get_points_this_level()
         }
 
-    def getExpForThisLvl(self):
-        return self._current_points - (self._current_lvl-1)*1000
+    def get_points_this_level(self):
+        if self._current_lvl != 1:
+            return self._current_points - self._current_lvl*1000
 
     def set_from_database(self, user):
         self._user_id = user['user_id']
@@ -212,6 +221,10 @@ class User:
         except Exception as e:
             print("Could not save new user: " + str(e))
             raise e
+
+    def start_new_question(self, word_index):
+        self.set_datetime_question_started()
+        self.set_current_word_index(word_index)
 
     def set_current_level(self, level):
         self._current_lvl = level

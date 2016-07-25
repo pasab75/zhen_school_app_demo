@@ -14,8 +14,8 @@ class ActivityLogEntry:
     _datetime_question_started = None
     _current_word_index = None
 
-    def __init__(self, user_id, correct, number_of_questions=10, date_time=datetime.datetime.now(),
-                 datetime_quest_started=datetime.datetime.now(), seconds_per_questions=0, latitude=None, longitude=None,
+    def __init__(self, user_id=None, correct=None, number_of_questions=None, date_time=datetime.datetime.now(),
+                 datetime_quest_started=datetime.datetime.now(), seconds_per_questions=None, latitude=None, longitude=None,
                  datetime_question_started=datetime.datetime.now(), current_word_index=None):
         self._user_id = user_id
         self._datetime = date_time
@@ -38,6 +38,19 @@ class ActivityLogEntry:
         self._datetime_quest_started = db_quest_log_entry['datetime_quest_started']
         self._current_word_index = db_quest_log_entry['current_word_index']
         self._datetime_question_started = db_quest_log_entry['datetime_question_started']
+
+    def generate_from_user(self, user, correct, activity_time=datetime.datetime.now(), user_current_lat=None, user_current_lon=None):
+        self._user_id = user.get_user_id()
+        self._datetime = activity_time
+        self._correct = correct
+        self._latitude = user_current_lat
+        self._longitude = user_current_lon
+        self._number_of_questions = user.get_number_of_questions
+        self._datetime_quest_started = user.get_datetime_quest_started()
+        self._current_word_index = user.get_current_word_index()
+        self._datetime_question_started = user.get_datetime_question_started()
+        return self
+
 
     def get_json(self):
         return {
@@ -65,7 +78,6 @@ class ActivityLogEntry:
             "datetime_question_started":self._datetime_question_started
         }
 
-    # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
             db_activity = db_activity_log.ActivityLogTableAccess()

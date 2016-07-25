@@ -5,6 +5,7 @@ import datetime
 import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.QuestLogEntry as QuestLogEntry
+import business_objects.ActivityLogEntry as ActivityLogEntry
 import requests
 
 ###DEBUG IMPORTS###
@@ -119,8 +120,7 @@ def authenticate_user(client_request):
                 else:
                     print('something went wrong with returning user')
         else:
-            print('returning false')
-            return False
+            raise Exception('failed to authenticate user')
 
     except Exception as ex:
         print(ex)
@@ -281,6 +281,7 @@ def helloworld():
         print("Unable to retrieve user.")
         return abort(500, "Unable to retrieve user. Error: " + str(ex))
 
+
 @app.route('/<path:path>', methods=['GET'])
 def static_file(path):
     return send_from_directory(STATIC_FOLDER, path)
@@ -355,26 +356,26 @@ def start_quest():
 #########################################################################################
 
 
-@app.route('/api/v1/quest/drop', methods=['POST'])
-def drop_quest():
-    try:
-        incoming_request = request
-        print(incoming_request)
-        # check authentication
-        user = authenticate_user(request)
-        if user:
-            # drop the current quest, note that update with no flags does this, check its default args for details
-            user = drop_user_quest(user)
-            user.update_current_user()
-            return jsonify(user.get_json())
-
-        else:
-            return abort(403, "Unable to authenticate user")
-
-    except Exception as ex:
-        print(ex)
-        return abort(500, "Unable to retrieve random question")
+# @app.route('/api/v1/quest/drop', methods=['POST'])
+# def drop_quest():
+#     try:
+#         incoming_request = request
+#         print(incoming_request)
+#         # check authentication
+#         user = authenticate_user(request)
+#         if user:
+#             # drop the current quest, note that update with no flags does this, check its default args for details
+#             user = drop_user_quest(user)
+#             user.update_current_user()
+#             return jsonify(user.get_json())
 #
+#         else:
+#             return abort(403, "Unable to authenticate user")
+#
+#     except Exception as ex:
+#         print(ex)
+#         return abort(500, "Unable to retrieve random question")
+
 
 #########################################################################################
 # DESCRIPTION
@@ -451,23 +452,38 @@ def submit_question():
                 return jsonify({
                     "user": user.get_json(),
                     "quest_complete": quest_complete
-               })
+                })
+
             user_answer = (request.json['user_answer'])
             answer_index = user.get_current_word_index()
+
             correct = user.check_answer(user_answer)
+
+            ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct).save_new()
+
+            user.update_quest_progress()
+            user.update_multiplier(correct)
+
+            if correct:
+                user.give_question_rewards()
+
             quest_complete = user.is_quest_complete()
-            if not quest_complete:
+
+            if quest_complete:
+                user.give_quest_rewards()
+                question_json = None
+                user.set_current_multiplier(1)
+                try:
+                    # TODO: add Lat and Lon
+                    QuestLogEntry.QuestLogEntry().generate_from_user(user).save_new()
+                except Exception as ex:
+                    print(ex)
+                    print("failed too make log entry, not the end of the world, but no log entry made")
+            else:
                 current_chapter = user.get_chapter_index()
                 question = DefQuestion.DefinitionQuestion().make_from_chapter_index(current_chapter)
-                user.set_current_word_index(question.get_index())
+                user.start_new_question(question.get_index())
                 question_json = question.get_json()
-            else:
-                question_json = None
-                try:
-                    #TODO: add Lat and Lon
-                    QuestLogEntry.QuestLogEntry().generate_from_user(user)
-                except:
-                    print("failed too make log entry, not the end of the world, but no log entry made")
             user.update_current_user()
             return jsonify({
                 "user": user.get_json(),

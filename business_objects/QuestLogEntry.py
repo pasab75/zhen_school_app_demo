@@ -37,6 +37,7 @@ class QuestLogEntry:
         self._quest_complete_datetime = quest_end_time
         self._lat = user_current_lat
         self._lon = user_current_lon
+        return self
 
     def get_json(self):
         return {
