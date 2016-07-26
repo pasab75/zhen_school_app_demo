@@ -374,7 +374,9 @@ def get_chapters():
                 chapter_list.append(new_chapter.get_json())
             return jsonify({
                 'user': user.get_json(),
-                'chapters': chapter_list
+                'chapters': chapter_list,
+                'time_limits': [0, 5, 10, 30],
+                'number_of_questions': [10, 25, 50]
             })
         else:
             return abort(403, "Unable to authenticate user")
