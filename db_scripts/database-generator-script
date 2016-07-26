@@ -53,6 +53,20 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `testdb`.`classes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`classes` ;
+
+CREATE TABLE IF NOT EXISTS `testdb`.`classes` (
+  `class code` VARCHAR(10) NOT NULL,
+  `current_chapter` INT(11) NOT NULL DEFAULT '1',
+  `bonus_quests_per_day` INT(11) NOT NULL DEFAULT '3',
+  PRIMARY KEY (`class code`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `testdb`.`words`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `testdb`.`words` ;
@@ -70,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`words` (
   CONSTRAINT `fk_words_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 2501
 DEFAULT CHARACTER SET = utf8;
@@ -92,8 +106,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
   CONSTRAINT `fk_definitions_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_definitions_word_index`
     FOREIGN KEY (`word_index`)
     REFERENCES `testdb`.`words` (`word_index`)
@@ -151,20 +165,15 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `number_correct` INT(11) NULL DEFAULT NULL,
   `paid_through` DATETIME NULL DEFAULT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
+  `class_code` VARCHAR(10) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `testdb`.`valid_keys`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`valid_keys` ;
-
-CREATE TABLE IF NOT EXISTS `testdb`.`valid_keys` (
-  `key_value` CHAR(12) NOT NULL,
-  PRIMARY KEY (`key_value`))
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
+  INDEX `fk_users_class_code_idx` (`class_code` ASC),
+  CONSTRAINT `fk_users_class_code`
+    FOREIGN KEY (`class_code`)
+    REFERENCES `testdb`.`classes` (`class code`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
