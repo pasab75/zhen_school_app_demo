@@ -218,7 +218,7 @@ def drop_user_quest(user):
 #########################################################################################
 
 
-def get_quest_options():
+def get_quest_options(user):
     chapter_list = []
     total_chapters = Chapter.Chapter().get_number_chapters()
     for index in range(1, total_chapters + 1):

@@ -154,7 +154,7 @@ def get_quests():
         # check authentication
         user = functions.authenticate_user(request)
         if user:
-            response = functions.get_quest_options()
+            response = functions.get_quest_options(user)
             return jsonify(response)
 
         else:
