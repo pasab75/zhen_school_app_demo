@@ -1,29 +1,18 @@
 from flask import Flask, jsonify, request, abort, send_from_directory
 from oauth2client import client, crypt
 import datetime
+import requests
 
 import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.QuestLogEntry as QuestLogEntry
 import business_objects.ActivityLogEntry as ActivityLogEntry
 import business_objects.Chapter as Chapter
-import requests
 
-###DEBUG IMPORTS###
-
-
-###END DEBUG IMPORTS###
+import Config.Config as Config
 
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
-
-local = False
-
-ANDROID_CLIENT_ID = 'derpderp'
-IOS_CLIENT_ID = 'derpderp'
-WEB_CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
-
-# set this variable to determine whether you are running a test server locally or on the VPS
 
 app = Flask(__name__, static_url_path='/')
 STATIC_FOLDER = "angular-frontend"
@@ -67,9 +56,9 @@ def after_request(response):
 def check_access_token(client_request):
     try:
         token = client_request.json['user_identifier']
-        idinfo = client.verify_id_token(token, WEB_CLIENT_ID)
+        idinfo = client.verify_id_token(token, Config.WEB_CLIENT_ID)
         # If multiple clients access the backend server:
-        if idinfo['aud'] not in [ANDROID_CLIENT_ID, IOS_CLIENT_ID, WEB_CLIENT_ID]:
+        if idinfo['aud'] not in [Config.ANDROID_CLIENT_ID, Config.IOS_CLIENT_ID, Config.WEB_CLIENT_ID]:
             raise crypt.AppIdentityError("Unrecognized client.")
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
             raise crypt.AppIdentityError("Wrong issuer.")
@@ -376,7 +365,7 @@ def get_chapters():
                 'user': user.get_json(),
                 'chapters': chapter_list,
                 'time_limits': [0, 5, 10, 30],
-                'number_of_questions': [10, 25, 50]
+                'number_of_questions': Config.number_of_question_choices
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -607,7 +596,7 @@ def create_account():
 # TODO: check to see if this CORS implementation is safe
 
 if __name__ == '__main__':
-    if local:
+    if Config.local:
         app.run(host='0.0.0.0', port=5000)
         app.debug = True
     else:

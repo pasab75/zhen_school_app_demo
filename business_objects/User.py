@@ -92,7 +92,8 @@ class User:
         self.set_number_correct(self.get_number_correct() + 1)
 
     def give_quest_rewards(self):
-        self.add_current_points(self._completion_points)
+        if self._number_correct/self._number_of_questions >= .8:
+            self.add_current_points(self._completion_points)
 
     def update_quest_progress(self):
         self.set_current_progress(self.get_current_progress()+1)
