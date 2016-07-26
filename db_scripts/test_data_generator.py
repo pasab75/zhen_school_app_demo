@@ -1,6 +1,8 @@
 import business_objects.Word as Word
 import business_objects.Definition as Definition
 import business_objects.Chapter as Chapter
+import business_objects.Classroom as Classroom
+
 from random import randint
 
 # choose random entries or looped entries
@@ -56,3 +58,6 @@ else:
                                                        definition=definition_string,
                                                        chapter_index=i)
                 new_definition.save_new()
+
+new_classroom = Classroom.Classroom('A1B2C3D4E5', 4, 3)
+new_classroom.save_new()

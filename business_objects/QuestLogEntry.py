@@ -1,5 +1,6 @@
-import db_access.db_quest_log as db_quest_log
+import db_access.db_quest_log as db_access
 import datetime
+
 
 class QuestLogEntry:
     _user_id = None
@@ -80,8 +81,8 @@ class QuestLogEntry:
     # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
-            db_quest = db_quest_log.QuestLogTableAccess()
-            db_quest.save_new_quest(self.get_database_format())
+            db_quest = db_access.QuestLogTableAccess()
+            db_quest.save_new_quest(self)
             db_quest.close_connection()
             return True
         except Exception as e:

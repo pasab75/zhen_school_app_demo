@@ -180,13 +180,27 @@ class UserTableAccess(GeneralDatabaseConnection):
         except Exception as ex:
             print("Unable to retrieve user: " + str(ex))
 
+    def get_class_code_by_user_id(self, user_id):
+        try:
+            user_info = self.get_row_by_key_value(table_name, 'user_id', user_id)
+            return user_info['class_code']
+        except Exception as ex:
+            print("Unable to retrieve user: " + str(ex))
+
+    def get_users_all_by_class_code(self, class_code):
+        try:
+            users = self.get_all_by_key_value(table_name, 'class_code', class_code)
+            return users
+        except Exception as ex:
+            print("Unable to retrieve all users: " + str(ex))
+
     # -------------------------------------------------------------
     # WRITE methods
     # -------------------------------------------------------------
 
     def save_user_new(self, user):
         try:
-            self.save_new_row_in_table(user, table_name)
+            self.save_new_row_in_table(user.get_database_format(), table_name)
         except Exception as ex:
             print("Unable to add new user: " + str(ex))
 

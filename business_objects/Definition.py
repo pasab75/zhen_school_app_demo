@@ -1,5 +1,5 @@
 from flask import jsonify
-import db_access.db_definitions as db_definition
+import db_access.db_definitions as db_access
 
 
 class Definition:
@@ -51,12 +51,12 @@ class Definition:
         return self
 
     def generate_definition_random_from_chapter_index(self, index):
-        db_def = db_definition.DefinitionTableAccess()
+        db_def = db_access.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_random_by_chapter_index(index))
         db_def.close_connection()
 
     def generate_definition_list_random_from_chapter_index(self, index, number_of_questions):
-        db_def = db_definition.DefinitionTableAccess()
+        db_def = db_access.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_list_random_by_chapter_index(index, number_of_questions))
         db_def.close_connection()
 
@@ -65,7 +65,7 @@ class Definition:
         return self
 
     def generate_random_from_chapter(self, chapter):
-        db_def = db_definition.DefinitionTableAccess()
+        db_def = db_access.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_random_by_chapter(chapter))
         db_def.close_connection()
 
@@ -74,7 +74,7 @@ class Definition:
         return self
 
     def generate_random_from_word(self, word):
-        db_def = db_definition.DefinitionTableAccess()
+        db_def = db_access.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_by_word_index(word.get_index()))
         db_def.close_connection()
 
@@ -83,7 +83,7 @@ class Definition:
         return self
 
     def generate_random_from_word_index(self, index):
-        db_def = db_definition.DefinitionTableAccess()
+        db_def = db_access.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_by_word_index(index))
         db_def.close_connection()
 
@@ -96,10 +96,10 @@ class Definition:
     # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
-            db_def = db_definition.DefinitionTableAccess()
-            db_def.save_new_definition_from_object(self.get_database_format())
+            db_def = db_access.DefinitionTableAccess()
+            db_def.save_new_definition_from_object(self)
             db_def.close_connection()
             return True
         except Exception as e:
-            print("Could not delete question: " + str(e))
+            print("Could not save new definition: " + str(e))
             return False

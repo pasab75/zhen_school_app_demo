@@ -63,7 +63,7 @@ class QuestLogTableAccess(GeneralDatabaseConnection):
     def save_new_quest(self, quest):
         try:
             try:
-                self.save_new_row_in_table(quest, table_name)
+                self.save_new_row_in_table(quest.get_database_format(), table_name)
 
             except Exception as e:
                 print("Error fetching results: " + str(e))

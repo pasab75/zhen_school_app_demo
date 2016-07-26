@@ -1,7 +1,7 @@
-import db_access.db_users as User_db
-from flask import Flask, jsonify
 import datetime
 import math
+
+import db_access.db_users as db_access
 
 
 class User:
@@ -26,6 +26,7 @@ class User:
     _number_correct = 0
     _last_active = None
     _paid_through = None
+    _class_code = None
 
     def __init__(self, user_id=None,
                  first_name=None,
@@ -47,7 +48,8 @@ class User:
                  current_progress=None,
                  number_correct=0,
                  last_active=None,
-                 paid_through=None):
+                 paid_through=None,
+                 class_code=None):
 
         self._user_id = user_id
         self._first_name = first_name
@@ -70,6 +72,7 @@ class User:
         self._number_correct = number_correct
         self._last_active = last_active
         self._paid_through = paid_through
+        self._class_code = class_code
 
     def check_answer(self, answer):
         if self.get_current_word_index() == answer:
@@ -121,7 +124,8 @@ class User:
             "current_progress": self._current_progress,
             "number_correct": self._number_correct,
             "last_active": self._last_active,
-            "paid_through": self._paid_through
+            "paid_through": self._paid_through,
+            "class_code": self._class_code
         }
 
     # change to actual json like database object
@@ -146,7 +150,8 @@ class User:
             "number_correct": self._number_correct,
             "last_active": self._last_active,
             "paid_through": self._paid_through,
-            "points_this_level": self.get_points_this_level()
+            "points_this_level": self.get_points_this_level(),
+            "class_code": self._class_code
         }
 
     def get_points_this_level(self):
@@ -175,6 +180,7 @@ class User:
         self._number_correct = user['number_correct']
         self._last_active = user['last_active']
         self._paid_through = user['paid_through']
+        self._class_code = user['class_code']
 
     def update_user_quest(self, chapter_index=None, current_progress=None, datetime_quest_started=None,
                           current_word_index=None, number_correct=None, completion_points=None,
@@ -193,7 +199,7 @@ class User:
         self._number_correct = number_correct
 
     def generate_from_id(self, identification):
-        db = User_db.UserTableAccess()
+        db = db_access.UserTableAccess()
         current_user = db.get_user_by_user_id(identification)
         if current_user:
             self.set_from_database(current_user)
@@ -214,8 +220,8 @@ class User:
     # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
-            db_user = User_db.UserTableAccess()
-            db_user.save_user_new(self.get_database_format())
+            db_user = db_access.UserTableAccess()
+            db_user.save_user_new(self)
             db_user.close_connection()
             return self
         except Exception as e:
@@ -231,6 +237,12 @@ class User:
 
     def get_current_level(self):
         return self._current_lvl
+
+    def get_class_code(self):
+        return self._class_code
+
+    def set_class_code(self, code):
+        self._class_code = code
 
     def get_user_id(self):
         return self._user_id
@@ -356,6 +368,6 @@ class User:
         self._number_correct = value
 
     def update_current_user(self):
-        user_db = User_db.UserTableAccess()
+        user_db = db_access.UserTableAccess()
         user_db.update_user(self.get_database_format())
         user_db.close_connection()

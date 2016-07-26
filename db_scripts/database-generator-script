@@ -53,15 +53,15 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `testdb`.`classes`
+-- Table `testdb`.`classrooms`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `testdb`.`classes` ;
+DROP TABLE IF EXISTS `testdb`.`classrooms` ;
 
-CREATE TABLE IF NOT EXISTS `testdb`.`classes` (
-  `class code` VARCHAR(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `testdb`.`classrooms` (
+  `class_code` VARCHAR(10) NOT NULL,
   `current_chapter` INT(11) NOT NULL DEFAULT '1',
   `bonus_quests_per_day` INT(11) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`class code`))
+  PRIMARY KEY (`class_code`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   INDEX `fk_users_class_code_idx` (`class_code` ASC),
   CONSTRAINT `fk_users_class_code`
     FOREIGN KEY (`class_code`)
-    REFERENCES `testdb`.`classes` (`class code`)
+    REFERENCES `testdb`.`classrooms` (`class_code`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB

@@ -40,7 +40,10 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     def get_definition_random_by_chapter(self, chapter, number_wanted=1):
         try:
             try:
-                db_obj = self.get_row_random_by_key(table_name, "chapter", chapter.get_chapter_name(), number=number_wanted)
+                db_obj = self.get_row_random_by_key(table_name,
+                                                    "chapter",
+                                                    chapter.get_chapter_name(),
+                                                    number=number_wanted)
                 return db_obj
 
             except Exception as e:
@@ -78,7 +81,7 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     # updates a question already in the database by using the question's question_id field
     def update_from_object_with_primary_key(self, definition, primary):
         try:
-            self.update_row_in_table(definition, table_name, primary)
+            self.update_row_in_table(definition.get_database_format(), table_name, primary)
         except Exception as e:
             print("Could not update function: " + str(e))
             return False
@@ -95,7 +98,7 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     # code will null answers that aren't provided
     def save_new_definition_from_object(self, definition):
         try:
-            self.save_new_row_in_table(definition, table_name)
+            self.save_new_row_in_table(definition.get_database_format(), table_name)
 
         except Exception as e:
             print("Could not save question: " + str(e))

@@ -3,10 +3,9 @@ from enum import Enum
 
 import business_objects.Word as Word
 import business_objects.Definition as Definition
+
 import db_access.db_definitions as db_access_definitions
 import db_access.db_words as db_access_words
-
-
 
 
 class DefinitionQuestion:
@@ -22,11 +21,11 @@ class DefinitionQuestion:
                  word_index=None,
                  definition=None,
                  chapter_index=None,
-                 type=None):
+                 question_type=None):
         self._word_index = word_index
         self._definition = definition
         self._chapter_index = chapter_index
-        self._question_type = type
+        self._question_type = question_type
 
     def get_index(self):
         return self._word_index
@@ -99,15 +98,3 @@ class DefinitionQuestion:
 
     def set_word_index(self, index):
         self._word_index = index
-
-class DefQuestionType(Enum):
-    word = 0
-    definition = 1
-
-def main():
-    defQuestion = DefinitionQuestion().make_from_chapter_index(1, 2, 0)
-
-if __name__ == "__main__":
-    print("Starting run")
-    main()
-    print("Ending run")

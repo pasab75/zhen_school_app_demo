@@ -1,6 +1,5 @@
-from flask import jsonify
 import datetime
-import db_access.db_activity_log as db_activity_log
+import db_access.db_activity_log as db_access
 
 class ActivityLogEntry:
     _user_id = None
@@ -51,7 +50,6 @@ class ActivityLogEntry:
         self._datetime_question_started = user.get_datetime_question_started()
         return self
 
-
     def get_json(self):
         return {
             'user_id': self._user_id,
@@ -80,8 +78,8 @@ class ActivityLogEntry:
 
     def save_new(self):
         try:
-            db_activity = db_activity_log.ActivityLogTableAccess()
-            db_activity.save_new_activity(self.get_database_format())
+            db_activity = db_access.ActivityLogTableAccess()
+            db_activity.save_new_activity(self)
             db_activity.close_connection()
             return True
         except Exception as e:

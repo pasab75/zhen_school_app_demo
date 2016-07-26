@@ -1,6 +1,4 @@
-# make sure to have a function that formats the quest to send to client
-from flask import jsonify
-import db_access.db_chapters as db_chapters
+import db_access.db_chapters as db_access
 
 
 class Chapter:
@@ -41,7 +39,7 @@ class Chapter:
 
     def get_number_chapters(self):
         try:
-            db_c = db_chapters.ChapterTableAccess()
+            db_c = db_access.ChapterTableAccess()
             result = db_c.get_chapters_total()
             db_c.close_connection()
             return result
@@ -51,7 +49,7 @@ class Chapter:
 
     def get_chapter_by_index(self, index):
         try:
-            db_c = db_chapters.ChapterTableAccess()
+            db_c = db_access.ChapterTableAccess()
             chapter_object = db_c.get_chapter_by_index(index)
             db_c.close_connection()
             self.set_from_database(chapter_object)
@@ -66,8 +64,8 @@ class Chapter:
 
     def save_new(self):
         try:
-            db_c = db_chapters.ChapterTableAccess()
-            db_c.save_new_chapter_from_object(self.get_database_format())
+            db_c = db_access.ChapterTableAccess()
+            db_c.save_new_chapter_from_object(self)
             db_c.close_connection()
             return True
         except Exception as e:

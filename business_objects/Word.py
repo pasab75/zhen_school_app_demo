@@ -1,4 +1,4 @@
-import db_access.db_words as db_wordzors
+import db_access.db_words as db_access
 
 
 class Word:
@@ -60,7 +60,7 @@ class Word:
         self._avg_answer_time = word['avg_answer_time']
 
     def generate_word_random(self, chapter=None):
-        db_word = db_wordzors.WordTableAccess()
+        db_word = db_access.WordTableAccess()
         if chapter:
             self.set_from_database(db_word.get_word_random_by_chapter(chapter))
         else:
@@ -76,7 +76,7 @@ class Word:
         return self
 
     def get_word_by_word_index(self, index):
-        db_word = db_wordzors.WordTableAccess()
+        db_word = db_access.WordTableAccess()
         self.set_from_database(db_word.get_word_by_index(index))
         db_word.close_connection()
 
@@ -86,12 +86,12 @@ class Word:
         return self
 
     def generate_word_random_by_chapter_index(self, index):
-        db_word = db_wordzors.WordTableAccess()
+        db_word = db_access.WordTableAccess()
         self.set_from_database(db_word.get_word_random_by_chapter_index(index))
         db_word.close_connection()
 
     def generate_word_list_random_by_chapter_index(self, index, number_of_words):
-        db_word = db_wordzors.WordTableAccess()
+        db_word = db_access.WordTableAccess()
         self.set_from_database(db_word.get_word_list_random_by_chapter_index(index, number_of_words))
         db_word.close_connection()
 
@@ -113,10 +113,10 @@ class Word:
     # only call this if you're sure this doesn't exist in the db already
     def save_new(self):
         try:
-            db_word = db_wordzors.WordTableAccess()
-            db_word.save_new_word_from_object(self.get_database_format())
+            db_word = db_access.WordTableAccess()
+            db_word.save_new_word_from_object(self)
             db_word.close_connection()
             return True
         except Exception as e:
-            print("Could not delete question: " + str(e))
+            print("Could not save new word: " + str(e))
             return False
