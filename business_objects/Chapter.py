@@ -12,13 +12,13 @@ class Chapter:
                  chapter_name=None
                  ):
 
-        self._index = chapter_index
+        self._chapter_index = chapter_index
         self._chapter_name = chapter_name
 
     def get_database_format(self):
         return {
             'chapter_index': self._chapter_index,
-            'chapter_name': self._chapter_name,
+            'chapter_name': self._chapter_name
         }
 
     def get_json(self):

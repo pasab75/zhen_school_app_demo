@@ -44,12 +44,11 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`chapters` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`chapters` (
-  `chapter_index` INT(11) NOT NULL AUTO_INCREMENT,
+  `chapter_index` INT(11) NOT NULL,
   `chapter_name` VARCHAR(500) NULL DEFAULT NULL,
   PRIMARY KEY (`chapter_index`),
   UNIQUE INDEX `chapter_index_UNIQUE` (`chapter_index` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -67,12 +66,12 @@ CREATE TABLE IF NOT EXISTS `testdb`.`words` (
   `avg_answer_time` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`word_index`),
   UNIQUE INDEX `word_index_UNIQUE` (`word_index` ASC),
-  INDEX `FK_words_chapter_index_idx` (`chapter_index` ASC),
-  CONSTRAINT `FK_words_chapter_index`
+  INDEX `fk_chapter_index_idx` (`chapter_index` ASC),
+  CONSTRAINT `fk_words_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 2501
 DEFAULT CHARACTER SET = utf8;
@@ -89,13 +88,13 @@ CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
   `chapter_index` INT(11) NOT NULL,
   PRIMARY KEY (`definition`),
   INDEX `FK_word_index_idx` (`word_index` ASC),
-  INDEX `FK_chapter_index_idx` (`chapter_index` ASC),
-  CONSTRAINT `FK_definitions_chapter_index`
+  INDEX `fk_chapter_index_idx` (`chapter_index` ASC),
+  CONSTRAINT `fk_definitions_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `FK_definitions_word_index`
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_definitions_word_index`
     FOREIGN KEY (`word_index`)
     REFERENCES `testdb`.`words` (`word_index`)
     ON DELETE CASCADE
