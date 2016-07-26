@@ -19,7 +19,7 @@ class ChapterTableAccess(GeneralDatabaseConnection):
     def get_chapter_by_index(self, index):
         try:
             try:
-                db_obj = self.get_row_by_key_value(table_name, "index", index)
+                db_obj = self.get_row_by_key_value(table_name, "chapter_index", index)
                 return db_obj
 
             except Exception as e:
@@ -44,6 +44,16 @@ class ChapterTableAccess(GeneralDatabaseConnection):
                 db_obj = self.get_row_random_with_limits(table_name, "index", lower, upper)
                 return db_obj
 
+            except Exception as e:
+                print("Error fetching results: " + str(e))
+        except Exception as e:
+            print("Error connecting: " + str(e))
+
+    def get_chapters_total(self):
+        try:
+            try:
+                db_obj = self.get_numrows(table_name)
+                return db_obj['COUNT(*)']
             except Exception as e:
                 print("Error fetching results: " + str(e))
         except Exception as e:

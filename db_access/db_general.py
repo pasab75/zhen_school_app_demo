@@ -237,11 +237,10 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    question = None
-                    sql = "SELECT COUNT(*) FROM %s"
-                    cursor.execute(sql, table)
-                    request = cursor.fetchone()
-                    print(request)
+                    sql = "SELECT COUNT(*) FROM {}".format(table)
+                    cursor.execute(sql)
+                    return cursor.fetchone()
+
 
             except Exception as e:
                 print("Error counting rows " + str(e))

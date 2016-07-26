@@ -6,6 +6,7 @@ import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.QuestLogEntry as QuestLogEntry
 import business_objects.ActivityLogEntry as ActivityLogEntry
+import business_objects.Chapter as Chapter
 import requests
 
 ###DEBUG IMPORTS###
@@ -337,6 +338,50 @@ def start_quest():
         print(ex)
         return abort(500, "Unable to retrieve random question, error: "+str(ex))
 
+
+#########################################################################################
+# DESCRIPTION
+# When the user requests, returns a valid set of quest options
+# to populate the quest selection screen
+#
+# RETURN CASES
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success: Returns the user object and a new set of question parameters
+#
+# TAKES
+# user authentication token string
+#
+# RETURNS
+# json including user and valid quest parameters
+#
+#########################################################################################
+
+
+@app.route('/api/v1/quests/get', methods=['POST'])
+def get_chapters():
+    try:
+        incoming_request = request
+        print(incoming_request)
+        # check authentication
+        user = authenticate_user(request)
+        chapter_list = []
+        if user:
+            total_chapters = Chapter.Chapter().get_number_chapters()
+            for index in range(1, total_chapters+1):
+                new_chapter = Chapter.Chapter()
+                new_chapter.get_chapter_by_index(index)
+                chapter_list.append(new_chapter.get_json())
+            return jsonify({
+                'user': user.get_json(),
+                'chapters': chapter_list
+            })
+        else:
+            return abort(403, "Unable to authenticate user")
+
+    except Exception as ex:
+        print(ex)
+        return abort(500, "Unable to retrieve random question, error: " + str(ex))
 
 #########################################################################################
 # DESCRIPTION
