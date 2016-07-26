@@ -119,7 +119,6 @@ def start_quest():
                 "question": new_question,
                 "user": user.get_json()
             })
-
         else:
             return abort(403, "Unable to authenticate user")
 
@@ -148,25 +147,16 @@ def start_quest():
 
 
 @app.route('/api/v1/quests/get', methods=['POST'])
-def get_chapters():
+def get_quests():
     try:
         incoming_request = request
         print(incoming_request)
         # check authentication
         user = functions.authenticate_user(request)
-        chapter_list = []
         if user:
-            total_chapters = Chapter.Chapter().get_number_chapters()
-            for index in range(1, total_chapters+1):
-                new_chapter = Chapter.Chapter()
-                new_chapter.get_chapter_by_index(index)
-                chapter_list.append(new_chapter.get_json())
-            return jsonify({
-                'user': user.get_json(),
-                'chapters': chapter_list,
-                'time_limits': [0, 5, 10, 30],
-                'number_of_questions': config.number_of_question_choices
-            })
+            response = functions.get_quest_options()
+            return jsonify(response)
+
         else:
             return abort(403, "Unable to authenticate user")
 

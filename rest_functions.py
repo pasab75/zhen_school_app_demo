@@ -5,7 +5,7 @@ import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.Chapter as Chapter
 
-import config as Config
+import config as config
 
 
 #########################################################################################
@@ -30,9 +30,9 @@ import config as Config
 def check_access_token(client_request):
     try:
         token = client_request.json['user_identifier']
-        idinfo = client.verify_id_token(token, Config.WEB_CLIENT_ID)
+        idinfo = client.verify_id_token(token, config.WEB_CLIENT_ID)
         # If multiple clients access the backend server:
-        if idinfo['aud'] not in [Config.ANDROID_CLIENT_ID, Config.IOS_CLIENT_ID, Config.WEB_CLIENT_ID]:
+        if idinfo['aud'] not in [config.ANDROID_CLIENT_ID, config.IOS_CLIENT_ID, config.WEB_CLIENT_ID]:
             raise crypt.AppIdentityError("Unrecognized client.")
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
             raise crypt.AppIdentityError("Wrong issuer.")
@@ -104,26 +104,6 @@ def update_quest_with_client_choices(user, client_choices):
 
 #########################################################################################
 # DESCRIPTION
-# clears the current user's quest
-#
-# RETURN CASES
-# always returns User's json object
-#
-# TAKES
-# user object
-#
-# RETURNS
-# json object from user.jsonify
-#########################################################################################
-
-
-def drop_user_quest(user):
-    user.update_user_quest()
-    user.update_current_user()
-    return user.get_json()
-
-#########################################################################################
-# DESCRIPTION
 # updates the user's quest information when they have chosen a quest to start
 #
 # RETURN CASES
@@ -154,8 +134,8 @@ def update_user_quest(user,
 
         completion_points = 50*number_of_questions
 
-        valid_num_questions = [10, 25, 50]
-        valid_secs_per_question = [30, 10, 5, 0]
+        valid_num_questions = config.number_of_question_choices
+        valid_secs_per_question = config.time_choices
         valid_bool = [True, False]
 
         # TODO: Make this return something that will display an error on the client side
@@ -202,3 +182,52 @@ def update_user_quest(user,
         # TODO: change prints to logger
         print("Error: " + str(ex))
         raise ex
+
+#########################################################################################
+# DESCRIPTION
+# clears the current user's quest
+#
+# RETURN CASES
+# always returns User's json object
+#
+# TAKES
+# user object
+#
+# RETURNS
+# json object from user.jsonify
+#########################################################################################
+
+
+def drop_user_quest(user):
+    user.update_user_quest()
+    user.update_current_user()
+    return user.get_json()
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+def get_quest_options():
+    chapter_list = []
+    total_chapters = Chapter.Chapter().get_number_chapters()
+    for index in range(1, total_chapters + 1):
+        new_chapter = Chapter.Chapter()
+        new_chapter.get_chapter_by_index(index)
+        chapter_list.append(new_chapter.get_json())
+    return {
+        'user': user.get_json(),
+        'chapters': chapter_list,
+        'time_limits': config.number_of_question_choices,
+        'number_of_questions': config.number_of_question_choices
+    }
