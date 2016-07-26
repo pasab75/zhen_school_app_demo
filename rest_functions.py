@@ -41,6 +41,7 @@ def check_access_token(client_request):
     except crypt.AppIdentityError as ex:
         print(ex)
 
+
 def authenticate_user(client_request):
     try:
         user_information = check_access_token(client_request)
@@ -65,12 +66,41 @@ def authenticate_user(client_request):
                     return new_user
                 else:
                     print('something went wrong with returning user')
-        else:
-            raise Exception('failed to authenticate user')
-
+                    return False
     except Exception as ex:
         print(ex)
         raise Exception("Failed to authenticate user")
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+def update_quest_with_client_choices(user, client_choices):
+    request_chapter_index = client_choices['chapter_index']
+    request_seconds_per_question = client_choices['seconds_per_question']
+    request_number_of_questions = client_choices['number_of_questions']
+    request_cumulative = client_choices['cumulative']
+
+    new_question = update_user_quest(
+        user,
+        chapter_index=request_chapter_index,
+        seconds_per_question=request_seconds_per_question,
+        number_of_questions=request_number_of_questions,
+        cumulative=request_cumulative
+    )
+
+    return new_question
 
 #########################################################################################
 # DESCRIPTION

@@ -15,7 +15,7 @@ import business_objects.User as User
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
 app = Flask(__name__, static_url_path='/')
-STATIC_FOLDER = "angular-frontend"
+
 
 @app.before_request
 def before_request():
@@ -32,6 +32,22 @@ def after_request(response):
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
+
+
+@app.route('/', methods=['GET'])
+def hello_world():
+    try:
+        print(request.json)
+        return send_from_directory('', "index.html")
+    except Exception as ex:
+        print(ex)
+        print("Unable to retrieve user.")
+        return abort(500, "Unable to retrieve user. Error: " + str(ex))
+
+
+@app.route('/<path:path>', methods=['GET'])
+def static_file(path):
+    return send_from_directory('', path)
 
 # -------------------------------------------------------------
 # Student client routes
@@ -66,26 +82,9 @@ def get_user():
         else:
             return abort(403, "Unable to authenticate user")
     except Exception as ex:
-        print(ex)
-        print("Unable to retrieve user.")
+        print("Unable to retrieve user:" + str(ex))
         return abort(500, "Unable to retrieve user. Error: "+str(ex))
 
-
-@app.route('/', methods=['GET'])
-def helloworld():
-    try:
-        print(request)
-        return send_from_directory(STATIC_FOLDER, "index.html")
-
-    except Exception as ex:
-        print(ex)
-        print("Unable to retrieve user.")
-        return abort(500, "Unable to retrieve user. Error: " + str(ex))
-
-
-@app.route('/<path:path>', methods=['GET'])
-def static_file(path):
-    return send_from_directory(STATIC_FOLDER, path)
 #########################################################################################
 # DESCRIPTION
 # When the user requests, authenticate them and then serves up a new question
@@ -111,26 +110,13 @@ def start_quest():
     try:
         incoming_request = request
         print(incoming_request)
-        json_obj = request.json
+        client_package = request.json
         # check authentication
         user = functions.authenticate_user(request)
         if user:
-            request_chapter_index = json_obj['chapter_index']
-            request_seconds_per_question = json_obj['seconds_per_question']
-            request_number_of_questions = json_obj['number_of_questions']
-            request_cumulative = json_obj['cumulative']
-
-            response = functions.update_user_quest(
-                user,
-                chapter_index=request_chapter_index,
-                seconds_per_question=request_seconds_per_question,
-                number_of_questions=request_number_of_questions,
-                cumulative=request_cumulative
-            )
-
-            user.update_current_user()
+            new_question = functions.update_quest_with_client_choices(user, client_package)
             return jsonify({
-                "question": response,
+                "question": new_question,
                 "user": user.get_json()
             })
 
@@ -411,8 +397,8 @@ def create_account():
 
 if __name__ == '__main__':
     if config.local:
-        app.run(host='0.0.0.0', port=5000)
+        app.run(host='localhost', port=config.port)
         app.debug = True
     else:
-        app.run(host='0.0.0.0', port=5000)
+        app.run(host=config.host, port=config.port)
         # this allows the API to use the public IP

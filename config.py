@@ -1,6 +1,9 @@
 # put hard coded configuration stuff here instead of scattered around
 
-local = False
+local = True
+
+host = '0.0.0.0'
+port = 5000
 
 ANDROID_CLIENT_ID = 'derpderp'
 IOS_CLIENT_ID = 'derpderp'
@@ -8,19 +11,6 @@ WEB_CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleuserco
 
 STATIC_FOLDER = "angular-frontend"
 
-time_choices = [
-    {
-        'text': 'string',
-        'value': 'int'
-    },
-    {
-        'text': 'string',
-        'value': 'int'
-    },
-    {
-        'text': 'string',
-        'value': 'int'
-    },
-]
+time_choices = [0, 20, 10, 5]
 
 number_of_question_choices = [10, 20, 30, 40, 50]
