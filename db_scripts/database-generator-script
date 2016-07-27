@@ -26,14 +26,14 @@ DROP TABLE IF EXISTS `testdb`.`activity_log` ;
 CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `user_id` CHAR(21) NOT NULL,
   `datetime` DATETIME NOT NULL,
-  `correct` TINYINT(1) NULL DEFAULT NULL,
+  `correct` TINYINT(1) NOT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
-  `number_of_questions` INT(11) NULL DEFAULT NULL,
+  `number_of_questions` INT(11) NOT NULL,
   `seconds_per_question` INT(11) NULL DEFAULT NULL,
-  `datetime_quest_started` DATETIME NULL DEFAULT NULL,
+  `datetime_quest_started` DATETIME NOT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
-  `current_word_index` INT(11) NULL DEFAULT NULL)
+  `current_word_index` INT(11) NOT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -132,8 +132,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
   `longitude` DOUBLE NULL DEFAULT NULL,
   `chapter_index` INT(11) NULL DEFAULT NULL,
   `cumulative` TINYINT(1) NOT NULL,
-  `seconds_per_question` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`))
+  `seconds_per_question` INT(11) NULL DEFAULT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -168,12 +167,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `class_code` VARCHAR(10) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
-  INDEX `fk_users_class_code_idx` (`class_code` ASC),
-  CONSTRAINT `fk_users_class_code`
-    FOREIGN KEY (`class_code`)
-    REFERENCES `testdb`.`classrooms` (`class_code`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_users_class_code_idx` (`class_code` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
