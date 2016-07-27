@@ -103,7 +103,7 @@ class User:
             self.calculate_level()
 
     def calculate_level(self):
-        self.set_current_level(math.floor(self.get_current_points() / 1000))
+        self.set_current_level(1 + math.floor(self.get_current_points() / 1000))
 
     def update_quest_progress(self):
         self.set_current_progress(self.get_current_progress()+1)
