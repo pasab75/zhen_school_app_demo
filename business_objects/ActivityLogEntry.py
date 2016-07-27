@@ -79,7 +79,7 @@ class ActivityLogEntry:
     def save_new(self):
         try:
             db_activity = db_access.ActivityLogTableAccess()
-            db_activity.save_new_activity(self)
+            db_activity.save_new_activity_from_obj(self)
             db_activity.close_connection()
             return True
         except Exception as e:

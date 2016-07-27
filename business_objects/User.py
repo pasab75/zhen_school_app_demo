@@ -3,6 +3,9 @@ import math
 
 import db_access.db_users as db_access
 
+max_multiplier = 5
+fraction_needed_for_quest_rewards = .75
+
 
 class User:
     _user_id = None
@@ -80,20 +83,23 @@ class User:
         else:
             return False
 
-    def update_multiplier(self, iscorrect):
-        if iscorrect:
-            self.set_current_multiplier(self.get_current_multiplier()+1)
+    def handle_question_rewards(self, correct):
+        if correct:
+            if self.get_current_multiplier() < max_multiplier:
+                self.set_current_multiplier(self.get_current_multiplier() + 1)
+            self.add_current_points(self.get_points_per_question() * self.get_current_multiplier())
+            self.calculate_level()
+            self.set_number_correct(self.get_number_correct() + 1)
         else:
             self.set_current_multiplier(1)
 
-    def give_question_rewards(self):
-        self.add_current_points(self.get_points_per_question() * self.get_current_multiplier())
-        self.set_current_level(math.floor(self.get_current_points() / 1000))
-        self.set_number_correct(self.get_number_correct() + 1)
-
-    def give_quest_rewards(self):
-        if self._number_correct/self._number_of_questions >= .8:
+    def handle_quest_rewards(self):
+        if self._number_correct/self._number_of_questions >= fraction_needed_for_quest_rewards:
             self.add_current_points(self._completion_points)
+            self.calculate_level()
+
+    def calculate_level(self):
+        self.set_current_level(math.floor(self.get_current_points() / 1000))
 
     def update_quest_progress(self):
         self.set_current_progress(self.get_current_progress()+1)

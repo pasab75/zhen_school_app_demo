@@ -4,6 +4,8 @@ import datetime
 import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.Chapter as Chapter
+import business_objects.ActivityLogEntry as ActivityLogEntry
+import business_objects.QuestLogEntry as QuestLogEntry
 
 import config as config
 
@@ -48,25 +50,12 @@ def authenticate_user(client_request):
         if user_information:
             print(user_information)
             user_id = str(user_information['sub'])
-            user_first_name = user_information['given_name']
-            user_last_name = user_information['family_name']
-            user_email = user_information['email']
             user = User.User().generate_from_id(user_id)
             if user:
                 return user
             else:
-                print('user does not exist in database, adding new user')
-                user = User.User(user_id=user_id,
-                                 first_name=user_first_name,
-                                 last_name=user_last_name,
-                                 e_mail=user_email,
-                                 paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
-                new_user = user.save_new()
-                if new_user:
-                    return new_user
-                else:
-                    print('something went wrong with returning user')
-                    return False
+                print('Failed to authenticate user')
+                return False
     except Exception as ex:
         print(ex)
         raise Exception("Failed to authenticate user")
@@ -231,3 +220,72 @@ def get_quest_options(user):
         'time_limits': config.number_of_question_choices,
         'number_of_questions': config.number_of_question_choices
     }
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+def start_next_question(user):
+    chapter_index = user.get_chapter_index()
+    new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index)
+    question_json = new_question.get_json()
+    user.start_new_question(new_question.get_word_index())
+    user.update_current_user()
+    return question_json
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+def make_activity_log_entry(user, correct):
+    try:
+        new_activity = ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct)
+        new_activity.save_new()
+    except Exception as ex:
+        print(ex)
+        print("failed too make activity log entry, not the end of the world, but no log entry made")
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+def make_quest_log_entry(user):
+    try:
+        # TODO: add Lat and Lon
+        new_quest_entry = QuestLogEntry.QuestLogEntry().generate_from_user(user)
+        new_quest_entry.save_new()
+    except Exception as ex:
+        print(ex)
+        print("failed too make quest log entry, not the end of the world, but no log entry made")

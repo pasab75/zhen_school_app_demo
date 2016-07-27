@@ -302,12 +302,12 @@ def submit_question():
             user.update_multiplier(correct)
 
             if correct:
-                user.give_question_rewards()
+                user.handle_question_rewards()
 
             quest_complete = user.is_quest_complete()
 
             if quest_complete:
-                user.give_quest_rewards()
+                user.handle_quest_rewards()
                 question_json = None
                 user.set_current_multiplier(1)
                 try:

@@ -5,10 +5,9 @@ import requests
 import config as config
 import rest_functions as functions
 
-import business_objects.ActivityLogEntry as ActivityLogEntry
+
 import business_objects.Chapter as Chapter
 import business_objects.DefinitionQuestion as DefQuestion
-import business_objects.QuestLogEntry as QuestLogEntry
 import business_objects.User as User
 
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
@@ -156,7 +155,6 @@ def get_quests():
         if user:
             response = functions.get_quest_options(user)
             return jsonify(response)
-
         else:
             return abort(403, "Unable to authenticate user")
 
@@ -231,13 +229,10 @@ def resume_quest():
         # check authentication
         user = functions.authenticate_user(request)
         if user:
-            new_question = DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
-            response = new_question.get_json()
-            user.set_datetime_question_started(datetime.datetime.now())
-            user.update_current_user()
+            question_json = functions.start_next_question(user)
             return jsonify({
-                "question": response,
-                "user": user.get_json()
+                'user': user.get_json(),
+                'question': question_json
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -281,42 +276,28 @@ def submit_question():
                 })
 
             user_answer = (request.json['user_answer'])
-            answer_index = user.get_current_word_index()
-
+            correct_answer = user.get_current_word_index()
             correct = user.check_answer(user_answer)
 
-            new_activity = ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct)
-            new_activity.save_new()
-
+            functions.make_activity_log_entry(user, correct)
             user.update_quest_progress()
-            user.update_multiplier(correct)
-
-            if correct:
-                user.give_question_rewards()
-
+            user.handle_question_rewards(correct)
             quest_complete = user.is_quest_complete()
 
             if quest_complete:
-                user.give_quest_rewards()
+                functions.make_quest_log_entry(user)
+                user.handle_quest_rewards()
                 question_json = None
                 user.set_current_multiplier(1)
-                try:
-                    # TODO: add Lat and Lon
-                    new_quest_entry = QuestLogEntry.QuestLogEntry().generate_from_user(user)
-                    new_quest_entry.save_new()
-                except Exception as ex:
-                    print(ex)
-                    print("failed too make log entry, not the end of the world, but no log entry made")
+                user.update_current_user()
+
             else:
-                current_chapter = user.get_chapter_index()
-                question = DefQuestion.DefinitionQuestion().make_from_chapter_index(current_chapter)
-                user.start_new_question(question.get_index())
-                question_json = question.get_json()
-            user.update_current_user()
+                question_json = functions.start_next_question(user)
+
             return jsonify({
                 "user": user.get_json(),
                 "correct": correct,
-                "correct_answer": answer_index,
+                "correct_answer": correct_answer,
                 "user_answer": user_answer,
                 "question": question_json,
                 "quest_complete": quest_complete
@@ -350,29 +331,39 @@ def create_account():
     try:
         incoming_request = request
         print(incoming_request)
-        json = request.json
-        token = json['user_identifier']
-        r = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
-        user_id = str(r.json()['sub'])
-        user_email = str(r.json()['email'])
-        print(user_id)
+        client_request = request.json
 
-        user = User.User().generate_from_id(user_id)
+        user_information = functions.check_access_token(client_request)
+        if user_information:
+            print(user_information)
+            user_id = str(user_information['sub'])
 
-        if user:
-            return jsonify(user_exists='true', created="false")
-        else:
-            print('user does not exist')
+            user = User.User().generate_from_id(user_id)
+            if user:
+                return abort(500, "Error: user already exists.")
+
+            user_first_name = user_information['given_name']
+            user_last_name = user_information['family_name']
+            user_email = user_information['email']
+
+            print('Creating new user account')
             user = User.User(user_id=user_id,
-                             first_name=json['first_name'],
-                             last_name=json['last_name'],
+                             first_name=user_first_name,
+                             last_name=user_last_name,
                              e_mail=user_email,
                              paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
-            success = user.save_new()
-            if success:
-                return jsonify(user_exists='false', created="true")
+            new_user = user.save_new()
+            if new_user:
+                return jsonify({
+                    'user': new_user.get_json(),
+                    'user_exists': False,
+                    'user_created': True
+                })
             else:
-                return jsonify(user_exists='false', created="false", error="swallowed, contact an admin, my bad")
+                return jsonify({
+                    'user_exists': False,
+                    'user_created': False
+                })
     except Exception as ex:
         print(ex)
         print('Invalid token')
