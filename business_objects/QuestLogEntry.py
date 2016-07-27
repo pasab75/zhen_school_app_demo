@@ -1,4 +1,5 @@
 import db_access.db_quest_log as db_access
+import config as config
 import datetime
 
 
@@ -13,9 +14,10 @@ class QuestLogEntry:
     _chapter_index = None
     _cumulative = None
     _seconds_per_question = None
+    _reward_earned = None
 
     def __init__(self, user_id=None, number_of_questions=10, number_correct=0, chapter_index=None, latitude=None,
-                 longitude=None, cumulative=None, seconds_per_question=0):
+                 longitude=None, cumulative=None, seconds_per_question=0, reward_earned=None):
         self._user_id = user_id
         self._number_correct = number_correct
         self._number_of_questions = number_of_questions
@@ -24,6 +26,7 @@ class QuestLogEntry:
         self._chapter_index = chapter_index
         self._cumulative = cumulative
         self._seconds_per_question = seconds_per_question
+        self._reward_earned =reward_earned
 
     def generate_from_user(self, user, quest_end_time=datetime.datetime.now(), user_current_lat=None, user_current_lon=None):
         self._user_id = user.get_user_id()
@@ -36,6 +39,8 @@ class QuestLogEntry:
         self._quest_complete_datetime = quest_end_time
         self._lat = user_current_lat
         self._lon = user_current_lon
+        if self._number_correct/self._number_of_questions >= user.fraction_needed_for_quest_rewards:
+            self._reward_earned = True
         return self
 
     def get_json(self):

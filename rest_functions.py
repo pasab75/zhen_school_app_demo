@@ -127,7 +127,6 @@ def update_user_quest(user,
         valid_secs_per_question = config.time_choices
         valid_bool = [True, False]
 
-        # TODO: Make this return something that will display an error on the client side
         if number_of_questions not in valid_num_questions or seconds_per_question not in valid_secs_per_question or cumulative not in valid_bool:
             return False
 

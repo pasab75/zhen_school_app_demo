@@ -132,7 +132,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
   `longitude` DOUBLE NULL DEFAULT NULL,
   `chapter_index` INT(11) NULL DEFAULT NULL,
   `cumulative` TINYINT(1) NOT NULL,
-  `seconds_per_question` INT(11) NULL DEFAULT NULL)
+  `seconds_per_question` INT(11) NULL DEFAULT NULL,
+  `reward_earned` TINYINT(1) NULL DEFAULT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

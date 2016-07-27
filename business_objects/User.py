@@ -3,8 +3,8 @@ import math
 
 import db_access.db_users as db_access
 
-max_multiplier = 5
-fraction_needed_for_quest_rewards = .75
+
+
 
 
 class User:
@@ -30,6 +30,9 @@ class User:
     _last_active = None
     _paid_through = None
     _class_code = None
+
+    fraction_needed_for_quest_rewards = .75
+    max_multiplier = 5
 
     def __init__(self, user_id=None,
                  first_name=None,
@@ -85,18 +88,20 @@ class User:
 
     def handle_question_rewards(self, correct):
         if correct:
-            if self.get_current_multiplier() < max_multiplier:
+            if self.get_current_multiplier() < self.max_multiplier:
                 self.set_current_multiplier(self.get_current_multiplier() + 1)
             self.add_current_points(self.get_points_per_question() * self.get_current_multiplier())
             self.calculate_level()
+            self.set_points_this_level()
             self.set_number_correct(self.get_number_correct() + 1)
         else:
             self.set_current_multiplier(1)
 
     def handle_quest_rewards(self):
-        if self._number_correct/self._number_of_questions >= fraction_needed_for_quest_rewards:
+        if self._number_correct/self._number_of_questions >= self.fraction_needed_for_quest_rewards:
             self.add_current_points(self._completion_points)
             self.calculate_level()
+            self.set_points_this_level()
 
     def calculate_level(self):
         self.set_current_level(math.floor(self.get_current_points() / 1000))
@@ -161,9 +166,9 @@ class User:
             "class_code": self._class_code
         }
 
-    def get_points_this_level(self):
+    def set_points_this_level(self):
         if self._current_lvl != 1:
-            return self._current_points - self._current_lvl*1000
+            self._current_points -= self._current_lvl*1000
 
     def set_from_database(self, user):
         self._user_id = user['user_id']
