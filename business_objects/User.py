@@ -92,7 +92,7 @@ class User:
                 self.set_current_multiplier(self.get_current_multiplier() + 1)
             self.add_current_points(self.get_points_per_question() * self.get_current_multiplier())
             self.calculate_level()
-            self.set_points_this_level()
+            self.get_points_this_level()
             self.set_number_correct(self.get_number_correct() + 1)
         else:
             self.set_current_multiplier(1)
@@ -101,7 +101,6 @@ class User:
         if self._number_correct/self._number_of_questions >= self.fraction_needed_for_quest_rewards:
             self.add_current_points(self._completion_points)
             self.calculate_level()
-            self.set_points_this_level()
 
     def calculate_level(self):
         self.set_current_level(math.floor(self.get_current_points() / 1000))
@@ -166,9 +165,8 @@ class User:
             "class_code": self._class_code
         }
 
-    def set_points_this_level(self):
-        if self._current_lvl != 1:
-            self._current_points -= self._current_lvl*1000
+    def get_points_this_level(self):
+        return self._current_points - (self._current_lvl-1)*1000
 
     def set_from_database(self, user):
         self._user_id = user['user_id']
