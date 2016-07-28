@@ -19,7 +19,7 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
     def get_definition_by_word_index(self, index):
         try:
             try:
-                db_obj = self.get_row_by_key_value(table_name, "word_index", index)
+                db_obj = self.get_row_random_by_key(table_name, "word_index", index)
                 return db_obj
 
             except Exception as e:
@@ -37,13 +37,12 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    def get_definition_random_by_chapter(self, chapter, number_wanted=1):
+    def get_definition_random_by_chapter(self, chapter):
         try:
             try:
                 db_obj = self.get_row_random_by_key(table_name,
                                                     "chapter",
-                                                    chapter.get_chapter_name(),
-                                                    number=number_wanted)
+                                                    chapter.get_chapter_name())
                 return db_obj
 
             except Exception as e:
@@ -55,18 +54,6 @@ class DefinitionTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 db_obj = self.get_row_random_by_key(table_name, "chapter_index", chapter_index)
-                return db_obj[0]
-
-            except Exception as e:
-                print("Error fetching results: " + str(e))
-        except Exception as e:
-            print("Error connecting: " + str(e))
-
-    def get_definition_list_random_by_chapter_index(self, chapter_index, number_wanted=6):
-        try:
-            try:
-                db_obj = self.get_row_random_by_key(table_name, "chapter_index", chapter_index,
-                                                    number=number_wanted)
                 return db_obj
 
             except Exception as e:

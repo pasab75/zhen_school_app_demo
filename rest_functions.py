@@ -48,7 +48,7 @@ def authenticate_user(client_request):
     try:
         user_information = check_access_token(client_request)
         if user_information:
-            print(user_information)
+            # print(user_information)
             user_id = str(user_information['sub'])
             user = User.User().generate_from_id(user_id)
             if user:
@@ -153,7 +153,7 @@ def update_user_quest(user,
             completion_points += 10*question_multiplier
 
         # TODO: GO Get a word/definition question
-        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index)
+        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index, cumulative=cumulative)
 
         user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
                                datetime_quest_started=datetime.datetime.now(),
@@ -237,7 +237,12 @@ def get_quest_options(user):
 
 def start_next_question(user):
     chapter_index = user.get_chapter_index()
-    new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index)
+
+    new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(
+        chapter_index,
+        cumulative=user.get_cumulative()
+    )
+
     question_json = new_question.get_json()
     user.start_new_question(new_question.get_word_index())
     user.update_current_user()

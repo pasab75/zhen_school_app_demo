@@ -34,10 +34,10 @@ class WordTableAccess(GeneralDatabaseConnection):
         except Exception as e:
             print("Error connecting: " + str(e))
 
-    def get_word_random_by_chapter(self, chapter, number_wanted=1):
+    def get_word_random_by_chapter(self, chapter):
         try:
             try:
-                db_obj = self.get_row_random_by_key(table_name, "chapter", chapter.get_chapter_name(), number=number_wanted)
+                db_obj = self.get_row_random_by_key(table_name, "chapter", chapter.get_chapter_name())
                 return db_obj
 
             except Exception as e:
@@ -49,7 +49,7 @@ class WordTableAccess(GeneralDatabaseConnection):
         try:
             try:
                 db_obj = self.get_row_random_by_key(table_name, "chapter_index", chapter_index)
-                return db_obj[0]
+                return db_obj
 
             except Exception as e:
                 print("Error fetching results: " + str(e))
@@ -59,8 +59,7 @@ class WordTableAccess(GeneralDatabaseConnection):
     def get_word_list_random_by_chapter_index(self, chapter_index, number_wanted=6):
         try:
             try:
-                db_obj = self.get_row_random_by_key(table_name, "chapter_index", chapter_index,
-                                                    number=number_wanted)
+                db_obj = self.get_row_random_by_key(table_name, "chapter_index", chapter_index)
                 return db_obj
 
             except Exception as e:

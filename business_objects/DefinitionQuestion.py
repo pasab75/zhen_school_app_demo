@@ -1,10 +1,8 @@
 import random
-from enum import Enum
 
 import business_objects.Word as Word
 import business_objects.Definition as Definition
 
-import db_access.db_definitions as db_access_definitions
 import db_access.db_words as db_access_words
 
 
@@ -19,10 +17,12 @@ class DefinitionQuestion:
 
     def __init__(self,
                  word_index=None,
+                 word=None,
                  definition=None,
                  chapter_index=None,
                  question_type=None):
         self._word_index = word_index
+        self._word = word
         self._definition = definition
         self._chapter_index = chapter_index
         self._question_type = question_type
@@ -34,7 +34,7 @@ class DefinitionQuestion:
         random.shuffle(self._words)
         random.shuffle(self._definitions)
 
-        if self._question_type == 0:
+        if self._question_type == 1:
             words = []
             for word in self._words:
                 temp_word = word.get_json_min()
@@ -57,33 +57,52 @@ class DefinitionQuestion:
                 "question_type": 1
             }
 
-    def make_from_chapter_index(self, chapter_index, question_type=None):
+    def make_from_chapter_index(self, chapter_index, question_type=None, cumulative=False):
         self._question_type = question_type
         self._chapter_index = chapter_index
         self._words = []
         self._definitions = []
 
+        # if no question type is requested, flip a coin to determine the question type
         if not question_type:
             question_type = random.randint(0, 1)
             self._question_type = question_type
 
-        if question_type == 0:
-            db_word = db_access_words.WordTableAccess()
-            raw_list = db_word.get_word_list_random_by_chapter_index(chapter_index)
-            for database_word in raw_list:
-                new_word = Word.Word()
-                new_word.set_from_database(database_word)
-                self._words.append(new_word)
+        if cumulative:
+            chapter_lower_limit = 1
+        else:
+            chapter_lower_limit = chapter_index
+
+        db_connection = db_access_words.WordTableAccess()
+        raw_list = db_connection.get_row_random_with_limits(
+            'words',
+            'chapter_index',
+            chapter_lower_limit,
+            chapter_index,
+            6
+        )
+        db_connection.close_connection()
+
+        if question_type == 1:
+            for word in raw_list:
+                word_obj = Word.Word()
+                word_obj.set_from_database(word)
+
+                self._words.append(word_obj)
+
             self._word = self._words[0]
             self._definition = Definition.Definition().get_definition_random_from_word(self._word)
 
-        elif question_type == 1:
-            db_def = db_access_definitions.DefinitionTableAccess()
-            raw_list = db_def.get_definition_list_random_by_chapter_index(chapter_index)
-            for database_definition in raw_list:
-                new_definition = Definition.Definition()
-                new_definition.set_from_database(database_definition)
-                self._definitions.append(new_definition)
+        elif question_type == 0:
+            for word in raw_list:
+                word_obj = Word.Word()
+                word_obj.set_from_database(word)
+
+                definition_obj = Definition.Definition()
+                definition_obj.generate_random_from_word(word_obj)
+
+                self._definitions.append(definition_obj)
+
             self._definition = self._definitions[0]
             self._word = Word.Word().get_word_from_definition(self._definition)
 

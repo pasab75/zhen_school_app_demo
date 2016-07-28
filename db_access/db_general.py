@@ -77,14 +77,13 @@ class GeneralDatabaseConnection:
             print("Error connecting: " + str(e))
             return False
 
-    def get_row_random_by_key(self, table, key_to_use, key_value, number=1):
+    def get_row_random_by_key(self, table, key_to_use, key_value):
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} WHERE {} = {} ORDER BY RAND() LIMIT {}".format(table, key_to_use, key_value,
-                                                                                           number)
+                    sql = "SELECT * FROM {} WHERE {} = {} ORDER BY RAND() LIMIT 1".format(table, key_to_use, key_value)
                     cursor.execute(sql)
-                    return cursor.fetchall()
+                    return cursor.fetchone()
 
             except Exception as ex:
                 print("error adding row to table :" + str(ex))

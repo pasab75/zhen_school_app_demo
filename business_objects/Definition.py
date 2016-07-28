@@ -1,4 +1,3 @@
-from flask import jsonify
 import db_access.db_definitions as db_access
 
 
@@ -46,18 +45,9 @@ class Definition:
         self.generate_definition_random_from_chapter_index(index)
         return self
 
-    def get_definition_list_random_by_chapter_index(self, index, number_of_questions=6):
-        self.generate_definition_list_random_from_chapter_index(index, number_of_questions)
-        return self
-
     def generate_definition_random_from_chapter_index(self, index):
         db_def = db_access.DefinitionTableAccess()
         self.set_from_database(db_def.get_definition_random_by_chapter_index(index))
-        db_def.close_connection()
-
-    def generate_definition_list_random_from_chapter_index(self, index, number_of_questions):
-        db_def = db_access.DefinitionTableAccess()
-        self.set_from_database(db_def.get_definition_list_random_by_chapter_index(index, number_of_questions))
         db_def.close_connection()
 
     def get_definition_random_by_chapter(self, chapter):

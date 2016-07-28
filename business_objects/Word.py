@@ -71,10 +71,6 @@ class Word:
         self.generate_word_random_by_chapter_index(index)
         return self
 
-    def get_word_list_random_by_chapter_index(self, index, number_of_words=6):
-        self.generate_word_list_random_by_chapter_index(index, number_of_words)
-        return self
-
     def get_word_by_word_index(self, index):
         db_word = db_access.WordTableAccess()
         self.set_from_database(db_word.get_word_by_index(index))
@@ -88,11 +84,6 @@ class Word:
     def generate_word_random_by_chapter_index(self, index):
         db_word = db_access.WordTableAccess()
         self.set_from_database(db_word.get_word_random_by_chapter_index(index))
-        db_word.close_connection()
-
-    def generate_word_list_random_by_chapter_index(self, index, number_of_words):
-        db_word = db_access.WordTableAccess()
-        self.set_from_database(db_word.get_word_list_random_by_chapter_index(index, number_of_words))
         db_word.close_connection()
 
     def get_word(self):
