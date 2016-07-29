@@ -1,13 +1,10 @@
 from flask import Flask, jsonify, request, abort, send_from_directory
+
 import datetime
-import requests
 
 import config as config
 import rest_functions as functions
 
-
-import business_objects.Chapter as Chapter
-import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.User as User
 
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
@@ -109,11 +106,10 @@ def start_quest():
     try:
         incoming_request = request
         print(incoming_request)
-        client_package = request.json
         # check authentication
         user = functions.authenticate_user(request)
         if user:
-            new_question = functions.update_quest_with_client_choices(user, client_package)
+            new_question = functions.update_quest_with_client_choices(user, request)
             return jsonify({
                 "question": new_question,
                 "user": user.get_json()
@@ -279,13 +275,13 @@ def submit_question():
             correct_answer = user.get_current_word_index()
             correct = user.check_answer(user_answer)
 
-            functions.make_activity_log_entry(user, correct)
+            functions.make_activity_log_entry(user, correct, request)
             user.update_quest_progress()
             user.handle_question_rewards(correct)
             quest_complete = user.is_quest_complete()
 
             if quest_complete:
-                functions.make_quest_log_entry(user)
+                functions.make_quest_log_entry(user, request)
                 user.handle_quest_rewards()
                 question_json = None
                 user.set_current_multiplier(1)

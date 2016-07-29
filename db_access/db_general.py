@@ -182,7 +182,7 @@ class GeneralDatabaseConnection:
                     keystring = '=%s, '.join(dictionary_to_add.keys()) + '=%s'
 
                     sql = "UPDATE %s SET %s WHERE %s=%s" % (table, keystring, primary, searchvalue)
-
+                    print(cursor.mogrify(sql, list(dictionary_to_add.values())))
                     cursor.execute(sql, list(dictionary_to_add.values()))
 
                     return True

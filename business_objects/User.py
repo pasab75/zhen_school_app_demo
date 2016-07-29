@@ -136,7 +136,8 @@ class User:
             "number_correct": self._number_correct,
             "last_active": self._last_active,
             "paid_through": self._paid_through,
-            "class_code": self._class_code
+            "class_code": self._class_code,
+            "datetime_question_started": self._datetime_question_started
         }
 
     # change to actual json like database object
@@ -162,7 +163,8 @@ class User:
             "last_active": self._last_active,
             "paid_through": self._paid_through,
             "points_this_level": self.get_points_this_level(),
-            "class_code": self._class_code
+            "class_code": self._class_code,
+            "datetime_question_started": self._datetime_question_started
         }
 
     def get_points_this_level(self):
@@ -192,7 +194,7 @@ class User:
         self._paid_through = user['paid_through']
         self._class_code = user['class_code']
 
-    def update_user_quest(self, chapter_index=None, current_progress=None, datetime_quest_started=None,
+    def update_user_quest(self, chapter_index=None, current_progress=None,
                           current_word_index=None, number_correct=None, completion_points=None,
                           seconds_per_question=None, points_per_question=None, number_of_questions=None,
                           cumulative=None, datetime_question_started=None):
@@ -202,7 +204,7 @@ class User:
         self._points_per_question = points_per_question
         self._seconds_per_question = seconds_per_question
         self._completion_points = completion_points
-        self._datetime_quest_started = datetime_quest_started
+        self._datetime_quest_started = datetime.datetime.now()
         self._datetime_question_started = datetime_question_started
         self._current_word_index = current_word_index
         self._current_progress = current_progress
@@ -272,11 +274,11 @@ class User:
     def get_email_address(self):
         return self._e_mail
 
-    def set_email_address(self, email_addr):
-        self._e_mail = email_addr
+    def set_email_address(self, email):
+        self._e_mail = email
 
     def set_datetime_question_started(self):
-        self._datetime_question_started = datetime.datetime.now
+        self._datetime_question_started = datetime.datetime.now()
 
     def get_datetime_question_started(self):
         return self._datetime_question_started

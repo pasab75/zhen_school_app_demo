@@ -12,10 +12,15 @@ class ActivityLogEntry:
     _datetime_quest_started = None
     _datetime_question_started = None
     _current_word_index = None
+    _ip_address = None
+    _device_type = None
+    _device_family = None
+    _device_model = None
 
     def __init__(self, user_id=None, correct=None, number_of_questions=None, date_time=datetime.datetime.now(),
                  datetime_quest_started=datetime.datetime.now(), seconds_per_questions=None, latitude=None, longitude=None,
-                 datetime_question_started=datetime.datetime.now(), current_word_index=None):
+                 datetime_question_started=datetime.datetime.now(), current_word_index=None, ip_address=None,
+                 device_type=None, device_family=None, device_model=None):
         self._user_id = user_id
         self._datetime = date_time
         self._correct = correct
@@ -26,6 +31,10 @@ class ActivityLogEntry:
         self._datetime_quest_started = datetime_quest_started
         self._current_word_index = current_word_index
         self._datetime_question_started = datetime_question_started
+        self._ip_address = ip_address
+        self._device_family = device_family
+        self._device_model = device_model
+        self._device_type = device_type
 
     def set_from_database(self, db_quest_log_entry):
         self._user_id = db_quest_log_entry['user_id']
@@ -37,10 +46,22 @@ class ActivityLogEntry:
         self._datetime_quest_started = db_quest_log_entry['datetime_quest_started']
         self._current_word_index = db_quest_log_entry['current_word_index']
         self._datetime_question_started = db_quest_log_entry['datetime_question_started']
+        self._ip_address = db_quest_log_entry['ip_address']
+        self._device_type = db_quest_log_entry['device_type']
+        self._device_model = db_quest_log_entry['device_model']
+        self._device_family = db_quest_log_entry['device_family']
 
-    def generate_from_user(self, user, correct, activity_time=datetime.datetime.now(), user_current_lat=None, user_current_lon=None):
+    def generate_from_user(
+            self,
+            user,
+            correct,
+            ip_address,
+            user_agent,
+            user_current_lat=None,
+            user_current_lon=None,
+    ):
         self._user_id = user.get_user_id()
-        self._datetime = activity_time
+        self._datetime = datetime.datetime.now()
         self._correct = correct
         self._latitude = user_current_lat
         self._longitude = user_current_lon
@@ -48,6 +69,15 @@ class ActivityLogEntry:
         self._datetime_quest_started = user.get_datetime_quest_started()
         self._current_word_index = user.get_current_word_index()
         self._datetime_question_started = user.get_datetime_question_started()
+        self._ip_address = ip_address
+        if user_agent.is_mobile:
+            self._device_type = 0
+        elif user_agent.is_tablet:
+            self._device_type = 1
+        elif user_agent.is_pc:
+            self._device_type = 2
+        self._device_family = user_agent.device.family
+        self._device_model = user_agent.device.model
         return self
 
     def get_json(self):
@@ -60,7 +90,11 @@ class ActivityLogEntry:
             'number_of_questions': self._number_of_questions,
             'datetime_quest_started': self._datetime_quest_started,
             'current_word_index': self._current_word_index,
-            'datetime_question_started': self._datetime_question_started
+            'datetime_question_started': self._datetime_question_started,
+            'ip_address': self._ip_address,
+            "device_type": self._device_type,
+            "device_family": self._device_family,
+            "device_model": self._device_model
         }
 
     def get_database_format(self):
@@ -73,7 +107,11 @@ class ActivityLogEntry:
             "number_of_questions": self._number_of_questions,
             "datetime_quest_started": self._datetime_quest_started,
             "current_word_index": self._current_word_index,
-            "datetime_question_started": self._datetime_question_started
+            "datetime_question_started": self._datetime_question_started,
+            "ip_address": self._ip_address,
+            "device_type": self._device_type,
+            "device_family": self._device_family,
+            "device_model": self._device_model
         }
 
     def save_new(self):

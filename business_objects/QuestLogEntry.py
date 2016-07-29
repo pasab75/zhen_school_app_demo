@@ -1,5 +1,4 @@
 import db_access.db_quest_log as db_access
-import config as config
 import datetime
 
 
@@ -15,9 +14,14 @@ class QuestLogEntry:
     _cumulative = None
     _seconds_per_question = None
     _reward_earned = None
+    _ip_address = None
+    _device_type = None
+    _device_family = None
+    _device_model = None
 
     def __init__(self, user_id=None, number_of_questions=10, number_correct=0, chapter_index=None, latitude=None,
-                 longitude=None, cumulative=None, seconds_per_question=0, reward_earned=None):
+                 longitude=None, cumulative=None, seconds_per_question=0, reward_earned=None, ip_address=None,
+                 device_type=None, device_family=None, device_model=None):
         self._user_id = user_id
         self._number_correct = number_correct
         self._number_of_questions = number_of_questions
@@ -26,9 +30,13 @@ class QuestLogEntry:
         self._chapter_index = chapter_index
         self._cumulative = cumulative
         self._seconds_per_question = seconds_per_question
-        self._reward_earned =reward_earned
+        self._reward_earned = reward_earned
+        self._device_family = device_family
+        self._device_model = device_model
+        self._device_type = device_type
+        self._ip_address = ip_address
 
-    def generate_from_user(self, user, quest_end_time=datetime.datetime.now(), user_current_lat=None, user_current_lon=None):
+    def generate_from_user(self, user, ip_address, user_agent, user_current_lat=None, user_current_lon=None):
         self._user_id = user.get_user_id()
         self._number_correct = user.get_number_correct()
         self._quest_start_datetime = user.get_datetime_quest_started()
@@ -36,9 +44,18 @@ class QuestLogEntry:
         self._cumulative = user.get_cumulative()
         self._number_of_questions = user.get_number_of_questions()
         self._seconds_per_question = user.get_seconds_per_question()
-        self._quest_complete_datetime = quest_end_time
+        self._quest_complete_datetime = datetime.datetime.now()
         self._lat = user_current_lat
         self._lon = user_current_lon
+        self._ip_address = ip_address
+        if user_agent.is_mobile:
+            self._device_type = 0
+        elif user_agent.is_tablet:
+            self._device_type = 1
+        elif user_agent.is_pc:
+            self._device_type = 2
+        self._device_family = user_agent.device.family
+        self._device_model = user_agent.device.model
         if self._number_correct/self._number_of_questions >= user.fraction_needed_for_quest_rewards:
             self._reward_earned = True
         return self
@@ -54,7 +71,11 @@ class QuestLogEntry:
             "longitude": self._lon,
             "chapter_index": self._chapter_index,
             "cumulative": self._cumulative,
-            "seconds_per_question": self._seconds_per_question
+            "seconds_per_question": self._seconds_per_question,
+            "device_type": self._device_type,
+            "device_family": self._device_family,
+            "device_model": self._device_model,
+            'ip_address': self._ip_address,
         }
 
     def set_from_database(self, db_quest_log_entry):
@@ -68,6 +89,10 @@ class QuestLogEntry:
         self._cumulative = db_quest_log_entry['cumulative']
         self._number_of_questions = db_quest_log_entry['number_of_questions']
         self._seconds_per_question = db_quest_log_entry['seconds_per_question']
+        self._device_type = db_quest_log_entry['device_type']
+        self._device_model = db_quest_log_entry['device_model']
+        self._device_family = db_quest_log_entry['device_family']
+        self._ip_address = db_quest_log_entry['ip_address']
 
     def get_database_format(self):
         return {
@@ -80,7 +105,11 @@ class QuestLogEntry:
             "longitude": self._lon,
             "chapter_index": self._chapter_index,
             "cumulative": self._cumulative,
-            "seconds_per_question": self._seconds_per_question
+            "seconds_per_question": self._seconds_per_question,
+            "device_type": self._device_type,
+            "device_family": self._device_family,
+            "device_model": self._device_model,
+            'ip_address': self._ip_address,
         }
         
     # only call this if you're sure this doesn't exist in the db already

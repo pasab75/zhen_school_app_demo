@@ -33,7 +33,11 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `seconds_per_question` INT(11) NULL DEFAULT NULL,
   `datetime_quest_started` DATETIME NOT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
-  `current_word_index` INT(11) NOT NULL)
+  `current_word_index` INT(11) NOT NULL,
+  `ip_address` CHAR(15) NULL DEFAULT NULL,
+  `device_family` VARCHAR(20) NULL DEFAULT NULL,
+  `device_model` VARCHAR(20) NULL DEFAULT NULL,
+  `device_type` INT(11) NULL DEFAULT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -133,7 +137,11 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
   `chapter_index` INT(11) NULL DEFAULT NULL,
   `cumulative` TINYINT(1) NOT NULL,
   `seconds_per_question` INT(11) NULL DEFAULT NULL,
-  `reward_earned` TINYINT(1) NULL DEFAULT NULL)
+  `reward_earned` TINYINT(1) NULL DEFAULT NULL,
+  `ip_address` CHAR(15) NULL DEFAULT NULL,
+  `device_family` VARCHAR(45) NULL DEFAULT NULL,
+  `device_model` VARCHAR(45) NULL DEFAULT NULL,
+  `device_type` INT(11) NULL DEFAULT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

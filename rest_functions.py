@@ -1,4 +1,5 @@
 from oauth2client import client, crypt
+from user_agents import parse
 import datetime
 
 import business_objects.User as User
@@ -75,7 +76,8 @@ def authenticate_user(client_request):
 #########################################################################################
 
 
-def update_quest_with_client_choices(user, client_choices):
+def update_quest_with_client_choices(user, request):
+    client_choices = request.json
     request_chapter_index = client_choices['chapter_index']
     request_seconds_per_question = client_choices['seconds_per_question']
     request_number_of_questions = client_choices['number_of_questions']
@@ -88,6 +90,8 @@ def update_quest_with_client_choices(user, client_choices):
         number_of_questions=request_number_of_questions,
         cumulative=request_cumulative
     )
+
+    make_quest_log_entry(user, request)
 
     return new_question
 
@@ -156,7 +160,6 @@ def update_user_quest(user,
         new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index, cumulative=cumulative)
 
         user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
-                               datetime_quest_started=datetime.datetime.now(),
                                current_word_index=new_question.get_word_index(), number_correct=number_correct,
                                completion_points=completion_points,
                                seconds_per_question=seconds_per_question, points_per_question=points_per_question,
@@ -263,9 +266,11 @@ def start_next_question(user):
 #########################################################################################
 
 
-def make_activity_log_entry(user, correct):
+def make_activity_log_entry(user, correct, request):
     try:
-        new_activity = ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct)
+        ip_address = request.remote_addr
+        user_agent = parse(request.user_agent.string)
+        new_activity = ActivityLogEntry.ActivityLogEntry().generate_from_user(user, correct, ip_address, user_agent)
         new_activity.save_new()
     except Exception as ex:
         print(ex)
@@ -285,10 +290,12 @@ def make_activity_log_entry(user, correct):
 #########################################################################################
 
 
-def make_quest_log_entry(user):
+def make_quest_log_entry(user, request):
     try:
+        ip_address = request.remote_addr
+        user_agent = parse(request.user_agent.string)
         # TODO: add Lat and Lon
-        new_quest_entry = QuestLogEntry.QuestLogEntry().generate_from_user(user)
+        new_quest_entry = QuestLogEntry.QuestLogEntry().generate_from_user(user, ip_address, user_agent)
         new_quest_entry.save_new()
     except Exception as ex:
         print(ex)
