@@ -127,8 +127,8 @@ def update_user_quest(user,
 
         completion_points = 50*number_of_questions
 
-        valid_num_questions = config.number_of_question_choices
-        valid_secs_per_question = config.time_choices
+        valid_num_questions = config.number_of_question_options
+        valid_secs_per_question = config.seconds_per_question_options
         valid_bool = [True, False]
 
         if number_of_questions not in valid_num_questions or seconds_per_question not in valid_secs_per_question or cumulative not in valid_bool:
@@ -219,9 +219,9 @@ def get_quest_options(user):
     return {
         'user': user.get_json(),
         'quest_options': {
-            'chapters': chapter_list,
-            'time_limits': config.number_of_question_choices,
-            'number_of_questions': config.number_of_question_choices
+            'chapter_options': chapter_list,
+            'number_of_questions_options': config.number_of_question_options,
+            'seconds_per_question_options': config.seconds_per_question_options
         }
     }
 
