@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -76,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="false">
+      <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="181" column="51" selection-start-line="181" selection-start-column="51" selection-end-line="181" selection-end-column="51" />
+            <state relative-caret-position="505">
+              <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="220" column="23" selection-start-line="220" selection-start-column="23" selection-end-line="220" selection-end-column="23" />
+            <state relative-caret-position="402">
+              <caret line="222" column="61" selection-start-line="222" selection-start-column="61" selection-end-line="222" selection-end-column="61" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -215,8 +214,8 @@
         <option value="$PROJECT_DIR$/db_access/db_users.py" />
         <option value="$PROJECT_DIR$/business_objects/User.py" />
         <option value="$PROJECT_DIR$/rest_core.py" />
-        <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
         <option value="$PROJECT_DIR$/rest_functions.py" />
+        <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
       </list>
     </option>
   </component>
@@ -650,13 +649,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00070" summary="actually close DB calls">
-      <created>1467854255973</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1467854255973</updated>
-    </task>
     <task id="LOCAL-00071" summary="actually close DB calls part 2, close-agedon">
       <created>1467854343678</created>
       <option name="number" value="00071" />
@@ -993,7 +985,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469930487224</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="changed quest options to return them under the heading &quot;quest_options&quot; instead of having separate fields for each option next to user">
+      <created>1469934671286</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1469934671286</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1044,7 +1043,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="debugging question/submit endpoint" />
     <MESSAGE value="switched frontend code to angular2/typescript" />
     <MESSAGE value="got rid of angular frontend" />
     <MESSAGE value="Fixed DefinitionQuestion business object so that it cannot get duplicate answers" />
@@ -1069,7 +1067,8 @@
     <MESSAGE value="rewrote the algorithm for generating definition questions&#10;cumulative questions now work correctly&#10;the algorithm no longer pulls duplicate answers&#10;&#10;changed db_general methods to only pull one entry for general methods&#10;we can write specialty methods later for convenience if needed" />
     <MESSAGE value="added more fields to activity log and quest log in order to determine the remote IP of the client as well as information about what kind of device they are using the access the service&#10;fixed some minor bugs with logging" />
     <MESSAGE value="added foreign key for classrooms + users&#10;users must now be created with a valid class_code and will be &quot;assigned&quot; to the corresponding classroom" />
-    <option name="LAST_COMMIT_MESSAGE" value="added foreign key for classrooms + users&#10;users must now be created with a valid class_code and will be &quot;assigned&quot; to the corresponding classroom" />
+    <MESSAGE value="changed quest options to return them under the heading &quot;quest_options&quot; instead of having separate fields for each option next to user" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed quest options to return them under the heading &quot;quest_options&quot; instead of having separate fields for each option next to user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1434,14 +1433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="181" column="51" selection-start-line="181" selection-start-column="51" selection-end-line="181" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -1454,11 +1445,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="220" column="23" selection-start-line="220" selection-start-column="23" selection-end-line="220" selection-end-column="23" />
+        <state relative-caret-position="402">
+          <caret line="222" column="61" selection-start-line="222" selection-start-column="61" selection-end-line="222" selection-end-column="61" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
