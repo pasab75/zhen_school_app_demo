@@ -233,9 +233,12 @@ class User:
     def save_new(self):
         try:
             db_user = db_access.UserTableAccess()
-            db_user.save_user_new(self)
+            confirmation = db_user.save_user_new(self)
             db_user.close_connection()
-            return self
+            if confirmation:
+                return self
+            else:
+                return False
         except Exception as e:
             print("Could not save new user: " + str(e))
             raise e

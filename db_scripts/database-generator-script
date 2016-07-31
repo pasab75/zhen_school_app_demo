@@ -173,10 +173,15 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `number_correct` INT(11) NULL DEFAULT NULL,
   `paid_through` DATETIME NULL DEFAULT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
-  `class_code` VARCHAR(10) NULL DEFAULT NULL,
+  `class_code` VARCHAR(20) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
-  INDEX `fk_users_class_code_idx` (`class_code` ASC))
+  INDEX `fk_users_class_code_idx` (`class_code` ASC),
+  CONSTRAINT `fk_users_class_code`
+    FOREIGN KEY (`class_code`)
+    REFERENCES `testdb`.`classrooms` (`class_code`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

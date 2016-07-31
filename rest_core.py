@@ -327,17 +327,17 @@ def create_account():
     try:
         incoming_request = request
         print(incoming_request)
-        client_request = request.json
 
-        user_information = functions.check_access_token(client_request)
+        user_information = functions.check_access_token(request)
         if user_information:
             print(user_information)
             user_id = str(user_information['sub'])
 
             user = User.User().generate_from_id(user_id)
             if user:
+                print('aborting')
                 return abort(500, "Error: user already exists.")
-
+            class_code = request.json['class_code']
             user_first_name = user_information['given_name']
             user_last_name = user_information['family_name']
             user_email = user_information['email']
@@ -347,8 +347,11 @@ def create_account():
                              first_name=user_first_name,
                              last_name=user_last_name,
                              e_mail=user_email,
-                             paid_through=datetime.datetime.today() + datetime.timedelta(days=365))
+                             paid_through=datetime.datetime.today() + datetime.timedelta(days=365),
+                             class_code=class_code
+                             )
             new_user = user.save_new()
+
             if new_user:
                 return jsonify({
                     'user': new_user.get_json(),
