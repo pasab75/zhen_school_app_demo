@@ -218,9 +218,11 @@ def get_quest_options(user):
         chapter_list.append(new_chapter.get_json())
     return {
         'user': user.get_json(),
-        'chapters': chapter_list,
-        'time_limits': config.number_of_question_choices,
-        'number_of_questions': config.number_of_question_choices
+        'quest_options': {
+            'chapters': chapter_list,
+            'time_limits': config.number_of_question_choices,
+            'number_of_questions': config.number_of_question_choices
+        }
     }
 
 #########################################################################################
