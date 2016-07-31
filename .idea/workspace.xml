@@ -649,13 +649,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00068" summary="commiting update of rest manager and updated todo's and unit testing">
-      <created>1467851976184</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1467851976184</updated>
-    </task>
     <task id="LOCAL-00069" summary="updated rest manager with v.01 version of &quot;stable&quot; unless managers vision isnt good then f it.  Will test with frontend tomorrow, yay tomorrow its only a day away">
       <created>1467854069482</created>
       <option name="number" value="00069" />
@@ -992,7 +985,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469930443828</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="added foreign key for classrooms + users&#10;users must now be created with a valid class_code and will be &quot;assigned&quot; to the corresponding classroom">
+      <created>1469930464336</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1469930464336</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TodoView">
