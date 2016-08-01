@@ -1,6 +1,5 @@
 from oauth2client import client, crypt
 from user_agents import parse
-import datetime
 
 import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
@@ -129,10 +128,13 @@ def update_user_quest(user,
 
         valid_num_questions = config.number_of_question_options
         valid_secs_per_question = config.seconds_per_question_options
+        valid_secs_per_question.append(0)
         valid_bool = [True, False]
 
         if number_of_questions not in valid_num_questions or seconds_per_question not in valid_secs_per_question or cumulative not in valid_bool:
             return False
+
+        valid_secs_per_question.pop()
 
         if number_of_questions == 25:
             question_multiplier = 15

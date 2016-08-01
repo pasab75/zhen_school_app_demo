@@ -65,6 +65,38 @@ def static_file(path):
 #########################################################################################
 
 
+@app.route('/api/v1/user/authenticate', methods=['POST'])
+def authenticate_user():
+    try:
+        print(request.json)
+        user = functions.authenticate_user(request)
+        if user:
+            print(user)
+            return jsonify({
+                "user": user.get_json()
+            })
+        else:
+            return abort(403, "Unable to authenticate user")
+    except Exception as ex:
+        print("Unable to retrieve user:" + str(ex))
+        return abort(500, "Unable to retrieve user. Error: "+str(ex))
+
+#########################################################################################
+# DESCRIPTION
+# returns the user's information to the client after authenticating
+#
+# RETURN CASES
+# should always return user json
+#
+# TAKES
+# user authentication token
+#
+# RETURNS
+# user json
+#
+#########################################################################################
+
+
 @app.route('/api/v1/user/get', methods=['POST'])
 def get_user():
     try:
