@@ -1,5 +1,6 @@
 from oauth2client import client, crypt
 from user_agents import parse
+from flask import abort
 
 import business_objects.User as User
 import business_objects.DefinitionQuestion as DefQuestion
@@ -132,7 +133,7 @@ def update_user_quest(user,
         valid_bool = [True, False]
 
         if number_of_questions not in valid_num_questions or seconds_per_question not in valid_secs_per_question or cumulative not in valid_bool:
-            return False
+            return abort(500, "You have chosen invalid quest options.")
 
         valid_secs_per_question.pop()
 

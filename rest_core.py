@@ -324,9 +324,11 @@ def submit_question():
 
             return jsonify({
                 "user": user.get_json(),
-                "correct": correct,
-                "correct_answer": correct_answer,
-                "user_answer": user_answer,
+                "feedback": {
+                    "is_correct": correct,
+                    "correct_answer": correct_answer,
+                    "user_answer": user_answer
+                },
                 "question": question_json,
                 "quest_complete": quest_complete
             })
