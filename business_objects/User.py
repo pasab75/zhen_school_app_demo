@@ -30,6 +30,7 @@ class User:
     _last_active = None
     _paid_through = None
     _class_code = None
+    _points_earned_current_quest = None
 
     fraction_needed_for_quest_rewards = .75
     max_multiplier = 5
@@ -55,7 +56,8 @@ class User:
                  number_correct=0,
                  last_active=None,
                  paid_through=None,
-                 class_code=None):
+                 class_code=None,
+                 points_earned_current_quest=None):
 
         self._user_id = user_id
         self._first_name = first_name
@@ -79,6 +81,7 @@ class User:
         self._last_active = last_active
         self._paid_through = paid_through
         self._class_code = class_code
+        self._points_earned_current_quest = points_earned_current_quest
 
     def check_answer(self, answer):
         if self.get_current_word_index() == answer:
@@ -90,7 +93,9 @@ class User:
         if correct:
             if self.get_current_multiplier() < self.max_multiplier:
                 self.set_current_multiplier(self.get_current_multiplier() + 1)
-            self.add_current_points(self.get_points_per_question() * self.get_current_multiplier())
+            points_this_question = self.get_points_per_question() * self.get_current_multiplier()
+            self.add_current_points(points_this_question)
+            self.add_points_earned_current_quest(points_this_question)
             self.calculate_level()
             self.get_points_this_level()
             self.set_number_correct(self.get_number_correct() + 1)
@@ -137,7 +142,8 @@ class User:
             "last_active": self._last_active,
             "paid_through": self._paid_through,
             "class_code": self._class_code,
-            "datetime_question_started": self._datetime_question_started
+            "datetime_question_started": self._datetime_question_started,
+            "points_earned_current_quest": self._points_earned_current_quest
         }
 
     # change to actual json like database object
@@ -164,7 +170,8 @@ class User:
             "paid_through": self._paid_through,
             "points_this_level": self.get_points_this_level(),
             "class_code": self._class_code,
-            "datetime_question_started": self._datetime_question_started
+            "datetime_question_started": self._datetime_question_started,
+            "points_earned_current_quest": self._points_earned_current_quest
         }
 
     def get_points_this_level(self):
@@ -193,11 +200,12 @@ class User:
         self._last_active = user['last_active']
         self._paid_through = user['paid_through']
         self._class_code = user['class_code']
+        self._points_earned_current_quest = user['points_earned_current_quest']
 
     def update_user_quest(self, chapter_index=None, current_progress=None,
                           current_word_index=None, number_correct=None, completion_points=None,
                           seconds_per_question=None, points_per_question=None, number_of_questions=None,
-                          cumulative=None, datetime_question_started=None):
+                          cumulative=None, datetime_question_started=None, points_earned_current_quest=0):
         self._chapter_index = chapter_index
         self._cumulative = cumulative
         self._number_of_questions = number_of_questions
@@ -209,6 +217,7 @@ class User:
         self._current_word_index = current_word_index
         self._current_progress = current_progress
         self._number_correct = number_correct
+        self._points_earned_current_quest = points_earned_current_quest
 
     def generate_from_id(self, identification):
         db = db_access.UserTableAccess()
@@ -300,6 +309,9 @@ class User:
 
     def add_current_points(self, points):
         self._current_points += points
+
+    def add_points_earned_current_quest(self, points):
+        self._points_earned_current_quest += points
 
     def get_last_activity_date(self):
         return self._last_active

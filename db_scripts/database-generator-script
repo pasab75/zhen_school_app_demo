@@ -1,3 +1,6 @@
+CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
+GRANT ALL PRIVILEGES ON *.* TO 'appuser'@'localhost' WITH GRANT OPTION;
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -174,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `paid_through` DATETIME NULL DEFAULT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
   `class_code` VARCHAR(20) NULL DEFAULT NULL,
+  `points_earned_current_quest` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_users_class_code_idx` (`class_code` ASC),
