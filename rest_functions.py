@@ -128,7 +128,7 @@ def update_user_quest(user,
         completion_points = 50*number_of_questions
 
         valid_num_questions = config.number_of_question_options
-        valid_secs_per_question = config.seconds_per_question_options
+        valid_secs_per_question = list(config.seconds_per_question_options)
         valid_secs_per_question.append(0)
         valid_bool = [True, False]
 
