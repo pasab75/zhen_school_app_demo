@@ -14,3 +14,7 @@ STATIC_FOLDER = "angular-frontend"
 seconds_per_question_options = [30, 20, 10, 5]
 
 number_of_question_options = [10, 20, 30, 40, 50]
+
+fraction_needed_for_quest_rewards = .75
+
+max_multiplier = 5

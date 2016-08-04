@@ -1,10 +1,8 @@
 import datetime
 import math
 
+import config
 import db_access.db_users as db_access
-
-
-
 
 
 class User:
@@ -31,9 +29,6 @@ class User:
     _paid_through = None
     _class_code = None
     _points_earned_current_quest = None
-
-    fraction_needed_for_quest_rewards = .75
-    max_multiplier = 5
 
     def __init__(self, user_id=None,
                  first_name=None,
@@ -91,23 +86,25 @@ class User:
 
     def handle_question_rewards(self, correct):
         if correct:
-            if self.get_current_multiplier() < self.max_multiplier:
-                self.set_current_multiplier(self.get_current_multiplier() + 1)
             points_this_question = self.get_points_per_question() * self.get_current_multiplier()
             self.add_current_points(points_this_question)
             self.add_points_earned_current_quest(points_this_question)
-            self.calculate_level()
-            self.get_points_this_level()
+            self.increment_multiplier()
+            self.calculate_and_update_level()
             self.set_number_correct(self.get_number_correct() + 1)
         else:
             self.set_current_multiplier(1)
 
-    def handle_quest_rewards(self):
-        if self._number_correct/self._number_of_questions >= self.fraction_needed_for_quest_rewards:
-            self.add_current_points(self._completion_points)
-            self.calculate_level()
+    def increment_multiplier(self):
+        if self.get_current_multiplier() < config.max_multiplier:
+            self.set_current_multiplier(self.get_current_multiplier() + 1)
 
-    def calculate_level(self):
+    def handle_quest_rewards(self):
+        if self._number_correct/self._number_of_questions >= config.fraction_needed_for_quest_rewards:
+            self.add_current_points(self._completion_points)
+            self.calculate_and_update_level()
+
+    def calculate_and_update_level(self):
         self.set_current_level(1 + math.floor(self.get_current_points() / 1000))
 
     def update_quest_progress(self):
@@ -128,7 +125,7 @@ class User:
             "user_role": self._user_role,
             "current_lvl": self._current_lvl,
             "current_points": self._current_points,
-            "current_multiplier": self._current_multiplier ,
+            "current_multiplier": self._current_multiplier,
             "chapter_index": self._chapter_index,
             "cumulative": self._cumulative,
             "number_of_questions": self._number_of_questions,
