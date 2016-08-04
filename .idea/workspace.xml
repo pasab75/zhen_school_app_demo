@@ -39,8 +39,8 @@
       <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="266" column="41" selection-start-line="266" selection-start-column="41" selection-end-line="266" selection-end-column="41" />
+            <state relative-caret-position="153">
+              <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
               </folding>
@@ -669,13 +669,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00079" summary="fixed some bugs in the DB layer">
-      <created>1468010186465</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1468010186465</updated>
-    </task>
     <task id="LOCAL-00080" summary="made changes for quest log in rest api layer">
       <created>1468011088021</created>
       <option name="number" value="00080" />
@@ -1012,7 +1005,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470272089582</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="re-enabled the drop quest endpoint">
+      <created>1470272551544</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1470272551544</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1468,8 +1468,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="266" column="41" selection-start-line="266" selection-start-column="41" selection-end-line="266" selection-end-column="41" />
+        <state relative-caret-position="153">
+          <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
