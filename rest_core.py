@@ -210,25 +210,27 @@ def get_quests():
 #########################################################################################
 
 
-# @app.route('/api/v1/quest/drop', methods=['POST'])
-# def drop_quest():
-#     try:
-#         incoming_request = request
-#         print(incoming_request)
-#         # check authentication
-#         user = authenticate_user(request)
-#         if user:
-#             # drop the current quest, note that update with no flags does this, check its default args for details
-#             user = drop_user_quest(user)
-#             user.update_current_user()
-#             return jsonify(user.get_json())
-#
-#         else:
-#             return abort(403, "Unable to authenticate user")
-#
-#     except Exception as ex:
-#         print(ex)
-#         return abort(500, "Unable to retrieve random question")
+@app.route('/api/v1/quest/drop', methods=['POST'])
+def drop_quest():
+    try:
+        incoming_request = request
+        print(incoming_request)
+        # check authentication
+        user = functions.authenticate_user(request)
+        if user:
+            # drop the current quest, note that update with no flags does this, check its default args for details
+            user = functions.drop_user_quest(user)
+            user.update_current_user()
+            return jsonify({
+                "user": user.get_json()
+            })
+
+        else:
+            return abort(403, "Unable to authenticate user")
+
+    except Exception as ex:
+        print(ex)
+        return abort(500, "Unable to retrieve random question")
 
 
 #########################################################################################
