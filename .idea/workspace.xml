@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="217" column="30" selection-start-line="217" selection-start-column="30" selection-end-line="217" selection-end-column="30" />
+            <state relative-caret-position="387">
+              <caret line="266" column="41" selection-start-line="266" selection-start-column="41" selection-end-line="266" selection-end-column="41" />
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
               </folding>
@@ -670,13 +669,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00078" summary="updated some method names, fixed some bugs in the DB layer">
-      <created>1468010054831</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1468010054831</updated>
-    </task>
     <task id="LOCAL-00079" summary="fixed some bugs in the DB layer">
       <created>1468010186465</created>
       <option name="number" value="00079" />
@@ -1013,7 +1005,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470270471630</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="re-enabled the drop quest endpoint">
+      <created>1470272089582</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1470272089582</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1064,7 +1063,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="switched over to id_token authentication from access token authentication&#10;now using oauth2client library to verify user id tokens&#10;&#10;fixed bug in creating a new user as before it returned a bool instead of the new user itself" />
     <MESSAGE value="tried to get logging to work&#10;getting error dict object has no attribute get_database_format&#10;need to implement more robust leveling scheme" />
     <MESSAGE value="fixed issue with saving quests and activities&#10;updated database generator script for field names to be in line with the code" />
     <MESSAGE value="added a new rest endpoint that gives user quest options&#10;for now it only gives chapters&#10;will add other params next" />
@@ -1089,7 +1087,8 @@
     <MESSAGE value="tweaking things to play better with front end" />
     <MESSAGE value="added user creation to db generator script&#10;added field to database which tracks user points for the current quest&#10;added respective operations to user business object" />
     <MESSAGE value="added TODO: we need to get the exceptions to actually pass errors to the front end so I can display some kind of alert instead of shit just not working" />
-    <option name="LAST_COMMIT_MESSAGE" value="added TODO: we need to get the exceptions to actually pass errors to the front end so I can display some kind of alert instead of shit just not working" />
+    <MESSAGE value="re-enabled the drop quest endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-enabled the drop quest endpoint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1469,8 +1468,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="217" column="30" selection-start-line="217" selection-start-column="30" selection-end-line="217" selection-end-column="30" />
+        <state relative-caret-position="387">
+          <caret line="266" column="41" selection-start-line="266" selection-start-column="41" selection-end-line="266" selection-end-column="41" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
