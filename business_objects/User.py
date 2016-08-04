@@ -100,9 +100,15 @@ class User:
             self.set_current_multiplier(self.get_current_multiplier() + 1)
 
     def handle_quest_rewards(self):
-        if self._number_correct/self._number_of_questions >= config.fraction_needed_for_quest_rewards:
+        if self.earned_quest_rewards():
             self.add_current_points(self._completion_points)
             self.calculate_and_update_level()
+
+    def earned_quest_rewards(self):
+        if self._number_correct / self._number_of_questions >= config.fraction_needed_for_quest_rewards:
+            return self._completion_points
+        else:
+            return 0
 
     def calculate_and_update_level(self):
         self.set_current_level(1 + math.floor(self.get_current_points() / 1000))
@@ -168,7 +174,8 @@ class User:
             "points_this_level": self.get_points_this_level(),
             "class_code": self._class_code,
             "datetime_question_started": self._datetime_question_started,
-            "points_earned_current_quest": self._points_earned_current_quest
+            "points_earned_current_quest": self._points_earned_current_quest,
+            "earned_quest_reward": self.earned_quest_rewards()
         }
 
     def get_points_this_level(self):
