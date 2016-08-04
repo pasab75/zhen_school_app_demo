@@ -10,6 +10,8 @@ import business_objects.User as User
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
 
+
+# TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
 app = Flask(__name__, static_url_path='/')
 
 
@@ -384,7 +386,10 @@ def create_account():
                              paid_through=datetime.datetime.today() + datetime.timedelta(days=365),
                              class_code=class_code
                              )
-            new_user = user.save_new()
+            try:
+                new_user = user.save_new()
+            except Exception as ex:
+                return abort(500, "Error creating user.")
 
             if new_user:
                 return jsonify({
@@ -392,11 +397,7 @@ def create_account():
                     'user_exists': False,
                     'user_created': True
                 })
-            else:
-                return jsonify({
-                    'user_exists': False,
-                    'user_created': False
-                })
+
     except Exception as ex:
         print(ex)
         print('Invalid token')

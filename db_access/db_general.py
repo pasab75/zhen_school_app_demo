@@ -158,11 +158,11 @@ class GeneralDatabaseConnection:
                     # print(list(dictionary_to_add.values()))
                     # print(cursor.mogrify(sql, list(dictionary_to_add.values())))
                     cursor.execute(sql, list(dictionary_to_add.values()))
-
                     return True
 
             except Exception as ex:
                 print("error adding row to table :" + str(ex))
+                return False
         except Exception as e:
             print("Error connecting: " + str(e))
             return False
