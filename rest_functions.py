@@ -79,7 +79,7 @@ def authenticate_user(client_request):
 def update_quest_with_client_choices(user, request):
     client_choices = request.json
     request_chapter_index = client_choices['chapter_index']
-    request_seconds_per_question = client_choices['seconds_per_question']
+    request_is_timed = client_choices['is_timed']
     request_number_of_questions = client_choices['number_of_questions']
     request_cumulative = client_choices['cumulative']
     request_question_type = client_choices['question_type']
@@ -87,7 +87,7 @@ def update_quest_with_client_choices(user, request):
     new_question = update_user_quest(
         user,
         chapter_index=request_chapter_index,
-        seconds_per_question=request_seconds_per_question,
+        is_timed=request_is_timed,
         number_of_questions=request_number_of_questions,
         cumulative=request_cumulative,
         question_type=request_question_type
@@ -119,7 +119,7 @@ def update_quest_with_client_choices(user, request):
 def update_user_quest(
         user,
         chapter_index=None,
-        seconds_per_question=None,
+        is_timed=None,
         number_of_questions=None,
         cumulative=False,
         question_type=None
@@ -127,42 +127,22 @@ def update_user_quest(
     try:
         number_correct = 0
         current_progress = 0
-        points_per_question = 20
-        question_multiplier = 5
+        points_per_question = 10
 
         completion_points = 50*number_of_questions
 
         valid_num_questions = config.number_of_question_options
-        valid_secs_per_question = list(config.seconds_per_question_options)
-        valid_secs_per_question.append(0)
         valid_bool = [True, False]
 
-        if number_of_questions not in valid_num_questions or seconds_per_question not in valid_secs_per_question or cumulative not in valid_bool:
+        if number_of_questions not in valid_num_questions or is_timed not in valid_bool or cumulative not in valid_bool:
             return abort(500, "You have chosen invalid quest options.")
 
-        valid_secs_per_question.pop()
-
-        if number_of_questions == 25:
-            question_multiplier = 15
-
-        if number_of_questions == 50:
-            question_multiplier = 40
-
-        if seconds_per_question <= 30:
-            points_per_question += 1
-            completion_points += 10*question_multiplier
-
-        if seconds_per_question <= 10:
-            points_per_question += 2
-            completion_points += 10*question_multiplier
-
-        if seconds_per_question <= 5:
+        if is_timed:
             points_per_question += 3
-            completion_points += 20*question_multiplier
 
         if cumulative:
-            points_per_question += 1*chapter_index
-            completion_points += 10*question_multiplier
+            points_per_question += 1*(chapter_index-1)
+            completion_points += 10*(chapter_index-1)*number_of_questions
 
         # TODO: GO Get a word/definition question
         new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(
@@ -177,7 +157,7 @@ def update_user_quest(
             current_word_index=new_question.get_word_index(),
             number_correct=number_correct,
             completion_points=completion_points,
-            seconds_per_question=seconds_per_question,
+            is_timed=is_timed,
             points_per_question=points_per_question,
             number_of_questions=number_of_questions,
             cumulative=cumulative,
@@ -237,8 +217,7 @@ def get_quest_options(user):
         'user': user.get_json(),
         'quest_options': {
             'chapter_options': chapter_list,
-            'number_of_questions_options': config.number_of_question_options,
-            'seconds_per_question_options': config.seconds_per_question_options
+            'number_of_questions_options': config.number_of_question_options
         }
     }
 

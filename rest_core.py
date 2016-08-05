@@ -130,7 +130,7 @@ def get_user():
 #
 # TAKES
 # user authentication token string, chapter_index int, number_of_questions int,
-# seconds_per_question int, cumulative boolean
+# is_timed boolean, cumulative boolean
 #
 # RETURNS
 # updated user object, new question, and 200 code

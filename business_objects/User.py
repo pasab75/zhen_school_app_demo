@@ -18,7 +18,7 @@ class User:
     _cumulative = None
     _number_of_questions = None
     _points_per_question = None
-    _seconds_per_question = None
+    _is_timed = None
     _completion_points = None
     _datetime_quest_started = None
     _datetime_question_started = None
@@ -43,7 +43,7 @@ class User:
                  cumulative=False,
                  number_of_questions=None,
                  points_per_question=None,
-                 seconds_per_question=None,
+                 is_timed=None,
                  completion_points=None,
                  datetime_quest_started=None,
                  datetime_question_started=None,
@@ -68,7 +68,7 @@ class User:
         self._cumulative = cumulative
         self._number_of_questions = number_of_questions
         self._points_per_question = points_per_question
-        self._seconds_per_question = seconds_per_question
+        self._is_timed = is_timed
         self._completion_points = completion_points
         self._datetime_quest_started = datetime_quest_started
         self._datetime_question_started = datetime_question_started
@@ -140,7 +140,7 @@ class User:
             "cumulative": self._cumulative,
             "number_of_questions": self._number_of_questions,
             "points_per_question": self._points_per_question,
-            "seconds_per_question": self._seconds_per_question,
+            "is_timed": self._is_timed,
             "completion_points": self._completion_points,
             "datetime_quest_started": self._datetime_quest_started,
             "current_word_index": self._current_word_index,
@@ -169,7 +169,7 @@ class User:
             "cumulative": self._cumulative,
             "number_of_questions": self._number_of_questions,
             "points_per_question": self._points_per_question,
-            "seconds_per_question": self._seconds_per_question,
+            "is_timed": self._is_timed,
             "completion_points": self._completion_points,
             "datetime_quest_started": self._datetime_quest_started,
             "current_progress": self._current_progress,
@@ -200,7 +200,7 @@ class User:
         self._cumulative = user['cumulative']
         self._number_of_questions = user['number_of_questions']
         self._points_per_question = user['points_per_question']
-        self._seconds_per_question = user['seconds_per_question']
+        self._is_timed = user['is_timed']
         self._completion_points = user['completion_points']
         self._datetime_quest_started = user['datetime_quest_started']
         self._datetime_question_started = user['datetime_question_started']
@@ -220,7 +220,7 @@ class User:
             current_word_index=None,
             number_correct=None,
             completion_points=None,
-            seconds_per_question=None,
+            is_timed=None,
             points_per_question=None,
             number_of_questions=None,
             cumulative=None,
@@ -232,7 +232,7 @@ class User:
         self._cumulative = cumulative
         self._number_of_questions = number_of_questions
         self._points_per_question = points_per_question
-        self._seconds_per_question = seconds_per_question
+        self._is_timed = is_timed
         self._completion_points = completion_points
         self._datetime_quest_started = datetime.datetime.now()
         self._datetime_question_started = datetime_question_started
@@ -384,11 +384,11 @@ class User:
     def set_points_per_question(self, value):
         self._points_per_question = value
 
-    def get_seconds_per_question(self):
-        return self._seconds_per_question
+    def get_is_timed(self):
+        return self._is_timed
 
-    def set_seconds_per_question(self, value):
-        self._seconds_per_question = value
+    def set_is_timed(self, value):
+        self._is_timed = value
 
     def get_completion_points(self):
         return self._completion_points
