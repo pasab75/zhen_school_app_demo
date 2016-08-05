@@ -12,6 +12,9 @@ import business_objects.User as User
 
 
 # TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
+# TODO: Make 2 new routes 1 - route that provides rewards json, 2 - route that provides leaderboard with anonymous ids
+# TODO: Make a method that checks how many quests the user has completed today
+
 app = Flask(__name__, static_url_path='/')
 
 

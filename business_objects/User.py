@@ -29,6 +29,7 @@ class User:
     _paid_through = None
     _class_code = None
     _points_earned_current_quest = None
+    _question_type = None
 
     def __init__(self, user_id=None,
                  first_name=None,
@@ -52,7 +53,8 @@ class User:
                  last_active=None,
                  paid_through=None,
                  class_code=None,
-                 points_earned_current_quest=None):
+                 points_earned_current_quest=None,
+                 question_type=None):
 
         self._user_id = user_id
         self._first_name = first_name
@@ -77,6 +79,7 @@ class User:
         self._paid_through = paid_through
         self._class_code = class_code
         self._points_earned_current_quest = points_earned_current_quest
+        self._question_type = question_type
 
     def check_answer(self, answer):
         if self.get_current_word_index() == answer:
@@ -147,7 +150,8 @@ class User:
             "paid_through": self._paid_through,
             "class_code": self._class_code,
             "datetime_question_started": self._datetime_question_started,
-            "points_earned_current_quest": self._points_earned_current_quest
+            "points_earned_current_quest": self._points_earned_current_quest,
+            "question_type": self._question_type
         }
 
     # change to actual json like database object
@@ -176,7 +180,8 @@ class User:
             "class_code": self._class_code,
             "datetime_question_started": self._datetime_question_started,
             "points_earned_current_quest": self._points_earned_current_quest,
-            "earned_quest_reward": self.earned_quest_rewards()
+            "earned_quest_reward": self.earned_quest_rewards(),
+            "question_type": self._question_type
         }
 
     def get_points_this_level(self):
@@ -206,11 +211,23 @@ class User:
         self._paid_through = user['paid_through']
         self._class_code = user['class_code']
         self._points_earned_current_quest = user['points_earned_current_quest']
+        self._question_type = user['question_type']
 
-    def update_user_quest(self, chapter_index=None, current_progress=None,
-                          current_word_index=None, number_correct=None, completion_points=None,
-                          seconds_per_question=None, points_per_question=None, number_of_questions=None,
-                          cumulative=None, datetime_question_started=None, points_earned_current_quest=0):
+    def update_user_quest(
+            self,
+            chapter_index=None,
+            current_progress=None,
+            current_word_index=None,
+            number_correct=None,
+            completion_points=None,
+            seconds_per_question=None,
+            points_per_question=None,
+            number_of_questions=None,
+            cumulative=None,
+            datetime_question_started=None,
+            points_earned_current_quest=0,
+            question_type=None
+    ):
         self._chapter_index = chapter_index
         self._cumulative = cumulative
         self._number_of_questions = number_of_questions
@@ -223,6 +240,7 @@ class User:
         self._current_progress = current_progress
         self._number_correct = number_correct
         self._points_earned_current_quest = points_earned_current_quest
+        self._question_type = question_type
 
     def generate_from_id(self, identification):
         db = db_access.UserTableAccess()
@@ -232,6 +250,9 @@ class User:
             db.close_connection()
             return self
         return None
+
+    def get_question_type(self):
+        return self._question_type
 
     def get_self(self):
         return self

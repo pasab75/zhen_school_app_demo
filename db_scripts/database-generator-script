@@ -178,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
   `class_code` VARCHAR(20) NULL DEFAULT NULL,
   `points_earned_current_quest` INT(11) NULL DEFAULT NULL,
+  `question_type` INT(2) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_users_class_code_idx` (`class_code` ASC),

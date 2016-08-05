@@ -65,7 +65,7 @@ class DefinitionQuestion:
         self._definitions = []
 
         # if no question type is requested, flip a coin to determine the question type
-        if not question_type:
+        if question_type not in [0, 1]:
             question_type = random.randint(0, 1)
             self._question_type = question_type
 
@@ -84,6 +84,7 @@ class DefinitionQuestion:
         )
         db_connection.close_connection()
 
+        # question type 1 means that there will be a definition with word choices
         if question_type == 1:
             for word in raw_list:
                 word_obj = Word.Word()
@@ -94,6 +95,7 @@ class DefinitionQuestion:
             self._word = self._words[0]
             self._definition = Definition.Definition().get_definition_random_from_word(self._word)
 
+        # question type 2 means that there will be a word with definition choices
         elif question_type == 0:
             for word in raw_list:
                 word_obj = Word.Word()

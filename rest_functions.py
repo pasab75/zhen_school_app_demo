@@ -82,13 +82,15 @@ def update_quest_with_client_choices(user, request):
     request_seconds_per_question = client_choices['seconds_per_question']
     request_number_of_questions = client_choices['number_of_questions']
     request_cumulative = client_choices['cumulative']
+    request_question_type = client_choices['question_type']
 
     new_question = update_user_quest(
         user,
         chapter_index=request_chapter_index,
         seconds_per_question=request_seconds_per_question,
         number_of_questions=request_number_of_questions,
-        cumulative=request_cumulative
+        cumulative=request_cumulative,
+        question_type=request_question_type
     )
 
     make_quest_log_entry(user, request)
@@ -114,11 +116,14 @@ def update_quest_with_client_choices(user, request):
 #########################################################################################
 
 
-def update_user_quest(user,
-                      chapter_index=None,
-                      seconds_per_question=None,
-                      number_of_questions=None,
-                      cumulative=False):
+def update_user_quest(
+        user,
+        chapter_index=None,
+        seconds_per_question=None,
+        number_of_questions=None,
+        cumulative=False,
+        question_type=None
+):
     try:
         number_correct = 0
         current_progress = 0
@@ -160,14 +165,24 @@ def update_user_quest(user,
             completion_points += 10*question_multiplier
 
         # TODO: GO Get a word/definition question
-        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(chapter_index, cumulative=cumulative)
+        new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(
+            chapter_index,
+            cumulative=cumulative,
+            question_type=question_type
+        )
 
-        user.update_user_quest(chapter_index=chapter_index, current_progress=current_progress,
-                               current_word_index=new_question.get_word_index(), number_correct=number_correct,
-                               completion_points=completion_points,
-                               seconds_per_question=seconds_per_question, points_per_question=points_per_question,
-                               number_of_questions=number_of_questions,
-                               cumulative=cumulative)
+        user.update_user_quest(
+            chapter_index=chapter_index,
+            current_progress=current_progress,
+            current_word_index=new_question.get_word_index(),
+            number_correct=number_correct,
+            completion_points=completion_points,
+            seconds_per_question=seconds_per_question,
+            points_per_question=points_per_question,
+            number_of_questions=number_of_questions,
+            cumulative=cumulative,
+            question_type=question_type
+        )
 
         user.update_current_user()
         return new_question.get_json()
@@ -244,10 +259,12 @@ def get_quest_options(user):
 
 def start_next_question(user):
     chapter_index = user.get_chapter_index()
+    question_type = user.get_question_type()
 
     new_question = DefQuestion.DefinitionQuestion().make_from_chapter_index(
         chapter_index,
-        cumulative=user.get_cumulative()
+        cumulative=user.get_cumulative(),
+        question_type=question_type
     )
 
     question_json = new_question.get_json()
