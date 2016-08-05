@@ -195,7 +195,6 @@ def update_user_quest(user,
 def drop_user_quest(user):
     user.update_user_quest()
     user.update_current_user()
-    return user.get_json()
 
 #########################################################################################
 # DESCRIPTION

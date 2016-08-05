@@ -18,3 +18,5 @@ number_of_question_options = [10, 20, 30, 40, 50]
 fraction_needed_for_quest_rewards = .75
 
 max_multiplier = 5
+
+number_of_multiple_choices = 4

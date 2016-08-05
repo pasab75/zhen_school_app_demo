@@ -219,8 +219,7 @@ def drop_quest():
         user = functions.authenticate_user(request)
         if user:
             # drop the current quest, note that update with no flags does this, check its default args for details
-            user = functions.drop_user_quest(user)
-            user.update_current_user()
+            functions.drop_user_quest(user)
             return jsonify({
                 "user": user.get_json()
             })
@@ -230,7 +229,7 @@ def drop_quest():
 
     except Exception as ex:
         print(ex)
-        return abort(500, "Unable to retrieve random question")
+        return abort(500, "Unable to drop quest.")
 
 
 #########################################################################################

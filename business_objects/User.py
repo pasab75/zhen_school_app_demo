@@ -105,8 +105,9 @@ class User:
             self.calculate_and_update_level()
 
     def earned_quest_rewards(self):
-        if self._number_correct / self._number_of_questions >= config.fraction_needed_for_quest_rewards:
-            return self._completion_points
+        if self._number_correct and self._number_of_questions:
+            if self._number_correct / self._number_of_questions >= config.fraction_needed_for_quest_rewards:
+                return self._completion_points
         else:
             return 0
 

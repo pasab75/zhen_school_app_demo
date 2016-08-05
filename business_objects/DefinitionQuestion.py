@@ -2,6 +2,7 @@ import random
 
 import business_objects.Word as Word
 import business_objects.Definition as Definition
+import config
 
 import db_access.db_words as db_access_words
 
@@ -79,7 +80,7 @@ class DefinitionQuestion:
             'chapter_index',
             chapter_lower_limit,
             chapter_index,
-            6
+            config.number_of_multiple_choices
         )
         db_connection.close_connection()
 

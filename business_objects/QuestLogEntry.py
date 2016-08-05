@@ -1,3 +1,4 @@
+import config
 import db_access.db_quest_log as db_access
 import datetime
 
@@ -56,7 +57,7 @@ class QuestLogEntry:
             self._device_type = 2
         self._device_family = user_agent.device.family
         self._device_model = user_agent.device.model
-        if self._number_correct/self._number_of_questions >= user.fraction_needed_for_quest_rewards:
+        if self._number_correct/self._number_of_questions >= config.fraction_needed_for_quest_rewards:
             self._reward_earned = True
         return self
 
