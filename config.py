@@ -42,3 +42,5 @@ reward_tiers = [
     },
     {}
 ]
+
+quest_curve_exp_base = 30

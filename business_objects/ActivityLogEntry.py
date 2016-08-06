@@ -8,7 +8,6 @@ class ActivityLogEntry:
     _latitude = None
     _longitude = None
     _number_of_questions = None
-    _seconds_per_questions = None
     _datetime_quest_started = None
     _datetime_question_started = None
     _current_word_index = None
@@ -16,9 +15,10 @@ class ActivityLogEntry:
     _device_type = None
     _device_family = None
     _device_model = None
+    _is_timed = None
 
     def __init__(self, user_id=None, correct=None, number_of_questions=None, date_time=datetime.datetime.now(),
-                 datetime_quest_started=datetime.datetime.now(), seconds_per_questions=None, latitude=None, longitude=None,
+                 datetime_quest_started=datetime.datetime.now(), is_timed=None, latitude=None, longitude=None,
                  datetime_question_started=datetime.datetime.now(), current_word_index=None, ip_address=None,
                  device_type=None, device_family=None, device_model=None):
         self._user_id = user_id
@@ -27,7 +27,7 @@ class ActivityLogEntry:
         self._latitude = latitude
         self._longitude = longitude
         self._number_of_questions = number_of_questions
-        self._seconds_per_questions = seconds_per_questions
+        self._is_timed = is_timed
         self._datetime_quest_started = datetime_quest_started
         self._current_word_index = current_word_index
         self._datetime_question_started = datetime_question_started
@@ -157,11 +157,11 @@ class ActivityLogEntry:
     def set_number_of_questions(self, num):
         self._number_of_questions = num
 
-    def get_seconds_per_questions(self):
-        return self._seconds_per_questions
+    def get_is_timed(self):
+        return self._is_timed
 
-    def set_seconds_per_questions(self, num):
-        self._seconds_per_questions = num
+    def set_is_timed(self, bool):
+        self._is_timed = bool
 
     def get_datetime_quest_started(self):
         return self._datetime_quest_started

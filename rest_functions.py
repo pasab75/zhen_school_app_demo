@@ -7,6 +7,7 @@ import business_objects.DefinitionQuestion as DefQuestion
 import business_objects.Chapter as Chapter
 import business_objects.ActivityLogEntry as ActivityLogEntry
 import business_objects.QuestLogEntry as QuestLogEntry
+import business_objects.RewardList as RewardList
 
 import config as config
 
@@ -275,6 +276,7 @@ def make_activity_log_entry(user, correct, request):
     except Exception as ex:
         print(ex)
         print("failed too make activity log entry, not the end of the world, but no log entry made")
+
 #########################################################################################
 # DESCRIPTION
 #
@@ -300,3 +302,26 @@ def make_quest_log_entry(user, request):
     except Exception as ex:
         print(ex)
         print("failed too make quest log entry, not the end of the world, but no log entry made")
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+def get_rewards(user):
+    class_code = user.get_class_code()
+    reward_list = RewardList.RewardList()
+    reward_list.set_from_database_by_class_code(class_code)
+    reward_list_json = reward_list.get_json()
+    return reward_list_json
+

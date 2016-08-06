@@ -39,8 +39,8 @@ class GeneralDatabaseConnection:
         try:
             try:
                 with self.db_connection.cursor() as cursor:
-                    sql = "SELECT * FROM {} WHERE {} = {}".format(table, key, value)
-                    cursor.execute(sql)
+                    sql = "SELECT * FROM {} WHERE {}=%s".format(table, key)
+                    cursor.execute(sql, value)
                     return cursor.fetchall()
 
             except Exception as ex:

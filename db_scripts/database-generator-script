@@ -13,7 +13,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `testdb` ;
 
 -- -----------------------------------------------------
 -- Schema testdb
@@ -33,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
   `number_of_questions` INT(11) NOT NULL,
-  `seconds_per_question` INT(11) NULL DEFAULT NULL,
+  `is_timed` TINYINT(1) NULL DEFAULT NULL,
   `datetime_quest_started` DATETIME NOT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
   `current_word_index` INT(11) NOT NULL,
@@ -139,12 +138,31 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
   `longitude` DOUBLE NULL DEFAULT NULL,
   `chapter_index` INT(11) NULL DEFAULT NULL,
   `cumulative` TINYINT(1) NOT NULL,
-  `seconds_per_question` INT(11) NULL DEFAULT NULL,
-  `reward_earned` TINYINT(1) NULL DEFAULT NULL,
+  `is_timed` TINYINT(1) NULL DEFAULT NULL,
   `ip_address` CHAR(15) NULL DEFAULT NULL,
   `device_family` VARCHAR(45) NULL DEFAULT NULL,
   `device_model` VARCHAR(45) NULL DEFAULT NULL,
   `device_type` INT(11) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `testdb`.`rewards`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `testdb`.`rewards` ;
+
+CREATE TABLE IF NOT EXISTS `testdb`.`rewards` (
+  `class_code` VARCHAR(10) NOT NULL,
+  `reward_name` VARCHAR(45) NOT NULL,
+  `reward_description` VARCHAR(500) NULL DEFAULT NULL,
+  `required_points` INT(11) NOT NULL,
+  INDEX `fk_rewards_class_code_idx` (`class_code` ASC),
+  CONSTRAINT `fk_rewards_class_code`
+    FOREIGN KEY (`class_code`)
+    REFERENCES `testdb`.`classrooms` (`class_code`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -168,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `cumulative` INT(1) NULL DEFAULT '0',
   `number_of_questions` INT(11) NULL DEFAULT NULL,
   `points_per_question` INT(11) NULL DEFAULT NULL,
-  `seconds_per_question` INT(11) NULL DEFAULT NULL,
+  `is_timed` TINYINT(1) NULL DEFAULT NULL,
   `completion_points` INT(11) NULL DEFAULT NULL,
   `datetime_quest_started` DATETIME NULL DEFAULT NULL,
   `current_word_index` INT(11) NULL DEFAULT NULL,

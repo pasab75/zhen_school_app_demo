@@ -13,15 +13,15 @@ class QuestLogEntry:
     _lon = None
     _chapter_index = None
     _cumulative = None
-    _seconds_per_question = None
-    _reward_earned = None
+    _is_timed = None
     _ip_address = None
     _device_type = None
     _device_family = None
     _device_model = None
+    _is_timed = None
 
     def __init__(self, user_id=None, number_of_questions=10, number_correct=0, chapter_index=None, latitude=None,
-                 longitude=None, cumulative=None, seconds_per_question=0, reward_earned=None, ip_address=None,
+                 longitude=None, cumulative=None, is_timed=None, ip_address=None,
                  device_type=None, device_family=None, device_model=None):
         self._user_id = user_id
         self._number_correct = number_correct
@@ -30,8 +30,7 @@ class QuestLogEntry:
         self._lon = longitude
         self._chapter_index = chapter_index
         self._cumulative = cumulative
-        self._seconds_per_question = seconds_per_question
-        self._reward_earned = reward_earned
+        self._is_timed = is_timed
         self._device_family = device_family
         self._device_model = device_model
         self._device_type = device_type
@@ -44,7 +43,7 @@ class QuestLogEntry:
         self._chapter_index = user.get_chapter_index()
         self._cumulative = user.get_cumulative()
         self._number_of_questions = user.get_number_of_questions()
-        self._seconds_per_question = user.get_seconds_per_question()
+        self._is_timed = user.get_is_timed()
         self._quest_complete_datetime = datetime.datetime.now()
         self._lat = user_current_lat
         self._lon = user_current_lon
@@ -57,8 +56,6 @@ class QuestLogEntry:
             self._device_type = 2
         self._device_family = user_agent.device.family
         self._device_model = user_agent.device.model
-        if self._number_correct/self._number_of_questions >= config.fraction_needed_for_quest_rewards:
-            self._reward_earned = True
         return self
 
     def get_json(self):
@@ -72,7 +69,7 @@ class QuestLogEntry:
             "longitude": self._lon,
             "chapter_index": self._chapter_index,
             "cumulative": self._cumulative,
-            "seconds_per_question": self._seconds_per_question,
+            "is_timed": self._is_timed,
             "device_type": self._device_type,
             "device_family": self._device_family,
             "device_model": self._device_model,
@@ -89,7 +86,7 @@ class QuestLogEntry:
         self._chapter_index = db_quest_log_entry['chapter_index']
         self._cumulative = db_quest_log_entry['cumulative']
         self._number_of_questions = db_quest_log_entry['number_of_questions']
-        self._seconds_per_question = db_quest_log_entry['seconds_per_question']
+        self._is_timed = db_quest_log_entry['is_timed']
         self._device_type = db_quest_log_entry['device_type']
         self._device_model = db_quest_log_entry['device_model']
         self._device_family = db_quest_log_entry['device_family']
@@ -106,7 +103,7 @@ class QuestLogEntry:
             "longitude": self._lon,
             "chapter_index": self._chapter_index,
             "cumulative": self._cumulative,
-            "seconds_per_question": self._seconds_per_question,
+            "is_timed": self._is_timed,
             "device_type": self._device_type,
             "device_family": self._device_family,
             "device_model": self._device_model,
@@ -151,11 +148,11 @@ class QuestLogEntry:
     def get_number_of_questions(self):
         return self._number_of_questions
 
-    def set_seconds_per_question(self, num):
-        self._seconds_per_question = num
+    def set_is_timed(self, num):
+        self._is_timed = num
 
-    def get_seconds_per_question(self):
-        return self._seconds_per_question
+    def get_is_timed(self):
+        return self._is_timed
 
     def set_lat(self, lat):
         self._lat = lat

@@ -12,7 +12,7 @@ import business_objects.User as User
 
 
 # TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
-# TODO: Make 2 new routes 1 - route that provides rewards json, 2 - route that provides leaderboard with anonymous ids
+# TODO: make route that provides leaderboard with anonymous ids
 # TODO: Make a method that checks how many quests the user has completed today
 
 app = Flask(__name__, static_url_path='/')
@@ -406,6 +406,43 @@ def create_account():
         print(ex)
         print('Invalid token')
         return abort(500, "Error: " + str(ex))
+
+#########################################################################################
+# DESCRIPTION
+# new user is submitting for an account
+#
+# RETURN CASES
+# Error: if the user does not authenticate
+# Error: if the user causes an internal server error
+# On Success:
+#
+# TAKES
+# user_identifier, sub, email, first name, last name
+#
+# RETURNS
+# user_exists (boolean), created (boolean), error flag if we think an error occured but couldnt find it
+#########################################################################################
+
+
+@app.route('/api/v1/rewards/get', methods=['POST'])
+def get_rewards():
+    try:
+        print(request.json)
+
+        user = functions.authenticate_user(request)
+        if user:
+            rewards = functions.get_rewards(user)
+            return jsonify({
+                'rewards': rewards
+            })
+        else:
+            return abort(403, "Unable to authenticate user")
+
+    except Exception as exception:
+        print(exception)
+        print('Invalid token')
+        return abort(500, "Error: " + str(exception))
+
 
 # -------------------------------------------------------------
 # Professor client routes

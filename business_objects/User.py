@@ -103,16 +103,14 @@ class User:
             self.set_current_multiplier(self.get_current_multiplier() + 1)
 
     def handle_quest_rewards(self):
-        if self.earned_quest_rewards():
-            self.add_current_points(self._completion_points)
-            self.calculate_and_update_level()
+        self.add_current_points(self.calculate_quest_rewards())
+        self.calculate_and_update_level()
 
-    def earned_quest_rewards(self):
-        if self._number_correct and self._number_of_questions:
-            if self._number_correct / self._number_of_questions >= config.fraction_needed_for_quest_rewards:
-                return self._completion_points
-        else:
-            return 0
+    def calculate_quest_rewards(self):
+        fraction_correct = self._number_correct/self._number_of_questions
+        point_weight = math.pow(config.quest_curve_exp_base, fraction_correct) / config.quest_curve_exp_base
+        points_earned = point_weight*self._completion_points
+        return points_earned
 
     def calculate_and_update_level(self):
         self.set_current_level(1 + math.floor(self.get_current_points() / 1000))
@@ -180,7 +178,6 @@ class User:
             "class_code": self._class_code,
             "datetime_question_started": self._datetime_question_started,
             "points_earned_current_quest": self._points_earned_current_quest,
-            "earned_quest_reward": self.earned_quest_rewards(),
             "question_type": self._question_type
         }
 
@@ -253,6 +250,9 @@ class User:
 
     def get_question_type(self):
         return self._question_type
+
+    def get_class_code(self):
+        return self._class_code
 
     def get_self(self):
         return self

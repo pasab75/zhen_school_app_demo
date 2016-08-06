@@ -2,6 +2,7 @@ import business_objects.Word as Word
 import business_objects.Definition as Definition
 import business_objects.Chapter as Chapter
 import business_objects.Classroom as Classroom
+import business_objects.Reward as Reward
 
 from random import randint
 
@@ -59,5 +60,20 @@ else:
                                                        chapter_index=i)
                 new_definition.save_new()
 
-new_classroom = Classroom.Classroom('A1B2C3D4E5', 4, 3)
+class_code = 'A1B2C3D4E5'
+
+new_classroom = Classroom.Classroom(class_code, 4, 3)
 new_classroom.save_new()
+
+for i in range(10):
+    index = i+1
+    reward_name = "Reward " + str(index)
+    reward_description = "This is reward number " + str(index) + ", I'm sure it does something good."
+    required_points = index*1000
+    new_reward = Reward.Reward(
+        class_code=class_code,
+        reward_name=reward_name,
+        reward_description=reward_description,
+        required_points=required_points
+    )
+    new_reward.save_new()
