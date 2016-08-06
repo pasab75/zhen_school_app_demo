@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="created a rewards table and a route that returns all values from it">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business_objects/Reward.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business_objects/RewardList.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_access/db_rewards.py" />
+    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" afterPath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_access/db_general.py" afterPath="$PROJECT_DIR$/db_access/db_general.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/test_data_generator.py" afterPath="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -63,8 +52,8 @@
       <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="150" column="26" selection-start-line="150" selection-start-column="19" selection-end-line="150" selection-end-column="26" />
+            <state relative-caret-position="601">
+              <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -679,13 +668,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00086" summary="serving up index.html from the root of the website now">
-      <created>1468076530809</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1468076530809</updated>
-    </task>
     <task id="LOCAL-00087" summary="debugging question/submit endpoint">
       <created>1469216835200</created>
       <option name="number" value="00087" />
@@ -1022,7 +1004,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470437836963</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="created a rewards table and a route that returns all values from it">
+      <created>1470452588401</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1470452588402</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1504,8 +1493,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="150" column="26" selection-start-line="150" selection-start-column="19" selection-end-line="150" selection-end-column="26" />
+        <state relative-caret-position="601">
+          <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding />
         </state>
       </provider>
