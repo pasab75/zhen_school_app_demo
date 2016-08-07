@@ -1,7 +1,6 @@
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
 GRANT ALL PRIVILEGES ON *.* TO 'appuser'@'localhost' WITH GRANT OPTION;
 
-
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -72,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`classrooms` (
   `number_dailies_allowed` TINYINT(1) NOT NULL DEFAULT '3',
   `max_multiplier` TINYINT(1) NOT NULL DEFAULT '5',
   `daily_exp_base` TINYINT(1) NOT NULL DEFAULT '30',
+  `daily_point_value` INT(11) NOT NULL,
   PRIMARY KEY (`class_code`),
   INDEX `fk_classrooms_current_chapter_idx` (`current_chapter` ASC),
   CONSTRAINT `fk_classrooms_current_chapter`

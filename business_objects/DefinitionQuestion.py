@@ -1,7 +1,7 @@
 import random
 from peewee import fn
 
-import config
+from config import *
 from business_objects.Models import Definition as Definition
 from business_objects.Models import Word as Word
 
@@ -13,7 +13,12 @@ class DefinitionQuestion:
     chapter_index = None
     question_type = None
 
-    def make_definition_question(self, chapter_index, question_type=None, cumulative=False):
+    def make_definition_question(
+            self,
+            chapter_index,
+            question_type=None,
+            cumulative=False,
+            ):
         # if no question type is requested, flip a coin to determine the question type
         self.chapter_index = chapter_index
         if question_type not in [0, 1]:
@@ -25,7 +30,7 @@ class DefinitionQuestion:
                      .join(Word)
                      .where(Word.chapter_index <= chapter_index)
                      .order_by(fn.Rand())
-                     .limit(config.number_of_multiple_choices)
+                     .limit(number_of_multiple_choices)
                      )
         else:
             query = (Definition
@@ -33,7 +38,7 @@ class DefinitionQuestion:
                      .join(Word)
                      .where(Word.chapter_index == chapter_index)
                      .order_by(fn.Rand())
-                     .limit(config.number_of_multiple_choices)
+                     .limit(number_of_multiple_choices)
                      )
 
         if self.question_type == 1:

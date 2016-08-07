@@ -131,7 +131,7 @@ def make_activity_log_entry(user, correct, request):
         new_activity_log_entry.save()
     except Exception as ex:
         print(ex)
-        print("failed too make activity log entry, not the end of the world, but no log entry made")
+        print("failed too make activity log entry.")
 
 #########################################################################################
 # DESCRIPTION
@@ -180,7 +180,7 @@ def make_quest_log_entry(user, request):
         new_quest_log_entry.save()
     except Exception as ex:
         print(ex)
-        print("failed too make quest log entry, not the end of the world, but no log entry made")
+        print("Failed to make quest log entry.")
 
 #########################################################################################
 # DESCRIPTION
@@ -233,26 +233,3 @@ def get_daily_info(user):
         'daily_chapter': current_chapter
     }
 
-#########################################################################################
-# DESCRIPTION
-#
-#
-# RETURN CASES
-#
-#
-# TAKES
-#
-#
-# RETURNS
-#
-#########################################################################################
-
-
-def generate_new_question(user):
-    new_question = DefinitionQuestion().make_definition_question(
-        chapter_index=user.chapter_index,
-        cumulative=user.cumulative,
-        question_type=user.question_type
-    )
-
-    return new_question

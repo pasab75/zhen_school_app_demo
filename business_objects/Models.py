@@ -57,6 +57,7 @@ class Classroom(BaseModel):
     daily_exp_base = IntegerField()
     max_multiplier = IntegerField()
     number_dailies_allowed = IntegerField()
+    daily_point_value = IntegerField()
 
     class Meta:
         db_table = 'classrooms'

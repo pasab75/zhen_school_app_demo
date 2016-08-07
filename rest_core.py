@@ -108,12 +108,13 @@ def start_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            user_with_new_quest = start_new_quest(user, request)
-            new_question = generate_new_question(user_with_new_quest)
-            user_with_new_question = start_new_question(user_with_new_quest, new_question)
+            user.start_new_quest(request)
+            new_question = user.start_new_question()
+            user.save()
+
             return jsonify({
                 "question": new_question.get_json_min(),
-                "user": user_with_new_question.get_json_min()
+                "user": user.get_json_min()
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -188,9 +189,11 @@ def drop_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            updated_user = drop_user_quest(user)
+            user.drop_user_quest()
+            user.save()
+
             return jsonify({
-                "user": updated_user.get_json_min()
+                "user": user.get_json_min()
             })
 
         else:
@@ -229,11 +232,10 @@ def resume_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            new_question = generate_new_question(user)
-            updated_user = start_new_question(user, new_question)
+            new_question = user.start_new_question
 
             return jsonify({
-                'user': updated_user.get_json_min(),
+                'user': user.get_json_min(),
                 'question': new_question.get_json_min()
             })
         else:
@@ -269,32 +271,34 @@ def submit_question():
 
         user = authenticate_user(request)
         if user:
-            quest_complete = user.is_quest_complete()
+            quest_complete = (user.current_progress >= user.number_of_questions)
 
             if quest_complete:
                 return jsonify({
                     "user": user.get_json_min(),
-                    "quest_complete": quest_complete
+                    "quest_complete": True
                 })
 
             user_answer = request.json['user_answer']
             correct_answer = user.current_word_index
             correct = (user_answer == correct_answer)
 
+            if correct:
+                user.award_question_points()
+
             make_activity_log_entry(user, correct, request)
-            user.current_progress += 1
-            # user.handle_question_rewards(correct)
-            quest_complete = (user.current_progress == user.number_of_questions)
+            user.update_quest_progress()
+
+            quest_complete = (user.current_progress >= user.number_of_questions)
 
             if quest_complete:
                 quest_stats = {}
                 make_quest_log_entry(user, request)
-                # user.handle_quest_rewards()
-                # user.set_current_multiplier(1)
-                updated_user = drop_user_quest(user)
+                user.award_daily_rewards()
+                user.drop_user_quest()
 
                 return jsonify({
-                    "user": updated_user.get_json_min(),
+                    "user": user.get_json_min(),
                     "feedback": {
                         "is_correct": correct,
                         "correct_answer": correct_answer,
@@ -305,11 +309,10 @@ def submit_question():
                 })
 
             else:
-                new_question = start_new_question(user)
-                updated_user = start_new_question(user, new_question)
+                new_question = user.start_new_question()
 
                 return jsonify({
-                    "user": updated_user.get_json_min(),
+                    "user": user.get_json_min(),
                     "feedback": {
                         "is_correct": correct,
                         "correct_answer": correct_answer,

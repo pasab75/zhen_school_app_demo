@@ -1,5 +1,8 @@
 import datetime
 from logging import exception
+
+import math
+
 from config import *
 
 from business_objects.Models import *
@@ -57,84 +60,18 @@ class User(BaseModel):
 
     def start_new_quest(self, request):
         client_choices = request.json
-        requested_chapter_index = client_choices['chapter_index']
-        requested_is_timed = client_choices['is_timed']
-        requested_number_of_questions = client_choices['number_of_questions']
-        requested_cumulative = client_choices['cumulative']
-        requested_question_type = client_choices['question_type']
-        requested_is_daily = client_choices['is_daily']
+        is_daily = client_choices['is_daily']
+        if is_daily:
+            self.__start_daily()
+        else:
+            self.__start_practice(client_choices)
 
-        updated_user = update_user_quest(
-            self,
-            chapter_index=requested_chapter_index,
-            is_timed=requested_is_timed,
-            number_of_questions=requested_number_of_questions,
-            cumulative=requested_cumulative,
-            question_type=requested_question_type,
-            is_daily=requested_is_daily
-        )
+    def start_new_question(self):
+        new_question = self.__generate_new_question()
+        self.current_word_index = new_question.word_index
+        self.datetime_question_started = datetime.datetime.now()
 
-        make_quest_log_entry(self, request)
-
-        return updated_user
-
-    def update_user_quest(
-            user,
-            chapter_index=None,
-            is_timed=None,
-            number_of_questions=None,
-            cumulative=False,
-            question_type=None,
-            is_daily=None
-    ):
-        try:
-            class_code = user.class_code
-            number_correct = 0
-            current_progress = 0
-            points_per_question = 10
-
-            valid_num_questions = number_of_question_options
-            valid_bool = [True, False]
-
-            if is_daily:
-                current_class = Classroom.get(Classroom.class_code == class_code)
-                chapter_index = current_class.chapter_index
-
-                is_timed = True
-                number_of_questions = 50
-                cumulative = True
-                question_type = 3
-
-            if number_of_questions not in valid_num_questions or is_timed not in valid_bool or cumulative not in valid_bool:
-                raise exception(500, "You have chosen invalid quest options.")
-
-            if is_timed:
-                points_per_question += 3
-
-            if cumulative:
-                points_per_question += 1 * (chapter_index - 1)
-
-            completion_points = 20 * number_of_questions
-
-            user.chapter_index = chapter_index
-            user.current_progress = current_progress
-            user.number_correct = number_correct
-            user.completion_points = completion_points
-            user.is_timed = is_timed
-            user.points_per_question = points_per_question
-            user.number_of_questions = number_of_questions
-            user.cumulative = cumulative
-            user.question_type = question_type
-            user.is_on_daily = is_daily
-
-            user.save()
-
-            return user
-
-        except Exception as ex:
-            # TODO: change prints to logger
-            print("Error: " + str(ex))
-            raise ex
+        return new_question
 
     def drop_user_quest(self):
         self.chapter_index = None
@@ -153,14 +90,73 @@ class User(BaseModel):
         self.points_per_question = None
         self.question_type = None
 
-        self.save()
+    def update_quest_progress(self):
+        self.current_progress += 1
 
-        return self
+    def award_question_points(self):
+        points_earned = self.points_per_question*self.multiplier
+        self.points_earned_current_quest += points_earned
+        self.total_points += points_earned
 
-    def start_new_question(self, new_question):
-        self.current_word_index = new_question.word_index
-        self.datetime_question_started = datetime.datetime.now()
+    def award_daily_rewards(self):
+        user_classroom = Classroom.get(Classroom.class_code == self.class_code)
 
-        self.save()
+        base = user_classroom.daily_exp_base
+        percentage_correct = self.number_correct/self.number_of_questions
+        points_earned = int(round(math.pow(base, percentage_correct)/base))
 
-        return self
+        self.total_points += points_earned
+
+    #########################################################################################
+    # Private Methods
+    #########################################################################################
+
+    def __generate_new_question(self):
+        new_question = DefinitionQuestion().make_definition_question(
+            chapter_index=self.chapter_index,
+            cumulative=self.cumulative,
+            question_type=self.question_type
+        )
+
+        return new_question
+
+    def __start_daily(self):
+        user_classroom = Classroom.get(Classroom.class_code == self.class_code)
+
+        self.chapter_index = user_classroom.current_chapter
+        self.current_progress = 0
+        self.number_correct = 0
+        self.completion_points = user_classroom.daily_point_worth
+        self.is_timed = True
+        self.points_per_question = 20
+        self.number_of_questions = 50
+        self.cumulative = True
+        self.question_type = 3
+        self.is_on_daily = True
+
+    def __start_practice(self, client_choices):
+        chapter_index = client_choices['chapter_index']
+        is_timed = client_choices['is_timed']
+        number_of_questions = client_choices['number_of_questions']
+        cumulative = client_choices['cumulative']
+        question_type = client_choices['question_type']
+
+        points_per_question = 10
+        if is_timed:
+            points_per_question += 3
+        if cumulative:
+            points_per_question += 3
+        if question_type == 3:
+            points_per_question += 3
+
+        self.datetime_quest_started = datetime.datetime.now()
+        self.chapter_index = chapter_index
+        self.current_progress = 0
+        self.number_correct = 0
+        self.completion_points = 0
+        self.is_timed = is_timed
+        self.points_per_question = points_per_question
+        self.number_of_questions = number_of_questions
+        self.cumulative = cumulative
+        self.question_type = question_type
+        self.is_on_daily = False
