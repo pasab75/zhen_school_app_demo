@@ -62,21 +62,26 @@ def static_file(path):
 #########################################################################################
 
 
-@app.route('/api/v1/user/get', methods=['POST'])
-def get_user():
+@app.route('/api/v1/status/get', methods=['POST'])
+def get_status():
     try:
         print(request.json)
         user = authenticate_user(request)
-        if user:
-            print(user)
+        try:
+            daily_info = get_daily_info(user)
+            rewards = get_rewards(user)
+
             return jsonify({
-                "user": user.get_json_min()
+                "user": user.get_json_min(),
+                "daily_status": daily_info,
+                'rewards': rewards
             })
-        else:
-            return abort(403, "Unable to authenticate user")
+        except Exception as ex:
+            print("Unable to get parameters for user's classroom: " + str(ex))
+            return abort(500, "Unable to get current server information.")
     except Exception as ex:
         print("Unable to retrieve user:" + str(ex))
-        return abort(500, "Unable to retrieve user. Error: "+str(ex))
+        return abort(500, "Unable to authenticate user.")
 
 #########################################################################################
 # DESCRIPTION
@@ -381,42 +386,6 @@ def create_account():
         print(ex)
         print('Invalid token')
         return abort(500, "Error: " + str(ex))
-
-#########################################################################################
-# DESCRIPTION
-#
-#
-# RETURN CASES
-#
-#
-#
-#
-# TAKES
-#
-#
-# RETURNS
-#
-#########################################################################################
-
-
-@app.route('/api/v1/rewards/get', methods=['POST'])
-def get_rewards():
-    try:
-        print(request.json)
-
-        user = authenticate_user(request)
-        if user:
-            rewards = get_rewards(user)
-            return jsonify({
-                'rewards': rewards
-            })
-        else:
-            return abort(403, "Unable to authenticate user")
-
-    except Exception as exception:
-        print(exception)
-        print('Invalid token')
-        return abort(500, "Error: " + str(exception))
 
 #########################################################################################
 # DESCRIPTION

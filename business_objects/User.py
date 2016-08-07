@@ -1,9 +1,5 @@
 import datetime
-from logging import exception
-
 import math
-
-from config import *
 
 from business_objects.Models import *
 from business_objects.DefinitionQuestion import DefinitionQuestion

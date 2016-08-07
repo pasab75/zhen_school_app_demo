@@ -1,9 +1,7 @@
 import datetime
 from oauth2client import client, crypt
 from user_agents import parse
-from flask import abort
 
-from business_objects.DefinitionQuestion import DefinitionQuestion
 from business_objects.Models import *
 from business_objects.User import User
 
@@ -199,10 +197,9 @@ def make_quest_log_entry(user, request):
 
 def get_rewards(user):
     class_code = user.class_code
-    raw_rewards = Reward.select().where(Reward.class_code == class_code)
     reward_list = []
-    for reward in raw_rewards:
-        reward_list.append(reward.get_json_min())
+    for reward in Reward.select().where(Reward.class_code == class_code):
+        print(reward)
 
     return reward_list
 
