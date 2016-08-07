@@ -1,6 +1,7 @@
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
 GRANT ALL PRIVILEGES ON *.* TO 'appuser'@'localhost' WITH GRANT OPTION;
 
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -168,6 +169,8 @@ CREATE TABLE IF NOT EXISTS `testdb`.`rewards` (
   `reward_name` VARCHAR(45) NOT NULL,
   `reward_description` VARCHAR(500) NOT NULL,
   `required_points` INT(3) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   INDEX `fk_rewards_class_code_idx` (`class_code` ASC),
   CONSTRAINT `fk_rewards_class_code`
     FOREIGN KEY (`class_code`)
