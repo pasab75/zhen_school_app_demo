@@ -1,10 +1,11 @@
 import random
 
-import business_objects.Word as Word
-import business_objects.Definition as Definition
+from peewee import fn, JOIN
+
 import config
 
-import db_access.db_words as db_access_words
+from business_objects.Models import Definition as Definition
+from business_objects.Models import Word as Word
 
 
 class DefinitionQuestion:
@@ -41,21 +42,21 @@ class DefinitionQuestion:
                 temp_word = word.get_json_min()
                 words.append(temp_word)
             return {
-                "prompt": self._definition.get_definition(),
+                "prompt": self._definition.definition,
                 "chapter_index": self._chapter_index,
                 "answers": words,
-                "question_type": 0
+                "question_type": 1
             }
         else:
-            defins = []
-            for defin in self._definitions:
-                temp_word = defin.get_json_min()
-                defins.append(temp_word)
+            definitions = []
+            for definition in self._definitions:
+                temp_word = definition.get_json_min()
+                definitions.append(temp_word)
             return {
-                "prompt": self._word.get_word(),
+                "prompt": self._word.word,
                 "chapter_index": self._chapter_index,
-                "answers": defins,
-                "question_type": 1
+                "answers": definitions,
+                "question_type": 0
             }
 
     def make_from_chapter_index(self, chapter_index, question_type=None, cumulative=False):
@@ -69,54 +70,41 @@ class DefinitionQuestion:
             question_type = random.randint(0, 1)
             self._question_type = question_type
 
-        if cumulative:
-            chapter_lower_limit = 1
-        else:
-            chapter_lower_limit = chapter_index
+        # TODO: This query is currently borked. fix it tomorrow
 
-        db_connection = db_access_words.WordTableAccess()
-        raw_list = db_connection.get_row_random_with_limits(
-            'words',
-            'chapter_index',
-            chapter_lower_limit,
-            chapter_index,
-            config.number_of_multiple_choices
-        )
-        db_connection.close_connection()
+        if cumulative:
+            self._words = (Word
+                           .select(Word, Definition)
+                           .join(Definition, JOIN.LEFT_OUTER)
+                           .where(Word.chapter_index <= chapter_index)
+                           .order_by(fn.Rand())
+                           .limit(config.number_of_multiple_choices)
+                           )
+        else:
+            self._words = (Word
+                           .select(Word, Definition)
+                           .join(Definition, JOIN.LEFT_OUTER)
+                           .where(Word.chapter_index == chapter_index)
+                           .order_by(fn.Rand())
+                           .limit(config.number_of_multiple_choices)
+                           )
 
         # question type 1 means that there will be a definition with word choices
         if question_type == 1:
-            for word in raw_list:
-                word_obj = Word.Word()
-                word_obj.set_from_database(word)
-
-                self._words.append(word_obj)
-
             self._word = self._words[0]
-            self._definition = Definition.Definition().get_definition_random_from_word(self._word)
+            self._definition = random.choice(self._word.definitions)
 
         # question type 2 means that there will be a word with definition choices
         elif question_type == 0:
-            for word in raw_list:
-                word_obj = Word.Word()
-                word_obj.set_from_database(word)
-
-                definition_obj = Definition.Definition()
-                definition_obj.generate_random_from_word(word_obj)
-
-                self._definitions.append(definition_obj)
+            for word in self._words:
+                random_definition = random.choice(word.definitions)
+                self._definitions.append(random_definition)
 
             self._definition = self._definitions[0]
-            self._word = Word.Word().get_word_from_definition(self._definition)
+            self._word = self._words[0]
 
-        self._word_index = self._word.get_index()
+        self._word_index = self._word.word_index
         return self
-
-    def make_from_chapter(self, chapter, num_wanted, type):
-        self.make_from_chapter_index(chapter.get_index(), num_wanted, type)
 
     def get_word_index(self):
         return self._word_index
-
-    def set_word_index(self, index):
-        self._word_index = index

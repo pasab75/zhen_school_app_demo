@@ -1,10 +1,11 @@
-import business_objects.Word as Word
-import business_objects.Definition as Definition
-import business_objects.Chapter as Chapter
-import business_objects.Classroom as Classroom
-import business_objects.Reward as Reward
-
 from random import randint
+
+import business_objects.Chapter as Chapter
+import business_objects.Definition as Definition
+import business_objects.Reward as Reward
+import business_objects.deprecated.Classroom as Classroom
+
+import deprecated_files.business_objects.Word as Word
 
 # choose random entries or looped entries
 random = False

@@ -1,11 +1,8 @@
-from flask import Flask, jsonify, request, abort, send_from_directory
-
 import datetime
 
 import config as config
 import rest_functions as functions
-
-import business_objects.User as User
+from flask import Flask, jsonify, request, abort, send_from_directory
 
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
 # TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
@@ -13,7 +10,6 @@ import business_objects.User as User
 
 # TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
 # TODO: make route that provides leaderboard with anonymous ids
-# TODO: Make a method that checks how many quests the user has completed today
 
 app = Flask(__name__, static_url_path='/')
 
@@ -78,7 +74,7 @@ def authenticate_user():
         if user:
             print(user)
             return jsonify({
-                "user": user.get_json()
+                "user": user
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -110,7 +106,7 @@ def get_user():
         if user:
             print(user)
             return jsonify({
-                "user": user.get_json()
+                "user": user._data
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -362,65 +358,65 @@ def submit_question():
 #########################################################################################
 
 
-@app.route('/api/v1/account/create', methods=['POST'])
-def create_account():
-    try:
-        incoming_request = request
-        print(incoming_request)
-
-        user_information = functions.check_access_token(request)
-        if user_information:
-            print(user_information)
-            user_id = str(user_information['sub'])
-
-            user = User.User().generate_from_id(user_id)
-            if user:
-                print('aborting')
-                return abort(500, "Error: user already exists.")
-            class_code = request.json['class_code']
-            user_first_name = user_information['given_name']
-            user_last_name = user_information['family_name']
-            user_email = user_information['email']
-
-            print('Creating new user account')
-            user = User.User(user_id=user_id,
-                             first_name=user_first_name,
-                             last_name=user_last_name,
-                             e_mail=user_email,
-                             paid_through=datetime.datetime.today() + datetime.timedelta(days=365),
-                             class_code=class_code
-                             )
-            try:
-                new_user = user.save_new()
-            except Exception as ex:
-                return abort(500, "Error creating user.")
-
-            if new_user:
-                return jsonify({
-                    'user': new_user.get_json(),
-                    'user_exists': False,
-                    'user_created': True
-                })
-
-    except Exception as ex:
-        print(ex)
-        print('Invalid token')
-        return abort(500, "Error: " + str(ex))
+# @app.route('/api/v1/account/create', methods=['POST'])
+# def create_account():
+#     try:
+#         incoming_request = request
+#         print(incoming_request)
+#
+#         user_information = functions.check_access_token(request)
+#         if user_information:
+#             print(user_information)
+#             user_id = str(user_information['sub'])
+#
+#             user = User.User().generate_from_id(user_id)
+#             if user:
+#                 print('aborting')
+#                 return abort(500, "Error: user already exists.")
+#             class_code = request.json['class_code']
+#             user_first_name = user_information['given_name']
+#             user_last_name = user_information['family_name']
+#             user_email = user_information['email']
+#
+#             print('Creating new user account')
+#             user = User.create(user_id=user_id,
+#                                first_name=user_first_name,
+#                                last_name=user_last_name,
+#                                e_mail=user_email,
+#                                paid_through=datetime.datetime.today() + datetime.timedelta(days=365),
+#                                class_code=class_code
+#                                )
+#             try:
+#                 new_user = user.save_new()
+#             except Exception as ex:
+#                 return abort(500, "Error creating user.")
+#
+#             if new_user:
+#                 return jsonify({
+#                     'user': new_user.get_json(),
+#                     'user_exists': False,
+#                     'user_created': True
+#                 })
+#
+#     except Exception as ex:
+#         print(ex)
+#         print('Invalid token')
+#         return abort(500, "Error: " + str(ex))
 
 #########################################################################################
 # DESCRIPTION
-# new user is submitting for an account
+#
 #
 # RETURN CASES
-# Error: if the user does not authenticate
-# Error: if the user causes an internal server error
-# On Success:
+#
+#
+#
 #
 # TAKES
-# user_identifier, sub, email, first name, last name
+#
 #
 # RETURNS
-# user_exists (boolean), created (boolean), error flag if we think an error occured but couldnt find it
+#
 #########################################################################################
 
 
@@ -443,6 +439,78 @@ def get_rewards():
         print('Invalid token')
         return abort(500, "Error: " + str(exception))
 
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+@app.route('/api/v1/daily/get', methods=['POST'])
+def get_daily():
+    try:
+        print(request.json)
+
+        user = functions.authenticate_user(request)
+        if user:
+            daily_info = functions.get_daily_info(user)
+
+            return jsonify({
+                'daily_status': daily_info
+            })
+        else:
+            return abort(403, "Unable to authenticate user")
+
+    except Exception as exception:
+        print(exception)
+        print('Invalid token')
+        return abort(500, "Error: " + str(exception))
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+
+@app.route('/api/v1/leaderboard/get', methods=['POST'])
+def get_leaderboard():
+    try:
+        print(request.json)
+
+        user = functions.authenticate_user(request)
+        if user:
+
+            return jsonify({
+                'leaderboard': 'this is supposed to be a leaderboard'
+            })
+        else:
+            return abort(403, "Unable to authenticate user")
+
+    except Exception as exception:
+        print(exception)
+        print('Invalid token')
+        return abort(500, "Error: " + str(exception))
 
 # -------------------------------------------------------------
 # Professor client routes

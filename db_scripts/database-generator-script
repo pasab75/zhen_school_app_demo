@@ -1,5 +1,7 @@
 CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
 GRANT ALL PRIVILEGES ON *.* TO 'appuser'@'localhost' WITH GRANT OPTION;
+
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -12,6 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema testdb
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `testdb` ;
 
 -- -----------------------------------------------------
 -- Schema testdb
@@ -30,15 +33,16 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `correct` TINYINT(1) NOT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
-  `number_of_questions` INT(11) NOT NULL,
+  `number_of_questions` TINYINT(1) NOT NULL,
   `is_timed` TINYINT(1) NULL DEFAULT NULL,
   `datetime_quest_started` DATETIME NOT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
-  `current_word_index` INT(11) NOT NULL,
+  `current_word_index` INT(1) NOT NULL,
   `ip_address` CHAR(15) NULL DEFAULT NULL,
   `device_family` VARCHAR(20) NULL DEFAULT NULL,
   `device_model` VARCHAR(20) NULL DEFAULT NULL,
-  `device_type` INT(11) NULL DEFAULT NULL)
+  `device_type` TINYINT(1) NULL DEFAULT NULL,
+  `is_daily` TINYINT(1) NOT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -49,7 +53,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`chapters` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`chapters` (
-  `chapter_index` INT(11) NOT NULL,
+  `chapter_index` TINYINT(1) NOT NULL,
   `chapter_name` VARCHAR(500) NULL DEFAULT NULL,
   PRIMARY KEY (`chapter_index`),
   UNIQUE INDEX `chapter_index_UNIQUE` (`chapter_index` ASC))
@@ -64,9 +68,17 @@ DROP TABLE IF EXISTS `testdb`.`classrooms` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`classrooms` (
   `class_code` VARCHAR(10) NOT NULL,
-  `current_chapter` INT(11) NOT NULL DEFAULT '1',
-  `bonus_quests_per_day` INT(11) NOT NULL DEFAULT '3',
-  PRIMARY KEY (`class_code`))
+  `current_chapter` TINYINT(1) NOT NULL DEFAULT '1',
+  `number_dailies_allowed` TINYINT(1) NOT NULL DEFAULT '3',
+  `max_multiplier` TINYINT(1) NOT NULL DEFAULT '5',
+  `daily_exp_base` TINYINT(1) NOT NULL DEFAULT '30',
+  PRIMARY KEY (`class_code`),
+  INDEX `fk_classrooms_current_chapter_idx` (`current_chapter` ASC),
+  CONSTRAINT `fk_classrooms_current_chapter`
+    FOREIGN KEY (`current_chapter`)
+    REFERENCES `testdb`.`chapters` (`chapter_index`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -77,22 +89,21 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`words` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`words` (
-  `word_index` INT(11) NOT NULL AUTO_INCREMENT,
+  `word_index` INT(1) NOT NULL,
   `word` VARCHAR(100) NOT NULL,
-  `chapter_index` INT(11) NOT NULL,
-  `instructor_difficulty` INT(11) NULL DEFAULT NULL,
-  `calculated_difficulty` INT(11) NULL DEFAULT NULL,
-  `avg_answer_time` INT(11) NULL DEFAULT NULL,
+  `chapter_index` TINYINT(1) NOT NULL,
+  `instructor_difficulty` TINYINT(1) NULL DEFAULT NULL,
+  `calculated_difficulty` TINYINT(1) NULL DEFAULT NULL,
+  `avg_answer_time` SMALLINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`word_index`),
   UNIQUE INDEX `word_index_UNIQUE` (`word_index` ASC),
-  INDEX `fk_chapter_index_idx` (`chapter_index` ASC),
+  INDEX `fk_words_chapter_index_idx` (`chapter_index` ASC),
   CONSTRAINT `fk_words_chapter_index`
     FOREIGN KEY (`chapter_index`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2501
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -102,9 +113,9 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `testdb`.`definitions` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`definitions` (
-  `word_index` INT(11) NOT NULL,
+  `word_index` INT(1) NOT NULL,
   `definition` VARCHAR(500) NOT NULL,
-  `chapter_index` INT(11) NOT NULL,
+  `chapter_index` TINYINT(1) NOT NULL,
   PRIMARY KEY (`definition`),
   INDEX `FK_word_index_idx` (`word_index` ASC),
   INDEX `fk_chapter_index_idx` (`chapter_index` ASC),
@@ -129,19 +140,20 @@ DROP TABLE IF EXISTS `testdb`.`quest_log` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
   `user_id` CHAR(21) NOT NULL,
-  `number_correct` INT(11) NOT NULL,
-  `quest_start_datetime` DATETIME NOT NULL,
-  `quest_complete_datetime` DATETIME NOT NULL,
-  `number_of_questions` INT(11) NOT NULL,
+  `number_correct` TINYINT(1) NOT NULL,
+  `datetime_quest_started` DATETIME NOT NULL,
+  `datetime_quest_completed` DATETIME NOT NULL,
+  `number_of_questions` TINYINT(1) NOT NULL,
   `latitude` DOUBLE NULL DEFAULT NULL,
   `longitude` DOUBLE NULL DEFAULT NULL,
-  `chapter_index` INT(11) NULL DEFAULT NULL,
+  `chapter_index` TINYINT(1) NULL DEFAULT NULL,
   `cumulative` TINYINT(1) NOT NULL,
   `is_timed` TINYINT(1) NULL DEFAULT NULL,
   `ip_address` CHAR(15) NULL DEFAULT NULL,
   `device_family` VARCHAR(45) NULL DEFAULT NULL,
   `device_model` VARCHAR(45) NULL DEFAULT NULL,
-  `device_type` INT(11) NULL DEFAULT NULL)
+  `device_type` TINYINT(1) NULL DEFAULT NULL,
+  `is_daily` TINYINT(1) NOT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -154,8 +166,8 @@ DROP TABLE IF EXISTS `testdb`.`rewards` ;
 CREATE TABLE IF NOT EXISTS `testdb`.`rewards` (
   `class_code` VARCHAR(10) NOT NULL,
   `reward_name` VARCHAR(45) NOT NULL,
-  `reward_description` VARCHAR(500) NULL DEFAULT NULL,
-  `required_points` INT(11) NOT NULL,
+  `reward_description` VARCHAR(500) NOT NULL,
+  `required_points` INT(3) NOT NULL,
   INDEX `fk_rewards_class_code_idx` (`class_code` ASC),
   CONSTRAINT `fk_rewards_class_code`
     FOREIGN KEY (`class_code`)
@@ -173,37 +185,35 @@ DROP TABLE IF EXISTS `testdb`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`users` (
   `user_id` CHAR(21) NOT NULL,
-  `last_active` DATETIME NULL DEFAULT NULL,
   `first_name` VARCHAR(20) NULL DEFAULT NULL,
   `last_name` VARCHAR(20) NULL DEFAULT NULL,
-  `user_role` INT(11) NOT NULL DEFAULT '0',
+  `user_role` TINYINT(1) NOT NULL DEFAULT '0',
   `e_mail` VARCHAR(50) NOT NULL,
-  `current_lvl` INT(11) NOT NULL DEFAULT '1',
-  `current_points` INT(11) NULL DEFAULT '0',
-  `current_multiplier` INT(11) NULL DEFAULT NULL,
-  `chapter_index` INT(11) NULL DEFAULT NULL,
-  `cumulative` INT(1) NULL DEFAULT '0',
-  `number_of_questions` INT(11) NULL DEFAULT NULL,
-  `points_per_question` INT(11) NULL DEFAULT NULL,
+  `reward_level` TINYINT(1) NOT NULL DEFAULT '1',
+  `total_points` INT(1) NULL DEFAULT '0',
+  `multiplier` TINYINT(1) NULL DEFAULT NULL,
+  `chapter_index` TINYINT(1) NULL DEFAULT NULL,
+  `cumulative` TINYINT(1) NULL DEFAULT '0',
+  `number_of_questions` TINYINT(2) NULL DEFAULT NULL,
+  `points_per_question` SMALLINT(2) NULL DEFAULT NULL,
   `is_timed` TINYINT(1) NULL DEFAULT NULL,
-  `completion_points` INT(11) NULL DEFAULT NULL,
+  `completion_points` INT(3) NULL DEFAULT NULL,
+  `current_word_index` INT(1) NULL DEFAULT NULL,
+  `current_progress` TINYINT(1) NULL DEFAULT NULL,
+  `number_correct` TINYINT(1) NULL DEFAULT NULL,
   `datetime_quest_started` DATETIME NULL DEFAULT NULL,
-  `current_word_index` INT(11) NULL DEFAULT NULL,
-  `current_progress` INT(11) NULL DEFAULT NULL,
-  `number_correct` INT(11) NULL DEFAULT NULL,
-  `paid_through` DATETIME NULL DEFAULT NULL,
   `datetime_question_started` DATETIME NULL DEFAULT NULL,
   `class_code` VARCHAR(20) NULL DEFAULT NULL,
-  `points_earned_current_quest` INT(11) NULL DEFAULT NULL,
-  `question_type` INT(2) NULL DEFAULT NULL,
+  `points_earned_current_quest` INT(3) NULL DEFAULT NULL,
+  `question_type` TINYINT(1) NULL DEFAULT NULL,
+  `is_on_daily` TINYINT(1) NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_users_class_code_idx` (`class_code` ASC),
   CONSTRAINT `fk_users_class_code`
     FOREIGN KEY (`class_code`)
     REFERENCES `testdb`.`classrooms` (`class_code`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
+    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="major overhaul on da">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business_objects/Models.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/Classroom.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_activity_log.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_chapters.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_classrooms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_definitions.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_general.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_quest_log.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_rewards.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_users.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/db_words.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/deprecated/db_calculations.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/deprecated/db_multiple_choice.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/deprecated/db_quest_archetype.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/deprecated/db_quests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/deprecated/db_topic_chapter.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db_access/unit_testing/unit_testing_main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/DefinitionQuestion.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/Question.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/AbstractQuestion.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/ActivityLogEntry.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/Chapter.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/Definition.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/QuestLogEntry.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/Reward.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/RewardList.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/TopicChapter.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/User.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/Word.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/business_objects/quest.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/db_access/db_question.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/test_data_generator.py" afterPath="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/app.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/ctx.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/ctx.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/helpers.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/helpers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/module.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/module.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/testsuite/__init__.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/testsuite/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/wrappers.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/flask/wrappers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/html5lib/constants.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/html5lib/constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/html5lib/html5parser.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/html5lib/html5parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/ipaddress.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/ipaddress.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/pkg_resources/__init__.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/pkg_resources/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/pyparsing.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/pyparsing.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/requests/packages/urllib3/connection.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/requests/packages/urllib3/connection.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/requests/packages/urllib3/filepost.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/_vendor/requests/packages/urllib3/filepost.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/cmdoptions.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/cmdoptions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/commands/install.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/commands/install.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/commands/list.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/commands/list.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/commands/wheel.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/commands/wheel.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/index.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/index.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/req/req_file.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/req/req_file.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/req/req_install.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pip/req/req_install.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pkg_resources/__init__.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pkg_resources/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pkg_resources/_vendor/pyparsing.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/pkg_resources/_vendor/pyparsing.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/setuptools/command/egg_info.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/setuptools/command/egg_info.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/setuptools/dist.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/setuptools/dist.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/contrib/jsrouting.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/contrib/jsrouting.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/contrib/limiter.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/contrib/limiter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/contrib/testtools.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/contrib/testtools.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/debug/__init__.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/debug/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/script.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/script.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/test.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/wrappers.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/werkzeug/wrappers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/wheel/bdist_wheel.py" afterPath="$PROJECT_DIR$/flask/lib/python3.4/site-packages/wheel/bdist_wheel.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -18,8 +85,8 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_core Coverage Results" MODIFIED="1469829706708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_core.coverage" NAME="rest_core Coverage Results" MODIFIED="1470451105632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1470451123671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
+    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_core.coverage" NAME="rest_core Coverage Results" MODIFIED="1470546375030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -36,134 +103,125 @@
     <favorites_list name="python_rest" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_core.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="78" selection-start-line="15" selection-start-column="78" selection-end-line="15" selection-end-column="78" />
-              <folding>
-                <element signature="e#0#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="1861" column="0" selection-start-line="1861" selection-start-column="0" selection-end-line="1861" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_general.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-              <folding>
-                <marker date="1470450828988" expanded="true" signature="1746:1769" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="2265:2293" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="3318:3371" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="3318:3372" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="3932:3992" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="4931:4973" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="5661:5728" ph="SELECT * FRO... missing_value" />
-                <marker date="1470450828988" expanded="true" signature="6984:7019" ph="INSERT INTO missing_value... " />
-                <marker date="1470450828988" expanded="true" signature="8261:8287" ph="UPDATE missi... " />
-                <marker date="1470450828988" expanded="true" signature="8935:8963" ph="DELETE FROM " />
-                <marker date="1470450828988" expanded="true" signature="9899:9911" ph="DELETE FROM " />
-                <marker date="1470450828988" expanded="true" signature="9899:9913" ph="DELETE FROM " />
-                <marker date="1470450828988" expanded="true" signature="10338:10359" ph="SELECT COUNT... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/business_objects/User.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="323" column="47" selection-start-line="323" selection-start-column="16" selection-end-line="323" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_rewards.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_access/db_rewards.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reward.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/business_objects/Reward.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RewardList.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/business_objects/RewardList.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5605775">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/rest_core.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="258">
+                  <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="577">
+                  <caret line="223" column="0" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="81">
+                  <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+            <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="1861" column="0" selection-start-line="1861" selection-start-column="0" selection-end-line="1861" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Models.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/business_objects/Models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2096">
+                  <caret line="29" column="8" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/rest_functions.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="361">
+                  <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="peewee.py" pinned="false" current-in-tab="false">
+            <entry file="file:///usr/local/lib/python3.5/dist-packages/peewee.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="2572" column="0" selection-start-line="2572" selection-start-column="0" selection-end-line="2572" selection-end-column="0" />
+                  <folding>
+                    <marker date="1470510661385" expanded="true" signature="64977:64997" ph="DROP TABLE I... " />
+                    <marker date="1470510661385" expanded="true" signature="96620:96663" ph="SELECT COUNT... missing_value" />
+                    <marker date="1470510661385" expanded="true" signature="123004:123100" ph="SELECT name sqlite_master" />
+                    <marker date="1470510661385" expanded="true" signature="123235:123336" ph="SELECT name,... " />
+                    <marker date="1470510661385" expanded="true" signature="127324:127427" ph="SELECT table... pg_tables" />
+                    <marker date="1470510661385" expanded="true" signature="127589:128368" ph="SELECT i.rel... pg_class" />
+                    <marker date="1470510661385" expanded="true" signature="128646:128826" ph="SELECT colum... columns" />
+                    <marker date="1470510661385" expanded="true" signature="129166:129616" ph="SELECT kc.co... table_constraints" />
+                    <marker date="1470510661385" expanded="true" signature="129831:130500" ph="SELECT kcu.c... table_constraints" />
+                    <marker date="1470510661385" expanded="true" signature="130761:130926" ph="SELECT COUNT... pg_class" />
+                    <marker date="1470510661385" expanded="true" signature="132962:133112" ph="SELECT colum... columns" />
+                    <marker date="1470510661385" expanded="true" signature="133626:133933" ph="SELECT colum... key_column_usage" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="Models.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/business_objects/Models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="226">
+                  <caret line="159" column="14" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -184,11 +242,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/deprecated_files/db_question.py" />
-        <option value="$PROJECT_DIR$/db_access/db_multiple_choice.py" />
-        <option value="$PROJECT_DIR$/business_objects/MultipleChoiceQuestion.py" />
-        <option value="$PROJECT_DIR$/business_objects/TopicChapter.py" />
-        <option value="$PROJECT_DIR$/db_access/chapters.py" />
         <option value="$PROJECT_DIR$/business_objects/Quest.py" />
         <option value="$PROJECT_DIR$/db_access/db_quest_arch.py" />
         <option value="$PROJECT_DIR$/db_access/db_quest_archetype.py" />
@@ -205,10 +258,6 @@
         <option value="$PROJECT_DIR$/Config/Configuration.py" />
         <option value="$PROJECT_DIR$/db_access/db_class.py" />
         <option value="$PROJECT_DIR$/db_access/db_chapters.py" />
-        <option value="$PROJECT_DIR$/db_access/db_quest_log.py" />
-        <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
-        <option value="$PROJECT_DIR$/db_access/db_classrooms.py" />
-        <option value="$PROJECT_DIR$/business_objects/Classroom.py" />
         <option value="$PROJECT_DIR$/Config/config.py" />
         <option value="$PROJECT_DIR$/rest_endpoints.py" />
         <option value="$PROJECT_DIR$/Config/Config.py" />
@@ -217,23 +266,32 @@
         <option value="$PROJECT_DIR$/rest_student_endpoints.py" />
         <option value="$PROJECT_DIR$/db_access/db_activity_log.py" />
         <option value="$PROJECT_DIR$/business_objects/Definition.py" />
-        <option value="$PROJECT_DIR$/db_access/db_words.py" />
         <option value="$PROJECT_DIR$/db_access/db_definitions.py" />
         <option value="$PROJECT_DIR$/business_objects/Word.py" />
         <option value="$PROJECT_DIR$/db_access/db_users.py" />
-        <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
-        <option value="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
         <option value="$PROJECT_DIR$/business_objects/Rewards.py" />
         <option value="$PROJECT_DIR$/business_objects/RewardList.py" />
-        <option value="$PROJECT_DIR$/business_objects/User.py" />
-        <option value="$PROJECT_DIR$/rest_functions.py" />
         <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
         <option value="$PROJECT_DIR$/business_objects/Reward.py" />
         <option value="$PROJECT_DIR$/db_access/db_rewards.py" />
+        <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
+        <option value="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
+        <option value="$PROJECT_DIR$/business_objects/User.py" />
+        <option value="$PROJECT_DIR$/business_objects/GeneralInformation.py" />
+        <option value="$PROJECT_DIR$/db_access/db_classrooms.py" />
+        <option value="$PROJECT_DIR$/db_access/db_words.py" />
+        <option value="$PROJECT_DIR$/business_objects/Classroom.py" />
+        <option value="$PROJECT_DIR$/business_objects/QuestLogEntry.py" />
+        <option value="$PROJECT_DIR$/db_access/db_quest_log.py" />
+        <option value="$PROJECT_DIR$/business_objects/DatabaseInfo.py" />
         <option value="$PROJECT_DIR$/db_access/db_general.py" />
+        <option value="$PROJECT_DIR$/models/User.py" />
+        <option value="$PROJECT_DIR$/models/Models.py" />
+        <option value="$PROJECT_DIR$/business_objects/Models.py" />
         <option value="$PROJECT_DIR$/rest_core.py" />
+        <option value="$PROJECT_DIR$/rest_functions.py" />
+        <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
         <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
       </list>
     </option>
@@ -305,6 +363,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -347,32 +407,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db_access" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhen_school_app_demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhen_school_app_demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="business_objects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -387,18 +431,18 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\db_access\deprecated" />
-      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\business_objects\deprecated" />
-      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\db_access" />
-      <recent name="$PROJECT_DIR$/db_access/unit_testing" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/business_objects" />
+      <recent name="$PROJECT_DIR$/deprecated_files" />
+      <recent name="$PROJECT_DIR$/deprecated_files/db_access" />
+      <recent name="$PROJECT_DIR$/business_objects/deprecated" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.test_data_generator">
+  <component name="RunManager" selected="Python.rest_core">
     <configuration default="false" name="rest_core" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -649,8 +693,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_data_generator" />
-        <item index="1" class="java.lang.String" itemvalue="Python.rest_core" />
+        <item index="0" class="java.lang.String" itemvalue="Python.rest_core" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_data_generator" />
       </list>
     </recent_temporary>
   </component>
@@ -667,13 +711,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00087" summary="debugging question/submit endpoint">
-      <created>1469216835200</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1469216835206</updated>
     </task>
     <task id="LOCAL-00088" summary="switched frontend code to angular2/typescript">
       <created>1469217538445</created>
@@ -1011,7 +1048,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470452588402</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="commit for the night">
+      <created>1470457269687</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1470457269687</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1027,18 +1071,18 @@
     <frame x="0" y="24" width="1920" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23385416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1703125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3941871" sideWeight="0.52135414" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35868627" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32697546" sideWeight="0.49682286" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25249773" sideWeight="0.48802084" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798573" sideWeight="0.4982714" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32709447" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41598547" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41598547" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1062,7 +1106,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="changed class table to classroom table&#10;added business object for classroom&#10;added db_access for classroom&#10;refactored all db_access and business objects to be more consistent with saving new rows&#10;save_new always takes the object self instead of needing to call get database format (this method is called in the db_access layer)" />
     <MESSAGE value="started to move constants into config.py to remove clutter from rest_manager" />
     <MESSAGE value="renamed rest manager to rest_core&#10;refactoring static functions and moved to rest_functions&#10;slimming down rest_core so that it calls more functions" />
     <MESSAGE value="refactored quest/start route&#10;along the way somehow broke activity logging - probably has something to do with the refactor of save_new" />
@@ -1087,10 +1130,23 @@
     <MESSAGE value="implemented the ability for the user to request a question type when submitting their quest" />
     <MESSAGE value="changed seconds per question to just be a boolean&#10;updated the database generator script to reflect this" />
     <MESSAGE value="created a rewards table and a route that returns all values from it" />
-    <option name="LAST_COMMIT_MESSAGE" value="created a rewards table and a route that returns all values from it" />
+    <MESSAGE value="commit for the night" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit for the night" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/rest_core.py</url>
+          <line>143</line>
+          <option name="timeStamp" value="266" />
+        </line-breakpoint>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/rest_core.py</url>
+          <line>464</line>
+          <option name="timeStamp" value="271" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -1099,53 +1155,11 @@
           <properties exception="BaseException" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="258" />
+      <option name="time" value="274" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/werkzeug/_internal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/werkzeug/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="319" column="0" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/werkzeug/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/werkzeug/datastructures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="1092" column="0" selection-start-line="1092" selection-start-column="0" selection-end-line="1092" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/pymysql/cursors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/pymysql/charset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/pymysql/connections.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -1166,13 +1180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="445" column="0" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_classrooms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1213,14 +1220,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Chapter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="42" column="44" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_chapters.py">
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_chapters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
@@ -1241,13 +1241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_activity_log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.5/urllib/parse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6660">
@@ -1263,6 +1256,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_definitions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/rsa/key.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/Word.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="59" column="55" selection-start-line="43" selection-start-column="1" selection-end-line="59" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_rewards.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/Reward.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1278">
+          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/Chapter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_activity_log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/ActivityLogEntry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-558">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_words.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_classrooms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/Classroom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="48" column="32" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/pymysql/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
@@ -1271,25 +1367,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_words.py">
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/QuestLogEntry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_definitions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Definition.py">
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_quest_log.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1494">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="384">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/DatabaseInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/RewardList.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/db_access/db_general.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1302,6 +1423,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/DefinitionQuestion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2412">
+          <caret line="134" column="37" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/Definition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///usr/lib/python3.5/email/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
@@ -1310,191 +1447,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/rsa/key.py">
+    <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+        <state relative-caret-position="237">
+          <caret line="296" column="8" selection-start-line="296" selection-start-column="8" selection-end-line="296" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/Models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="97" column="81" selection-start-line="97" selection-start-column="81" selection-end-line="97" selection-end-column="81" />
+        <state relative-caret-position="-2096">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="8" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Classroom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#25#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="20" />
+        <state relative-caret-position="81">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_quest_log.py">
+    <entry file="file://$PROJECT_DIR$/Deprecated/business_objects/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="70" column="48" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#58#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Word.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="59" column="55" selection-start-line="43" selection-start-column="1" selection-end-line="59" selection-end-column="55" />
+        <state relative-caret-position="517">
+          <caret line="435" column="8" selection-start-line="435" selection-start-column="8" selection-end-line="435" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/QuestLogEntry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/ActivityLogEntry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <marker date="1469928605109" expanded="true" signature="848:895" ph="SELECT COUNT... users" />
-            <marker date="1469928605109" expanded="true" signature="8288:8347" ph="UPDATE users... " />
-            <marker date="1469928605109" expanded="true" signature="8859:8931" ph="UPDATE users... " />
-            <marker date="1469928605109" expanded="true" signature="9449:9525" ph="UPDATE users... " />
-            <marker date="1469928605109" expanded="true" signature="10046:10103" ph="UPDATE users... " />
-            <marker date="1469928605109" expanded="true" signature="10612:10687" ph="UPDATE users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="1861" column="0" selection-start-line="1861" selection-start-column="0" selection-end-line="1861" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/peewee.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <caret line="2572" column="0" selection-start-line="2572" selection-start-column="0" selection-end-line="2572" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1470510661385" expanded="true" signature="64977:64997" ph="DROP TABLE I... " />
+            <marker date="1470510661385" expanded="true" signature="96620:96663" ph="SELECT COUNT... missing_value" />
+            <marker date="1470510661385" expanded="true" signature="123004:123100" ph="SELECT name sqlite_master" />
+            <marker date="1470510661385" expanded="true" signature="123235:123336" ph="SELECT name,... " />
+            <marker date="1470510661385" expanded="true" signature="127324:127427" ph="SELECT table... pg_tables" />
+            <marker date="1470510661385" expanded="true" signature="127589:128368" ph="SELECT i.rel... pg_class" />
+            <marker date="1470510661385" expanded="true" signature="128646:128826" ph="SELECT colum... columns" />
+            <marker date="1470510661385" expanded="true" signature="129166:129616" ph="SELECT kc.co... table_constraints" />
+            <marker date="1470510661385" expanded="true" signature="129831:130500" ph="SELECT kcu.c... table_constraints" />
+            <marker date="1470510661385" expanded="true" signature="130761:130926" ph="SELECT COUNT... pg_class" />
+            <marker date="1470510661385" expanded="true" signature="132962:133112" ph="SELECT colum... columns" />
+            <marker date="1470510661385" expanded="true" signature="133626:133933" ph="SELECT colum... key_column_usage" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="323" column="47" selection-start-line="323" selection-start-column="16" selection-end-line="323" selection-end-column="47" />
+        <state relative-caret-position="204">
+          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_rewards.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/Reward.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/RewardList.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_access/db_general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <marker date="1470450828988" expanded="true" signature="1746:1769" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="1746:1774" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="2265:2293" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="2778:2817" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="3318:3371" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="3318:3372" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="3932:3992" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="4931:4973" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="5661:5728" ph="SELECT * FRO... missing_value" />
-            <marker date="1470450828988" expanded="true" signature="6984:7019" ph="INSERT INTO missing_value... " />
-            <marker date="1470450828988" expanded="true" signature="8261:8287" ph="UPDATE missi... " />
-            <marker date="1470450828988" expanded="true" signature="8935:8963" ph="DELETE FROM " />
-            <marker date="1470450828988" expanded="true" signature="9899:9911" ph="DELETE FROM " />
-            <marker date="1470450828988" expanded="true" signature="9899:9913" ph="DELETE FROM " />
-            <marker date="1470450828988" expanded="true" signature="10338:10359" ph="SELECT COUNT... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="78" selection-start-line="15" selection-start-column="78" selection-end-line="15" selection-end-column="78" />
+        <state relative-caret-position="258">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="e#0#69#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="1861" column="0" selection-start-line="1861" selection-start-column="0" selection-end-line="1861" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+        <state relative-caret-position="577">
+          <caret line="223" column="0" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
           <folding />
         </state>
       </provider>
