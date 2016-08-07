@@ -345,50 +345,44 @@ def submit_question():
 #########################################################################################
 
 
-# @app.route('/api/v1/account/create', methods=['POST'])
-# def create_account():
-#     try:
-#         incoming_request = request
-#         print(incoming_request)
-#
-#         user_information = check_access_token(request)
-#         if user_information:
-#             print(user_information)
-#             user_id = str(user_information['sub'])
-#
-#             user = User.User().generate_from_id(user_id)
-#             if user:
-#                 print('aborting')
-#                 return abort(500, "Error: user already exists.")
-#             class_code = request.json['class_code']
-#             user_first_name = user_information['given_name']
-#             user_last_name = user_information['family_name']
-#             user_email = user_information['email']
-#
-#             print('Creating new user account')
-#             user = User.create(user_id=user_id,
-#                                first_name=user_first_name,
-#                                last_name=user_last_name,
-#                                e_mail=user_email,
-#                                paid_through=datetime.datetime.today() + datetime.timedelta(days=365),
-#                                class_code=class_code
-#                                )
-#             try:
-#                 new_user = user.save_new()
-#             except Exception as ex:
-#                 return abort(500, "Error creating user.")
-#
-#             if new_user:
-#                 return jsonify({
-#                     'user': new_user.get_json(),
-#                     'user_exists': False,
-#                     'user_created': True
-#                 })
-#
-#     except Exception as ex:
-#         print(ex)
-#         print('Invalid token')
-#         return abort(500, "Error: " + str(ex))
+@app.route('/api/v1/account/create', methods=['POST'])
+def create_account():
+    try:
+        incoming_request = request
+        print(incoming_request)
+
+        user_information = check_access_token(request)
+        if user_information:
+            print(user_information)
+            user_id = str(user_information['sub'])
+
+            user = User.get(User.user_id == user_id)
+            if user:
+                print('aborting')
+                return abort(500, "Error: user already exists.")
+            class_code = request.json['class_code']
+            user_first_name = user_information['given_name']
+            user_last_name = user_information['family_name']
+            user_email = user_information['email']
+
+            print('Creating new user account')
+            new_user = User.create(
+                user_id=user_id,
+                first_name=user_first_name,
+                last_name=user_last_name,
+                e_mail=user_email,
+                class_code=class_code
+            )
+
+            if new_user:
+                return jsonify({
+                    'user': new_user.get_json_min()
+                })
+
+    except Exception as ex:
+        print(ex)
+        print('Invalid token')
+        return abort(500, "Error: " + str(ex))
 
 #########################################################################################
 # DESCRIPTION

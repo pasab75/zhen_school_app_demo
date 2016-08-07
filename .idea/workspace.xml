@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Models.py" afterPath="$PROJECT_DIR$/business_objects/Models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -49,8 +43,8 @@
           <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_core.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-202">
-                  <caret line="337" column="13" selection-start-line="337" selection-start-column="13" selection-end-line="337" selection-end-column="13" />
+                <state relative-caret-position="459">
+                  <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -636,13 +630,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00091" summary="Fixed DefinitionQuestion business object so that it cannot get duplicate answers">
-      <created>1469242613148</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1469242613148</updated>
-    </task>
     <task id="LOCAL-00092" summary="question/submit endpoint now properly updates user information">
       <created>1469246065679</created>
       <option name="number" value="00092" />
@@ -979,7 +966,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470592029710</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="back end should work except for the account creation route, which is commented">
+      <created>1470601095812</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1470601095812</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1030,7 +1024,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="refactored quests/get" />
     <MESSAGE value="round 1 refactor of rest_core complete" />
     <MESSAGE value="updated database generator script to not use user id as a primary key for quest log" />
     <MESSAGE value="fixed bug with points_this_level calculation" />
@@ -1055,7 +1048,8 @@
     <MESSAGE value="major overhaul on database&#10;changed a fiew database fields and added some more foreign keys to make the database more rigorous&#10;switched over to using the lighweight ORM peewee and rewrote the majority of the server to use that to access the mysql database&#10;currently not everything is operational - namely the question object" />
     <MESSAGE value="re-wrote defquestion business object to work with peewee&#10;query should be much more efficient now as it uses joins and only queries once instead of a few times" />
     <MESSAGE value="refactoring some parts of rest_functions into user&#10;moved user to its own file as it is getting more methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring some parts of rest_functions into user&#10;moved user to its own file as it is getting more methods" />
+    <MESSAGE value="back end should work except for the account creation route, which is commented" />
+    <option name="LAST_COMMIT_MESSAGE" value="back end should work except for the account creation route, which is commented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1368,8 +1362,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-202">
-          <caret line="337" column="13" selection-start-line="337" selection-start-column="13" selection-end-line="337" selection-end-column="13" />
+        <state relative-caret-position="459">
+          <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
