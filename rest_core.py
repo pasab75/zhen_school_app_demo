@@ -1,5 +1,5 @@
-import config as config
-import rest_functions as functions
+from rest_functions import *
+
 from flask import Flask, jsonify, request, abort, send_from_directory
 
 # TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
@@ -64,47 +64,15 @@ def static_file(path):
 #########################################################################################
 
 
-@app.route('/api/v1/user/authenticate', methods=['POST'])
-def authenticate_user():
-    try:
-        print(request.json)
-        user = functions.authenticate_user(request)
-        if user:
-            print(user)
-            return jsonify({
-                "user": user
-            })
-        else:
-            return abort(403, "Unable to authenticate user")
-    except Exception as ex:
-        print("Unable to retrieve user:" + str(ex))
-        return abort(500, "Unable to retrieve user. Error: "+str(ex))
-
-#########################################################################################
-# DESCRIPTION
-# returns the user's information to the client after authenticating
-#
-# RETURN CASES
-# should always return user json
-#
-# TAKES
-# user authentication token
-#
-# RETURNS
-# user json
-#
-#########################################################################################
-
-
 @app.route('/api/v1/user/get', methods=['POST'])
 def get_user():
     try:
         print(request.json)
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
             print(user)
             return jsonify({
-                "user": user._data
+                "user": user.get_json_min()
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -138,12 +106,14 @@ def start_quest():
         incoming_request = request
         print(incoming_request)
         # check authentication
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
-            new_question = functions.update_quest_with_client_choices(user, request)
+            user_with_new_quest = start_new_quest(user, request)
+            new_question = generate_new_question(user_with_new_quest)
+            user_with_new_question = start_new_question(user_with_new_quest, new_question)
             return jsonify({
-                "question": new_question,
-                "user": user.get_json_min()
+                "question": new_question.get_json_min(),
+                "user": user_with_new_question.get_json_min()
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -178,10 +148,13 @@ def get_quests():
         incoming_request = request
         print(incoming_request)
         # check authentication
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
-            response = functions.get_quest_options(user)
-            return jsonify(response)
+            quest_options = get_quest_options()
+            return jsonify({
+                "user": user.get_json_min(),
+                "quest_options": quest_options
+            })
         else:
             return abort(403, "Unable to authenticate user")
 
@@ -213,12 +186,11 @@ def drop_quest():
         incoming_request = request
         print(incoming_request)
         # check authentication
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
-            # drop the current quest, note that update with no flags does this, check its default args for details
-            functions.drop_user_quest(user)
+            updated_user = drop_user_quest(user)
             return jsonify({
-                "user": user.get_json_min()
+                "user": updated_user.get_json_min()
             })
 
         else:
@@ -255,12 +227,14 @@ def resume_quest():
         print(incoming_request)
 
         # check authentication
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
-            question_json = functions.start_next_question(user)
+            new_question = generate_new_question(user)
+            updated_user = start_new_question(user, new_question)
+
             return jsonify({
-                'user': user.get_json_min(),
-                'question': question_json
+                'user': updated_user.get_json_min(),
+                'question': new_question.get_json_min()
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -293,7 +267,7 @@ def submit_question():
     try:
         print(request.json)
 
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
             quest_complete = user.is_quest_complete()
 
@@ -303,35 +277,47 @@ def submit_question():
                     "quest_complete": quest_complete
                 })
 
-            user_answer = (request.json['user_answer'])
-            correct_answer = user.get_current_word_index()
-            correct = user.check_answer(user_answer)
+            user_answer = request.json['user_answer']
+            correct_answer = user.current_word_index
+            correct = (user_answer == correct_answer)
 
-            functions.make_activity_log_entry(user, correct, request)
-            user.update_quest_progress()
-            user.handle_question_rewards(correct)
-            quest_complete = user.is_quest_complete()
+            make_activity_log_entry(user, correct, request)
+            user.current_progress += 1
+            # user.handle_question_rewards(correct)
+            quest_complete = (user.current_progress == user.number_of_questions)
 
             if quest_complete:
-                functions.make_quest_log_entry(user, request)
-                user.handle_quest_rewards()
-                question_json = None
-                user.set_current_multiplier(1)
-                user.update_current_user()
+                quest_stats = {}
+                make_quest_log_entry(user, request)
+                # user.handle_quest_rewards()
+                # user.set_current_multiplier(1)
+                updated_user = drop_user_quest(user)
+
+                return jsonify({
+                    "user": updated_user.get_json_min(),
+                    "feedback": {
+                        "is_correct": correct,
+                        "correct_answer": correct_answer,
+                        "user_answer": user_answer
+                    },
+                    "quest_complete": quest_complete,
+                    "quest_stats": quest_stats
+                })
 
             else:
-                question_json = functions.start_next_question(user)
+                new_question = start_new_question(user)
+                updated_user = start_new_question(user, new_question)
 
-            return jsonify({
-                "user": user.get_json_min(),
-                "feedback": {
-                    "is_correct": correct,
-                    "correct_answer": correct_answer,
-                    "user_answer": user_answer
-                },
-                "question": question_json,
-                "quest_complete": quest_complete
-            })
+                return jsonify({
+                    "user": updated_user.get_json_min(),
+                    "feedback": {
+                        "is_correct": correct,
+                        "correct_answer": correct_answer,
+                        "user_answer": user_answer
+                    },
+                    "question": new_question.get_json_min(),
+                    "quest_complete": quest_complete
+                })
         else:
             return abort(403, "Unable to authenticate user")
 
@@ -362,7 +348,7 @@ def submit_question():
 #         incoming_request = request
 #         print(incoming_request)
 #
-#         user_information = functions.check_access_token(request)
+#         user_information = check_access_token(request)
 #         if user_information:
 #             print(user_information)
 #             user_id = str(user_information['sub'])
@@ -423,9 +409,9 @@ def get_rewards():
     try:
         print(request.json)
 
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
-            rewards = functions.get_rewards(user)
+            rewards = get_rewards(user)
             return jsonify({
                 'rewards': rewards
             })
@@ -459,9 +445,9 @@ def get_daily():
     try:
         print(request.json)
 
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
-            daily_info = functions.get_daily_info(user)
+            daily_info = get_daily_info(user)
 
             return jsonify({
                 'daily_status': daily_info
@@ -496,7 +482,7 @@ def get_leaderboard():
     try:
         print(request.json)
 
-        user = functions.authenticate_user(request)
+        user = authenticate_user(request)
         if user:
 
             return jsonify({

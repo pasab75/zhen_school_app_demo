@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/Chapter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/Definition.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/QuestLogEntry.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/Reward.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/RewardList.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/Word.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/deprecated/AbstractQuestion.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/deprecated/TopicChapter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/business_objects/deprecated/quest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deprecated_files/db_question.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business_objects/User.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/rest_test_curl_scripts.txt" afterPath="$PROJECT_DIR$/testing/rest_test_curl_scripts.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/test_data_generator.py" afterPath="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Models.py" afterPath="$PROJECT_DIR$/business_objects/Models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
@@ -52,38 +41,48 @@
     <favorites_list name="python_rest" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47129735">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/rest_core.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="194">
-                  <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+                <state relative-caret-position="247">
+                  <caret line="284" column="38" selection-start-line="284" selection-start-column="38" selection-end-line="284" selection-end-column="38" />
                   <folding>
-                    <element signature="e#0#23#0" expanded="true" />
+                    <element signature="e#0#28#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/rest_functions.py">
+          <file leaf-file-name="User.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/business_objects/User.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="176" column="40" selection-start-line="176" selection-start-column="28" selection-end-line="176" selection-end-column="40" />
+                <state relative-caret-position="-1391">
+                  <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
                   <folding>
-                    <element signature="e#0#13#0" expanded="true" />
+                    <element signature="e#0#15#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="rest_test_curl_scripts.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testing/rest_test_curl_scripts.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="774">
-                  <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+                <state relative-caret-position="216">
+                  <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -94,14 +93,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+        <leaf>
+          <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/rest_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="72">
-                  <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+                <state relative-caret-position="-2183">
+                  <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
                   <folding>
-                    <element signature="e#0#26#0" expanded="true" />
+                    <element signature="e#0#15#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -164,7 +163,6 @@
         <option value="$PROJECT_DIR$/db_access/db_rewards.py" />
         <option value="$PROJECT_DIR$/business_objects/Chapter.py" />
         <option value="$PROJECT_DIR$/business_objects/ActivityLogEntry.py" />
-        <option value="$PROJECT_DIR$/business_objects/User.py" />
         <option value="$PROJECT_DIR$/business_objects/GeneralInformation.py" />
         <option value="$PROJECT_DIR$/db_access/db_classrooms.py" />
         <option value="$PROJECT_DIR$/db_access/db_words.py" />
@@ -175,12 +173,13 @@
         <option value="$PROJECT_DIR$/db_access/db_general.py" />
         <option value="$PROJECT_DIR$/models/User.py" />
         <option value="$PROJECT_DIR$/models/Models.py" />
-        <option value="$PROJECT_DIR$/business_objects/Models.py" />
         <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
         <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
-        <option value="$PROJECT_DIR$/rest_functions.py" />
-        <option value="$PROJECT_DIR$/rest_core.py" />
         <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
+        <option value="$PROJECT_DIR$/rest_core.py" />
+        <option value="$PROJECT_DIR$/business_objects/Models.py" />
+        <option value="$PROJECT_DIR$/rest_functions.py" />
+        <option value="$PROJECT_DIR$/business_objects/User.py" />
       </list>
     </option>
   </component>
@@ -280,6 +279,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="testing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhen_school_app_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="db_scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -320,15 +333,15 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/testing" />
       <recent name="$PROJECT_DIR$/business_objects" />
       <recent name="$PROJECT_DIR$/deprecated_files" />
       <recent name="$PROJECT_DIR$/deprecated_files/db_access" />
       <recent name="$PROJECT_DIR$/business_objects/deprecated" />
-      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
     </key>
   </component>
   <component name="RunManager" selected="Python.rest_core">
@@ -600,13 +613,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00089" summary="switched frontend code to angular2/typescript">
-      <created>1469218647420</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1469218647420</updated>
     </task>
     <task id="LOCAL-00090" summary="got rid of angular frontend">
       <created>1469230936979</created>
@@ -944,7 +950,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470546687740</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="re-wrote defquestion business object to work with peewee&#10;query should be much more efficient now as it uses joins and only queries once instead of a few times">
+      <created>1470587734527</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1470587734529</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TodoView">
@@ -971,7 +984,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32709447" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41598547" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41598547" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -995,7 +1008,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="renamed rest manager to rest_core&#10;refactoring static functions and moved to rest_functions&#10;slimming down rest_core so that it calls more functions" />
     <MESSAGE value="refactored quest/start route&#10;along the way somehow broke activity logging - probably has something to do with the refactor of save_new" />
     <MESSAGE value="refactored quests/get" />
     <MESSAGE value="round 1 refactor of rest_core complete" />
@@ -1020,22 +1032,11 @@
     <MESSAGE value="created a rewards table and a route that returns all values from it" />
     <MESSAGE value="commit for the night" />
     <MESSAGE value="major overhaul on database&#10;changed a fiew database fields and added some more foreign keys to make the database more rigorous&#10;switched over to using the lighweight ORM peewee and rewrote the majority of the server to use that to access the mysql database&#10;currently not everything is operational - namely the question object" />
-    <option name="LAST_COMMIT_MESSAGE" value="major overhaul on database&#10;changed a fiew database fields and added some more foreign keys to make the database more rigorous&#10;switched over to using the lighweight ORM peewee and rewrote the majority of the server to use that to access the mysql database&#10;currently not everything is operational - namely the question object" />
+    <MESSAGE value="re-wrote defquestion business object to work with peewee&#10;query should be much more efficient now as it uses joins and only queries once instead of a few times" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-wrote defquestion business object to work with peewee&#10;query should be much more efficient now as it uses joins and only queries once instead of a few times" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint type="python-line">
-          <url>file://$PROJECT_DIR$/rest_core.py</url>
-          <line>141</line>
-          <option name="timeStamp" value="266" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$PROJECT_DIR$/rest_core.py</url>
-          <line>462</line>
-          <option name="timeStamp" value="271" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -1049,20 +1050,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/lib/python3.5/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
@@ -1156,14 +1143,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deprecated_files/business_objects/User.py" />
-    <entry file="file://$PROJECT_DIR$/business_objects/Models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deprecated/business_objects/User.py" />
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
@@ -1319,32 +1298,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="176" column="40" selection-start-line="176" selection-start-column="28" selection-end-line="176" selection-end-column="40" />
+        <state relative-caret-position="216">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/rest_test_curl_scripts.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="247">
+          <caret line="284" column="38" selection-start-line="284" selection-start-column="38" selection-end-line="284" selection-end-column="38" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/Models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+        <state relative-caret-position="949">
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2183">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1391">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
