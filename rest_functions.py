@@ -123,8 +123,8 @@ def make_activity_log_entry(user, correct, request):
             ip_address=ip_address,
             is_daily=user.is_on_daily,
             is_timed=user.is_timed,
-            # latitude = ,
-            # longitude =,
+            latitude=request.latitude,
+            longitude=request.longitude,
             number_of_questions=user.number_of_questions,
             user_id=user.user_id
         )
@@ -172,8 +172,8 @@ def make_quest_log_entry(user, request):
             ip_address=ip_address,
             is_daily=user.is_on_daily,
             is_timed=user.is_timed,
-            # latitude = ,
-            # longitude =,
+            latitude=request.latitude,
+            longitude=request.longitude,
             number_of_questions=user.number_of_questions,
             user_id=user.user_id
         )

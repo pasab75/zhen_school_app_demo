@@ -2,11 +2,9 @@ from rest_functions import *
 
 from flask import Flask, jsonify, request, abort, send_from_directory
 
-# TODO: update DefQuestion.DefinitionQuestion.make_from_chapter_index(user.get_chapter_index())
-# TODO: make it whatever SRS library/algorithm zhen comes up with probably will require redo of DB but fuck it
-
-
 # TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
+# TODO: change from if-then to try-catch we are inconsistent
+
 # TODO: make route that provides leaderboard with anonymous ids
 
 app = Flask(__name__, static_url_path='/')

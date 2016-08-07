@@ -4,6 +4,7 @@
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -43,8 +44,8 @@
           <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_core.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+                <state relative-caret-position="216">
+                  <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -103,8 +104,8 @@
           <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-359">
-                  <caret line="133" column="50" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
+                <state relative-caret-position="1855">
+                  <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -193,9 +194,9 @@
         <option value="$PROJECT_DIR$/business_objects/Models.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
-        <option value="$PROJECT_DIR$/rest_functions.py" />
         <option value="$PROJECT_DIR$/business_objects/User.py" />
         <option value="$PROJECT_DIR$/rest_core.py" />
+        <option value="$PROJECT_DIR$/rest_functions.py" />
       </list>
     </option>
   </component>
@@ -630,13 +631,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00092" summary="question/submit endpoint now properly updates user information">
-      <created>1469246065679</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1469246065679</updated>
-    </task>
     <task id="LOCAL-00093" summary="rest endpoint properly changes user progress as questions are submitted&#10;changed user get json method to return extra information">
       <created>1469329040347</created>
       <option name="number" value="00093" />
@@ -973,7 +967,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470601095812</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="edited account creation route - should work, but not tested yet">
+      <created>1470603002011</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1470603002011</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1024,7 +1025,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="round 1 refactor of rest_core complete" />
     <MESSAGE value="updated database generator script to not use user id as a primary key for quest log" />
     <MESSAGE value="fixed bug with points_this_level calculation" />
     <MESSAGE value="fixed math for calculating current level" />
@@ -1049,7 +1049,8 @@
     <MESSAGE value="re-wrote defquestion business object to work with peewee&#10;query should be much more efficient now as it uses joins and only queries once instead of a few times" />
     <MESSAGE value="refactoring some parts of rest_functions into user&#10;moved user to its own file as it is getting more methods" />
     <MESSAGE value="back end should work except for the account creation route, which is commented" />
-    <option name="LAST_COMMIT_MESSAGE" value="back end should work except for the account creation route, which is commented" />
+    <MESSAGE value="edited account creation route - should work, but not tested yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited account creation route - should work, but not tested yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1340,16 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-359">
-          <caret line="133" column="50" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/User.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1360,10 +1351,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1855">
+          <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+        <state relative-caret-position="216">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
