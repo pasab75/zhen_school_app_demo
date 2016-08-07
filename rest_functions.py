@@ -1,14 +1,12 @@
+import random
+
 from oauth2client import client, crypt
 from user_agents import parse
+
+from business_objects.DefinitionQuestion import DefinitionQuestion
 from flask import abort
 
-from business_objects.DefinitionQuestion import DefinitionQuestion as DefinitionQuestion
-from business_objects.Models import Classroom as Classroom
-from business_objects.Models import User as User
-from business_objects.Models import Chapter as Chapter
-from business_objects.Models import Reward as Reward
-from business_objects.Models import QuestLogEntry as QuestLogEntry
-from business_objects.Models import ActivityLogEntry as ActivityLogEntry
+from business_objects.Models import *
 
 import config as config
 
@@ -156,8 +154,7 @@ def update_user_quest(
 
         completion_points = 20 * number_of_questions
 
-        new_question = DefinitionQuestion()
-        new_question.make_from_chapter_index(
+        new_question = DefinitionQuestion().make_definition_question(
             chapter_index=chapter_index,
             cumulative=cumulative,
             question_type=question_type
@@ -165,7 +162,7 @@ def update_user_quest(
 
         user.chapter_index = chapter_index
         user.current_progress = current_progress
-        user.current_word_index = new_question.get_word_index()
+        user.current_word_index = new_question.word_index
         user.number_correct = number_correct
         user.completion_points = completion_points
         user.is_timed = is_timed
@@ -177,7 +174,7 @@ def update_user_quest(
 
         user.save()
 
-        return new_question.get_json()
+        return new_question.get_json_min()
 
     except Exception as ex:
         # TODO: change prints to logger
@@ -245,14 +242,13 @@ def get_quest_options(user):
 
 
 def start_next_question(user):
-    new_question = DefinitionQuestion()
-    new_question.make_from_chapter_index(
+    new_question = DefinitionQuestion().make_definition_question(
         chapter_index=user.chapter_index,
         cumulative=user.cumulative,
         question_type=user.question_type
     )
 
-    question_json = new_question.get_json()
+    question_json = new_question.get_json_min()
     # TODO: These no longer do anything, make them do something
     # user.start_new_question(new_question.get_word_index())
     # user.update_current_user()

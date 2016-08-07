@@ -1,5 +1,3 @@
-import datetime
-
 import config as config
 import rest_functions as functions
 from flask import Flask, jsonify, request, abort, send_from_directory
@@ -145,7 +143,7 @@ def start_quest():
             new_question = functions.update_quest_with_client_choices(user, request)
             return jsonify({
                 "question": new_question,
-                "user": user.get_json()
+                "user": user.get_json_min()
             })
         else:
             return abort(403, "Unable to authenticate user")
@@ -220,7 +218,7 @@ def drop_quest():
             # drop the current quest, note that update with no flags does this, check its default args for details
             functions.drop_user_quest(user)
             return jsonify({
-                "user": user.get_json()
+                "user": user.get_json_min()
             })
 
         else:
@@ -261,7 +259,7 @@ def resume_quest():
         if user:
             question_json = functions.start_next_question(user)
             return jsonify({
-                'user': user.get_json(),
+                'user': user.get_json_min(),
                 'question': question_json
             })
         else:
@@ -301,7 +299,7 @@ def submit_question():
 
             if quest_complete:
                 return jsonify({
-                    "user": user.get_json(),
+                    "user": user.get_json_min(),
                     "quest_complete": quest_complete
                 })
 
@@ -325,7 +323,7 @@ def submit_question():
                 question_json = functions.start_next_question(user)
 
             return jsonify({
-                "user": user.get_json(),
+                "user": user.get_json_min(),
                 "feedback": {
                     "is_correct": correct,
                     "correct_answer": correct_answer,
