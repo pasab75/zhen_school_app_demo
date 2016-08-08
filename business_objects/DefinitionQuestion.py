@@ -5,6 +5,10 @@ from config import *
 from business_objects.Models import Definition as Definition
 from business_objects.Models import Word as Word
 
+# TODO: This is still giving duplicates - change it so that it does not
+# TODO: probably has something to do with querying definitions
+# TODO: try querying words instead
+
 
 class DefinitionQuestion:
     word_index = None

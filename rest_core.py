@@ -237,7 +237,7 @@ def resume_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            new_question = user.start_new_question
+            new_question = user.start_new_question()
             user.save()
 
             return jsonify({
