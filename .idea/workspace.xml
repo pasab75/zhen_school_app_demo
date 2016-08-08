@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="fixe">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_scripts/user-permissions-generator" />
+    <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/Models.py" afterPath="$PROJECT_DIR$/business_objects/Models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/database-generator-script" afterPath="$PROJECT_DIR$/db_scripts/database-generator-script" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/test_data_generator.py" afterPath="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
     <list id="f7a3ae0a-3e44-400d-ac99-60593c6a8b2d" name="Failed commit: Default" comment="switched frontend code to angular2/typescript" />
     <ignored path="python_rest.iws" />
@@ -48,8 +44,8 @@
           <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/rest_core.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="18">
-                  <caret line="240" column="22" selection-start-line="240" selection-start-column="22" selection-end-line="240" selection-end-column="22" />
+                <state relative-caret-position="-1260">
+                  <caret line="259" column="28" selection-start-line="259" selection-start-column="28" selection-end-line="259" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -67,7 +63,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user-permissions-generator" pinned="false" current-in-tab="true">
+          <file leaf-file-name="user-permissions-generator" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db_scripts/user-permissions-generator">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="36">
@@ -90,11 +86,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="User.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="User.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/business_objects/User.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="284">
-                  <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+                <state relative-caret-position="378">
+                  <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -141,8 +137,8 @@
           <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="222">
-                  <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+                <state relative-caret-position="311">
+                  <caret line="222" column="64" selection-start-line="222" selection-start-column="64" selection-end-line="222" selection-end-column="64" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -227,13 +223,13 @@
         <option value="$PROJECT_DIR$/models/Models.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
-        <option value="$PROJECT_DIR$/rest_functions.py" />
         <option value="$PROJECT_DIR$/business_objects/Models.py" />
-        <option value="$PROJECT_DIR$/business_objects/User.py" />
         <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
         <option value="$PROJECT_DIR$/rest_core.py" />
         <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
         <option value="$PROJECT_DIR$/db_scripts/user-permissions-generator" />
+        <option value="$PROJECT_DIR$/business_objects/User.py" />
+        <option value="$PROJECT_DIR$/rest_functions.py" />
       </list>
     </option>
   </component>
@@ -668,13 +664,6 @@
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
     </task>
-    <task id="LOCAL-00096" summary="switched over to id_token authentication from access token authentication&#10;now using oauth2client library to verify user id tokens&#10;&#10;fixed bug in creating a new user as before it returned a bool instead of the new user itself">
-      <created>1469377806170</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1469377806170</updated>
-    </task>
     <task id="LOCAL-00097" summary="tried to get logging to work&#10;getting error dict object has no attribute get_database_format&#10;need to implement more robust leveling scheme">
       <created>1469413583773</created>
       <option name="number" value="00097" />
@@ -1011,7 +1000,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470612583977</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="fixed some minor bugs">
+      <created>1470618074937</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1470618074937</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1062,7 +1058,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="rewrote the algorithm for generating definition questions&#10;cumulative questions now work correctly&#10;the algorithm no longer pulls duplicate answers&#10;&#10;changed db_general methods to only pull one entry for general methods&#10;we can write specialty methods later for convenience if needed" />
     <MESSAGE value="added more fields to activity log and quest log in order to determine the remote IP of the client as well as information about what kind of device they are using the access the service&#10;fixed some minor bugs with logging" />
     <MESSAGE value="added foreign key for classrooms + users&#10;users must now be created with a valid class_code and will be &quot;assigned&quot; to the corresponding classroom" />
     <MESSAGE value="changed quest options to return them under the heading &quot;quest_options&quot; instead of having separate fields for each option next to user" />
@@ -1087,7 +1082,8 @@
     <MESSAGE value="added latitude and longitude recording in activity/quest logs&#10;" />
     <MESSAGE value="refactoring some endpoints that should result in less server calls from client" />
     <MESSAGE value="updated database script" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated database script" />
+    <MESSAGE value="fixed some minor bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some minor bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1332,16 +1328,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1371,26 +1357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest_core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="240" column="22" selection-start-line="240" selection-start-column="22" selection-end-line="240" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1404,6 +1370,36 @@
         <state relative-caret-position="36">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1260">
+          <caret line="259" column="28" selection-start-line="259" selection-start-column="28" selection-end-line="259" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="222" column="64" selection-start-line="222" selection-start-column="64" selection-end-line="222" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

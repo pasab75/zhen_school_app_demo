@@ -196,7 +196,7 @@ def make_quest_log_entry(user, request):
 
 
 def get_rewards(user):
-    class_code = user.class_code
+    class_code = user.class_code_id
     reward_list = []
     for reward in Reward.select().where(Reward.class_code == class_code):
         print(reward)
@@ -219,11 +219,11 @@ def get_rewards(user):
 
 
 def get_daily_info(user):
-    class_code = user.class_code
+    class_code = user.class_code_id
     classroom = Classroom.get(Classroom.class_code == class_code)
     dailies_complete = QuestLogEntry.select().where(QuestLogEntry.is_daily == True).count()
     dailies_allowed = classroom.number_dailies_allowed
-    current_chapter = classroom.current_chapter.chapter_index
+    current_chapter = classroom.current_chapter_id
     return {
         'dailies_complete': dailies_complete,
         'dailies_allowed': dailies_allowed,

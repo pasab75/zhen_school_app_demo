@@ -119,7 +119,9 @@ class User(BaseModel):
     def __start_daily(self):
         user_classroom = Classroom.get(Classroom.class_code == self.class_code)
 
+        # peewee requires the use of _id in order to access a foreign key value
         self.chapter_index = user_classroom.current_chapter_id
+        # if you do not use _id, then it will access the foreign object itself
         self.current_progress = 0
         self.number_correct = 0
         self.completion_points = user_classroom.daily_point_value
