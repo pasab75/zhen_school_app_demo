@@ -1,6 +1,7 @@
 from random import randint
 
 from business_objects.Models import *
+from business_objects.User import *
 
 
 class_code = 'A1B2C3D4E5'
@@ -86,3 +87,19 @@ for i in range(10):
         required_points=required_points
     )
     new_reward.save()
+
+for i in range(50):
+    index = i+1
+    first_name = "User " + str(index)
+    last_name = "Last " + str(index)
+    user_id = str(100539363718454838066 + index)
+    e_mail = str(1000 + index) + "@gmail.com"
+    total_points = randint(0, 1000000)
+    User.create(
+        user_id=user_id,
+        first_name=first_name,
+        last_name=last_name,
+        e_mail=e_mail,
+        class_code=class_code,
+        total_points=total_points
+    )

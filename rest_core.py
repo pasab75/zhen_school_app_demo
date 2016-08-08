@@ -298,7 +298,7 @@ def submit_question():
             quest_complete = (user.current_progress >= user.number_of_questions)
 
             if quest_complete:
-                quest_stats = {}
+                quest_stats = user.calculate_quest_stats()
                 make_quest_log_entry(user, request)
                 user.award_daily_rewards()
                 user.drop_user_quest()
@@ -453,9 +453,9 @@ def get_leaderboard():
 
         user = authenticate_user(request)
         if user:
-
+            leaderboard = get_leaderboard(user)
             return jsonify({
-                'leaderboard': 'this is supposed to be a leaderboard'
+                'leaderboard': leaderboard
             })
         else:
             return abort(403, "Unable to authenticate user")

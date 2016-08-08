@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" afterPath="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_scripts/test_data_generator.py" afterPath="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
@@ -21,8 +22,8 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_core Coverage Results" MODIFIED="1469829706708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1470670583059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_core.coverage" NAME="rest_core Coverage Results" MODIFIED="1470676362922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1470681164265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -43,11 +44,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.456372">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/rest_core.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="366">
-                  <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+                <state relative-caret-position="281">
+                  <caret line="365" column="0" selection-start-line="365" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -55,13 +56,35 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="601">
+                  <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="User.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/business_objects/User.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+                <state relative-caret-position="328">
+                  <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="test_data_generator.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="481">
+                  <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -70,8 +93,8 @@
           <file leaf-file-name="DefinitionQuestion.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+                <state relative-caret-position="287">
+                  <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
                   <folding>
                     <element signature="e#0#35#0" expanded="true" />
                   </folding>
@@ -86,8 +109,8 @@
           <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="125" column="34" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
+                <state relative-caret-position="841">
+                  <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -171,14 +194,14 @@
         <option value="$PROJECT_DIR$/models/User.py" />
         <option value="$PROJECT_DIR$/models/Models.py" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
         <option value="$PROJECT_DIR$/db_scripts/user-permissions-generator" />
         <option value="$PROJECT_DIR$/business_objects/Models.py" />
         <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
         <option value="$PROJECT_DIR$/business_objects/User.py" />
-        <option value="$PROJECT_DIR$/rest_core.py" />
-        <option value="$PROJECT_DIR$/rest_functions.py" />
         <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
+        <option value="$PROJECT_DIR$/rest_functions.py" />
+        <option value="$PROJECT_DIR$/rest_core.py" />
+        <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
       </list>
     </option>
   </component>
@@ -343,7 +366,7 @@
       <recent name="C:\Users\zhl146\Box Sync\gitrepo\zhen_school_app_demo\frontend" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.rest_core">
+  <component name="RunManager" selected="Python.test_data_generator">
     <configuration default="false" name="rest_core" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -594,8 +617,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.rest_core" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_data_generator" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_data_generator" />
+        <item index="1" class="java.lang.String" itemvalue="Python.rest_core" />
       </list>
     </recent_temporary>
   </component>
@@ -612,13 +635,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00101" summary="fixed retarded bug in chapter table that made test data generator not work&#10;revised database generator script so that chapter table no longer auto increments">
-      <created>1469504318442</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1469504318442</updated>
     </task>
     <task id="LOCAL-00102" summary="changed db generator script to include a class table&#10;added class code to users table&#10;TODO: update user object and db access to reflect this change">
       <created>1469554368944</created>
@@ -956,7 +972,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470629671665</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="fixed another chapter_index being passed as a model object&#10;fixed bug in logs - wasn't converting request to json before accessing it&#10;duplicates are still showing up in def question - not sure if there is a good way to fix this">
+      <created>1470676783340</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1470676783344</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TodoView">
@@ -979,11 +1002,11 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32697546" sideWeight="0.49682286" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25249773" sideWeight="0.48802084" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798573" sideWeight="0.4982714" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328792" sideWeight="0.49682286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32709447" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.373297" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.373297" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1007,7 +1030,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="changed slightly the was feedback for submitting questions is formatted in json" />
     <MESSAGE value="tweaking things to play better with front end" />
     <MESSAGE value="added user creation to db generator script&#10;added field to database which tracks user points for the current quest&#10;added respective operations to user business object" />
     <MESSAGE value="added TODO: we need to get the exceptions to actually pass errors to the front end so I can display some kind of alert instead of shit just not working" />
@@ -1032,7 +1054,8 @@
     <MESSAGE value="added shuffle to the definition question so that the answer isn't always answer 1&#10;added _id suffix to allow access to the word_index directly" />
     <MESSAGE value="added todo for bug with duplicate definitions" />
     <MESSAGE value="minor update to database script and models" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor update to database script and models" />
+    <MESSAGE value="fixed another chapter_index being passed as a model object&#10;fixed bug in logs - wasn't converting request to json before accessing it&#10;duplicates are still showing up in def question - not sure if there is a good way to fix this" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed another chapter_index being passed as a model object&#10;fixed bug in logs - wasn't converting request to json before accessing it&#10;duplicates are still showing up in def question - not sure if there is a good way to fix this" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1270,26 +1293,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_scripts/user-permissions-generator">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1302,10 +1309,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="125" column="34" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
+        <state relative-caret-position="328">
+          <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -1314,18 +1321,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/business_objects/DefinitionQuestion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state relative-caret-position="287">
+          <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
+    <entry file="file://$PROJECT_DIR$/rest_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="841">
+          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -1334,11 +1341,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+        <state relative-caret-position="281">
+          <caret line="365" column="0" selection-start-line="365" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/test_data_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

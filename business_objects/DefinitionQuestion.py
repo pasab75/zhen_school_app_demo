@@ -50,6 +50,9 @@ class DefinitionQuestion:
                      )
 
         # question type 1 is word prompt with definition choices
+        # this has the possibility of returning a question that includes
+        # multiple unique definitions of the same word resulting in more than one correct answer
+        # TODO: eliminate the possibility of multiple correct answers
         if self.question_type == 1:
             definition_list = []
             for element in query:

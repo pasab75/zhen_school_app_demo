@@ -103,6 +103,16 @@ class User(BaseModel):
 
         self.total_points += points_earned
 
+    def calculate_quest_stats(self):
+        quest_stats = {
+            "number_correct": self.number_correct,
+            "number_total": self.number_of_questions,
+            "points_per_question": self.points_per_question,
+            "multiplier_points": self.points_earned_current_quest - self.points_per_question*self.number_correct,
+            "score_bonus": self.completion_points
+        }
+        return quest_stats
+
     #########################################################################################
     # Private Methods
     #########################################################################################

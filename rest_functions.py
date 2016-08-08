@@ -230,8 +230,7 @@ def get_daily_info(user):
         QuestLogEntry.select()
         .where(
             QuestLogEntry.is_daily == True,
-            QuestLogEntry.datetime_quest_completed >= day_start,
-            QuestLogEntry.datetime_quest_completed <= day_end
+            QuestLogEntry.datetime_quest_completed.between(day_start, day_end)
         )
         .count()
     )
@@ -243,3 +242,27 @@ def get_daily_info(user):
         'daily_chapter': current_chapter
     }
 
+
+#########################################################################################
+# DESCRIPTION
+#
+#
+# RETURN CASES
+#
+#
+# TAKES
+#
+#
+# RETURNS
+#
+#########################################################################################
+
+def get_leaderboard(user):
+    leaderboard = []
+    class_code = user.class_code_id
+
+    all_users = User.select(User.class_code == class_code).order_by(-User.total_points)
+    for single_user in all_users:
+        leaderboard.append(single_user.total_points)
+
+    return leaderboard
