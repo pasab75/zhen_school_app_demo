@@ -70,11 +70,13 @@ def get_status():
         try:
             daily_info = get_daily_info(user)
             rewards = get_rewards(user)
+            quest_options = get_quest_options()
 
             return jsonify({
                 "user": user.get_json_min(),
                 "daily_status": daily_info,
-                'rewards': rewards
+                'rewards': rewards,
+                "quest_options": quest_options
             })
         except Exception as ex:
             print("Unable to get parameters for user's classroom: " + str(ex))
@@ -236,6 +238,7 @@ def resume_quest():
         user = authenticate_user(request)
         if user:
             new_question = user.start_new_question
+            user.save()
 
             return jsonify({
                 'user': user.get_json_min(),
@@ -299,6 +302,7 @@ def submit_question():
                 make_quest_log_entry(user, request)
                 user.award_daily_rewards()
                 user.drop_user_quest()
+                user.save()
 
                 return jsonify({
                     "user": user.get_json_min(),
@@ -313,6 +317,7 @@ def submit_question():
 
             else:
                 new_question = user.start_new_question()
+                user.save()
 
                 return jsonify({
                     "user": user.get_json_min(),

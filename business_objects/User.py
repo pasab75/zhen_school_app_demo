@@ -119,10 +119,10 @@ class User(BaseModel):
     def __start_daily(self):
         user_classroom = Classroom.get(Classroom.class_code == self.class_code)
 
-        self.chapter_index = user_classroom.current_chapter
+        self.chapter_index = user_classroom.current_chapter_id
         self.current_progress = 0
         self.number_correct = 0
-        self.completion_points = user_classroom.daily_point_worth
+        self.completion_points = user_classroom.daily_point_value
         self.is_timed = True
         self.points_per_question = 20
         self.number_of_questions = 50

@@ -1,5 +1,3 @@
-CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'carhorsebatterysuccess';
-GRANT ALL PRIVILEGES ON *.* TO 'appuser'@'localhost' WITH GRANT OPTION;
 
 
 -- MySQL Workbench Forward Engineering
@@ -42,8 +40,11 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `device_family` VARCHAR(20) NULL DEFAULT NULL,
   `device_model` VARCHAR(20) NULL DEFAULT NULL,
   `device_type` TINYINT(1) NULL DEFAULT NULL,
-  `is_daily` TINYINT(1) NOT NULL)
+  `is_daily` TINYINT(1) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 189
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -154,8 +155,11 @@ CREATE TABLE IF NOT EXISTS `testdb`.`quest_log` (
   `device_family` VARCHAR(45) NULL DEFAULT NULL,
   `device_model` VARCHAR(45) NULL DEFAULT NULL,
   `device_type` TINYINT(1) NULL DEFAULT NULL,
-  `is_daily` TINYINT(1) NOT NULL)
+  `is_daily` TINYINT(1) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -178,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`rewards` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 

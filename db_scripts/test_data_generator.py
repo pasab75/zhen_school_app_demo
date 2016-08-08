@@ -44,13 +44,12 @@ else:
     for i in range(1, num_chapters+1):
         chapter_name = "This is Chapter " + str(i)
         new_chapter = Chapter(chapter_index=i, chapter_name=chapter_name)
-        result = new_chapter.save()
-        if not result:
-            raise Exception("Hey this didn't work, nothing else will work either")
+        new_chapter.save()
+
         for j in range(1, num_words_per_chapter+1):
             word_index += 1
             word_string = "word " + str(word_index) + " chapter " + str(i)
-            new_word = Word(index=word_index, word=word_string, chapter_index=i)
+            new_word = Word(word_index=word_index, word=word_string, chapter_index=i)
             new_word.save()
 
             for k in range(1, num_definitions_per_word+1):

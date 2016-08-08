@@ -28,6 +28,7 @@ class ActivityLogEntry(BaseModel):
     longitude = FloatField(null=True)
     number_of_questions = IntegerField()
     user_id = CharField(db_column='user_id')
+    id = IntegerField(primary_key=True)
 
     class Meta:
         db_table = 'activity_log'
@@ -116,6 +117,7 @@ class QuestLogEntry(BaseModel):
     number_correct = IntegerField()
     number_of_questions = IntegerField()
     user_id = CharField(db_column='user_id')
+    id = IntegerField(primary_key=True)
 
     class Meta:
         db_table = 'quest_log'
@@ -138,6 +140,7 @@ class Reward(BaseModel):
     required_points = IntegerField()
     reward_description = CharField()
     reward_name = CharField()
+    id = IntegerField(primary_key=True)
 
     class Meta:
         db_table = 'rewards'
