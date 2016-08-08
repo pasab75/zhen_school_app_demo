@@ -199,7 +199,7 @@ def get_rewards(user):
     class_code = user.class_code_id
     reward_list = []
     for reward in Reward.select().where(Reward.class_code == class_code):
-        print(reward)
+        reward_list.append(reward.get_json_min())
 
     return reward_list
 
@@ -219,9 +219,20 @@ def get_rewards(user):
 
 
 def get_daily_info(user):
+    day_start = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+    day_end = day_start.replace(hour=23, minute=59, second=59)
+
     class_code = user.class_code_id
     classroom = Classroom.get(Classroom.class_code == class_code)
-    dailies_complete = QuestLogEntry.select().where(QuestLogEntry.is_daily == True).count()
+    dailies_complete = (
+        QuestLogEntry.select()
+        .where(
+            QuestLogEntry.is_daily == True,
+            QuestLogEntry.datetime_quest_completed >= day_start,
+            QuestLogEntry.datetime_quest_completed <= day_end
+        )
+        .count()
+    )
     dailies_allowed = classroom.number_dailies_allowed
     current_chapter = classroom.current_chapter_id
     return {

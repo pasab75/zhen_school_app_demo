@@ -1,4 +1,4 @@
-import random
+from random import shuffle, randint
 from peewee import fn
 
 from config import *
@@ -22,7 +22,7 @@ class DefinitionQuestion:
         # if no question type is requested, flip a coin to determine the question type
         self.chapter_index = chapter_index
         if question_type not in [0, 1]:
-            self.question_type = random.randint(0, 1)
+            self.question_type = randint(0, 1)
 
         if cumulative:
             query = (Definition
@@ -57,7 +57,7 @@ class DefinitionQuestion:
             for element in query:
                 word = {
                     "text": element.word_index.word,
-                    "index": element.word_index.word_index
+                    "index": element.word_index_id
                 }
                 word_list.append(word)
 
@@ -65,6 +65,7 @@ class DefinitionQuestion:
             self.question_text = query[0].definition
 
         self.word_index = query[0].word_index.word_index
+        shuffle(self.answer_choices)
 
         return self
 

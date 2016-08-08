@@ -149,7 +149,8 @@ class Reward(BaseModel):
         data = self._data
 
         key_list = (
-            'class_code'
+            "class_code",
+            "id"
         )
 
         for key in key_list:
