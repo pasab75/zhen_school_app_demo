@@ -6,7 +6,7 @@ from business_objects.DefinitionQuestion import DefinitionQuestion
 
 
 class User(BaseModel):
-    chapter_index = IntegerField(null=True)
+    chapter_index = ForeignKeyField(db_column='chapter_index', null=True, rel_model=Chapters, to_field='chapter_index')
     class_code = ForeignKeyField(db_column='class_code', null=True, rel_model=Classroom, to_field='class_code')
     completion_points = IntegerField(null=True)
     cumulative = IntegerField(null=True)
