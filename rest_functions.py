@@ -100,6 +100,7 @@ def make_activity_log_entry(user, correct, request):
     try:
         ip_address = request.remote_addr
         user_agent = parse(request.user_agent.string)
+        request_json = request.json
         if user_agent.is_mobile:
             device_type = 0
         elif user_agent.is_tablet:
@@ -121,8 +122,8 @@ def make_activity_log_entry(user, correct, request):
             ip_address=ip_address,
             is_daily=user.is_on_daily,
             is_timed=user.is_timed,
-            latitude=request.latitude,
-            longitude=request.longitude,
+            latitude=request_json['latitude'],
+            longitude=request_json['longitude'],
             number_of_questions=user.number_of_questions,
             user_id=user.user_id
         )
@@ -150,6 +151,7 @@ def make_quest_log_entry(user, request):
     try:
         ip_address = request.remote_addr
         user_agent = parse(request.user_agent.string)
+        request_json = request.json
         if user_agent.is_mobile:
             device_type = 0
         elif user_agent.is_tablet:
@@ -160,7 +162,7 @@ def make_quest_log_entry(user, request):
             device_type = -1
 
         new_quest_log_entry = QuestLogEntry(
-            chapter_index=user.chapter_index,
+            chapter_index=user.chapter_index_id,
             cumulative=user.cumulative,
             datetime_quest_completed=datetime.datetime.now,
             datetime_quest_started=user.datetime_quest_started,
@@ -170,8 +172,8 @@ def make_quest_log_entry(user, request):
             ip_address=ip_address,
             is_daily=user.is_on_daily,
             is_timed=user.is_timed,
-            latitude=request.latitude,
-            longitude=request.longitude,
+            latitude=request_json['latitude'],
+            longitude=request_json['longitude'],
             number_of_questions=user.number_of_questions,
             user_id=user.user_id
         )

@@ -334,7 +334,7 @@ def submit_question():
 
     except Exception as ex:
         print(ex)
-        return abort(500, "Unable to retrieve random question")
+        return abort(500, "Unable to get question")
 
 #########################################################################################
 # DESCRIPTION

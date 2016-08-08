@@ -1,5 +1,5 @@
 from random import shuffle, randint
-from peewee import fn
+from peewee import fn, JOIN
 
 from config import *
 from business_objects.Models import Definition as Definition
@@ -27,10 +27,13 @@ class DefinitionQuestion:
         self.chapter_index = chapter_index
         if question_type not in [0, 1]:
             self.question_type = randint(0, 1)
+        else:
+            self.question_type = question_type
 
         if cumulative:
             query = (Definition
-                     .select(Word, Definition)
+                     .select(Definition, Word)
+                     .distinct(Definition.word_index)
                      .join(Word)
                      .where(Word.chapter_index <= chapter_index)
                      .order_by(fn.Rand())
@@ -38,24 +41,27 @@ class DefinitionQuestion:
                      )
         else:
             query = (Definition
-                     .select(Word, Definition)
+                     .select(Definition, Word)
+                     .distinct(Definition.word_index)
                      .join(Word)
                      .where(Word.chapter_index == chapter_index)
                      .order_by(fn.Rand())
                      .limit(number_of_multiple_choices)
                      )
 
+        # question type 1 is word prompt with definition choices
         if self.question_type == 1:
             definition_list = []
             for element in query:
                 definition = {
                     "text": element.definition,
-                    "index": element.word_index.word_index
+                    "index": element.word_index_id
                 }
                 definition_list.append(definition)
             self.answer_choices = definition_list
             self.question_text = query[0].word_index.word
 
+        # question type 0 is definition prompt with word choices
         elif self.question_type == 0:
             word_list = []
             for element in query:
@@ -68,7 +74,7 @@ class DefinitionQuestion:
             self.answer_choices = word_list
             self.question_text = query[0].definition
 
-        self.word_index = query[0].word_index.word_index
+        self.word_index = query[0].word_index_id
         shuffle(self.answer_choices)
 
         return self
