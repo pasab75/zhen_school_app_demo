@@ -30,42 +30,70 @@ class DefinitionQuestion:
         else:
             self.question_type = question_type
 
-        if cumulative:
-            query = (Definition
-                     .select(Definition, Word)
-                     .distinct(Definition.word_index)
-                     .join(Word)
-                     .where(Word.chapter_index <= chapter_index)
-                     .order_by(fn.Rand())
-                     .limit(number_of_multiple_choices)
-                     )
-        else:
-            query = (Definition
-                     .select(Definition, Word)
-                     .distinct(Definition.word_index)
-                     .join(Word)
-                     .where(Word.chapter_index == chapter_index)
-                     .order_by(fn.Rand())
-                     .limit(number_of_multiple_choices)
-                     )
-
         # question type 1 is word prompt with definition choices
-        # this has the possibility of returning a question that includes
-        # multiple unique definitions of the same word resulting in more than one correct answer
-        # TODO: eliminate the possibility of multiple correct answers
+        # this is pretty inefficient currently as it pings the database 5 times
+        # question type 0 only makes one query
+        # TODO: make this more efficient
         if self.question_type == 1:
+
+            if cumulative:
+                query = (
+                    Word
+                    .select()
+                    .where(Word.chapter_index <= chapter_index)
+                    .order_by(fn.Rand())
+                    .limit(number_of_multiple_choices)
+                )
+
+            else:
+                query = (
+                    Word
+                    .select()
+                    .where(Word.chapter_index == chapter_index)
+                    .order_by(fn.Rand())
+                    .limit(number_of_multiple_choices)
+                )
+
             definition_list = []
-            for element in query:
+            for word in query:
+                random_definition = (
+                    Definition
+                    .select()
+                    .where(Definition.word_index == word.word_index)
+                    .order_by(fn.Rand())
+                    .get()
+                )
                 definition = {
-                    "text": element.definition,
-                    "index": element.word_index_id
+                    "text": random_definition.definition,
+                    "index": random_definition.word_index_id
                 }
                 definition_list.append(definition)
             self.answer_choices = definition_list
-            self.question_text = query[0].word_index.word
+            self.question_text = query[0].word
+            self.word_index = query[0].word_index
 
         # question type 0 is definition prompt with word choices
         elif self.question_type == 0:
+
+            if cumulative:
+                query = (Definition
+                         .select(Definition, Word)
+                         .distinct(Definition.word_index)
+                         .join(Word)
+                         .where(Word.chapter_index <= chapter_index)
+                         .order_by(fn.Rand())
+                         .limit(number_of_multiple_choices)
+                         )
+            else:
+                query = (Definition
+                         .select(Definition, Word)
+                         .distinct(Definition.word_index)
+                         .join(Word)
+                         .where(Word.chapter_index == chapter_index)
+                         .order_by(fn.Rand())
+                         .limit(number_of_multiple_choices)
+                         )
+
             word_list = []
             for element in query:
                 word = {
@@ -76,8 +104,8 @@ class DefinitionQuestion:
 
             self.answer_choices = word_list
             self.question_text = query[0].definition
+            self.word_index = query[0].word_index_id
 
-        self.word_index = query[0].word_index_id
         shuffle(self.answer_choices)
 
         return self
