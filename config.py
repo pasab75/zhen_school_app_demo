@@ -1,13 +1,9 @@
 # put hard coded configuration stuff here instead of scattered around
 
-local = True
+server_local = False
 
-host = '0.0.0.0'
-port = 5000
-
-ANDROID_CLIENT_ID = 'derpderp'
-IOS_CLIENT_ID = 'derpderp'
-WEB_CLIENT_ID = '334346238965-oliggj0124b9r4nhbdf4nuboiiha7ov3.apps.googleusercontent.com'
+server_host = '0.0.0.0'
+server_port = 5000
 
 STATIC_FOLDER = "angular-frontend"
 

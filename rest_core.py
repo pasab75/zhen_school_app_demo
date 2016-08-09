@@ -1,10 +1,10 @@
 from rest_functions import *
+from config import *
 
 from flask import Flask, jsonify, request, abort, send_from_directory, _request_ctx_stack
 
 import jwt
 import base64
-import os
 from functools import wraps
 from werkzeug.local import LocalProxy
 
@@ -59,7 +59,7 @@ def requires_auth(f):
         except jwt.DecodeError:
             return authenticate({'code': 'token_invalid_signature', 'description': 'token signature is invalid'})
 
-        _request_ctx_stack.top.current_user = user = payload
+        _request_ctx_stack.top.current_user = payload
         return f(*args, **kwargs)
 
     return decorated
@@ -169,7 +169,8 @@ def start_quest():
         # check authentication
         user = authenticate_user(request)
         if user:
-            user.start_new_quest(request)
+            user_classroom = Classroom.get(Classroom.class_code == user.class_code)
+            user.start_new_quest(request, user_classroom)
             new_question = user.start_new_question()
             user.save()
 
@@ -341,12 +342,14 @@ def submit_question():
                     "quest_complete": True
                 })
 
+            user_classroom = Classroom.get(Classroom.class_code == user.class_code)
+
             user_answer = request.json['user_answer']
             correct_answer = user.current_word_index
             correct = (user_answer == correct_answer)
 
             if correct:
-                user.award_question_points()
+                user.award_question_points(user_classroom)
             else:
                 user.multiplier = 1
 
@@ -358,7 +361,8 @@ def submit_question():
             if quest_complete:
                 user_performance = user.calculate_user_performance()
                 make_quest_log_entry(user, request)
-                user.award_daily_rewards()
+                if user.is_on_daily and user.is_eligible_for_daily(user_classroom):
+                    user.award_daily_rewards(user_classroom)
                 user.drop_user_quest()
                 user.save()
 
@@ -420,10 +424,9 @@ def create_account():
         user_information = get_token_info(request)
         if user_information:
             print(user_information)
-            user_id = str(user_information['sub'])
+            user_id = str(user_information['identities'][0]['user_id'])
 
-            user = User.get(User.user_id == user_id)
-            if user:
+            if User.select().where(User.user_id == user_id).count():
                 print('aborting')
                 return abort(500, "Error: user already exists.")
             class_code = request.json['class_code']
@@ -531,9 +534,9 @@ def get_leaderboard():
 # TODO: check to see if this CORS implementation is safe
 
 if __name__ == '__main__':
-    if config.local:
-        app.run(host='localhost', port=config.port)
+    if server_local:
+        app.run(host='localhost', port=server_port)
         app.debug = True
     else:
-        app.run(host=config.host, port=config.port)
+        app.run(host=server_host, port=server_port)
         # this allows the API to use the public IP

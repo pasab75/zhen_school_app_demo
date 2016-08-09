@@ -1,7 +1,5 @@
 import datetime
 import requests
-
-from oauth2client import client, crypt
 from user_agents import parse
 
 from business_objects.Models import *
@@ -31,16 +29,16 @@ import config as config
 def get_token_info(client_request):
     try:
         token = client_request.headers.get('authorization').replace("Bearer ", "", 1)
-        print(token)
+        # print(token)
 
         auth0_endpoint = "https://zhl146.auth0.com/tokeninfo"
 
         response = (requests.post(auth0_endpoint, data={'id_token': token})).json()
 
-        print(response)
+        # print(response)
         return response
 
-    except crypt.AppIdentityError as ex:
+    except Exception as ex:
         print(ex)
 
 
@@ -232,6 +230,7 @@ def get_daily_info(user):
     dailies_complete = (
         QuestLogEntry.select()
         .where(
+            QuestLogEntry.user_id == user.user_id,
             QuestLogEntry.is_daily == True,
             QuestLogEntry.datetime_quest_completed.between(day_start, day_end)
         )

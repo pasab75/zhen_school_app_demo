@@ -54,11 +54,11 @@ class User(BaseModel):
     # Convenience Methods
     #########################################################################################
 
-    def start_new_quest(self, request):
+    def start_new_quest(self, request, user_classroom):
         client_choices = request.json
         is_daily = client_choices['is_daily']
         if is_daily:
-            self.__start_daily()
+            self.__start_daily(user_classroom)
         else:
             self.__start_practice(client_choices)
 
@@ -89,15 +89,14 @@ class User(BaseModel):
     def update_quest_progress(self):
         self.current_progress += 1
 
-    def award_question_points(self):
+    def award_question_points(self, user_classroom):
         points_earned = self.points_per_question*self.multiplier
         self.points_earned_current_quest += points_earned
         self.total_points += points_earned
         self.number_correct += 1
-        self.__increment_multiplier()
+        self.__increment_multiplier(user_classroom)
 
-    def award_daily_rewards(self):
-        user_classroom = Classroom.get(Classroom.class_code == self.class_code)
+    def award_daily_rewards(self, user_classroom):
 
         base = user_classroom.daily_exp_base
         percentage_correct = self.number_correct/self.number_of_questions
@@ -115,12 +114,30 @@ class User(BaseModel):
         }
         return user_performance
 
+    def is_eligible_for_daily(self, user_classroom):
+        day_start = datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        day_end = day_start.replace(hour=23, minute=59, second=59)
+        dailies_complete = (
+            QuestLogEntry.select()
+            .where(
+                QuestLogEntry.user_id == self.user_id,
+                QuestLogEntry.is_daily == True,
+                QuestLogEntry.datetime_quest_completed.between(day_start, day_end)
+            )
+            .count()
+        )
+        dailies_allowed = user_classroom.number_dailies_allowed
+
+        return dailies_allowed < dailies_complete
+
+    def get_classroom(self):
+        return Classroom.get(Classroom.class_code == self.class_code)
+
     #########################################################################################
     # Private Methods
     #########################################################################################
 
-    def __increment_multiplier(self):
-        user_classroom = Classroom.get(Classroom.class_code == self.class_code)
+    def __increment_multiplier(self, user_classroom):
         if self.multiplier < user_classroom.max_multiplier:
             self.multiplier += 1
 
@@ -133,8 +150,7 @@ class User(BaseModel):
 
         return new_question
 
-    def __start_daily(self):
-        user_classroom = Classroom.get(Classroom.class_code == self.class_code)
+    def __start_daily(self, user_classroom):
 
         # peewee requires the use of _id in order to access a foreign key value
         self.chapter_index = user_classroom.current_chapter_id

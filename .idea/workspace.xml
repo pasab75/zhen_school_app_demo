@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22fb3c0a-0c5a-4098-8bc6-ee19640b02ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business_objects/User.py" afterPath="$PROJECT_DIR$/business_objects/User.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_core.py" afterPath="$PROJECT_DIR$/rest_core.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest_functions.py" afterPath="$PROJECT_DIR$/rest_functions.py" />
     </list>
@@ -22,7 +22,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_manager.coverage" NAME="rest_core Coverage Results" MODIFIED="1469829706708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/zhen_school_app_demo$test_data_generator.coverage" NAME="test_data_generator Coverage Results" MODIFIED="1470681164265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db_scripts" />
-    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_core.coverage" NAME="rest_core Coverage Results" MODIFIED="1470719710467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/zhen_school_app_demo$rest_core.coverage" NAME="rest_core Coverage Results" MODIFIED="1470783166669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -46,8 +46,8 @@
           <file leaf-file-name="rest_core.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_core.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="497">
-                  <caret line="353" column="33" selection-start-line="353" selection-start-column="33" selection-end-line="353" selection-end-column="33" />
+                <state relative-caret-position="467">
+                  <caret line="539" column="9" selection-start-line="539" selection-start-column="9" selection-end-line="539" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -55,11 +55,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="database-generator-script" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+          <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4050">
-                  <caret line="225" column="30" selection-start-line="225" selection-start-column="30" selection-end-line="225" selection-end-column="30" />
+                <state relative-caret-position="36">
+                  <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -68,8 +68,8 @@
           <file leaf-file-name="User.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/business_objects/User.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1098">
-                  <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
+                <state relative-caret-position="330">
+                  <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -118,8 +118,8 @@
           <file leaf-file-name="rest_functions.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="56" column="32" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="32" />
+                <state relative-caret-position="371">
+                  <caret line="232" column="49" selection-start-line="232" selection-start-column="49" selection-end-line="232" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -130,7 +130,7 @@
           <file leaf-file-name="parse.py" pinned="false" current-in-tab="false">
             <entry file="file:///usr/lib/python3.5/urllib/parse.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
+                <state relative-caret-position="6372">
                   <caret line="356" column="22" selection-start-line="356" selection-start-column="22" selection-end-line="356" selection-end-column="22" />
                   <folding />
                 </state>
@@ -212,15 +212,15 @@
         <option value="$PROJECT_DIR$/db_access/db_general.py" />
         <option value="$PROJECT_DIR$/models/User.py" />
         <option value="$PROJECT_DIR$/models/Models.py" />
-        <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/db_scripts/user-permissions-generator" />
         <option value="$PROJECT_DIR$/business_objects/Models.py" />
         <option value="$PROJECT_DIR$/db_scripts/database-generator-script" />
         <option value="$PROJECT_DIR$/db_scripts/test_data_generator.py" />
         <option value="$PROJECT_DIR$/business_objects/DefinitionQuestion.py" />
         <option value="$PROJECT_DIR$/business_objects/User.py" />
-        <option value="$PROJECT_DIR$/rest_core.py" />
         <option value="$PROJECT_DIR$/rest_functions.py" />
+        <option value="$PROJECT_DIR$/rest_core.py" />
+        <option value="$PROJECT_DIR$/config.py" />
       </list>
     </option>
   </component>
@@ -291,6 +291,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -353,7 +354,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -654,13 +654,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457056757956</updated>
-    </task>
-    <task id="LOCAL-00104" summary="started to move constants into config.py to remove clutter from rest_manager">
-      <created>1469568920695</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1469568920695</updated>
     </task>
     <task id="LOCAL-00105" summary="renamed rest manager to rest_core&#10;refactoring static functions and moved to rest_functions&#10;slimming down rest_core so that it calls more functions">
       <created>1469574528081</created>
@@ -998,7 +991,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470681882133</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="updated backend to parse JWT with decorator&#10;updated backend to use auth0 profile endpoint to get google id instead of google's&#10;some bugs need to be ironed out before this works completely">
+      <created>1470720312052</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1470720312052</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1012,7 +1012,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32794458" sideWeight="0.49841145" order="6" side_tool="false" content_ui="tabs" />
@@ -1025,7 +1025,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32709447" sideWeight="0.4785544" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.373297" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.373297" sideWeight="0.47864583" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1049,7 +1049,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="added TODO: we need to get the exceptions to actually pass errors to the front end so I can display some kind of alert instead of shit just not working" />
     <MESSAGE value="re-enabled the drop quest endpoint" />
     <MESSAGE value="changed logic to apply multiplier AFTER adding points for user instead of before&#10;moved some parameters like maximum multiplier to the config file" />
     <MESSAGE value="added a get json field that tells the frontend whether or not the user earned the quest completion points based on the percentage in config&#10;this way, the the required percentage can be configured on the backend and the frontend does not need to know about it." />
@@ -1074,7 +1073,8 @@
     <MESSAGE value="fixed another chapter_index being passed as a model object&#10;fixed bug in logs - wasn't converting request to json before accessing it&#10;duplicates are still showing up in def question - not sure if there is a good way to fix this" />
     <MESSAGE value="updated data generator to generate some users&#10;added a method to get some leaderboard stats" />
     <MESSAGE value="made a quick fix for duplicate definition entries when making questions" />
-    <option name="LAST_COMMIT_MESSAGE" value="made a quick fix for duplicate definition entries when making questions" />
+    <MESSAGE value="updated backend to parse JWT with decorator&#10;updated backend to use auth0 profile endpoint to get google id instead of google's&#10;some bugs need to be ironed out before this works completely" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated backend to parse JWT with decorator&#10;updated backend to use auth0 profile endpoint to get google id instead of google's&#10;some bugs need to be ironed out before this works completely" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1086,7 +1086,7 @@
           <properties exception="BaseException" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="309" />
+      <option name="time" value="310" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1261,38 +1261,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/peewee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="2353" column="0" selection-start-line="2353" selection-start-column="0" selection-end-line="2353" selection-end-column="0" />
-          <folding>
-            <marker date="1470510661385" expanded="true" signature="64977:64997" ph="DROP TABLE I... " />
-            <marker date="1470510661385" expanded="true" signature="96620:96663" ph="SELECT COUNT... missing_value" />
-            <marker date="1470510661385" expanded="true" signature="123004:123100" ph="SELECT name sqlite_master" />
-            <marker date="1470510661385" expanded="true" signature="123235:123336" ph="SELECT name,... " />
-            <marker date="1470510661385" expanded="true" signature="127324:127427" ph="SELECT table... pg_tables" />
-            <marker date="1470510661385" expanded="true" signature="127589:128368" ph="SELECT i.rel... pg_class" />
-            <marker date="1470510661385" expanded="true" signature="128646:128826" ph="SELECT colum... columns" />
-            <marker date="1470510661385" expanded="true" signature="129166:129616" ph="SELECT kc.co... table_constraints" />
-            <marker date="1470510661385" expanded="true" signature="129831:130500" ph="SELECT kcu.c... table_constraints" />
-            <marker date="1470510661385" expanded="true" signature="130761:130926" ph="SELECT COUNT... pg_class" />
-            <marker date="1470510661385" expanded="true" signature="132962:133112" ph="SELECT colum... columns" />
-            <marker date="1470510661385" expanded="true" signature="133626:133933" ph="SELECT colum... key_column_usage" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testing/rest_test_curl_scripts.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1310,14 +1282,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4050">
-          <caret line="225" column="30" selection-start-line="225" selection-start-column="30" selection-end-line="225" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1339,16 +1303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33030">
@@ -1359,26 +1313,73 @@
     </entry>
     <entry file="file:///usr/lib/python3.5/urllib/parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="6372">
           <caret line="356" column="22" selection-start-line="356" selection-start-column="22" selection-end-line="356" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/peewee.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="56" column="32" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="32" />
+        <state relative-caret-position="220">
+          <caret line="4548" column="8" selection-start-line="4548" selection-start-column="8" selection-end-line="4548" selection-end-column="8" />
+          <folding>
+            <marker date="1470510661385" expanded="true" signature="64977:64997" ph="DROP TABLE I... " />
+            <marker date="1470510661385" expanded="true" signature="96620:96663" ph="SELECT COUNT... missing_value" />
+            <marker date="1470510661385" expanded="true" signature="123004:123100" ph="SELECT name sqlite_master" />
+            <marker date="1470510661385" expanded="true" signature="123235:123336" ph="SELECT name,... " />
+            <marker date="1470510661385" expanded="true" signature="127324:127427" ph="SELECT table... pg_tables" />
+            <marker date="1470510661385" expanded="true" signature="127589:128368" ph="SELECT i.rel... pg_class" />
+            <marker date="1470510661385" expanded="true" signature="128646:128826" ph="SELECT colum... columns" />
+            <marker date="1470510661385" expanded="true" signature="129166:129616" ph="SELECT kc.co... table_constraints" />
+            <marker date="1470510661385" expanded="true" signature="129831:130500" ph="SELECT kcu.c... table_constraints" />
+            <marker date="1470510661385" expanded="true" signature="130761:130926" ph="SELECT COUNT... pg_class" />
+            <marker date="1470510661385" expanded="true" signature="132962:133112" ph="SELECT colum... columns" />
+            <marker date="1470510661385" expanded="true" signature="133626:133933" ph="SELECT colum... key_column_usage" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_scripts/database-generator-script">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="199" column="44" selection-start-line="199" selection-start-column="44" selection-end-line="199" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business_objects/User.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rest_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="232" column="49" selection-start-line="232" selection-start-column="49" selection-end-line="232" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rest_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="353" column="33" selection-start-line="353" selection-start-column="33" selection-end-line="353" selection-end-column="33" />
+        <state relative-caret-position="467">
+          <caret line="539" column="9" selection-start-line="539" selection-start-column="9" selection-end-line="539" selection-end-column="9" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
