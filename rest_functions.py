@@ -1,4 +1,6 @@
 import datetime
+import requests
+
 from oauth2client import client, crypt
 from user_agents import parse
 
@@ -26,16 +28,17 @@ import config as config
 #########################################################################################
 
 
-def check_access_token(client_request):
+def get_token_info(client_request):
     try:
-        token = client_request.json['user_identifier']
-        idinfo = client.verify_id_token(token, config.WEB_CLIENT_ID)
-        # If multiple clients access the backend server:
-        if idinfo['aud'] not in [config.ANDROID_CLIENT_ID, config.IOS_CLIENT_ID, config.WEB_CLIENT_ID]:
-            raise crypt.AppIdentityError("Unrecognized client.")
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-            raise crypt.AppIdentityError("Wrong issuer.")
-        return idinfo
+        token = client_request.headers.get('authorization').replace("Bearer ", "", 1)
+        print(token)
+
+        auth0_endpoint = "https://zhl146.auth0.com/tokeninfo"
+
+        response = (requests.post(auth0_endpoint, data={'id_token': token})).json()
+
+        print(response)
+        return response
 
     except crypt.AppIdentityError as ex:
         print(ex)
@@ -43,10 +46,10 @@ def check_access_token(client_request):
 
 def authenticate_user(client_request):
     try:
-        user_information = check_access_token(client_request)
+        user_information = get_token_info(client_request)
         if user_information:
             # print(user_information)
-            user_id = str(user_information['sub'])
+            user_id = str(user_information['identities'][0]['user_id'])
             user = User.get(User.user_id == user_id)
             if user:
                 return user
@@ -164,7 +167,7 @@ def make_quest_log_entry(user, request):
         new_quest_log_entry = QuestLogEntry(
             chapter_index=user.chapter_index_id,
             cumulative=user.cumulative,
-            datetime_quest_completed=datetime.datetime.now,
+            datetime_quest_completed=datetime.datetime.now(),
             datetime_quest_started=user.datetime_quest_started,
             device_family=user_agent.device.family,
             device_model=user_agent.device.model,
@@ -257,12 +260,12 @@ def get_daily_info(user):
 #
 #########################################################################################
 
-def get_leaderboard(user):
-    leaderboard = []
+def get_leader_board(user):
+    leader_board = []
     class_code = user.class_code_id
 
     all_users = User.select(User.class_code == class_code).order_by(-User.total_points)
     for single_user in all_users:
-        leaderboard.append(single_user.total_points)
+        leader_board.append(single_user.total_points)
 
-    return leaderboard
+    return leader_board

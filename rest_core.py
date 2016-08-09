@@ -1,6 +1,12 @@
 from rest_functions import *
 
-from flask import Flask, jsonify, request, abort, send_from_directory
+from flask import Flask, jsonify, request, abort, send_from_directory, _request_ctx_stack
+
+import jwt
+import base64
+import os
+from functools import wraps
+from werkzeug.local import LocalProxy
 
 # TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
 # TODO: change from if-then to try-catch we are inconsistent
@@ -8,6 +14,55 @@ from flask import Flask, jsonify, request, abort, send_from_directory
 # TODO: make route that provides leaderboard with anonymous ids
 
 app = Flask(__name__, static_url_path='/')
+
+
+# Authentication annotation
+current_user = LocalProxy(lambda: _request_ctx_stack.top.current_user)
+
+
+# Authentication attribute/annotation
+def authenticate(error):
+    resp = jsonify(error)
+
+    resp.status_code = 401
+
+    return resp
+
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.headers.get('Authorization', None)
+        if not auth:
+            return authenticate({'code': 'authorization_header_missing', 'description': 'Authorization header is expected'})
+
+        parts = auth.split()
+
+        if parts[0].lower() != 'bearer':
+            return {'code': 'invalid_header', 'description': 'Authorization header must start with Bearer'}
+        elif len(parts) == 1:
+            return {'code': 'invalid_header', 'description': 'Token not found'}
+        elif len(parts) > 2:
+            return {'code': 'invalid_header', 'description': 'Authorization header must be Bearer + \s + token'}
+
+        token = parts[1]
+        try:
+            payload = jwt.decode(
+                token,
+                base64.b64decode('Ruhcmld2nOTwFL4u_NZgUd8Dzj-LhZVEw5o4deIqcy7O_A6LQ4jJhtvKgy6jauN4'.replace("_","/").replace("-","+")),
+                audience='p0YHk3HYjJP7HjleA1zwvNS9xCb5WfIw'
+            )
+        except jwt.ExpiredSignature:
+            return authenticate({'code': 'token_expired', 'description': 'token is expired'})
+        except jwt.InvalidAudienceError:
+            return authenticate({'code': 'invalid_audience', 'description': 'incorrect audience, expected: p0YHk3HYjJP7HjleA1zwvNS9xCb5WfIw'})
+        except jwt.DecodeError:
+            return authenticate({'code': 'token_invalid_signature', 'description': 'token signature is invalid'})
+
+        _request_ctx_stack.top.current_user = user = payload
+        return f(*args, **kwargs)
+
+    return decorated
 
 
 @app.before_request
@@ -63,6 +118,7 @@ def static_file(path):
 
 
 @app.route('/api/v1/status/get', methods=['POST'])
+@requires_auth
 def get_status():
     try:
         print(request.json)
@@ -291,6 +347,8 @@ def submit_question():
 
             if correct:
                 user.award_question_points()
+            else:
+                user.multiplier = 1
 
             make_activity_log_entry(user, correct, request)
             user.update_quest_progress()
@@ -298,7 +356,7 @@ def submit_question():
             quest_complete = (user.current_progress >= user.number_of_questions)
 
             if quest_complete:
-                quest_stats = user.calculate_quest_stats()
+                user_performance = user.calculate_user_performance()
                 make_quest_log_entry(user, request)
                 user.award_daily_rewards()
                 user.drop_user_quest()
@@ -312,7 +370,7 @@ def submit_question():
                         "user_answer": user_answer
                     },
                     "quest_complete": quest_complete,
-                    "quest_stats": quest_stats
+                    "user_performance": user_performance
                 })
 
             else:
@@ -359,7 +417,7 @@ def create_account():
         incoming_request = request
         print(incoming_request)
 
-        user_information = check_access_token(request)
+        user_information = get_token_info(request)
         if user_information:
             print(user_information)
             user_id = str(user_information['sub'])

@@ -93,6 +93,8 @@ class User(BaseModel):
         points_earned = self.points_per_question*self.multiplier
         self.points_earned_current_quest += points_earned
         self.total_points += points_earned
+        self.number_correct += 1
+        self.__increment_multiplier()
 
     def award_daily_rewards(self):
         user_classroom = Classroom.get(Classroom.class_code == self.class_code)
@@ -103,19 +105,24 @@ class User(BaseModel):
 
         self.total_points += points_earned
 
-    def calculate_quest_stats(self):
-        quest_stats = {
+    def calculate_user_performance(self):
+        user_performance = {
             "number_correct": self.number_correct,
             "number_total": self.number_of_questions,
             "points_per_question": self.points_per_question,
             "multiplier_points": self.points_earned_current_quest - self.points_per_question*self.number_correct,
             "score_bonus": self.completion_points
         }
-        return quest_stats
+        return user_performance
 
     #########################################################################################
     # Private Methods
     #########################################################################################
+
+    def __increment_multiplier(self):
+        user_classroom = Classroom.get(Classroom.class_code == self.class_code)
+        if self.multiplier < user_classroom.max_multiplier:
+            self.multiplier += 1
 
     def __generate_new_question(self):
         new_question = DefinitionQuestion().make_definition_question(
