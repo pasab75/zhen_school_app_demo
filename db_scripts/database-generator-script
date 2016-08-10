@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`activity_log` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 189
+AUTO_INCREMENT = 414
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -73,11 +73,10 @@ CREATE TABLE IF NOT EXISTS `testdb`.`classrooms` (
   `daily_exp_base` TINYINT(1) NOT NULL DEFAULT '30',
   `daily_point_value` INT(11) NOT NULL,
   PRIMARY KEY (`class_code`),
-  INDEX `fk_classrooms_current_chapter_idx` (`current_chapter` ASC),
-  CONSTRAINT `fk_classrooms_current_chapter`
+  INDEX `fk_classrooms_chapter_index_idx` (`current_chapter` ASC),
+  CONSTRAINT `fk_classrooms_chapter_index`
     FOREIGN KEY (`current_chapter`)
     REFERENCES `testdb`.`chapters` (`chapter_index`)
-    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -180,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`rewards` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 83
 DEFAULT CHARACTER SET = utf8;
 
 

@@ -1,6 +1,5 @@
 from random import randint
 
-from business_objects.Models import *
 from business_objects.User import *
 
 
@@ -44,14 +43,12 @@ else:
     word_index = 0
     for i in range(1, num_chapters+1):
         chapter_name = "This is Chapter " + str(i)
-        new_chapter = Chapter(chapter_index=i, chapter_name=chapter_name)
-        new_chapter.save()
+        Chapter.create(chapter_index=i, chapter_name=chapter_name)
 
         for j in range(1, num_words_per_chapter+1):
             word_index += 1
             word_string = "word " + str(word_index) + " chapter " + str(i)
-            new_word = Word(word_index=word_index, word=word_string, chapter_index=i)
-            new_word.save()
+            Word.create(word_index=word_index, word=word_string, chapter_index=i)
 
             for k in range(1, num_definitions_per_word+1):
                 k = str(k)
@@ -59,34 +56,33 @@ else:
                                     + str(k) + \
                                     " for word number " + str(word_index) + \
                                     " in chapter number " + str(i) + "."
-                new_definition = Definition(
+                Definition.create(
                     word_index=word_index,
                     definition=definition_string,
                     chapter_index=i
                 )
-                new_definition.save()
 
-new_classroom = Classroom(
+Classroom.create(
     class_code=class_code,
     current_chapter=4,
     number_dailies_allowed=3,
     max_multiplier=5,
-    daily_exp_base=30
+    daily_exp_base=30,
+    daily_point_value=10000
 )
-new_classroom.save()
 
 for i in range(10):
     index = i+1
     reward_name = "Reward " + str(index)
     reward_description = "This is reward number " + str(index) + ", I'm sure it does something good."
     required_points = index*1000
-    new_reward = Reward(
+    Reward.create(
+        current_chapter=4,
         class_code=class_code,
         reward_name=reward_name,
         reward_description=reward_description,
         required_points=required_points
     )
-    new_reward.save()
 
 for i in range(50):
     index = i+1
