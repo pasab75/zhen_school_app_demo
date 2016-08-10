@@ -11,8 +11,6 @@ from werkzeug.local import LocalProxy
 # TODO: MAKE THESE ROUTES ACTUALLY THROW EXCEPTIONS THAT WORK
 # TODO: change from if-then to try-catch we are inconsistent
 
-# TODO: make route that provides leaderboard with anonymous ids
-
 app = Flask(__name__, static_url_path='/')
 
 
@@ -50,7 +48,8 @@ def requires_auth(f):
             payload = jwt.decode(
                 token,
                 base64.b64decode('Ruhcmld2nOTwFL4u_NZgUd8Dzj-LhZVEw5o4deIqcy7O_A6LQ4jJhtvKgy6jauN4'.replace("_","/").replace("-","+")),
-                audience='p0YHk3HYjJP7HjleA1zwvNS9xCb5WfIw'
+                audience='p0YHk3HYjJP7HjleA1zwvNS9xCb5WfIw',
+                options={'verify_iat': False}
             )
         except jwt.ExpiredSignature:
             return authenticate({'code': 'token_expired', 'description': 'token is expired'})
@@ -72,6 +71,8 @@ def before_request():
 
 @app.after_request
 def after_request(response):
+    # TODO: check to see if this CORS implementation is safe
+    # TODO: Mobile may not need CORS here - check to see if it is okay without it
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
@@ -83,7 +84,7 @@ def after_request(response):
 
 
 @app.route('/', methods=['GET'])
-def hello_world():
+def route_hello_world():
     try:
         print(request.json)
         return send_from_directory('', "index.html")
@@ -94,7 +95,7 @@ def hello_world():
 
 
 @app.route('/<path:path>', methods=['GET'])
-def static_file(path):
+def route_static_file(path):
     return send_from_directory('', path)
 
 # -------------------------------------------------------------
@@ -119,7 +120,7 @@ def static_file(path):
 
 @app.route('/api/v1/status/get', methods=['POST'])
 @requires_auth
-def get_status():
+def route_get_status():
     try:
         print(request.json)
         user = authenticate_user(request)
@@ -162,7 +163,7 @@ def get_status():
 
 
 @app.route('/api/v1/quest/start', methods=['POST'])
-def start_quest():
+def route_start_quest():
     try:
         incoming_request = request
         print(incoming_request)
@@ -206,7 +207,7 @@ def start_quest():
 
 
 @app.route('/api/v1/quests/get', methods=['POST'])
-def get_quests():
+def route_get_quests():
     try:
         incoming_request = request
         print(incoming_request)
@@ -244,7 +245,7 @@ def get_quests():
 
 
 @app.route('/api/v1/quest/drop', methods=['POST'])
-def drop_quest():
+def route_drop_quest():
     try:
         incoming_request = request
         print(incoming_request)
@@ -286,7 +287,7 @@ def drop_quest():
 
 
 @app.route('/api/v1/quest/resume', methods=['POST'])
-def resume_quest():
+def route_resume_quest():
     try:
         incoming_request = request
         print(incoming_request)
@@ -328,7 +329,7 @@ def resume_quest():
 
 
 @app.route('/api/v1/question/submit', methods=['POST'])
-def submit_question():
+def route_submit_question():
     try:
         print(request.json)
 
@@ -416,7 +417,7 @@ def submit_question():
 
 
 @app.route('/api/v1/account/create', methods=['POST'])
-def create_account():
+def route_create_account():
     try:
         incoming_request = request
         print(incoming_request)
@@ -471,7 +472,7 @@ def create_account():
 
 
 @app.route('/api/v1/daily/get', methods=['POST'])
-def get_daily():
+def route_get_daily():
     try:
         print(request.json)
 
@@ -508,13 +509,13 @@ def get_daily():
 
 
 @app.route('/api/v1/leaderboard/get', methods=['POST'])
-def get_leaderboard():
+def route_get_leaderboard():
     try:
         print(request.json)
 
         user = authenticate_user(request)
         if user:
-            leaderboard = get_leaderboard(user)
+            leaderboard = get_leader_board(user)
             return jsonify({
                 'leaderboard': leaderboard
             })
@@ -531,7 +532,7 @@ def get_leaderboard():
 # -------------------------------------------------------------
 # TODO: add professor routes for changing the question database etc
 
-# TODO: check to see if this CORS implementation is safe
+
 
 if __name__ == '__main__':
     if server_local:

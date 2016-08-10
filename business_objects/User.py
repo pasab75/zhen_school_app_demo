@@ -164,6 +164,7 @@ class User(BaseModel):
         self.cumulative = True
         self.question_type = 3
         self.is_on_daily = True
+        self.points_earned_current_quest = 0
 
     def __start_practice(self, client_choices):
         chapter_index = client_choices['chapter_index']
@@ -191,3 +192,4 @@ class User(BaseModel):
         self.cumulative = cumulative
         self.question_type = question_type
         self.is_on_daily = False
+        self.points_earned_current_quest = 0

@@ -78,7 +78,6 @@ class DefinitionQuestion:
             if cumulative:
                 query = (Definition
                          .select(Definition, Word)
-                         .distinct(Definition.word_index)
                          .join(Word)
                          .where(Word.chapter_index <= chapter_index)
                          .order_by(fn.Rand())
@@ -87,7 +86,6 @@ class DefinitionQuestion:
             else:
                 query = (Definition
                          .select(Definition, Word)
-                         .distinct(Definition.word_index)
                          .join(Word)
                          .where(Word.chapter_index == chapter_index)
                          .order_by(fn.Rand())

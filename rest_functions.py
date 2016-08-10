@@ -176,7 +176,8 @@ def make_quest_log_entry(user, request):
             latitude=request_json['latitude'],
             longitude=request_json['longitude'],
             number_of_questions=user.number_of_questions,
-            user_id=user.user_id
+            user_id=user.user_id,
+            number_correct=user.number_correct
         )
         new_quest_log_entry.save()
     except Exception as ex:
